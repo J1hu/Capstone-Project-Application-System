@@ -30,7 +30,7 @@ composer install
 npm install 
 ```
 
-4. Create a copy of the .env file
+4. Rename .env.example to .env
 
 
 5. Generate encryption key
