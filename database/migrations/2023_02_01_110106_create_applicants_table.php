@@ -43,7 +43,7 @@ return new class extends Migration
             $table->foreignId('guardian_id')->constrained()->cascadeOnDelete()->nullable();
             // educational background
             $table->string('last_school');
-            $table->string('last_school_address');
+            $table->text('last_school_address');
             $table->enum('school_type', ['Public', 'Private', 'State University']);
             $table->string('lrn');
             $table->enum('esc_grantee', ['Yes', 'No', 'N/A']);
@@ -54,7 +54,7 @@ return new class extends Migration
             // other information
             $table->foreignId('gadget_id')->constrained()->cascadeOnDelete();
             $table->foreignId('internet_type_id')->constrained()->cascadeOnDelete();
-            $table->string('free_ebill_reason')->nullable();
+            $table->text('free_ebill_reason')->nullable();
             $table->foreignId('house_ownership_id')->constrained()->cascadeOnDelete();
             $table->boolean('data_privacy_consent');
             $table->date('date_accomplished');
