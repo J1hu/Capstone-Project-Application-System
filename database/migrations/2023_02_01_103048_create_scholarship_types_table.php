@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('scholarship_types', function (Blueprint $table) {
             $table->id();
             $table->string('schol_type_name');
-            $table->string('schol_type_desc');
             $table->timestamps();
         });
     }

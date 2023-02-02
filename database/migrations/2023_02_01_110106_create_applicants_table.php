@@ -33,13 +33,13 @@ return new class extends Migration
             $table->string('religion');
             $table->string('avatar');
             // family data
-            $table->string('total_fam_members');
+            $table->unsignedInteger('total_fam_members');
             $table->string('birth_order');
-            $table->foreignId('siblings');
+            $table->foreignId('sibling_id')->constrained();
             // parent or guardian data
-            $table->foreignId('mother');
-            $table->foreignId('father');
-            $table->foreignId('guardian')->nullable();
+            $table->foreignId('mother_id')->constrained();
+            $table->foreignId('father_id')->constrained();
+            $table->foreignId('guardian_id')->constrained()->nullable();
             // educational background
             $table->string('last_school');
             $table->string('last_school_address');
@@ -49,7 +49,7 @@ return new class extends Migration
             $table->string('esc_num')->nullable();
             $table->foreignId('acad_award_id')->constrained();
             // program choice
-            $table->foreignId('program_id');
+            $table->foreignId('program_id')->constrained();
             // other information
             $table->foreignId('gadget_id')->constrained();
             $table->foreignId('internet_type_id')->constrained();
@@ -58,10 +58,10 @@ return new class extends Migration
             $table->boolean('data_privacy_consent');
             $table->date('date_accomplished');
             // system requirements
-            $table->foreignId('scholarship_type_id')->nullable();
-            $table->foreignId('application_status_id')->nullable();
-            $table->foreignId('exam_score_id')->nullable();
-            $table->foreignId('interview_remark_id')->nullable();
+            $table->foreignId('scholarship_type_id')->constrained()->nullable();
+            $table->foreignId('application_status_id')->constrained()->nullable();
+            $table->foreignId('exam_score_id')->constrained()->nullable();
+            $table->foreignId('interview_remark_id')->constrained()->nullable();
             $table->timestamps();
         });
     }
