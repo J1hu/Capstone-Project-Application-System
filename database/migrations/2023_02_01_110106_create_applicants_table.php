@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('applicants', function (Blueprint $table) {
             //student personal data
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('fname');
             $table->string('mname')->nullable();
             $table->string('lname');
@@ -27,7 +27,8 @@ return new class extends Migration
             $table->enum('applicant_type', ['Old Student', 'New Student', 'Old Returnee']);
             $table->enum('sex', ['Male', 'Female']);
             $table->date('birthdate');
-            $table->foreignId('address_id')->constrained();
+            //$table->foreignId('address_id')->constrained()->cascadeOnDelete();
+            $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
             $table->string('phone_num');
             $table->string('fb_link');
             $table->string('religion');
@@ -35,11 +36,11 @@ return new class extends Migration
             // family data
             $table->unsignedInteger('total_fam_members');
             $table->string('birth_order');
-            $table->foreignId('sibling_id')->constrained();
+            $table->foreignId('sibling_id')->constrained()->cascadeOnDelete();
             // parent or guardian data
-            $table->foreignId('mother_id')->constrained();
-            $table->foreignId('father_id')->constrained();
-            $table->foreignId('guardian_id')->constrained()->nullable();
+            $table->foreignId('mother_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('father_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('guardian_id')->constrained()->cascadeOnDelete()->nullable();
             // educational background
             $table->string('last_school');
             $table->string('last_school_address');
@@ -47,21 +48,22 @@ return new class extends Migration
             $table->string('lrn');
             $table->enum('esc_grantee', ['Yes', 'No', 'N/A']);
             $table->string('esc_num')->nullable();
-            $table->foreignId('acad_award_id')->constrained();
+            $table->foreignId('acad_award_id')->constrained()->cascadeOnDelete();
             // program choice
-            $table->foreignId('program_id')->constrained();
+            $table->foreignId('program_id')->constrained()->cascadeOnDelete();
             // other information
-            $table->foreignId('gadget_id')->constrained();
-            $table->foreignId('internet_type_id')->constrained();
+            $table->foreignId('gadget_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('internet_type_id')->constrained()->cascadeOnDelete();
             $table->string('free_ebill_reason')->nullable();
-            $table->foreignId('house_ownership_id')->constrained();
+            $table->foreignId('house_ownership_id')->constrained()->cascadeOnDelete();
             $table->boolean('data_privacy_consent');
             $table->date('date_accomplished');
             // system requirements
-            $table->foreignId('scholarship_type_id')->constrained()->nullable();
-            $table->foreignId('application_status_id')->constrained()->nullable();
-            $table->foreignId('exam_score_id')->constrained()->nullable();
-            $table->foreignId('interview_remark_id')->constrained()->nullable();
+            $table->foreignId('scholarship_type_id')->constrained()->cascadeOnDelete()->nullable();
+            //$table->foreignId('application_status_id')->constrained()->cascadeOnDelete()->nullable();
+            $table->foreign('application_status_id')->references('id')->on('application_status')->onDelete('cascade');
+            $table->foreignId('exam_score_id')->constrained()->cascadeOnDelete()->nullable();
+            $table->foreignId('interview_remark_id')->constrained()->cascadeOnDelete()->nullable();
             $table->timestamps();
         });
     }
