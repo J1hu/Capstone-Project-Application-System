@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('applicant_id')->constrained()->cascadeOnDelete();
             $table->string('electric_month');
-            $table->unsignedInteger('electric_amount');
+            $table->float('electric_amount');
             $table->timestamps();
         });
     }

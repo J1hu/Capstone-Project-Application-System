@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('mother_lname');
             $table->string('mother_religion');
             $table->string('mother_occupation');
-            $table->unsignedInteger('mother_annual_income');
+            $table->float('mother_annual_income');
             $table->string('mother_phone_num');
             $table->timestamps();
         });
