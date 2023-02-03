@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('scholarship_types', function (Blueprint $table) {
+        Schema::create('electric_bills', function (Blueprint $table) {
             $table->id();
-            $table->string('schol_type_name');
+            $table->foreignId('applicant_id')->constrained()->cascadeOnDelete();
+            $table->string('electric_month');
+            $table->unsignedInteger('electric_amount');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('scholarship_types');
+        Schema::dropIfExists('electric_bills');
     }
 };
