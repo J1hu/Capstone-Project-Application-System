@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('applicant_id')->constrained()->cascadeOnDelete();
             $table->unsignedInteger('intelligence_score');
             $table->unsignedInteger('aptitude_score');
+            // calculated based on the aptitude and intelligence score
             $table->float('average_score');
             $table->timestamps();
         });
