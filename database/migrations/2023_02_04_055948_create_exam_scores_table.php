@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('exam_scores', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('role_name');
+            $table->foreignId('applicant_id')->constrained()->cascadeOnDelete();
+            $table->unsignedInteger('intelligence_score');
+            $table->unsignedInteger('aptitude_score');
+            $table->float('average_score');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('exam_scores');
     }
 };

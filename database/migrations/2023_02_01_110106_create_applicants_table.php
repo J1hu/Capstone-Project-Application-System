@@ -27,8 +27,7 @@ return new class extends Migration
             $table->enum('applicant_type', ['Old Student', 'New Student', 'Old Returnee']);
             $table->enum('sex', ['Male', 'Female']);
             $table->date('birthdate');
-            //$table->foreignId('address_id')->constrained()->cascadeOnDelete();
-            $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
+            $table->foreign('address_id')->references('id')->on('applicant_addresses')->cascadeOnDelete();
             $table->string('phone_num');
             $table->string('fb_link');
             $table->string('religion');
@@ -36,11 +35,11 @@ return new class extends Migration
             // family data
             $table->unsignedInteger('total_fam_members');
             $table->string('birth_order');
-            $table->foreignId('sibling_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('applicant_sibling_id')->constrained()->cascadeOnDelete();
             // parent or guardian data
-            $table->foreignId('mother_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('father_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('guardian_id')->constrained()->cascadeOnDelete()->nullable();
+            $table->foreignId('applicant_mother_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('applicant_father_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('applicant_guardian_id')->nullable()->constrained()->cascadeOnDelete();
             // educational background
             $table->string('last_school');
             $table->text('last_school_address');
@@ -59,11 +58,10 @@ return new class extends Migration
             $table->boolean('data_privacy_consent');
             $table->date('date_accomplished');
             // system requirements
-            $table->foreignId('scholarship_type_id')->constrained()->cascadeOnDelete()->nullable();
-            //$table->foreignId('application_status_id')->constrained()->cascadeOnDelete()->nullable();
-            $table->foreign('application_status_id')->references('id')->on('application_status')->onDelete('cascade');
-            $table->foreignId('exam_score_id')->constrained()->cascadeOnDelete()->nullable();
-            $table->foreignId('interview_remark_id')->constrained()->cascadeOnDelete()->nullable();
+            $table->foreignId('scholarship_type_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreign('application_status_id')->references('id')->on('application_status')->nullable()->cascadeOnDelete();
+            $table->foreignId('exam_score_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('interview_remark_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
