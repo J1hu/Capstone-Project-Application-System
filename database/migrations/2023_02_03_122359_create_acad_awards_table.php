@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('acad_awards', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('applicant_id')->constrained()->cascadeOnDelete();
             $table->string('award_name');
             $table->timestamps();
         });
