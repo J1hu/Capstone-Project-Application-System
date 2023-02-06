@@ -5,11 +5,13 @@ Bachelor of Science in Information Systems 4th year of La Verdad Christian Colle
 - [J1hu](https://www.github.com/J1hu)
 - [j-mode](https://www.github.com/j-mode)
 - [AndreaMaurice](https://www.github.com/AndreaMaurice)
+- [Tine-09](https://github.com/Tine-09)
 
 ## Modules (least to highest access level)
 - Applicant/User's Module
 - Evaluator/Program Head's Module
 - Management Committee's Module
+- Registrar Staff's Module
 - Registrar/Admin Module
 
 ## Installation

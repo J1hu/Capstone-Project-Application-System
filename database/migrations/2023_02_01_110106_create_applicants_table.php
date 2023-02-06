@@ -27,7 +27,7 @@ return new class extends Migration
             $table->enum('applicant_type', ['Old Student', 'New Student', 'Old Returnee']);
             $table->enum('sex', ['Male', 'Female']);
             $table->date('birthdate');
-            $table->foreign('address_id')->references('id')->on('applicant_addresses')->cascadeOnDelete();
+            $table->foreignId('address_id')->nullable()->constrained('applicant_addresses')->cascadeOnDelete();
             $table->string('phone_num');
             $table->string('fb_link');
             $table->string('religion');
@@ -59,9 +59,10 @@ return new class extends Migration
             $table->date('date_accomplished');
             // system requirements
             $table->foreignId('scholarship_type_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->foreign('application_status_id')->references('id')->on('application_status')->nullable()->cascadeOnDelete();
+            $table->foreignId('application_status_id')->nullable()->constrained('application_status')->cascadeOnDelete();
             $table->foreignId('exam_score_id')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('interview_remark_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('batch_id')->nullable()->constrained('batches')->cascadeOnDelete();
             $table->timestamps();
         });
     }
