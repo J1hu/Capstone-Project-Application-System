@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('applicant_id')->constrained()->cascadeOnDelete();
             $table->unsignedInteger('batch_num');
-            $table->$table->timestamps();
+            $table->timestamps();
         });
     }
 
