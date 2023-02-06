@@ -11,6 +11,7 @@ Bachelor of Science in Information Systems 4th year of La Verdad Christian Colle
 - Applicant/User's Module
 - Evaluator/Program Head's Module
 - Management Committee's Module
+- Registrar Staff's Module
 - Registrar/Admin Module
 
 ## Installation
