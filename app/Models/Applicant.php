@@ -99,11 +99,6 @@ class Applicant extends Model
         return $this->hasOne(HouseOwnership::class);
     }
 
-    public function scholarshipType()
-    {
-        return $this->hasOne(ScholarshipType::class);
-    }
-
     public function applicationStatus()
     {
         return $this->hasOne(ApplicationStatus::class);
@@ -113,6 +108,12 @@ class Applicant extends Model
     {
         // plural
         return $this->hasOne(ExamScores::class);
+    }
+
+    public function evaluations()
+    {
+        // plural
+        return $this->hasMany(Evaluations::class);
     }
 
     public function batches()
