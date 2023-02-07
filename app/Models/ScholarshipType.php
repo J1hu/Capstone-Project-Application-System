@@ -12,4 +12,9 @@ class ScholarshipType extends Model
     protected $fillable = [
         'scholarship_name'
     ];
+
+    public function evaluations()
+    {
+        return $this->belongsTo(Evaluations::class);
+    }
 }

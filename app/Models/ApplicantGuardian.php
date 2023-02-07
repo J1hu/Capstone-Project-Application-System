@@ -18,4 +18,9 @@ class ApplicantGuardian extends Model
         'guardian_annual_income',
         'guardian_phone_num'
     ];
+
+    public function applicant()
+    {
+        return $this->belongsTo(Applicant::class);
+    }
 }

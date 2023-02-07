@@ -12,4 +12,9 @@ class AcadAward extends Model
     protected $fillable = [
         'award_name',
     ];
+
+    public function applicant()
+    {
+        return $this->belongsTo(Applicant::class);
+    }
 }

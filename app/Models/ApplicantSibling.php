@@ -13,4 +13,9 @@ class ApplicantSibling extends Model
         'full_name',
         'education_level'
     ];
+
+    public function applicant()
+    {
+        return $this->belongsTo(Applicant::class);
+    }
 }

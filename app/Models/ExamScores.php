@@ -14,4 +14,9 @@ class ExamScores extends Model
         'aptitude_score',
         'average_score'
     ];
+
+    public function applicant()
+    {
+        return $this->belongsTo(Applicant::class);
+    }
 }
