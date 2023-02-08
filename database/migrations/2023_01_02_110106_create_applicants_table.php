@@ -30,7 +30,6 @@ return new class extends Migration
             // family data
             $table->unsignedInteger('total_fam_members');
             $table->string('birth_order');
-            // parent or guardian data
             // educational background
             $table->string('last_school');
             $table->text('last_school_address');
@@ -45,7 +44,6 @@ return new class extends Migration
             $table->boolean('data_privacy_consent');
             $table->date('date_accomplished');
             // system requirements
-            $table->foreignId('scholarship_type_id')->nullable()->constrained('batches')->cascadeOnDelete();
             $table->foreignId('batch_id')->nullable()->constrained('batches')->cascadeOnDelete();
             $table->timestamps();
         });
