@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('application_status', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('applicant_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('applicant_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('status_name');
             $table->timestamps();
         });

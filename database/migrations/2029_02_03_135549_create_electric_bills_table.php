@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('gadgets', function (Blueprint $table) {
+        Schema::create('electric_bills', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('applicant_id')->constrained()->cascadeOnDelete();
-            $table->string('gadget_name');
+            $table->foreignId('applicant_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('electric_month');
+            $table->float('electric_amount');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gadgets');
+        Schema::dropIfExists('electric_bills');
     }
 };

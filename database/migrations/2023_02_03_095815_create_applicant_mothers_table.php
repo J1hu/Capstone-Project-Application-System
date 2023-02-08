@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('applicant_mothers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('applicant_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('applicant_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('mother_fname');
             $table->string('mother_mname');
             $table->string('mother_lname');

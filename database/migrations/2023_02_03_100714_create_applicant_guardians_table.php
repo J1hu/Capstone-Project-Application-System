@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('applicant_guardians', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('applicant_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('applicant_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('guardian_fname');
             $table->string('guardian_mname');
             $table->string('guardian_lname');
