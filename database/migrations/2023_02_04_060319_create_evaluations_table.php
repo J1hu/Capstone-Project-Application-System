@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->text('remarks');
             $table->enum('evaluation_type', ['Pre-assessment', 'Initial', 'Final']);
+            $table->boolean('approval')->nullable();
+            $table->foreignId('scholarship_type_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

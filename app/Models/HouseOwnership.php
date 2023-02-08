@@ -12,4 +12,9 @@ class HouseOwnership extends Model
     protected $fillable = [
         'ownership_type',
     ];
+
+    public function applicant()
+    {
+        return $this->belongsTo(Applicant::class);
+    }
 }

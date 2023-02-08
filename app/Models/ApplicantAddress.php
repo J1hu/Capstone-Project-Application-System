@@ -16,4 +16,9 @@ class ApplicantAddress extends Model
         'street',
         'zip_code'
     ];
+
+    public function applicant()
+    {
+        return $this->belongsTo(Applicant::class);
+    }
 }

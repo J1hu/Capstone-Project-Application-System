@@ -20,4 +20,9 @@ class ApplicantMother extends Model
         'mother_annual_income',
         'mother_phone_num'
     ];
+
+    public function applicant()
+    {
+        return $this->belongsTo(Applicant::class);
+    }
 }

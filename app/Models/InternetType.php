@@ -12,4 +12,9 @@ class InternetType extends Model
     protected $fillable = [
         'internet_name'
     ];
+
+    public function applicant()
+    {
+        return $this->belongsTo(Applicant::class);
+    }
 }

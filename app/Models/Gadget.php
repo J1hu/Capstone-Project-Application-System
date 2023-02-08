@@ -12,4 +12,9 @@ class Gadget extends Model
     protected $fillable = [
         'gadget_name',
     ];
+
+    public function applicant()
+    {
+        return $this->belongsTo(Applicant::class);
+    }
 }

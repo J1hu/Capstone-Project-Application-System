@@ -12,4 +12,9 @@ class ApplicationStatus extends Model
     protected $fillable = [
         'status_name'
     ];
+
+    public function applicant()
+    {
+        return $this->belongsTo(Applicant::class);
+    }
 }

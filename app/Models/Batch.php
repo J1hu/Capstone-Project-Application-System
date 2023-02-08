@@ -12,4 +12,9 @@ class Batch extends Model
     protected $fillable = [
         'batch_num'
     ];
+
+    public function applicant()
+    {
+        return $this->belongsTo(Applicant::class);
+    }
 }

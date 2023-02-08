@@ -11,6 +11,22 @@ class Evaluations extends Model
 
     protected $fillable = [
         'remarks',
-        'evaluation_type'
+        'evaluation_type',
+        'approval'
     ];
+
+    public function applicant()
+    {
+        return $this->belongsTo(Applicant::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function scholarshipType()
+    {
+        return $this->hasOne(ScholarshipType::class);
+    }
 }

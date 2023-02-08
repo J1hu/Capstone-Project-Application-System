@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('fname');
             $table->string('mname')->nullable();
             $table->string('lname');
-            $table->foreign('applicant_email')
+            $table->foreign('user_email')
                 ->references('email')
                 ->on('users')
                 ->onDelete('cascade');
@@ -58,7 +58,6 @@ return new class extends Migration
             $table->boolean('data_privacy_consent');
             $table->date('date_accomplished');
             // system requirements
-            $table->foreignId('scholarship_type_id')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('application_status_id')->nullable()->constrained('application_status')->cascadeOnDelete();
             $table->foreignId('exam_score_id')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('interview_remark_id')->nullable()->constrained()->cascadeOnDelete();

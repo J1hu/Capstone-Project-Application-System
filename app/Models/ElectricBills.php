@@ -13,4 +13,9 @@ class ElectricBills extends Model
         'electric_month',
         'electric_amount'
     ];
+
+    public function applicant()
+    {
+        return $this->belongsTo(Applicant::class);
+    }
 }
