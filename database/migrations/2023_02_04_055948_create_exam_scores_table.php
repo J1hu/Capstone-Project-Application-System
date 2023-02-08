@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('exam_scores', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('applicant_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('applicant_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedInteger('intelligence_score');
             $table->unsignedInteger('aptitude_score');
             $table->float('average_score');

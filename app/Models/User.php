@@ -48,14 +48,14 @@ class User extends Authenticatable
         return $this->hasOne(Role::class);
     }
 
-    public function program()
-    {
-        return $this->hasOne(Program::class);
-    }
-
     public function applicant()
     {
         return $this->hasOne(Applicant::class);
+    }
+
+    public function program()
+    {
+        return $this->belongsTo(Program::class);
     }
 
     public function email()

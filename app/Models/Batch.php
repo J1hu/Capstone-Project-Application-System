@@ -15,6 +15,6 @@ class Batch extends Model
 
     public function applicant()
     {
-        return $this->belongsTo(Applicant::class);
+        return $this->hasOne(Applicant::class);
     }
 }

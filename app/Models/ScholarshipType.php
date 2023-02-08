@@ -13,8 +13,13 @@ class ScholarshipType extends Model
         'scholarship_name'
     ];
 
+    public function applicants()
+    {
+        return $this->hasMany(Applicant::class);
+    }
+
     public function evaluations()
     {
-        return $this->belongsTo(Evaluations::class);
+        return $this->hasMany(Evaluations::class);
     }
 }

@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('scholarship_types', function (Blueprint $table) {
+        Schema::create('acad_awards', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('evaluation_id')->constrained()->cascadeOnDelete();
-            $table->string('scholarship_name');
+            $table->foreignId('applicant_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('award_name');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('scholarship_types');
+        Schema::dropIfExists('acad_awards');
     }
 };

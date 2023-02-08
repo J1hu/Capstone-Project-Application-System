@@ -38,14 +38,14 @@ class Applicant extends Model
         'date_accomplished',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function program()
     {
         return $this->belongsTo(Program::class);
-    }
-
-    public function email()
-    {
-        return $this->belongsTo(User::class, 'user_email', 'email');
     }
 
     public function address()

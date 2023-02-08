@@ -15,6 +15,11 @@ class Evaluations extends Model
         'approval'
     ];
 
+    public function scholarshipType()
+    {
+        return $this->belongsTo(ScholarshipType::class);
+    }
+
     public function applicant()
     {
         return $this->belongsTo(Applicant::class);
@@ -23,10 +28,5 @@ class Evaluations extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function scholarshipType()
-    {
-        return $this->hasOne(ScholarshipType::class);
     }
 }

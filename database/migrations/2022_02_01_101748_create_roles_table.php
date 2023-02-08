@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('electric_bills', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('applicant_id')->constrained()->cascadeOnDelete();
-            $table->string('electric_month');
-            $table->float('electric_amount');
+            $table->string('role_name')->default('Applicant');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('electric_bills');
+        Schema::dropIfExists('roles');
     }
 };

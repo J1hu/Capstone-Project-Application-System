@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('batches', function (Blueprint $table) {
+        Schema::create('applicant_siblings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('applicant_id')->constrained()->cascadeOnDelete();
-            $table->unsignedInteger('batch_num');
+            $table->foreignId('applicant_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->string('full_name');
+            $table->string('education_level');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('batches');
+        Schema::dropIfExists('applicant_siblings');
     }
 };
