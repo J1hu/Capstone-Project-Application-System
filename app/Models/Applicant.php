@@ -34,6 +34,7 @@ class Applicant extends Model
         'esc_num',
         // other information
         'free_ebill_reason',
+        'monthly_rental',
         'data_privacy_consent',
         'date_accomplished',
     ];

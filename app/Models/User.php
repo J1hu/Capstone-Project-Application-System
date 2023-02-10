@@ -45,7 +45,7 @@ class User extends Authenticatable
 
     public function role()
     {
-        return $this->hasOne(Role::class);
+        return $this->belongsTo(Role::class);
     }
 
     public function applicant()
@@ -56,11 +56,6 @@ class User extends Authenticatable
     public function program()
     {
         return $this->belongsTo(Program::class);
-    }
-
-    public function email()
-    {
-        return $this->hasOne(Applicant::class, 'user_email', 'email');
     }
 
     public function evaluations()
