@@ -41,6 +41,7 @@ return new class extends Migration
             $table->foreignId('program_id')->constrained()->cascadeOnDelete();
             // other information
             $table->text('free_ebill_reason');
+            $table->float('monthly_rental');
             $table->boolean('data_privacy_consent');
             $table->date('date_accomplished');
             // system requirements
