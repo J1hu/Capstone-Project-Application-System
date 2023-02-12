@@ -4,6 +4,9 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Role;
+use App\Models\Program;
+use App\Models\Applicant;
+use App\Models\Evaluations;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -61,5 +64,11 @@ class User extends Authenticatable
     public function evaluations()
     {
         return $this->hasMany(Evaluations::class);
+    }
+
+    //Determine the user role
+    public function isRole(string $role): bool
+    {
+        return $this->role->role_name === $role;
     }
 }
