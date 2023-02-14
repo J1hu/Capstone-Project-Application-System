@@ -18,12 +18,14 @@ class RoleMiddleware
      */
     public function handle($request, Closure $next, $role)
     {
+        // checks if user is authenticated
         if (!Auth::check()) {
             return redirect('login');
         }
 
-        if (!User::find(Auth::id())->isRole($role)) {
-            return redirect('login');
+        // checks if user has a role
+        if (!Auth::user()->isRole($role)) {
+            abort(401, 'Unauthorized action.');
         }
 
         return $next($request);
