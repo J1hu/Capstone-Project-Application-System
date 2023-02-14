@@ -52,8 +52,11 @@ if with seeders
 ```
 php artisan db:seed
 ```
+9. Run the project
+```
+php artisan serve
+```
 
 ## License
-
 [MIT](https://choosealicense.com/licenses/mit/)
 
