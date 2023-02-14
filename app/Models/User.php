@@ -9,10 +9,11 @@ use App\Models\Applicant;
 use App\Models\Evaluations;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -70,5 +71,11 @@ class User extends Authenticatable
     public function isRole(string $role): bool
     {
         return $this->role->role_name === $role;
+    }
+
+    //Can Access the admin panel
+    public function canAccessFilament(): bool
+    {
+        return $this->role->role_name === "admin";
     }
 }
