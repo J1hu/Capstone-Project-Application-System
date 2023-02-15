@@ -1,4 +1,4 @@
-// testing view
+<!-- Testing View -->
 <h1>List of Users</h1>
 
 <ul>

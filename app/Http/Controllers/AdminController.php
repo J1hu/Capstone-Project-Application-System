@@ -10,7 +10,6 @@ class AdminController extends Controller
     // this is just a testing method for admin
     public function test()
     {
-
         $users = User::all();
         return view('users.index', ['users' => $users]);
     }
