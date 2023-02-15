@@ -1,0 +1,19 @@
+<div {{ $attributes->merge(['class' => 'px-3 sm:px-10 grid grid-col-2 grid-flow-col content-center ' . $classname]) }}>
+    <a href="#top" class="flex flex-wrap content-center space-x-4 align-middle">
+        <div>
+                <img src="{{ asset('assets/lvlogo.png') }}" alt="La Verdad Christian College Inc. Logo" width="70">
+        </div>
+        <div class="hidden sm:grid content-center">
+            <p class="font-bold sm:text-lg">LA VERDAD CHRISTIAN COLLEGE</p>
+            <p class="italic leading-4">McArthur Highway, Brgy. Sampaloc, Apalit, Pampanga</p>
+        </div>
+    </a>
+    <div class="text-center flex justify-end items-center">
+        <a href="{{ route('login') }}">
+            <div
+            {{ $attributes->merge(['class' => 'bg-blue-900 text-white w-24 sm:w-36 text-center p-2 hover:bg-blue-700  hover:text-slate-50 lg:font-bold rounded-sm text-sm '. $login]) }}>
+                LOGIN
+            </div>
+        </a>
+    </div>
+</div>
