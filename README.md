@@ -52,8 +52,16 @@ if with seeders
 ```
 php artisan db:seed
 ```
+9. Load TailwindCSS (do not close this terminal while running the project)
+```
+npm run dev
+```
+
+10. Run the project
+```
+php artisan serve
+```
 
 ## License
-
 [MIT](https://choosealicense.com/licenses/mit/)
 
