@@ -52,12 +52,21 @@ if with seeders
 ```
 php artisan db:seed
 ```
-9. Load TailwindCSS (do not close this terminal while running the project)
+9. Create the following roles before creating an account
+**List of roles**
+- id - role_name
+- 0  - admin
+- 1 - applicant
+- 2 - registrar_staff
+- 3 - program_head
+- 4 - mancom
+
+10. Load TailwindCSS (do not close this terminal while running the project)
 ```
 npm run dev
 ```
 
-10. Run the project
+11. Run the project
 ```
 php artisan serve
 ```
