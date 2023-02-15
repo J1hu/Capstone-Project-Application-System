@@ -11,7 +11,7 @@
     </head>
     <body class="antialiased">
         <div id="top">
-            <x-guest-navigation classname="h-24 w-screen bg-blue-800 text-white" login="bg-white text-blue-900 hover:bg-blue-500"></x-guest-navigation>
+            <x-guest-navigation classname="h-24 w-screen" login="bg-blue-900 text-white hover:bg-blue-700 hover:text-white"></x-guest-navigation>
         </div>
     </body>
 </html>

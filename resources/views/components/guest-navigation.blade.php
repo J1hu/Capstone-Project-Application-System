@@ -11,7 +11,7 @@
     <div class="text-center flex justify-end items-center">
         <a href="{{ route('login') }}">
             <div
-            {{ $attributes->merge(['class' => 'bg-blue-900 text-white w-24 sm:w-36 text-center p-2 hover:bg-blue-700  hover:text-slate-50 lg:font-bold rounded-sm text-sm '. $login]) }}>
+            {{ $attributes->merge(['class' => 'w-24 sm:w-36 text-center p-2 lg:font-bold rounded-sm text-sm '. $login]) }}>
                 LOGIN
             </div>
         </a>
