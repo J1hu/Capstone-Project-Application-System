@@ -3,7 +3,7 @@
         <div>
                 <img src="{{ asset('assets/lvlogo.png') }}" alt="La Verdad Christian College Inc. Logo" width="70">
         </div>
-        <div class="hidden sm:grid content-center">
+        <div class="hidden md:grid content-center">
             <p class="font-bold sm:text-lg">LA VERDAD CHRISTIAN COLLEGE</p>
             <p class="italic leading-4">McArthur Highway, Brgy. Sampaloc, Apalit, Pampanga</p>
         </div>
