@@ -52,14 +52,18 @@
             </div>
         </div>
         {{-- Full Scholarship --}}
-        <div class="h-96 bg-indigo-700">
-            <div class="h-full grid grid-cols-1 gap-4 content-center w-auto text-center px-5 md:px-10">
+        <div class="h-fit lg:h-96 bg-indigo-700">
+            <div class="h-full relative grid grid-cols-1 gap-4 content-center w-auto text-center px-5 md:px-10">
+                <div class="mt-10 border-dashed border-slate-300 rotate-6 w-8 h-8 border-2 sm:w-10 sm:h-10 md:w-12 md:h-12 md:border-4 lg:w-14 lg:h-14 lg:mt-24 xl:ml-14"></div>
+                <div class="mt-7 absolute right-10 float-right border-slate-300 rotate-45 w-5 h-5 border-2 sm:w-7 sm:h-7 md:w-9 md:h-9 md:border-4 lg:w-12 lg:h-12 lg:mt-16 xl:mr-14"></div>
                 <h1 class="title text-5xl font-black text-center text-white md:my-5 md:mt-0 lg:text-5xl">
                     LVCC FULL SCHOLARSHIP GRANT
                 </h1>
                 <p class="text-white flex mx-10 text-center items-center justify-center sm:mx-15 md:my-5 md:mx-0 lg:px-40 xl:px-72">
                     All applicants who pass the scholarship examination with at least 75% of the highest possible score, pass the academic interview and proven to be economically incapacitated
                 </p>
+                <div class="mb-10 border-double border-slate-300 rotate-45 w-9 h-9 border-4 sm:w-10 sm:h-10 md:w-12 md:h-12 md:border-6 lg:w-14 lg:h-14 lg:mb-24 lg:ml-10"></div>
+                <div class="absolute bottom-5 right-10 border-dotted border-slate-300 rotate-12 w-5 h-5 border-2 sm:w-7 sm:h-7 md:w-9 md:h-9 lg:border-4 lg:w-12 lg:h-12 lg:mb-16 lg:mr-14"></div>
             </div>
         </div>
     </body>
