@@ -1,3 +1,13 @@
+body { color: #000000;} 
+
+.title { font-family: "Roboto", sans-serif; }
+.lvbuilding { background-size: cover; }
+
+
+
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
