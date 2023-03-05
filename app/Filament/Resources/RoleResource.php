@@ -27,7 +27,6 @@ class RoleResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('role_name')
                     ->required()
-                    ->disabled()
                     ->maxLength(255),
             ]);
     }
@@ -37,7 +36,7 @@ class RoleResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id')->sortable(),
-                TextColumn::make('role_name')->sortable(),
+                TextColumn::make('role_name')->sortable()->searchable(),
                 TextColumn::make('created_at')->dateTime(),
             ])
             ->filters([
