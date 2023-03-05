@@ -71,6 +71,10 @@ npm run dev
 php artisan serve
 ```
 
+12. Default Admin account:
+email: `admin@admin.com`
+password: `12345678`
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
 
