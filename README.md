@@ -55,11 +55,11 @@ php artisan db:seed
 9. Create the following roles before creating an account
 **List of roles**
 - id - role_name
-- 0  - admin
-- 1 - applicant
-- 2 - registrar_staff
-- 3 - program_head
-- 4 - mancom
+- 1  - admin
+- 2 - applicant
+- 3 - registrar_staff
+- 4 - program_head
+- 5 - mancom
 
 10. Load TailwindCSS (do not close this terminal while running the project)
 ```
