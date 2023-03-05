@@ -17,12 +17,11 @@ Bachelor of Science in Information Systems 4th year of La Verdad Christian Colle
 ## Installation
 
 1. Install the project with git
-
 ```
-  git clone https://github.com/J1hu/Capstone-Project-Application-System.git
-```   
-2. Install Project Dependencies from Composer
+git clone https://github.com/J1hu/Capstone-Project-Application-System.git
+```
 
+2. Install Project Dependencies from Composer
 ```
 composer install 
 ```
@@ -34,16 +33,15 @@ npm install
 
 4. Rename .env.example to .env
 
-
 5. Generate encryption key
 ```
 php artisan key:generate
 ```
 
-### Optional
-
 6. Create an empty database using XAMPP
+
 7. Configure the .env file to allow connecting with the database
+
 8. Add the tables and contents of your database with migrations 
 ```
 php artisan migrate
