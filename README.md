@@ -48,18 +48,11 @@ php artisan key:generate
 ```
 php artisan migrate
 ```
-if with seeders
+
+9. Run seeder to populate system data requirements
 ```
 php artisan db:seed
 ```
-9. Create the following roles before creating an account
-**List of roles**
-- id - role_name
-- 1  - admin
-- 2 - applicant
-- 3 - registrar_staff
-- 4 - program_head
-- 5 - mancom
 
 10. Load TailwindCSS (do not close this terminal while running the project)
 ```
@@ -71,7 +64,7 @@ npm run dev
 php artisan serve
 ```
 
-12. Default Admin account:
+12. You can now login the default admin account on `/admin` route:
 email: `admin@admin.com`
 password: `12345678`
 
