@@ -48,7 +48,7 @@
             class="h-full grid grid-cols-1 gap-4 content-center w-auto text-center md:flex md:flex-row md:items-center md:align-middle md:my-auto md:mx-10">
             {{-- <div class="w-10 h-10 border-2 border-slate-300 float-left"></div> --}}
             <div class="p-2 md:p-0 md:basis-1/2 md:ml-5 lg:px-10 xl:px:24">
-                <h1 class="title text-3xl font-black text-sky-700 my-5 md:mt-0 lg:text-5xl">
+                <h1 class="title text-3xl font-black text-sky-700 my-5 md:mt-0 md:text-4xl lg:text-5xl">
                     WHY CHOOSE LA VERDAD?
                 </h1>
                 <p class="my-5 mx-10 font-semibold text-justify sm:mx-15 md:mx-0">
@@ -93,6 +93,47 @@
             <div
                 class="absolute bottom-5 right-10 border-dotted border-slate-300 rotate-12 w-5 h-5 border-2 sm:w-7 sm:h-7 md:w-9 md:h-9 lg:border-4 lg:w-12 lg:h-12 lg:mb-16 lg:mr-14">
             </div>
+        </div>
+    </div>
+    {{-- To Prepare --}}
+    <div class="h-fit my-10 md:h-screen md:my-0 lg:h-fit lg:my-14">
+        <div
+            class="h-full grid grid-cols-1 gap-4 content-center w-auto text-center md:flex md:flex-row md:items-center md:align-middle md:my-auto md:mx-10">
+            <div class="p-2 md:p-0 md:basis-1/2 md:ml-5 lg:px-10 xl:px:24">
+                <h1 class="title text-3xl font-black text-sky-700 my-5 md:mt-0 md:text-4xl lg:text-5xl">
+                    THINGS TO PREPARE
+                </h1>
+                <ul class="list-disc list-inside my-5 mx-10 font-semibold text-justify sm:mx-15 md:mx-0">
+                    <li>Filipino citizen of good moral character</li>
+                    <li>At least superior rating in FEU-CAT and has a HS GWA of at least 88</li>
+                    <li>Accomplished information sheet with 2×2 colored ID picture</li>
+                    <li>Photocopy of form 138 or 4th Year report card</li>
+                    <li>Photocopy of certificate of good moral character</li>
+                    <li>Must be a regular student</li>
+                    <li>GPA of at least B (3.0) / QPA of at least 3.20</li>
+                    <li>No grade lower than C+ (2.5)</li>
+                    <li>No major offense</li>
+                </ul>
+            </div>
+            <div
+                class="mx-auto text-center flex items-center justify-center w-5/6 h-72 sm:my-15 md:basis-1/2 md:h-64 md:w-9/12 lg:h-96">
+                <img src="{{ asset('assets/prepare.svg') }}" alt="Student Preparing her things" width="350">
+            </div>
+        </div>
+    </div>
+    {{-- Perks of FS --}}
+    <div>
+        <div class="grid gap-4 mb-4 md:grid-flow-row md:grid-cols-2 md:gap-0">
+            <div class="relative mx-auto p-5 flex flex-col content-center bg-indigo-700 rounded title overflow-hidden w-5/6 sm:px-10">
+                <div class="text-3xl text-white font-black z-10 md:my-auto">PERKS OF FULL SCHOLARS</div>
+                <div class="absolute w-36 h-36 p-0 -right-6 -top-4 bg-blue-300 rounded-full md:h-56 md:w-56 md:-right-24"></div>
+            </div>
+            <x-perks-card edits="w-5/6" title="No Miscellaneous & Tuition Fees" desc="Full Scholar students are offered a no charge fees on any school expenses and as well as their tuition fees."></x-perks-card>
+        </div>
+        <div class="grid gap-4 md:grid-flow-row md:grid-cols-3 md:gap-0">
+            <x-perks-card edits="w-5/6" title="Free Uniform" desc="Full Scholar students are granted with a free uniform for their regular classes days as well as free P.E uniform for their sports and physical activities."></x-perks-card>
+            <x-perks-card edits="w-5/6" title="Free Food" desc="Full Scholar students are granted with a free lunch everyday depends on their schedule."></x-perks-card>
+            <x-perks-card edits="w-5/6" title="Free Books" desc="Full Scholar students are granted with a free access of books in the LVCC Library."></x-perks-card>
         </div>
     </div>
 </body>
