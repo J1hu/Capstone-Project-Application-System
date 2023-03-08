@@ -71,6 +71,6 @@ class User extends Authenticatable implements FilamentUser
     //Can Access the admin panel
     public function canAccessFilament(): bool
     {
-        return $this->hasRole('admin');
+        return $this->hasAnyRole(['admin', 'registrar_staff', 'program_head', 'mancom']);
     }
 }
