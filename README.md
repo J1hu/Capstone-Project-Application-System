@@ -17,12 +17,11 @@ Bachelor of Science in Information Systems 4th year of La Verdad Christian Colle
 ## Installation
 
 1. Install the project with git
-
 ```
-  git clone https://github.com/J1hu/Capstone-Project-Application-System.git
-```   
-2. Install Project Dependencies from Composer
+git clone https://github.com/J1hu/Capstone-Project-Application-System.git
+```
 
+2. Install Project Dependencies from Composer
 ```
 composer install 
 ```
@@ -34,46 +33,35 @@ npm install
 
 4. Rename .env.example to .env
 
-
 5. Generate encryption key
 ```
 php artisan key:generate
 ```
 
-### Optional
-
 6. Create an empty database using XAMPP
-7. Configure the .env file to allow connecting with the database
-8. Add the tables and contents of your database with migrations 
-```
-php artisan migrate
-```
-if with seeders
-```
-php artisan db:seed
-```
-9. Create the following roles before creating an account
-**List of roles**
-- id - role_name
-- 1  - admin
-- 2 - applicant
-- 3 - registrar_staff
-- 4 - program_head
-- 5 - mancom
 
-10. Load TailwindCSS (do not close this terminal while running the project)
+7. Configure the .env file to allow connecting with the database
+
+8. Run migration and seeder to populate the database
+```
+php artisan migrate:fresh --seed
+```
+
+9. Load TailwindCSS (do not close this terminal while running the project)
 ```
 npm run dev
 ```
 
-11. Run the project
+10. Run the project
 ```
 php artisan serve
 ```
 
-12. Default Admin account:
+11. You can now login the default admin account on `/admin` route:
+```
 email: `admin@admin.com`
 password: `12345678`
+```
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

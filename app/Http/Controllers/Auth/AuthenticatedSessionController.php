@@ -33,12 +33,12 @@ class AuthenticatedSessionController extends Controller
 
             $user = Auth::user();
 
-            if ($user->isRole('admin')) {
-
-                return redirect(RouteServiceProvider::ADMIN);
-            } else {
+            if ($user->hasRole('applicant')) {
 
                 return redirect(RouteServiceProvider::HOME);
+            } else {
+
+                return redirect(RouteServiceProvider::ADMIN);
             }
         }
     }

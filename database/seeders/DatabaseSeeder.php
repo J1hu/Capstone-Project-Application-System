@@ -3,11 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\UserSeeder;
+use Spatie\Permission\Models\Role;
 use Database\Seeders\ProgramSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,7 +20,18 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(ProgramSeeder::class);
-        $this->call(RoleSeeder::class);
-        $this->call(UserSeeder::class);
+
+        $createAdmin = User::factory()->create([
+            'name' => 'admin',
+            'email' => 'admin@admin.com',
+        ]);
+
+        $assignAdmin = Role::create(['name' => 'admin']);
+        $createAdmin->assignRole($assignAdmin);
+
+        Role::create(['name' => 'applicant']);
+        Role::create(['name' => 'registrar_staff']);
+        Role::create(['name' => 'program_head']);
+        Role::create(['name' => 'mancom']);
     }
 }
