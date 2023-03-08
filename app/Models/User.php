@@ -47,10 +47,10 @@ class User extends Authenticatable implements FilamentUser
         'email_verified_at' => 'datetime',
     ];
 
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
-    }
+    // public function role()
+    // {
+    //     return $this->belongsTo(Role::class);
+    // }
 
     public function applicant()
     {
@@ -65,12 +65,6 @@ class User extends Authenticatable implements FilamentUser
     public function evaluations()
     {
         return $this->hasMany(Evaluations::class);
-    }
-
-    //Determine the user role
-    public function isRole(string $role): bool
-    {
-        return $this->role->role_name === $role;
     }
 
     //Can Access the admin panel
