@@ -18,7 +18,7 @@ class RoleMiddleware
      */
     public function handle($request, Closure $next, $role)
     {
-        // checks if user is authenticated
+        // checks if user is authenticated and if user has role
         if (Auth::check() && Auth::user()->hasRole($role)) {
             return $next($request);
         }
