@@ -23,19 +23,19 @@
     <div class="h-screen bg-gradient-to-tr from-sky-500 to-blue-900 relative">
         <img class="object-cover lvbuilding h-screen lg:w-screen" src="{{ asset('assets/lvbuilding.png') }}"
             alt="LVCC Building">
-        <div class="absolute top-20 left-5 right-10 w-auto text-slate-50 text-left md:left-10 lg:top-15 lg:left-20">
+        <div class="absolute top-20 p-5 left-5 right-10 bg-white bg-opacity-80 text-blue-800 text-left md:w-3/4 lg:w-2/3 xl:w-1/2 md:left-10 lg:top-15 lg:left-20">
             <h1
-                class="title text-5xl font-black bg-sky-900 bg-opacity-70 my-5 p-2 md:bg-transparent md:text-8xl md:w-3/4 lg:w-2/3 xl:w-1/2">
-                STUDY NOW, PAY NEVER!
+                class="title text-5xl font-black sm:text-6xl md:text-7xl lg:text-8xl">
+                STUDY NOW, <br/> PAY NEVER!
             </h1>
-            <p class="bg-sky-900 bg-opacity-70 my-5 p-2 font-semibold md:w-2/3 lg:w-2/3 lg:bg-transparent xl:w-1/2">
+            <p class="my-5 p-2 text-lg font-semibold text-slate-900 sm:text-xl">
                 La Verdad Christian College provides students a high quality and carefully defined educational program
                 emphasizing Christian values, various skills and vast creative activities.
             </p>
-            <div class="text-center flex items-center justify-center md:justify-start">
+            <div class="text-center flex items-center justify-center sm:justify-start">
                 <a href="{{ route('register') }}">
                     <div
-                        class="w-auto text-center py-2 px-10 font-bold rounded-sm text-sm bg-white text-sky-700 hover:bg-blue-700 hover:text-white">
+                        class="w-auto text-center py-2 px-10 font-bold rounded-sm text-sm bg-blue-900 text-white hover:bg-blue-700 hover:text-white">
                         APPLY FOR SCHOLARSHIP
                     </div>
                 </a>
@@ -122,20 +122,69 @@
         </div>
     </div>
     {{-- Perks of FS --}}
-    <div>
+    <div class="h-fit my-10 lg:my-36">
         <div class="grid gap-4 mb-4 md:grid-flow-row md:grid-cols-2 md:gap-0">
-            <div class="relative mx-auto p-5 flex flex-col content-center bg-indigo-700 rounded title overflow-hidden w-5/6 sm:px-10">
+            <div
+                class="relative mx-auto p-5 flex flex-col content-center bg-indigo-700 rounded title overflow-hidden w-5/6 sm:px-10">
                 <div class="text-3xl text-white font-black z-10 md:my-auto">PERKS OF FULL SCHOLARS</div>
-                <div class="absolute w-36 h-36 p-0 -right-6 -top-4 bg-blue-300 rounded-full md:h-56 md:w-56 md:-right-24"></div>
+                <div
+                    class="absolute w-36 h-36 p-0 -right-6 -top-4 bg-blue-300 rounded-full md:h-56 md:w-56 md:-right-24">
+                </div>
             </div>
-            <x-perks-card edits="w-5/6" title="No Miscellaneous & Tuition Fees" desc="Full Scholar students are offered a no charge fees on any school expenses and as well as their tuition fees."></x-perks-card>
+            <x-perks-card edits="w-5/6" title="No Miscellaneous & Tuition Fees"
+                desc="Full Scholar students are offered a no charge fees on any school expenses and as well as their tuition fees.">
+            </x-perks-card>
         </div>
-        <div class="grid gap-4 md:grid-flow-row md:grid-cols-3 md:gap-0">
-            <x-perks-card edits="w-5/6" title="Free Uniform" desc="Full Scholar students are granted with a free uniform for their regular classes days as well as free P.E uniform for their sports and physical activities."></x-perks-card>
-            <x-perks-card edits="w-5/6" title="Free Food" desc="Full Scholar students are granted with a free lunch everyday depends on their schedule."></x-perks-card>
-            <x-perks-card edits="w-5/6" title="Free Books" desc="Full Scholar students are granted with a free access of books in the LVCC Library."></x-perks-card>
+        <div class="grid gap-4 mb-4 md:grid-flow-row md:grid-cols-3 md:gap-0">
+            <x-perks-card edits="w-5/6" title="Free Uniform"
+                desc="Full Scholar students are granted with a free uniform for their regular classes days as well as free P.E uniform for their sports and physical activities.">
+            </x-perks-card>
+            <x-perks-card edits="w-5/6" title="Free Food"
+                desc="Full Scholar students are granted with a free lunch everyday depends on their schedule.">
+            </x-perks-card>
+            <x-perks-card edits="w-5/6" title="Free Books"
+                desc="Full Scholar students are granted with a free access of books in the LVCC Library.">
+            </x-perks-card>
         </div>
     </div>
+    {{-- Programs --}}
+        <div class="title text-3xl text-center font-black text-sky-700 w-full my-16 md:text-5xl">PROGRAMS OFFERED</div>
+        <div class="relative flex overflow-x-hidden text-white bg-indigo-700">
+            <div class="py-12 animate-marquee whitespace-nowrap">
+                <span class="mx-4 text-lg font-bold p-5 rounded-sm">Associate in Computer Technology</span>
+                <span class="mx-4 text-lg font-bold p-5 rounded-sm">Bachelor of Arts in Broadcasting</span>
+                <span class="mx-4 text-lg font-bold p-5 rounded-sm">Bachelor of Science in Accountancy</span>
+                <span class="mx-4 text-lg font-bold p-5 rounded-sm">Bachelor of Science in Accounting Information Systems</span>
+                <span class="mx-4 text-lg font-bold p-5 rounded-sm">Bachelor of Science in Information Systems</span>
+                <span class="mx-4 text-lg font-bold p-5 rounded-sm">Bachelor of Science in Social Works</span>
+            </div>
+            <div class="absolute top-0 py-12 animate-marquee2 whitespace-nowrap">
+                <span class="mx-4 text-lg font-bold p-5 rounded-sm">Associate in Computer Technology</span>
+                <span class="mx-4 text-lg font-bold p-5 rounded-sm">Bachelor of Arts in Broadcasting</span>
+                <span class="mx-4 text-lg font-bold p-5 rounded-sm">Bachelor of Science in Accountancy</span>
+                <span class="mx-4 text-lg font-bold p-5 rounded-sm">Bachelor of Science in Accounting Information Systems</span>
+                <span class="mx-4 text-lg font-bold p-5 rounded-sm">Bachelor of Science in Information Systems</span>
+                <span class="mx-4 text-lg font-bold p-5 rounded-sm">Bachelor of Science in Social Works</span>
+            </div>
+        </div>
+        {{-- Apply now --}}
+        <div class="h-64 bg-blue-300 m-10 p-5 rounded-lg sm:h-72 md:h-96">
+            <div class="h-full relative grid grid-cols-1 gap-4 content-center w-auto text-center px-5 md:px-10">
+                <h1 class="title text-3xl font-black text-center text-sky-700 md:my-5 md:mt-0 md:text-5xl">
+                    APPLY NOW AND BE A LA VERDARIAN!
+                </h1>
+                <div class="text-center flex items-center justify-center">
+                    <a href="{{ route('register') }}">
+                        <div
+                            class="w-auto text-center py-2 px-10 font-bold rounded-sm text-sm bg-white text-sky-700 hover:bg-blue-700 hover:text-white">
+                            APPLY FOR SCHOLARSHIP
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {{-- Footer --}}
+        <x-footer classname="bg-white" login="hover:text-blue-900"></x-footer>
 </body>
 
 </html>
