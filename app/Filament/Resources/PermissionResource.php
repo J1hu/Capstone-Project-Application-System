@@ -4,21 +4,22 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
+
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
-use Spatie\Permission\Models\Role;
 use Filament\Forms\Components\Card;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\RoleResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\RoleResource\RelationManagers;
+use App\Filament\Resources\PermissionResource\Pages;
+use App\Filament\Resources\PermissionResource\RelationManagers;
 
-class RoleResource extends Resource
+class PermissionResource extends Resource
 {
-    protected static ?string $model = Role::class;
+    protected static ?string $model = Permission::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
@@ -32,6 +33,7 @@ class RoleResource extends Resource
                             ->minLength(2)
                             ->maxLength(255)
                             ->required()
+                            ->unique()
                     ])
             ]);
     }
@@ -41,7 +43,7 @@ class RoleResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id'),
-                TextColumn::make('name')->searchable()
+                TextColumn::make('name')
             ])
             ->filters([
                 //
@@ -64,9 +66,9 @@ class RoleResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListRoles::route('/'),
-            'create' => Pages\CreateRole::route('/create'),
-            'edit' => Pages\EditRole::route('/{record}/edit'),
+            'index' => Pages\ListPermissions::route('/'),
+            'create' => Pages\CreatePermission::route('/create'),
+            'edit' => Pages\EditPermission::route('/{record}/edit'),
         ];
     }
 }
