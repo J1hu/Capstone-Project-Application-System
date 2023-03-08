@@ -23,11 +23,6 @@ class RoleMiddleware
             return redirect('login');
         }
 
-        // checks if user has a role
-        if (!Auth::user()->isRole($role)) {
-            abort(401, 'Unauthorized action.');
-        }
-
         return $next($request);
     }
 }
