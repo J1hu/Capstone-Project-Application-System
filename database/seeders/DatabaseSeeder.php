@@ -33,5 +33,10 @@ class DatabaseSeeder extends Seeder
 
         $assignAdmin = Role::create(['name' => 'admin']);
         $createAdmin->assignRole($assignAdmin);
+
+        Role::create(['name' => 'applicant']);
+        Role::create(['name' => 'registrar_staff']);
+        Role::create(['name' => 'program_head']);
+        Role::create(['name' => 'mancom']);
     }
 }
