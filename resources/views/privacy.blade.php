@@ -1,4 +1,4 @@
-@include('head')
+<x-body>
 {{-- Privacy Policy --}}
 <div class="h-fit my-5 mx-10 sm:mx-14 sm:my-7 md:mx-20 md:m7-9 lg:mx-32 lg:my-10">
     <div class="title text-center font-bold text-2xl sm:text-3xl">PRIVACY POLICY</div>
@@ -39,4 +39,4 @@
         <p>LVCC reserves the right to update this Policy as we see fit. We will notify you about significant changes by sending a notice to the primary email address specified in your LVCC account or by placing a prominent notice on our site. If you are a regular visitor to this system, we recommend that you check this Privacy Policy on a regular basis.</p>
     </div>
 </div>
-@include('foot')
+</x-body>

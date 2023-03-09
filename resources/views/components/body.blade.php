@@ -19,3 +19,9 @@
         <x-guest-navigation classname="h-24 w-screen" login="text-white hover:text-white">
         </x-guest-navigation>
     </div>
+    {{ $slot }}
+    {{-- Footer --}}
+    <x-footer classname="bg-white" login="hover:text-blue-900"></x-footer>
+</body>
+
+</html>

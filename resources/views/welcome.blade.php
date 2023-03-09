@@ -1,5 +1,4 @@
-@include('head')
-
+<x-body>
 {{-- Banner --}}
 <div class="h-screen bg-gradient-to-tr from-sky-500 to-blue-900 relative">
     <img class="object-cover lvbuilding h-screen lg:w-screen" src="{{ asset('assets/lvbuilding.png') }}"
@@ -165,4 +164,4 @@
     </div>
 </div>
 
-@include('foot')
+</x-body>
