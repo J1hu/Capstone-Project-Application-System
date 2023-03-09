@@ -10,22 +10,22 @@
     </a>
     <div class="text-center m-2 grid grid-flow-col items-center md:justify-self-end md:grid-flow-row md:col-span-1 md:text-right">
         <a href="{{ route('faqs') }}">
-            <div {{ $attributes->merge(['class' => 'text-xs md:text-sm '. $login]) }}>
+            <div {{ $attributes->merge(['class' => 'text-xs sm:text-sm '. $login]) }}>
                 FAQs
             </div>
         </a>
         <a href="{{ route('terms') }}">
-            <div {{ $attributes->merge(['class' => 'text-xs md:text-sm '. $login]) }}>
+            <div {{ $attributes->merge(['class' => 'text-xs sm:text-sm '. $login]) }}>
                 Terms & Conditions
             </div>
         </a>
         <a href="{{ route('privacy') }}">
-            <div {{ $attributes->merge(['class' => 'text-xs md:text-sm '. $login]) }}>
+            <div {{ $attributes->merge(['class' => 'text-xs sm:text-sm '. $login]) }}>
                 Privacy Policy
             </div>
         </a>
         <a href="{{ config('filament.path') }}">
-            <div {{ $attributes->merge(['class' => 'text-xs md:text-sm '. $login]) }}>
+            <div {{ $attributes->merge(['class' => 'text-xs sm:text-sm '. $login]) }}>
                 Login as Admin
             </div>
         </a>
