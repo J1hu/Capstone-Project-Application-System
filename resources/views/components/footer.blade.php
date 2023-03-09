@@ -1,7 +1,7 @@
 <div {{ $attributes->merge(['class' => 'justify-center content-center p-3 grid grid-col-1 md:grid-col-2 md:grid-flow-row md:justify-between ' . $classname]) }}>
     <a href="#top" class="flex flex-wrap content-center space-x-4 align-middle md:col-span-1">
         <div class="mx-auto m-1">
-            <img src="{{ asset('assets/lvlogo.png') }}" alt="La Verdad Christian College Inc. Logo" width="70">
+            <x-application-logo />
         </div>
         <div class="grid content-center m-1 text-center md:text-left">
             <p class="text-sm font-bold sm:text-base">LA VERDAD CHRISTIAN COLLEGE</p>
