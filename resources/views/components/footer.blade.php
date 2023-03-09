@@ -9,17 +9,17 @@
         </div>
     </a>
     <div class="text-center m-2 grid grid-flow-col items-center md:justify-self-end md:grid-flow-row md:col-span-1 md:text-right">
-        <a href="{{ route('login') }}">
+        <a href="{{ route('faqs') }}">
             <div {{ $attributes->merge(['class' => 'text-xs md:text-sm '. $login]) }}>
                 FAQs
             </div>
         </a>
-        <a href="{{ route('login') }}">
+        <a href="{{ route('terms') }}">
             <div {{ $attributes->merge(['class' => 'text-xs md:text-sm '. $login]) }}>
                 Terms & Conditions
             </div>
         </a>
-        <a href="{{ route('login') }}">
+        <a href="{{ route('privacy') }}">
             <div {{ $attributes->merge(['class' => 'text-xs md:text-sm '. $login]) }}>
                 Privacy Policy
             </div>
