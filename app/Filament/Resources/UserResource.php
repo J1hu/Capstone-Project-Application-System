@@ -13,8 +13,8 @@ use Filament\Forms\Components\Card;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\Pages\CreateUser;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\UserResource\Pages\CreateUser;
 use App\Filament\Resources\UserResource\RelationManagers;
 
 class UserResource extends Resource
@@ -38,6 +38,12 @@ class UserResource extends Resource
                             ->required()
                             ->maxLength(255),
                         Forms\Components\DateTimePicker::make('email_verified_at'),
+                        Forms\Components\Select::make('roles')
+                            ->multiple()
+                            ->relationship('roles', 'name')->preload(),
+                        Forms\Components\Select::make('permissions')
+                            ->multiple()
+                            ->relationship('permissions', 'name')->preload(),
                         Forms\Components\TextInput::make('password')
                             ->password()
                             ->dehydrateStateUsing(fn ($state) => Hash::make($state))

@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\RoleResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\RoleResource\RelationManagers;
+use Filament\Forms\Components\Select;
 
 class RoleResource extends Resource
 {
@@ -34,6 +35,12 @@ class RoleResource extends Resource
                             ->minLength(2)
                             ->maxLength(255)
                             ->required()
+                            ->unique(ignoreRecord: true),
+                        Select::make('permissions')
+                            ->multiple()
+                            ->relationship('permissions', 'name')
+                            ->preload()
+                            ->unique()
                     ])
             ]);
     }
@@ -71,4 +78,9 @@ class RoleResource extends Resource
             'edit' => Pages\EditRole::route('/{record}/edit'),
         ];
     }
+
+    // public static function getEloquentQuery(): Builder
+    // {
+    //     return parent::getEloquentQuery()->where('name', '!=', 'admin');
+    // }
 }
