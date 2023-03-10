@@ -3,19 +3,19 @@
 namespace App\Filament\Resources;
 
 use Filament\Forms;
+use App\Models\Role;
 use Filament\Tables;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
-use Spatie\Permission\Models\Role;
 use Filament\Forms\Components\Card;
+use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\RoleResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\RoleResource\RelationManagers;
-use Filament\Forms\Components\Select;
 
 class RoleResource extends Resource
 {
