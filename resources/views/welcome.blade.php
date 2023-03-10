@@ -15,7 +15,7 @@
         <div class="text-center flex items-center justify-center sm:justify-start">
             <a href="{{ route('register') }}">
                 <div
-                    class="w-auto text-center py-2 px-10 font-bold rounded-sm text-sm text-white transition ease-in-out delay-150 bg-blue-700 hover:-translate-y-1 hover:scale-110 hover:bg-blue-500 duration-300 hover:text-white">
+                    class="w-auto text-center py-2 px-10 font-bold rounded-sm text-sm text-white transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-blue-700 duration-300 hover:text-white">
                     APPLY FOR SCHOLARSHIP
                 </div>
             </a>
