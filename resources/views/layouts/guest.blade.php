@@ -16,26 +16,21 @@
 </head>
 
 <body class="font-sans text-gray-900 antialiased ">
-    <div class="xl:flex xl:flex-row">
+    <div class="dark:bg-slate-900 xl:flex xl:flex-row ">
         <div>
             <img class="object-cover lvbuilding h-screen sm:w-screen" src="{{ asset('assets/withbgbuilding.jpg') }}"
                 alt="LVCC Building">
         </div>
         <div
-            class="absolute mx-auto top-0 items-center pt-6 min-h-screen w-full flex flex-col sm:justify-center sm:pt-0 xl:static xl:bg-white xl:w-2/4 dark:bg-gray-900">
+            class="absolute dark:bg-inherit mx-auto top-0 items-center pt-6 min-h-screen w-full flex flex-col sm:justify-center sm:pt-0 xl:static xl:bg-white xl:dark:bg-inherit xl:w-2/4">
             <div
-                class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg xl:shadow-none">
+                class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-slate-800 shadow-md overflow-hidden sm:rounded-lg xl:shadow-none">
                 {{-- Logo --}}
                 <div class="mx-auto items-center w-full flex flex-col sm:justify-center sm:pt-0">
                     <div>
                         <a href="/">
-                            <x-application-logo />
+                            <x-application-logo width="w-16"/>
                         </a>
-                    </div>
-                    <div class="my-3 sm:my-5">
-                        <p class="title font-bold sm:text-lg md:text-xl">
-                            SCHOLARSHIP APPLICATION SYSTEM
-                        </p>
                     </div>
                 </div>
                 {{ $slot }}
