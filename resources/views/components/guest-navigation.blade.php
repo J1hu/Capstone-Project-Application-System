@@ -1,7 +1,7 @@
 <div {{ $attributes->merge(['class' => 'px-3 sm:px-10 grid grid-col-2 grid-flow-col content-center ' . $classname]) }}>
     <a href="{{ route('home') }}" class="flex flex-wrap content-center space-x-4 align-middle">
         <div>
-            <x-application-logo />
+            <x-application-logo width="w-14"/>
         </div>
         <div class="hidden content-center md:grid">
             <p class="font-bold sm:text-lg">LA VERDAD CHRISTIAN COLLEGE</p>

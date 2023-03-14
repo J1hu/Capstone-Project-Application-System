@@ -1,1 +1,1 @@
-<img src="{{ asset('assets/lvlogo.png') }}" alt="La Verdad Christian College Inc. Logo" width="70">
+<img src="{{ asset('assets/lvlogo.png') }}" alt="La Verdad Christian College Inc. Logo" class="{{$width}}">
