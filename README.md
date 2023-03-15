@@ -42,30 +42,25 @@ php artisan key:generate
 
 7. Configure the .env file to allow connecting with the database
 
-8. Add the tables and contents of your database with migrations 
+8. Run migration and seeder to populate the database
 ```
-php artisan migrate
-```
-
-9. Run seeder to populate system data requirements
-```
-php artisan db:seed
+php artisan migrate:fresh --seed
 ```
 
-10. Load TailwindCSS (do not close this terminal while running the project)
+9. Load TailwindCSS (do not close this terminal while running the project)
 ```
 npm run dev
 ```
 
-11. Run the project
+10. Run the project
 ```
 php artisan serve
 ```
 
-12. You can now login the default admin account on `/admin` route:
+11. You can now login the default admin account on `/admin` route:
 ```
 email: `admin@admin.com`
-password: `12345678`
+password: `password`
 ```
 
 ## License
