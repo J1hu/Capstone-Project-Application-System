@@ -26,12 +26,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@admin.com',
         ]);
 
-        User::factory()->create([
-            'name' => 'applicant',
-            'email' => 'applicant@test.com',
-        ]);
-
         $assignAdmin = Role::create(['name' => 'admin']);
         $createAdmin->assignRole($assignAdmin);
+
+        Role::create(['name' => 'applicant']);
+        Role::create(['name' => 'registrar_staff']);
+        Role::create(['name' => 'program_head']);
+        Role::create(['name' => 'mancom']);
     }
 }

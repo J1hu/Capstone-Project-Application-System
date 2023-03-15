@@ -20,21 +20,21 @@ class RedirectIfAuthenticated
 
     public function handle(Request $request, Closure $next)
     {
-        // if (Auth::check()) {
+        if (Auth::check()) {
 
-        //     $user = Auth::user();
+            $user = Auth::user();
 
-        //     if ($user->isRole('admin')) {
+            if ($user->hasRole('applicant')) {
 
-        //         return redirect(RouteServiceProvider::ADMIN);
-        //     } else {
+                return redirect(RouteServiceProvider::HOME);
+            } else {
 
-        //         return redirect(RouteServiceProvider::HOME);
-        //     }
-        // } else {
+                return redirect(RouteServiceProvider::ADMIN);
+            }
+        } else {
 
-        //     return $next($request);
-        // }
+            return $next($request);
+        }
 
         $guards = empty($guards) ? [null] : $guards;
 
