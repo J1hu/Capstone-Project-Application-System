@@ -60,7 +60,7 @@ php artisan serve
 11. You can now login the default admin account on `/admin` route:
 ```
 email: `admin@admin.com`
-password: `12345678`
+password: `password`
 ```
 
 ## License
