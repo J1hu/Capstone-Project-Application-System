@@ -95,7 +95,7 @@
                     documents and community guidelines incorporated herein; LVCC is unable to verify or authenticate any
                     of your personal information; or LVCC believes that a user is acting inconsistently with the letter
                     or spirit of LVCC’s policies, has engaged in improper or fraudulent activity in connection with LVCC
-                    or the actions may cause legal liability or financial loss to LVCC’s users or to LVCC. </p>
+                    or the actions may cause legal liability or financial loss to LVCC’s users or to LVCC.</p>
             </li>
             <br>
             <li><span class="font-bold">Privacy</span>
