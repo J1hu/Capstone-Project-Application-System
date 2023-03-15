@@ -30,7 +30,7 @@
                 'dark:bg-gray-900/50 dark:border-gray-700' => config('filament.dark_mode'),
             ])>
                 <div class="flex justify-center w-full">
-                    <x-filament::brand />
+                    <x-filament::brand-icon />
                 </div>
 
                 @if (filled($title))
