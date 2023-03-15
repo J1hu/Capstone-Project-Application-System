@@ -38,6 +38,9 @@ class UserResource extends Resource
                             ->required()
                             ->maxLength(255),
                         Forms\Components\DateTimePicker::make('email_verified_at'),
+                        Forms\Components\Select::make('program_id')
+                            ->multiple()
+                            ->relationship('programs', 'program_name')->preload(),
                         Forms\Components\Select::make('roles')
                             ->multiple()
                             ->relationship('roles', 'name')->preload(),
@@ -61,6 +64,7 @@ class UserResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('id')->sortable(),
                 Tables\Columns\TextColumn::make('name')->searchable(),
+                Tables\Columns\TextColumn::make('programs.program_name')->searchable(),
                 Tables\Columns\TextColumn::make('email'),
                 Tables\Columns\TextColumn::make('email_verified_at')
                     ->dateTime(),

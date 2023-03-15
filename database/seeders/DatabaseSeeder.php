@@ -9,6 +9,7 @@ use Database\Seeders\RoleSeeder;
 use Database\Seeders\UserSeeder;
 use Spatie\Permission\Models\Role;
 use Database\Seeders\ProgramSeeder;
+use Database\Seeders\ApplicationStatusSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,6 +21,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(ProgramSeeder::class);
+        $this->call(ApplicationStatusSeeder::class);
 
         $createAdmin = User::factory()->create([
             'name' => 'admin',

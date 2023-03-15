@@ -18,6 +18,7 @@ class BatchResource extends Resource
     protected static ?string $model = Batch::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?int $navigationSort = 4;
 
     public static function form(Form $form): Form
     {
@@ -48,14 +49,14 @@ class BatchResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -63,5 +64,5 @@ class BatchResource extends Resource
             'create' => Pages\CreateBatch::route('/create'),
             'edit' => Pages\EditBatch::route('/{record}/edit'),
         ];
-    }    
+    }
 }

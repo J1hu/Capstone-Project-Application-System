@@ -46,6 +46,7 @@ return new class extends Migration
             $table->date('date_accomplished');
             // system requirements
             $table->foreignId('batch_id')->nullable()->constrained('batches')->cascadeOnDelete();
+            $table->foreignId('application_status_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

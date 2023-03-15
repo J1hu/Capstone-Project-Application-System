@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ProgramResource\Pages;
-use App\Filament\Resources\ProgramResource\RelationManagers;
-use App\Models\Program;
+use App\Filament\Resources\ApplicationStatusResource\Pages;
+use App\Filament\Resources\ApplicationStatusResource\RelationManagers;
+use App\Models\ApplicationStatus;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -13,18 +13,17 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ProgramResource extends Resource
+class ApplicationStatusResource extends Resource
 {
-    protected static ?string $model = Program::class;
+    protected static ?string $model = ApplicationStatus::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
-    protected static ?int $navigationSort = 3;
+    protected static ?string $navigationIcon = 'heroicon-o-collection';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('program_name')
+                Forms\Components\TextInput::make('status_name')
                     ->required()
                     ->maxLength(255),
             ]);
@@ -34,7 +33,7 @@ class ProgramResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('program_name')->searchable(),
+                Tables\Columns\TextColumn::make('status_name'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
@@ -61,9 +60,9 @@ class ProgramResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPrograms::route('/'),
-            'create' => Pages\CreateProgram::route('/create'),
-            'edit' => Pages\EditProgram::route('/{record}/edit'),
+            'index' => Pages\ListApplicationStatuses::route('/'),
+            'create' => Pages\CreateApplicationStatus::route('/create'),
+            'edit' => Pages\EditApplicationStatus::route('/{record}/edit'),
         ];
     }
 }
