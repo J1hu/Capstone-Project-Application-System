@@ -1,4 +1,5 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
+const colors = require("tailwindcss/colors");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -8,6 +9,7 @@ module.exports = {
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "./storage/framework/views/*.php",
         "./app/**/*.blade.php",
+        './vendor/filament/**/*.blade.php', 
     ],
 
     theme: {
@@ -29,8 +31,18 @@ module.exports = {
                   '100%': { transform: 'translateX(0%)' },
                 },
               },
+              colors: { 
+                danger: colors.rose,
+                primary: colors.blue,
+                success: colors.green,
+                warning: colors.yellow,
+            }, 
         },
     },
+    darkMode: 'class',
 
-    plugins: [require("@tailwindcss/forms")],
+    plugins: [
+        require('@tailwindcss/forms'), 
+        require('@tailwindcss/typography'), 
+    ],
 };
