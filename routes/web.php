@@ -22,6 +22,7 @@ Route::get('/', function () {
 Route::view('/faqs', 'faqs')->name('faqs');
 Route::view('/terms', 'terms')->name('terms');
 Route::view('/privacy', 'privacy')->name('privacy');
+Route::view('/test', 'testing')->name('test');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
