@@ -1,7 +1,7 @@
 <div {{ $attributes->merge(['class' => 'justify-center content-center p-3 grid grid-col-1 md:grid-col-2 md:grid-flow-row md:justify-between ' . $classname]) }}>
     <a href="#top" class="flex flex-wrap content-center space-x-4 align-middle md:col-span-1">
         <div class="mx-auto m-1">
-            <x-application-logo width="w-14"/>
+            <x-application-logo width="w-14" />
         </div>
         <div class="grid content-center m-1 text-center md:text-left">
             <p class="text-sm font-bold sm:text-base">LA VERDAD CHRISTIAN COLLEGE</p>
@@ -24,10 +24,10 @@
                 Privacy Policy
             </div>
         </a>
-        <a href="{{ config('filament.path') }}">
-            <div {{ $attributes->merge(['class' => 'text-xs sm:text-sm '. $login]) }}>
-                Login as Admin
-            </div>
+        <!-- <a href="{{  }}"> -->
+        <div {{ $attributes->merge(['class' => 'text-xs sm:text-sm '. $login]) }}>
+            Login as Admin
+        </div>
         </a>
     </div>
     <div class="text-xs mt-5 md:col-span-2 text-center">
