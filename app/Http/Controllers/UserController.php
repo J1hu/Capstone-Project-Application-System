@@ -17,7 +17,7 @@ class UserController extends Controller
     {
         $users = DB::table('users')->simplePaginate(15);
 
-        return view('users.listing', compact('users'));
+        return view('users.list', compact('users'));
     }
 
     /**
@@ -70,9 +70,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -82,9 +82,25 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'string|min:8|nullable',
+            'confirm_password' => 'string|same:password|nullable',
+        ]);
+
+        if ($request->filled('password')) {
+            $validatedData['password'] = bcrypt($validatedData['password']);
+        } else {
+            unset($validatedData['password']);
+        }
+
+        $user->update($validatedData);
+
+        return redirect()->route('users.list')
+            ->with('success', 'User updated successfully');
     }
 
     /**

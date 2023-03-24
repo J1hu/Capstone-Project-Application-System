@@ -35,9 +35,6 @@
         @endif
     </div>
 
-    <label for="is_active">Active?</label>
-    <input type="checkbox" id="is_active" name="is_active" value="1" {{ old('is_active') ? 'checked' : '' }}>
-
     <button type="submit">Create User</button>
 </form>
 @endauth

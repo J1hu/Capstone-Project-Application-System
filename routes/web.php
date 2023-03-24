@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,7 @@ Route::view('/test', 'testing')->name('test');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'role:applicant'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 // form
 Route::middleware('auth', 'role:applicant')->group(function () {
@@ -34,8 +35,12 @@ Route::middleware('auth', 'role:applicant')->group(function () {
 });
 
 Route::get('/users/list', [UserController::class, 'index'])->name('users.list');
+
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-Route::get('/users', [UserController::class, 'store'])->name('users.store');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
+
+Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
