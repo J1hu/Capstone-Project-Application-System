@@ -21,6 +21,7 @@
                         <tr>
                             <th class="py-2 px-6 text-left">Name</th>
                             <th class="py-2 text-left">Email</th>
+                            <th class="py-2 text-left">Programs</th>
                             <th class="py-2 text-left">Created At</th>
                             <th></th>
                         </tr>
@@ -31,6 +32,10 @@
                         <tr class="odd:bg-white even:bg-slate-50 hover:bg-emerald-100">
                             <td class="px-6">{{ $user->name }}</td>
                             <td class="p-2">{{ $user->email }}</td>
+                            <td class="p-2">@foreach ($user->programs as $program)
+                                {{ $program->program_name }}@if(!$loop->last), @endif
+                                @endforeach
+                            </td>
                             <td class="p-2">{{ $user->created_at }}</td>
                             <td class="p-2"><a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Edit User</a></td>
                         </tr>

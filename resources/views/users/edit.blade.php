@@ -21,6 +21,15 @@
             @endif
         </div>
 
+        <div class="form-group">
+            <label for="program_id">Edit program:</label>
+            <select name="program_id" id="program_id" class="form-control">
+                @foreach ($programs as $program)
+                <option value="{{ $program->id }}">{{ $program->program_name }}</option>
+                @endforeach
+            </select>
+        </div>
+
         <div class="form-group m-5">
             <label for="password">New Password:</label>
             <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" id="password" name="password" container="w-80">
