@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Applicant;
+use App\Models\ApplicantAddress;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ApplicantSeeder extends Seeder
+class ApplicantAddressSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class ApplicantSeeder extends Seeder
      */
     public function run()
     {
-        Applicant::factory()->times(50)->create();
+        ApplicantAddress::factory()->times(50)->create();
     }
 }

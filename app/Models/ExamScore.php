@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ElectricBills extends Model
+class ExamScore extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'electric_month',
-        'electric_amount'
+        'intelligence_score',
+        'aptitude_score',
+        'average_score'
     ];
 
     public function applicant()

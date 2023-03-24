@@ -6,7 +6,7 @@ namespace App\Models;
 use App\Models\Role;
 use App\Models\Program;
 use App\Models\Applicant;
-use App\Models\Evaluations;
+use App\Models\Evaluation;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -64,6 +64,6 @@ class User extends Authenticatable
 
     public function evaluations()
     {
-        return $this->hasMany(Evaluations::class);
+        return $this->hasMany(Evaluation::class);
     }
 }

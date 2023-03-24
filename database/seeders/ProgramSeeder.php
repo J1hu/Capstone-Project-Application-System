@@ -22,6 +22,18 @@ class ProgramSeeder extends Seeder
             [
                 'program_name' => 'ACT',
             ],
+            [
+                'program_name' => 'BSAIS',
+            ],
+            [
+                'program_name' => 'BSA',
+            ],
+            [
+                'program_name' => 'BAB',
+            ],
+            [
+                'program_name' => 'BSSW',
+            ],
         ];
 
         foreach ($programs as $program) {
