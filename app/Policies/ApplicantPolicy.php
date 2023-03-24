@@ -18,10 +18,7 @@ class ApplicantPolicy
      */
     public function viewAny(User $user)
     {
-        if ($user->hasPermissionTo('View Applicants')) {
-            return true;
-        }
-        return false;
+        return $user->hasRole(['registrar_staff', 'program_head', 'mancom']);
     }
 
     /**
@@ -33,10 +30,7 @@ class ApplicantPolicy
      */
     public function view(User $user, Applicant $applicant)
     {
-        if ($user->hasPermissionTo('View Applicants')) {
-            return true;
-        }
-        return false;
+        return $user->hasRole(['registrar_staff', 'program_head', 'mancom']);
     }
 
     /**
@@ -59,7 +53,7 @@ class ApplicantPolicy
      */
     public function update(User $user, Applicant $applicant)
     {
-        //
+        return $user->hasRole(['registrar_staff']);
     }
 
     /**

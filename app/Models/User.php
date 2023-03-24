@@ -10,11 +10,10 @@ use App\Models\Evaluations;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
-use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable implements FilamentUser
+class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
@@ -66,11 +65,5 @@ class User extends Authenticatable implements FilamentUser
     public function evaluations()
     {
         return $this->hasMany(Evaluations::class);
-    }
-
-    //Can Access the admin panel
-    public function canAccessFilament(): bool
-    {
-        return $this->hasAnyRole(['admin', 'registrar_staff', 'program_head', 'mancom']);
     }
 }

@@ -18,7 +18,7 @@ class BatchPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->hasRole('admin');
+        return $user->hasRole(['registrar_staff']);
     }
 
     /**
@@ -30,7 +30,7 @@ class BatchPolicy
      */
     public function view(User $user, Batch $batch)
     {
-        return $user->hasRole('admin');
+        return $user->hasRole(['registrar_staff']);
     }
 
     /**
@@ -41,7 +41,7 @@ class BatchPolicy
      */
     public function create(User $user)
     {
-        return $user->hasRole('admin');
+        return $user->hasRole(['registrar_staff']);
     }
 
     /**
@@ -53,7 +53,7 @@ class BatchPolicy
      */
     public function update(User $user, Batch $batch)
     {
-        return $user->hasRole('admin');
+        return $user->hasRole(['registrar_staff']);
     }
 
     /**
@@ -65,7 +65,7 @@ class BatchPolicy
      */
     public function delete(User $user, Batch $batch)
     {
-        return $user->hasRole('admin');
+        //
     }
 
     /**

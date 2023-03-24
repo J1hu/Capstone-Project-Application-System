@@ -15,6 +15,6 @@ class ApplicationStatus extends Model
 
     public function applicant()
     {
-        return $this->belongsTo(Applicant::class);
+        return $this->hasMany(Applicant::class);
     }
 }

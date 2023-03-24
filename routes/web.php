@@ -22,6 +22,7 @@ Route::get('/', function () {
 Route::view('/faqs', 'faqs')->name('faqs');
 Route::view('/terms', 'terms')->name('terms');
 Route::view('/privacy', 'privacy')->name('privacy');
+Route::view('/test', 'testing')->name('test');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -31,6 +32,10 @@ Route::get('/dashboard', function () {
 Route::middleware('auth', 'role:applicant')->group(function () {
     //
 });
+
+Route::get('/users/list', [UserController::class, 'index'])->name('users.list');
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+Route::get('/users', [UserController::class, 'store'])->name('users.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

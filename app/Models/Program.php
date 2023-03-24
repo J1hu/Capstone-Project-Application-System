@@ -23,4 +23,19 @@ class Program extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    // specific users with specific programs
+    public function getUsersByProgram($programName)
+    {
+        return $this->with('users')->where('program_name', $programName)->firstOrFail()->users;
+    }
+
+    public function getBSIS()
+    {
+        $programName = 'BSIS';
+        $program = Program::where('program_name', $programName)->first();
+        $users = $program->getUsersByProgram($programName);
+
+        return $users;
+    }
 }

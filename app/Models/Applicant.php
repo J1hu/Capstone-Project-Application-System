@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Program;
+use App\Models\ApplicationStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -117,8 +118,13 @@ class Applicant extends Model
         return $this->hasMany(Evaluations::class);
     }
 
-    public function batches()
+    public function batch()
     {
-        return $this->hasOne(Batch::class);
+        return $this->belongsTo(Batch::class);
+    }
+
+    public function statuses()
+    {
+        return $this->belongsTo(ApplicationStatus::class);
     }
 }
