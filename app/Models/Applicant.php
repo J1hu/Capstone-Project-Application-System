@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Program;
+use App\Models\ElectricBill;
 use App\Models\ApplicationStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -93,7 +94,7 @@ class Applicant extends Model
     public function electricBills()
     {
         // plural
-        return $this->hasMany(ElectricBills::class);
+        return $this->hasMany(ElectricBill::class);
     }
 
     public function houseOwnerships()
@@ -109,13 +110,13 @@ class Applicant extends Model
     public function examScores()
     {
         // plural
-        return $this->hasOne(ExamScores::class);
+        return $this->hasOne(ExamScore::class);
     }
 
     public function evaluations()
     {
         // plural
-        return $this->hasMany(Evaluations::class);
+        return $this->hasMany(Evaluation::class);
     }
 
     public function batch()

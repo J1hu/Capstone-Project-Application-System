@@ -20,6 +20,6 @@ class ScholarshipType extends Model
 
     public function evaluations()
     {
-        return $this->hasMany(Evaluations::class);
+        return $this->hasMany(Evaluation::class);
     }
 }

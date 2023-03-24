@@ -16,6 +16,20 @@
     </div>
 
     <div class="form-group">
+        <label for="program_id">Select programs:</label>
+        <select name="program_id[]" id="program_id" class="form-control" multiple>
+            @foreach ($programs as $program)
+            <option value="{{ $program->id }}" {{ in_array($program->id, old('program_id', [])) ? 'selected' : '' }}>
+                {{ $program->program_name }}
+            </option>
+            @endforeach
+        </select>
+        @error('program_id')
+        <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="form-group">
         <label for="password">Password:</label>
         <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" id="password" name="password" value="{{ old('password') }}" required>
         @if ($errors->has('password'))
@@ -35,9 +49,16 @@
         @endif
     </div>
 
-    <label for="is_active">Active?</label>
-    <input type="checkbox" id="is_active" name="is_active" value="1" {{ old('is_active') ? 'checked' : '' }}>
-
     <button type="submit">Create User</button>
+
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
 </form>
 @endauth
