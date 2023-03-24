@@ -33,6 +33,10 @@ Route::middleware('auth', 'role:applicant')->group(function () {
     //
 });
 
+Route::get('/users/list', [UserController::class, 'index'])->name('users.list');
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+Route::get('/users', [UserController::class, 'store'])->name('users.store');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

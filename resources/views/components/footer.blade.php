@@ -24,10 +24,10 @@
                 Privacy Policy
             </div>
         </a>
-        <!-- <a href="{{  }}"> -->
-        <div {{ $attributes->merge(['class' => 'text-xs sm:text-sm '. $login]) }}>
-            Login as Admin
-        </div>
+        <a href="">
+            <div {{ $attributes->merge(['class' => 'text-xs sm:text-sm '. $login]) }}>
+                Login as Admin
+            </div>
         </a>
     </div>
     <div class="text-xs mt-5 md:col-span-2 text-center">
