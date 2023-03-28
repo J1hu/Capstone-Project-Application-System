@@ -15,7 +15,7 @@ class MancomController extends Controller
      */
     public function index()
     {
-        $mancoms = User::role('mancom')->simplePaginate(15);
+        $mancoms = User::role('mancom')->cursorPaginate(15);
         return view('mancoms.list', compact('mancoms'));
     }
 
@@ -74,10 +74,9 @@ class MancomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(User $mancom)
     {
-        $mancoms = User::role('mancom');
-        return view('mancoms.edit', compact('mancoms'));
+        return view('mancoms.edit', compact('mancom'));
     }
 
     /**
@@ -87,9 +86,25 @@ class MancomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $mancom)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $mancom->id,
+            'password' => 'string|min:8|nullable',
+            'confirm_password' => 'string|same:password|nullable',
+        ]);
+
+        if ($request->filled('password')) {
+            $validatedData['password'] = Hash::make($validatedData['password']);
+        } else {
+            unset($validatedData['password']);
+        }
+
+        $mancom->update($validatedData);
+
+        return redirect()->route('mancoms.list')
+            ->with('success', 'Mancom updated successfully');
     }
 
     /**

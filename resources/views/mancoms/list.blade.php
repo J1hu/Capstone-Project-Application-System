@@ -36,7 +36,7 @@
                 </table>
                 @endauth
                 <div class="mx-6 my-3">
-                    {{ $mancoms->links() }}
+                    {{ $mancoms->total() }}
                 </div>
             </div>
         </div>

@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $evaluators = User::role('program_head')->simplePaginate(15);
+        $evaluators = User::role('program_head')->cursorPaginate(5);
         return view('evaluators.list', compact('evaluators'));
     }
 
@@ -108,7 +108,7 @@ class UserController extends Controller
         ]);
 
         if ($request->filled('password')) {
-            $validatedData['password'] = bcrypt($validatedData['password']);
+            $validatedData['password'] = Hash::make($validatedData['password']);
         } else {
             unset($validatedData['password']);
         }
