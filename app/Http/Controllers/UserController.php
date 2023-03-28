@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('programs')->simplePaginate(15);
+        $users = User::role('program_head')->simplePaginate(15);
         return view('users.list', compact('users'));
     }
 

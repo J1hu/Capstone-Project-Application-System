@@ -1,13 +1,13 @@
 <x-app-layout>
     {{-- Header or Page Title --}}
     <x-slot name="header">
-        <h2 class="font-bold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Users') }}
-        </h2>
+        <h1 class="font-bold text-3xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Evaluators') }}
+        </h1>
     </x-slot>
     {{-- Table & Spacings --}}
     <div class="text-right">
-        <x-primary-button id="create-user-btn">Create User</x-primary-button>
+        <x-primary-button class="mx-14" id="create-user-btn">Add Evaluator</x-primary-button>
     </div>
     <div class="py-12">
         <div class="max-w-7xl mx-auto">
@@ -36,7 +36,7 @@
                                 @endforeach
                             </td>
                             <td class="p-2">{{ $user->created_at }}</td>
-                            <td class="p-2"><a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Edit User</a></td>
+                            <td class="p-2"><a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Edit Evaluator</a></td>
                         </tr>
                         {{-- </div> --}}
                         @endforeach

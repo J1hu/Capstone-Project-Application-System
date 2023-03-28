@@ -6,7 +6,7 @@
 
         @role('admin')
         <x-nav-link :href="route('users.list')" :active="request()->routeIs('users') || strpos(url()->current(), 'users') !== false">
-            {{ __('Add Evaluator') }}
+            {{ __('List of Evaluators') }}
         </x-nav-link>
         @endrole
     </div>
