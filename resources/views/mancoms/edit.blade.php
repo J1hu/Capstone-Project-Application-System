@@ -1,33 +1,20 @@
-<form method="POST" action="{{ route('users.update', $user) }}">
-    <div class="m-5 text-right">
-        <x-primary-button type="submit">Update User</x-primary-button>
-    </div>
-
+<form method="POST" action="{{ route('mancoms.update', $mancom) }}">
     @csrf
     @method('PUT')
     <div class="grid grid-cols-2">
         <div class="m-5">
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="{{ old('name', $user->name) }}" required>
+            <input type="text" id="name" name="name" value="{{ old('name', $mancom->name) }}" required>
         </div>
 
         <div class="form-group m-5">
             <label for="email">Email:</label>
-            <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" id="email" name="email" value="{{ old('email', $user->email) }}" container="w-80" required>
+            <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" id="email" name="email" value="{{ old('email', $mancom->email) }}" container="w-80" required>
             @if ($errors->has('email'))
             <div class="invalid-feedback text-red-500">
                 {{ $errors->first('email') }}
             </div>
             @endif
-        </div>
-
-        <div class="form-group">
-            <label for="program_id">Edit program:</label>
-            <select name="program_id" id="program_id" class="form-control">
-                @foreach ($programs as $program)
-                <option value="{{ $program->id }}">{{ $program->program_name }}</option>
-                @endforeach
-            </select>
         </div>
 
         <div class="form-group m-5">
@@ -49,5 +36,9 @@
             </div>
             @endif
         </div>
+    </div>
+
+    <div class="m-5 text-right">
+        <x-primary-button type="submit">Update MANCOM</x-primary-button>
     </div>
 </form>

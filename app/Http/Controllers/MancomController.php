@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Program;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class MancomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $evaluators = User::role('program_head')->cursorPaginate(5);
-        return view('evaluators.list', compact('evaluators'));
+        $mancoms = User::role('mancom')->cursorPaginate(15);
+        return view('mancoms.list', compact('mancoms'));
     }
 
     /**
@@ -29,8 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $programs = Program::all();
-        return view('evaluators.create', ['programs' => $programs]);
+        return view('mancoms.create');
     }
 
     /**
@@ -44,8 +40,6 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|unique:users|max:255',
-            'program_id' => 'required|array',
-            'program_id.*' => 'required|exists:programs,id',
             'password' => 'required|string|min:8',
             'password_confirmation' => 'required|string|same:password',
         ]);
@@ -56,16 +50,11 @@ class UserController extends Controller
             'password' => Hash::make($validatedData['password']),
         ]);
 
-        $programIds = $validatedData['program_id'];
-        $programs = Program::find($programIds);
-        $user->programs()->saveMany($programs);
+        $user->assignRole('mancom');
 
-        $user->assignRole('program_head');
-
-        return redirect()->route('evaluators.list')
+        return redirect()->route('mancoms.list')
             ->with('success', 'User created successfully.')
-            ->withInput($request->except('password', 'password_confirmation'))
-            ->withErrors(['program_id' => 'Please select at least one program.']);
+            ->withInput($request->except('password', 'password_confirmation'));
     }
 
     /**
@@ -85,10 +74,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $evaluator)
+    public function edit(User $mancom)
     {
-        $programs = Program::all();
-        return view('evaluators.edit', compact('evaluator'), ['programs' => $programs]);
+        return view('mancoms.edit', compact('mancom'));
     }
 
     /**
@@ -98,11 +86,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $evaluator)
+    public function update(Request $request, User $mancom)
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $evaluator->id,
+            'email' => 'required|email|unique:users,email,' . $mancom->id,
             'password' => 'string|min:8|nullable',
             'confirm_password' => 'string|same:password|nullable',
         ]);
@@ -113,12 +101,10 @@ class UserController extends Controller
             unset($validatedData['password']);
         }
 
-        $evaluator->update($validatedData);
+        $mancom->update($validatedData);
 
-        $evaluator->programs()->sync($request->program_id);
-
-        return redirect()->route('evaluators.list')
-            ->with('success', 'User updated successfully');
+        return redirect()->route('mancoms.list')
+            ->with('success', 'Mancom updated successfully');
     }
 
     /**
