@@ -2,14 +2,25 @@
 
 namespace App\View\Components;
 
+use Closure;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class ApplicationLogo extends Component
 {
-    public $width;
-    public function __construct($width)
+    public $logo;
+    public $container;
+    public $title;
+    public $subtitle;
+    public $titlefluid;
+
+    public function __construct($logo, $container, $title, $subtitle, $titlefluid)
     {
-        $this->width = $width;
+        $this->logo = $logo;
+        $this->container = $container;
+        $this->title = $title;
+        $this->subtitle = $subtitle;
+        $this->titlefluid = $titlefluid;
     }
 
     /**

@@ -13,7 +13,7 @@
         <div class="max-w-7xl mx-auto">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div>
-                    <h1 class="font-bold p-6">List of Users</h1>
+                    <h1 class="font-bold p-6">List of Evaluators</h1>
                 </div>
                 @auth
                 <table class="w-full py-3 table-fixed">
@@ -28,8 +28,7 @@
                     </thead>
                     <tbody>
                         @foreach ($users as $user)
-                        {{-- <div class="group group-hover:bg-emerald-50"> --}}
-                        <tr class="odd:bg-white even:bg-slate-50 hover:bg-emerald-100">
+                        <tr class="odd:bg-white even:bg-slate-50 hover:bg-blue-100">
                             <td class="px-6">{{ $user->name }}</td>
                             <td class="p-2">{{ $user->email }}</td>
                             <td class="p-2">@foreach ($user->programs as $program)

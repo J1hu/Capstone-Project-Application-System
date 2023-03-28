@@ -18,24 +18,8 @@ class RedirectIfAuthenticated
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
 
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, ...$guards)
     {
-        if (Auth::check()) {
-
-            $user = Auth::user();
-
-            if ($user->hasRole('applicant')) {
-
-                return redirect(RouteServiceProvider::HOME);
-            } else {
-
-                return redirect(RouteServiceProvider::HOME);
-            }
-        } else {
-
-            return $next($request);
-        }
-
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {

@@ -60,6 +60,10 @@ class UserController extends Controller
         $programs = Program::find($programIds);
         $user->programs()->saveMany($programs);
 
+        $user->assignRole('admin');
+        $roles = $user->getRoleNames();
+        dd($roles);
+
         return redirect()->route('users.list')
             ->with('success', 'User created successfully.')
             ->withInput($request->except('password', 'password_confirmation'))
