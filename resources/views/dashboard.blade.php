@@ -1,6 +1,6 @@
 <x-app-layout class="bg-blue-300 w-full h-screen">
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-bold text-xl text-gray-800 dark:text-gray-200 leading-tight pb-6">
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
