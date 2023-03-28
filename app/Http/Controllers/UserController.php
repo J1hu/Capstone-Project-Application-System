@@ -19,7 +19,7 @@ class UserController extends Controller
     public function index()
     {
         $evaluators = User::role('program_head')->simplePaginate(15);
-        return view('users.list', compact('evaluators'));
+        return view('evaluators.list', compact('evaluators'));
     }
 
     /**
@@ -30,7 +30,7 @@ class UserController extends Controller
     public function create()
     {
         $programs = Program::all();
-        return view('users.create', ['programs' => $programs]);
+        return view('evaluators.create', ['programs' => $programs]);
     }
 
     /**
@@ -62,7 +62,7 @@ class UserController extends Controller
 
         $user->assignRole('program_head');
 
-        return redirect()->route('users.list')
+        return redirect()->route('evaluators.list')
             ->with('success', 'User created successfully.')
             ->withInput($request->except('password', 'password_confirmation'))
             ->withErrors(['program_id' => 'Please select at least one program.']);
@@ -85,10 +85,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(User $evaluator)
     {
         $programs = Program::all();
-        return view('users.edit', compact('user'), ['programs' => $programs]);
+        return view('evaluators.edit', compact('evaluator'), ['programs' => $programs]);
     }
 
     /**
@@ -98,11 +98,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $evaluator)
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $user->id,
+            'email' => 'required|email|unique:users,email,' . $evaluator->id,
             'password' => 'string|min:8|nullable',
             'confirm_password' => 'string|same:password|nullable',
         ]);
@@ -113,11 +113,11 @@ class UserController extends Controller
             unset($validatedData['password']);
         }
 
-        $user->update($validatedData);
+        $evaluator->update($validatedData);
 
-        $user->programs()->sync($request->program_id);
+        $evaluator->programs()->sync($request->program_id);
 
-        return redirect()->route('users.list')
+        return redirect()->route('evaluators.list')
             ->with('success', 'User updated successfully');
     }
 

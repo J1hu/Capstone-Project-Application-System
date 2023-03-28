@@ -1,15 +1,15 @@
-<form method="POST" action="{{ route('users.update', $user) }}">
+<form method="POST" action="{{ route('evaluators.update', $evaluator) }}">
     @csrf
     @method('PUT')
     <div class="grid grid-cols-2">
         <div class="m-5">
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="{{ old('name', $user->name) }}" required>
+            <input type="text" id="name" name="name" value="{{ old('name', $evaluator->name) }}" required>
         </div>
 
         <div class="form-group m-5">
             <label for="email">Email:</label>
-            <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" id="email" name="email" value="{{ old('email', $user->email) }}" container="w-80" required>
+            <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" id="email" name="email" value="{{ old('email', $evaluator->email) }}" container="w-80" required>
             @if ($errors->has('email'))
             <div class="invalid-feedback text-red-500">
                 {{ $errors->first('email') }}
@@ -18,7 +18,7 @@
         </div>
 
         <div id="programs-container">
-            @foreach ($user->programs as $program)
+            @foreach ($evaluator->programs as $program)
             <div class="program">
                 <select name="program_id[]" class="form-control">
                     @foreach ($programs as $option)
@@ -58,7 +58,7 @@
     </div>
 
     <div class="m-5 text-right">
-        <x-primary-button type="submit">Update User</x-primary-button>
+        <x-primary-button type="submit">Update Evaluator</x-primary-button>
     </div>
 </form>
 

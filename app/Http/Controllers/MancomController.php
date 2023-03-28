@@ -74,9 +74,10 @@ class MancomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        $mancoms = User::role('mancom');
+        return view('mancoms.edit', compact('mancoms'));
     }
 
     /**

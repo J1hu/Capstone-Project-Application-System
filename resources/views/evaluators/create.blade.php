@@ -8,7 +8,7 @@
 
     {{-- Content --}}
     @auth
-    <form method="POST" action="{{ route('users.store') }}" class="grid grid-flow-row gap-3">
+    <form method="POST" action="{{ route('evaluators.store') }}" class="grid grid-flow-row gap-3">
         <div class="text-right">
             <button type="submit" class="inline-flex items-center justify-center text-center px-4 py-2 w-50 h-10 bg-blue-400 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150">Create Evaluator</button>
         </div>

@@ -34,9 +34,8 @@
                                 {{ $program->program_name }}@if(!$loop->last), @endif
                                 @endforeach
                             </td>
-                            <td class="p-2"><a href="{{ route('users.edit', $evaluator->id) }}" class="btn btn-primary">Edit Evaluator</a></td>
+                            <td class="p-2"><a href="{{ route('evaluators.edit', $evaluator->id) }}" class="btn btn-primary">Edit Evaluator</a></td>
                         </tr>
-                        {{-- </div> --}}
                         @endforeach
                     </tbody>
                 </table>
@@ -51,7 +50,7 @@
 
     <script>
         document.getElementById('create-user-btn').addEventListener('click', function() {
-            window.location.href = "{{ route('users.create') }}";
+            window.location.href = "{{ route('evaluators.create') }}";
         });
     </script>
 </x-app-layout>

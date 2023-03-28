@@ -5,7 +5,7 @@
         </x-nav-link>
 
         @role('admin')
-        <x-nav-link :href="route('users.list')" :active="request()->routeIs('users') || strpos(url()->current(), 'users') !== false">
+        <x-nav-link :href="route('evaluators.list')" :active="request()->routeIs('evaluators') || strpos(url()->current(), 'evaluators') !== false">
             {{ __('List of Evaluators') }}
         </x-nav-link>
 
