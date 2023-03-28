@@ -20,6 +20,7 @@ use Database\Seeders\InternetTypeSeeder;
 use Database\Seeders\HouseOwnershipSeeder;
 use Database\Seeders\ApplicantFatherSeeder;
 use Database\Seeders\ApplicantMotherSeeder;
+use Database\Seeders\ApplicantStatusSeeder;
 use Database\Seeders\ScholarshipTypeSeeder;
 use Database\Seeders\ApplicantAddressSeeder;
 use Database\Seeders\ApplicantSiblingSeeder;
@@ -39,6 +40,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ScholarshipTypeSeeder::class);
         $this->call(BatchSeeder::class);
         $this->call(ApplicationStatusSeeder::class);
+        $this->call(ApplicantStatusSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(ApplicantSeeder::class);
         $this->call(ApplicantAddressSeeder::class);

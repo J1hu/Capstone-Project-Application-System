@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ApplicationStatus>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class ApplicationStatusFactory extends Factory
+class ApplicantStatusFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class ApplicationStatusFactory extends Factory
     public function definition()
     {
         return [
-            'application_status_name' => fake()->text(10)
+            'applicant_status_name' => fake()->randomElement(['pending', 'evaluated'])
         ];
     }
 }

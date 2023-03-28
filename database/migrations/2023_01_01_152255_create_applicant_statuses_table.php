@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('application_statuses', function (Blueprint $table) {
+        Schema::create('applicant_statuses', function (Blueprint $table) {
             $table->id();
-            $table->string('application_status_name');
+            $table->enum('applicant_status_name', ['pending', 'evaluated']);
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('application_statuses');
+        Schema::dropIfExists('applicant_statuses');
     }
 };

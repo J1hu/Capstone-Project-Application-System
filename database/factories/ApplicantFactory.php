@@ -43,7 +43,8 @@ class ApplicantFactory extends Factory
             'data_privacy_consent' => fake()->boolean(100),
             'date_accomplished' => fake()->date(),
             'batch_id' => rand(1, 50),
-            'application_status_id' => rand(1, 4)
+            'application_status_id' => rand(1, 4),
+            'applicant_status_id' => rand(1, 2),
         ];
     }
 }

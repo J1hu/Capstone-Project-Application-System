@@ -5,12 +5,15 @@ namespace App\Models;
 use App\Models\Program;
 use App\Models\ElectricBill;
 use App\Models\ApplicationStatus;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Applicant extends Model
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
         // personal information
