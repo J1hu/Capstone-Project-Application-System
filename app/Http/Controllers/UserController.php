@@ -60,9 +60,7 @@ class UserController extends Controller
         $programs = Program::find($programIds);
         $user->programs()->saveMany($programs);
 
-        $user->assignRole('admin');
-        $roles = $user->getRoleNames();
-        dd($roles);
+        $user->assignRole('program_head');
 
         return redirect()->route('users.list')
             ->with('success', 'User created successfully.')
@@ -105,7 +103,6 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $user->id,
-            'program_id' => 'required|exists:programs,id',
             'password' => 'string|min:8|nullable',
             'confirm_password' => 'string|same:password|nullable',
         ]);
@@ -117,6 +114,8 @@ class UserController extends Controller
         }
 
         $user->update($validatedData);
+
+        $user->programs()->sync($request->program_id);
 
         return redirect()->route('users.list')
             ->with('success', 'User updated successfully');
