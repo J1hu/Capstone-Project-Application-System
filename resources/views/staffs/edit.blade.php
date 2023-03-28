@@ -5,18 +5,18 @@
             {{ __('Edit ManCom\'s Information') }}
         </h2>
     </x-slot>
-<form method="POST" action="{{ route('mancoms.update', $mancom) }}" class="grid grid-flow-row gap-3">
+<form method="POST" action="{{ route('staffs.update', $staff) }}" class="grid grid-flow-row gap-3">
     @csrf
     @method('PUT')
     <div class="grid grid-cols-2 bg-white border rounded-md p-5 gap-4">
         <div>
             <label for="name" class="text-sm text-slate-700">Name:</label>
-            <input type="text" id="name" name="name" value="{{ old('name', $mancom->name) }}" required class="inline-flex items-center m-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+            <input type="text" id="name" name="name" value="{{ old('name', $staff->name) }}" required class="inline-flex items-center m-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
         </div>
 
         <div class="form-group">
             <label for="email" class="text-sm text-slate-700">Email:</label>
-            <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }} inline-flex items-center m-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" id="email" name="email" value="{{ old('email', $mancom->email) }}" required>
+            <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }} inline-flex items-center m-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" id="email" name="email" value="{{ old('email', $staff->email) }}" required>
             @if ($errors->has('email'))
             <div class="invalid-feedback text-red-500">
                 {{ $errors->first('email') }}
@@ -46,7 +46,7 @@
     </div>
 
     <div class="text-right">
-        <x-primary-button type="submit">Update MANCOM</x-primary-button>
+        <x-primary-button type="submit">Update Registrar Staff</x-primary-button>
     </div>
 </form>
 </x-app-layout>
