@@ -49,3 +49,4 @@ Route::middleware(['role:admin'])->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/mancom.php';

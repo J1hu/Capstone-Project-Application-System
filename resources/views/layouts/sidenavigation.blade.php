@@ -8,6 +8,10 @@
         <x-nav-link :href="route('users.list')" :active="request()->routeIs('users') || strpos(url()->current(), 'users') !== false">
             {{ __('List of Evaluators') }}
         </x-nav-link>
+
+        <x-nav-link :href="route('mancoms.list')" :active="request()->routeIs('mancoms') || strpos(url()->current(), 'mancoms') !== false">
+            {{ __('List of MANCOMs') }}
+        </x-nav-link>
         @endrole
     </div>
 

@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Program;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class MancomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $evaluators = User::role('program_head')->simplePaginate(15);
-        return view('users.list', compact('evaluators'));
+        $mancoms = User::role('mancom')->simplePaginate(15);
+        return view('mancoms.list', compact('mancoms'));
     }
 
     /**
@@ -29,8 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $programs = Program::all();
-        return view('users.create', ['programs' => $programs]);
+        return view('mancoms.create');
     }
 
     /**
@@ -44,8 +40,6 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|unique:users|max:255',
-            'program_id' => 'required|array',
-            'program_id.*' => 'required|exists:programs,id',
             'password' => 'required|string|min:8',
             'password_confirmation' => 'required|string|same:password',
         ]);
@@ -56,16 +50,11 @@ class UserController extends Controller
             'password' => Hash::make($validatedData['password']),
         ]);
 
-        $programIds = $validatedData['program_id'];
-        $programs = Program::find($programIds);
-        $user->programs()->saveMany($programs);
+        $user->assignRole('mancom');
 
-        $user->assignRole('program_head');
-
-        return redirect()->route('users.list')
+        return redirect()->route('mancoms.list')
             ->with('success', 'User created successfully.')
-            ->withInput($request->except('password', 'password_confirmation'))
-            ->withErrors(['program_id' => 'Please select at least one program.']);
+            ->withInput($request->except('password', 'password_confirmation'));
     }
 
     /**
@@ -85,10 +74,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        $programs = Program::all();
-        return view('users.edit', compact('user'), ['programs' => $programs]);
+        //
     }
 
     /**
@@ -98,27 +86,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'password' => 'string|min:8|nullable',
-            'confirm_password' => 'string|same:password|nullable',
-        ]);
-
-        if ($request->filled('password')) {
-            $validatedData['password'] = bcrypt($validatedData['password']);
-        } else {
-            unset($validatedData['password']);
-        }
-
-        $user->update($validatedData);
-
-        $user->programs()->sync($request->program_id);
-
-        return redirect()->route('users.list')
-            ->with('success', 'User updated successfully');
+        //
     }
 
     /**
