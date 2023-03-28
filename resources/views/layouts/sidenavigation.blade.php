@@ -4,7 +4,7 @@
             {{ __('Dashboard') }}
         </x-nav-link>
 
-        @hasallroles('admin|program_head|mancom|registrar_staff')
+        @hasanyrole('admin|program_head|mancom|registrar_staff')
         <x-nav-head>APPLICANTS</x-nav-head>
         <x-nav-link :href="route('applicants.pending-list')" :active="request()->routeIs('applicants') || strpos(url()->current(), 'applicants') !== false">
             {{ __('Pending Applicants') }}
@@ -12,7 +12,7 @@
         <x-nav-link :href="route('applicants.evaluated-list')" :active="request()->routeIs('applicants') || strpos(url()->current(), 'applicants') !== false">
             {{ __('Evaluated Applicants') }}
         </x-nav-link>
-        @endhasallroles
+        @endhasanyrole
 
         @role('admin')
         <x-nav-head>EVALUATORS</x-nav-head>
