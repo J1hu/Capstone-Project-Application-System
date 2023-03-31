@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Program;
 use App\Models\ElectricBill;
 use App\Models\ApplicationStatus;
+use App\Models\ApplicantStatus;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Model;
@@ -43,6 +44,11 @@ class Applicant extends Model
         'data_privacy_consent',
         'date_accomplished',
     ];
+
+    public function getFullNameAttribute()
+    {
+        return "{$this->fname} {$this->mname} {$this->lname}";
+    }
 
     public function user()
     {
@@ -130,5 +136,10 @@ class Applicant extends Model
     public function statuses()
     {
         return $this->belongsTo(ApplicationStatus::class);
+    }
+
+    public function applicant_status()
+    {
+        return $this->belongsTo(ApplicantStatus::class);
     }
 }

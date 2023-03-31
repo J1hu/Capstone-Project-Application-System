@@ -10,7 +10,7 @@ class EvaluatedApplicantController extends Controller
 {
     public function index()
     {
-        $applicants = DB::table('applicants')->where('applicant_status_id', 2)->simplePaginate(15);
+        $applicants = Applicant::with(['user', 'program', 'applicant_status'])->where('applicant_status_id', 2)->simplePaginate(15);
         return view('applicants.evaluatedlist', compact('applicants'));
     }
 }

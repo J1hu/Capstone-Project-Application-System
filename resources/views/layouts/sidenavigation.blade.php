@@ -6,10 +6,10 @@
 
         @hasanyrole('admin|program_head|mancom|registrar_staff')
         <x-nav-head>APPLICANTS</x-nav-head>
-        <x-nav-link :href="route('applicants.pending-list')" :active="request()->routeIs('applicants') || strpos(url()->current(), 'applicants') !== false">
+        <x-nav-link :href="route('applicants.pending-list')" :active="request()->routeIs('applicants.pending-list') || strpos(url()->current(), 'applicants.pending-list') !== false">
             {{ __('Pending Applicants') }}
         </x-nav-link>
-        <x-nav-link :href="route('applicants.evaluated-list')" :active="request()->routeIs('applicants') || strpos(url()->current(), 'applicants') !== false">
+        <x-nav-link :href="route('applicants.evaluated-list')" :active="request()->routeIs('applicants.evaluated-list') || strpos(url()->current(), 'applicants.evaluated-list') !== false">
             {{ __('Evaluated Applicants') }}
         </x-nav-link>
         @endhasanyrole

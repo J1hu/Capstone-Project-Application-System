@@ -36,6 +36,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $assignAdmin = Role::create(['name' => 'admin']);
+        Role::create(['name' => 'applicant']);
+        Role::create(['name' => 'registrar_staff']);
+        Role::create(['name' => 'program_head']);
+        Role::create(['name' => 'mancom']);
+
         $this->call(ProgramSeeder::class);
         $this->call(ScholarshipTypeSeeder::class);
         $this->call(BatchSeeder::class);
@@ -60,13 +66,6 @@ class DatabaseSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@admin.com',
         ]);
-
-        $assignAdmin = Role::create(['name' => 'admin']);
         $createAdmin->assignRole($assignAdmin);
-
-        Role::create(['name' => 'applicant']);
-        Role::create(['name' => 'registrar_staff']);
-        Role::create(['name' => 'program_head']);
-        Role::create(['name' => 'mancom']);
     }
 }
