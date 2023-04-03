@@ -17,12 +17,22 @@ class ProgramSeeder extends Seeder
     {
         $programs = [
             [
-                'BSIS',
-                'ACT',
-                'BSAIS',
-                'BSA',
-                'BAB',
-                'BSSW',
+                'program_name' => 'BSIS',
+            ],
+            [
+                'program_name' => 'ACT',
+            ],
+            [
+                'program_name' => 'BSAIS',
+            ],
+            [
+                'program_name' => 'BSA',
+            ],
+            [
+                'program_name' => 'BAB',
+            ],
+            [
+                'program_name' => 'BSSW',
             ],
         ];
 
