@@ -24,7 +24,7 @@
                 Privacy Policy
             </div>
         </a>
-        <a href="">
+        <a href="{{ route('admin.login') }}">
             <div {{ $attributes->merge(['class' => 'text-xs sm:text-sm '. $login]) }}>
                 Login as Admin
             </div>

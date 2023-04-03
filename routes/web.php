@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -34,7 +34,10 @@ Route::middleware('auth', 'role:applicant')->group(function () {
     //
 });
 
-Route::middleware(['role:admin'])->group(function () {
+Route::get('admin/login', [AdminController::class, 'viewLogin'])->name('admin.login');
+Route::post('admin/login', [AdminController::class, 'login'])->name('admin.store');
+
+Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
