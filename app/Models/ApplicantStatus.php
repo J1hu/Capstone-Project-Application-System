@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Applicant;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ApplicationStatus extends Model
+class ApplicantStatus extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'status_name'
+        'applicant_status_name',
     ];
 
     public function applicants()

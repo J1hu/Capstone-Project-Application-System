@@ -1,15 +1,16 @@
 <x-app-layout>
+    {{-- Header or Page Title --}}
     <x-slot name="header">
         <h2 class="font-bold text-xl text-gray-800 dark:text-gray-200 leading-tight pb-6">
-            {{ __('Create a Management Committee Member') }}
-        </h2>
+            {{ __('Create Registrar Staff') }}
+        </h1>
     </x-slot>
 
     {{-- Content --}}
     @auth
-    <form method="POST" action="{{ route('mancoms.store') }}" class="grid grid-flow-row gap-3">
+    <form method="POST" action="{{ route('staffs.store') }}" class="grid grid-flow-row gap-3">
         <div class="text-right">
-            <button type="submit" class="inline-flex items-center justify-center text-center px-4 py-2 w-50 h-10 bg-blue-400 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150">Create MANCOM</button>
+            <button type="submit" class="inline-flex items-center justify-center text-center px-4 py-2 w-50 h-10 bg-blue-400 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150">Create Registrar Staff</button>
         </div>
         @csrf
         <div class="grid grid-cols-2 bg-white border rounded-md p-5 gap-4">

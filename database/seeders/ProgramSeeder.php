@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Support\Carbon;
+use App\Models\Program;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -16,28 +16,16 @@ class ProgramSeeder extends Seeder
     public function run()
     {
         $programs = [
-            [
-                'program_name' => 'BSIS',
-            ],
-            [
-                'program_name' => 'ACT',
-            ],
-            [
-                'program_name' => 'BSAIS',
-            ],
-            [
-                'program_name' => 'BSA',
-            ],
-            [
-                'program_name' => 'BAB',
-            ],
-            [
-                'program_name' => 'BSSW',
-            ],
+            'BSIS',
+            'ACT',
+            'BSAIS',
+            'BSA',
+            'BAB',
+            'BSSW',
         ];
 
         foreach ($programs as $program) {
-            \App\Models\Program::create($program);
+            Program::create(['program_name' => $program]);
         }
     }
 }

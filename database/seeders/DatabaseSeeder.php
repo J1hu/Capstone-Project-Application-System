@@ -20,6 +20,7 @@ use Database\Seeders\InternetTypeSeeder;
 use Database\Seeders\HouseOwnershipSeeder;
 use Database\Seeders\ApplicantFatherSeeder;
 use Database\Seeders\ApplicantMotherSeeder;
+use Database\Seeders\ApplicantStatusSeeder;
 use Database\Seeders\ScholarshipTypeSeeder;
 use Database\Seeders\ApplicantAddressSeeder;
 use Database\Seeders\ApplicantSiblingSeeder;
@@ -35,10 +36,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $assignAdmin = Role::create(['name' => 'admin']);
+        Role::create(['name' => 'applicant']);
+        Role::create(['name' => 'registrar_staff']);
+        Role::create(['name' => 'program_head']);
+        Role::create(['name' => 'mancom']);
+
         $this->call(ProgramSeeder::class);
         $this->call(ScholarshipTypeSeeder::class);
         $this->call(BatchSeeder::class);
         $this->call(ApplicationStatusSeeder::class);
+        $this->call(ApplicantStatusSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(ApplicantSeeder::class);
         $this->call(ApplicantAddressSeeder::class);
@@ -58,13 +66,6 @@ class DatabaseSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@admin.com',
         ]);
-
-        $assignAdmin = Role::create(['name' => 'admin']);
         $createAdmin->assignRole($assignAdmin);
-
-        Role::create(['name' => 'applicant']);
-        Role::create(['name' => 'registrar_staff']);
-        Role::create(['name' => 'program_head']);
-        Role::create(['name' => 'mancom']);
     }
 }

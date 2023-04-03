@@ -16,16 +16,16 @@ class ApplicationStatusSeeder extends Seeder
     {
         $statuses = [
             [
-                'status_name' => 'evaluation',
+                'application_status_name' => 'evaluation',
             ],
             [
-                'status_name' => 'examination',
+                'application_status_name' => 'examination',
             ],
             [
-                'status_name' => 'interview',
+                'application_status_name' => 'interview',
             ],
             [
-                'status_name' => 'assessment',
+                'application_status_name' => 'assessment',
             ],
         ];
 

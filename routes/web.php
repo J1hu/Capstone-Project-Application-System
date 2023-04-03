@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -27,14 +27,16 @@ Route::view('/test', 'testing')->name('test');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth', 'role:admin|program_head|mancom|registrar_staff'])->name('dashboard');
 
-// form
-Route::middleware('auth', 'role:applicant')->group(function () {
-    //
-});
+Route::get('/applicant/dashboard', function () {
+    return view('applicants.dashboard');
+})->middleware(['auth', 'role:applicant'])->name('applicant.dashboard');
 
-Route::middleware(['role:admin'])->group(function () {
+Route::get('admin/login', [AdminController::class, 'viewLogin'])->name('admin.login');
+Route::post('admin/login', [AdminController::class, 'login'])->name('admin.store');
+
+Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -43,3 +45,5 @@ Route::middleware(['role:admin'])->group(function () {
 require __DIR__ . '/auth.php';
 require __DIR__ . '/mancom.php';
 require __DIR__ . '/evaluator.php';
+require __DIR__ . '/staff.php';
+require __DIR__ . '/applicant.php';

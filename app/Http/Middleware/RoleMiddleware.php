@@ -18,11 +18,21 @@ class RoleMiddleware
      */
     public function handle($request, Closure $next, $role)
     {
-        // checks if user is authenticated and if user has role
-        if (Auth::check() && Auth::user()->hasRole($role)) {
+        // redirect to admin dashboard for admin, program_head, mancom, or registrar_staff
+        if (Auth::user()->hasAnyRole(['admin', 'program_head', 'mancom', 'registrar_staff'])) {
+            if ($request->is('applicant/dashboard')) {
+                return redirect()->route('dashboard');
+            }
             return $next($request);
         }
-        // return $next($request);
+        // redirect to applicant dashboard for applicants
+        if (Auth::user()->hasRole('applicant')) {
+            if ($request->is('dashboard')) {
+                return redirect()->route('applicant.dashboard');
+            }
+            return $next($request);
+        }
+
         abort(403, 'Unauthorized');
     }
 }
