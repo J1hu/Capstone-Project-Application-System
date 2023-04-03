@@ -27,12 +27,11 @@ Route::view('/test', 'testing')->name('test');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth', 'role:admin|program_head|mancom|registrar_staff'])->name('dashboard');
 
-// form
-Route::middleware('auth', 'role:applicant')->group(function () {
-    //
-});
+Route::get('/applicant/dashboard', function () {
+    return view('applicants.dashboard');
+})->middleware(['auth', 'role:applicant'])->name('applicant.dashboard');
 
 Route::get('admin/login', [AdminController::class, 'viewLogin'])->name('admin.login');
 Route::post('admin/login', [AdminController::class, 'login'])->name('admin.store');
