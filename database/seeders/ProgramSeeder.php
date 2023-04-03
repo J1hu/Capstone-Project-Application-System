@@ -16,28 +16,16 @@ class ProgramSeeder extends Seeder
     public function run()
     {
         $programs = [
-            [
-                'program_name' => 'BSIS',
-            ],
-            [
-                'program_name' => 'ACT',
-            ],
-            [
-                'program_name' => 'BSAIS',
-            ],
-            [
-                'program_name' => 'BSA',
-            ],
-            [
-                'program_name' => 'BAB',
-            ],
-            [
-                'program_name' => 'BSSW',
-            ],
+            'BSIS',
+            'ACT',
+            'BSAIS',
+            'BSA',
+            'BAB',
+            'BSSW',
         ];
 
         foreach ($programs as $program) {
-            Program::create($program);
+            Program::create(['program_name' => $program]);
         }
     }
 }
