@@ -6,7 +6,6 @@ use App\Models\Applicant;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Illuminate\View\View;
 
 class ApplicantController extends Controller
 {
