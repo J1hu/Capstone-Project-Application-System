@@ -35,6 +35,7 @@ Route::middleware(['auth', 'role:applicant'])->group(function () {
         Route::get('dashboard', [ApplicantController::class, 'index'])->name('applicants.dashboard');
         Route::get('form', [ApplicantController::class, 'viewForm'])->name('applicants.form');
         Route::get('profile', [ApplicantController::class, 'viewProfile'])->name('applicants.profile');
+        Route::post('store', [ApplicantController::class, 'store'])->name('applicants.store');
     });
 });
 

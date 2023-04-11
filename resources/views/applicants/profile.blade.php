@@ -9,8 +9,4 @@
         <input type="text" value="{{$user->name}}">
     </form>
 
-
-
-
-
 </x-app-layout>

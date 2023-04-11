@@ -38,6 +38,7 @@ class Applicant extends Model
         'lrn',
         'esc_grantee',
         'esc_num',
+        'program_id',
         // other information
         'free_ebill_reason',
         'monthly_rental',
@@ -141,5 +142,36 @@ class Applicant extends Model
     public function applicant_status()
     {
         return $this->belongsTo(ApplicantStatus::class);
+    }
+
+    //Applicant Milestones
+    public function isVerified()
+    {
+        //
+    }
+
+    public function isFormSubmitted()
+    {
+        //
+    }
+
+    public function isAssessed()
+    {
+        //
+    }
+
+    public function hasExam()
+    {
+        //
+    }
+
+    public function isInterviewed()
+    {
+        //
+    }
+
+    public function hasStatus()
+    {
+        //
     }
 }
