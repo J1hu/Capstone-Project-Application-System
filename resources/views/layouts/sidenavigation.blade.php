@@ -6,9 +6,9 @@
             {{ __('Dashboard') }}
         </x-nav-link>
         <x-nav-head>USER</x-nav-head>
-        {{-- <x-nav-link :href="route('applicants.profile')" :active="request()->routeIs('applicants.profile') || strpos(url()->current(), 'applicants.profile') !== false">
-                {{ __('Application Profile') }}
-        </x-nav-link> --}}
+        <x-nav-link :href="route('applicants.profile')" :active="request()->routeIs('applicants.profile') || strpos(url()->current(), 'applicants.profile') !== false">
+            {{ __('Application Profile') }}
+        </x-nav-link>
         @endhasrole
 
         @hasanyrole('admin|program_head|mancom|registrar_staff')

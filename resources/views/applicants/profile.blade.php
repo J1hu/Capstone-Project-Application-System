@@ -6,9 +6,7 @@
         </h2>
     </x-slot>
     <form action="" method="get">
-        @foreach ($users as $user)
-        <input type="text" value="{{$user->applicant->fname}}">
-        @endforeach
+        <input type="text" value="{{$user->name}}">
     </form>
 
 
