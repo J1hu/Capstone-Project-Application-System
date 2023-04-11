@@ -94,7 +94,6 @@ class ApplicantController extends Controller
     {
         $user = Auth::user();
         $user->load('applicant');
-        $user->load('exam');
 
         // dd($user->applicant->fname);
         return view('applicants.profile', compact('user'));
