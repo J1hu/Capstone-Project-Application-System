@@ -33,8 +33,7 @@ Route::get('/dashboard', function () {
 Route::middleware(['auth', 'role:applicant'])->group(function () {
     Route::prefix('applicants')->group(function () {
         Route::get('dashboard', [ApplicantController::class, 'index'])->name('applicants.dashboard');
-        // Route::get('profile/{id}', [ApplicantController::class, 'profile'])->name('applicants.profile');
-
+        Route::get('form', [ApplicantController::class, 'viewForm'])->name('applicants.form');
     });
 });
 

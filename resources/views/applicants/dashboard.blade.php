@@ -1,3 +1,3 @@
 <x-app-layout>
-Hello
+    Hello {{ $user->name }}
 </x-app-layout>

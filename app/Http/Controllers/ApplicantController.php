@@ -3,21 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Applicant;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class ApplicantController extends Controller
 {
-    public function index(Request $request): View
+    public function index()
     {
-        // $user = User::find(auth()->user()->id);
-        // , compact('user')
-
-        return view('applicants.dashboard', [
-            'user' => $request->user(),
-        ]);
-        // return view('applicants.dashboard');
+        $user = Auth::user();
+        return view('applicants.dashboard', compact('user'));
     }
 
     public function viewForm()
@@ -25,18 +19,10 @@ class ApplicantController extends Controller
         return view('applicants.form');
     }
 
-    public function view(Request $request): View
+    public function viewProfile()
     {
-        return view('applicants.profile', [
-            'user' => $request->user(),
-        ]);
+        $user = Auth::user();
+        $user->load('applicant');
+        return view('applicants.profile', compact('user'));
     }
-
-    // public function profile(Request $request): View
-    // {
-    //     return view('applicants.profile', [
-    //         'user' => $request->user(),
-    //     ]);
-    // }
-
 }

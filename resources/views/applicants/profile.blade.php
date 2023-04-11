@@ -7,7 +7,7 @@
     </x-slot>
     <form action="" method="get">
         @foreach ($users as $user)
-            <input type="text" value="{{$user->fname}}">
+        <input type="text" value="{{$user->applicant->fname}}">
         @endforeach
     </form>
 
