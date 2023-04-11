@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ApplicantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +30,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'role:admin|program_head|mancom|registrar_staff'])->name('dashboard');
 
-Route::get('/applicant/dashboard', function () {
-    return view('applicants.dashboard');
-})->middleware(['auth', 'role:applicant'])->name('applicant.dashboard');
+Route::middleware(['auth', 'role:applicant'])->group(function () {
+    Route::prefix('applicants')->group(function () {
+        Route::get('dashboard', [ApplicantController::class, 'index'])->name('applicants.dashboard');
+        // Route::get('profile/{id}', [ApplicantController::class, 'profile'])->name('applicants.profile');
+
+    });
+});
 
 Route::get('admin/login', [AdminController::class, 'viewLogin'])->name('admin.login');
 Route::post('admin/login', [AdminController::class, 'login'])->name('admin.store');
