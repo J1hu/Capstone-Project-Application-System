@@ -27,9 +27,6 @@
         @endhasanyrole
 
         @role('admin')
-        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-            {{ __('Dashboard') }}
-        </x-nav-link>
         <x-nav-head>EVALUATORS</x-nav-head>
         <x-nav-link :href="route('evaluators.list')" :active="request()->routeIs('evaluators') || strpos(url()->current(), 'evaluators') !== false">
             {{ __('List of Evaluators') }}
