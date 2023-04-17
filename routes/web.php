@@ -4,6 +4,8 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApplicantController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +17,22 @@ use App\Http\Controllers\ApplicantController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,9 +46,9 @@ Route::view('/test', 'testing')->name('test');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'role:admin|program_head|mancom|registrar_staff'])->name('dashboard');
+})->middleware(['auth', 'role:admin|program_head|mancom|registrar_staff', 'verified'])->name('dashboard');
 
-Route::middleware(['auth', 'role:applicant'])->group(function () {
+Route::middleware(['auth', 'role:applicant', 'verified'])->group(function () {
     Route::prefix('applicants')->group(function () {
         Route::get('dashboard', [ApplicantController::class, 'index'])->name('applicants.dashboard');
         Route::get('form', [ApplicantController::class, 'viewForm'])->name('applicants.form');

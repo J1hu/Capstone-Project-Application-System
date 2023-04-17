@@ -30,10 +30,6 @@ class RoleMiddleware
             $applicant = Auth::user()->applicant;
             if ($applicant && $request->is('dashboard')) {
                 return redirect()->route('applicants.dashboard');
-            } elseif (!$applicant && $request->is('dashboard')) {
-                return redirect()->route('applicants.form');
-            } elseif ($request->is('form')) {
-                return redirect()->route('applicants.form');
             }
             return $next($request);
         }
