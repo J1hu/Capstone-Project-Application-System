@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApplicantController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,10 @@ Route::middleware(['auth', 'role:applicant', 'verified'])->group(function () {
         Route::get('profile', [ApplicantController::class, 'viewProfile'])->name('applicants.profile');
         Route::post('store', [ApplicantController::class, 'store'])->name('applicants.store');
     });
+});
+
+Route::middleware(['auth', 'role:applicant|admin|program_head|mancom|registrar_staff', 'verified'])->group(function () {
+    Route::get('settings', [UserController::class, 'settings'])->name('user.settings');
 });
 
 Route::get('admin/login', [AdminController::class, 'viewLogin'])->name('admin.login');

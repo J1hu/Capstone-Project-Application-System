@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('religion');
             $table->string('avatar');
             // family data
-            $table->unsignedInteger('total_fam_members');
+            $table->unsignedInteger('total_fam_children');
             $table->string('birth_order');
             // educational background
             $table->string('last_school');

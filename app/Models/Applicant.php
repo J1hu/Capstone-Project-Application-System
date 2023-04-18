@@ -29,7 +29,7 @@ class Applicant extends Model
         'religion',
         'avatar',
         // family data
-        'total_fam_members',
+        'total_fam_children',
         'birth_order',
         // educational background
         'last_school',
@@ -44,6 +44,10 @@ class Applicant extends Model
         'monthly_rental',
         'data_privacy_consent',
         'date_accomplished',
+        'batch_id',
+        'exam_score_id',
+        'application_status_id',
+        'applicant_status_id'
     ];
 
     public function getFullNameAttribute()

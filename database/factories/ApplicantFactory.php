@@ -29,7 +29,7 @@ class ApplicantFactory extends Factory
             'fb_link' => fake()->text(10),
             'religion' => fake()->text(10),
             'avatar' => fake()->text(5),
-            'total_fam_members' => fake()->randomNumber(),
+            'total_fam_children' => fake()->randomNumber(),
             'birth_order' => fake()->text(5),
             'last_school' => fake()->text(10),
             'last_school_address' => fake()->text(10),

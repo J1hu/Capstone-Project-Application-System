@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Program;
 use App\Models\Applicant;
 use Illuminate\Http\Request;
+use App\Models\ApplicantAddress;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -34,7 +35,7 @@ class ApplicantController extends Controller
             'fb_link' => 'required',
             'religion' => 'required',
             'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'total_fam_members' => 'required|integer',
+            'total_fam_children' => 'required|integer',
             'birth_order' => 'required',
             'last_school' => 'required',
             'last_school_address' => 'required',
@@ -47,10 +48,14 @@ class ApplicantController extends Controller
             'monthly_rental' => 'required',
             'data_privacy_consent' => 'required',
             'date_accomplished' => 'required',
+            'province' => 'required|string|max:255',
+            'city_municipality' => 'required|string|max:255',
+            'barangay' => 'required|string|max:255',
+            'zip_code' => 'required|string|max:10',
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()
+            return redirect('applicant/create')
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -65,7 +70,7 @@ class ApplicantController extends Controller
         $applicant->phone_num = $request->input('phone_num');
         $applicant->fb_link = $request->input('fb_link');
         $applicant->religion = $request->input('religion');
-        $applicant->total_fam_members = $request->input('total_fam_members');
+        $applicant->total_fam_children = $request->input('total_fam_children');
         $applicant->birth_order = $request->input('birth_order');
         $applicant->last_school = $request->input('last_school');
         $applicant->last_school_address = $request->input('last_school_address');
@@ -84,7 +89,16 @@ class ApplicantController extends Controller
         $filename = time() . '.' . request()->avatar->getClientOriginalExtension();
         request()->avatar->move(public_path('avatars'), $filename);
 
+        $address = new ApplicantAddress();
+        $address->province = $request->input('province');
+        $address->city_municipality = $request->input('city_municipality');
+        $address->barangay = $request->input('barangay');
+        $address->zip_code = $request->input('zip_code');
+
+
         $applicant->avatar = $filename;
+
+        $applicant->address()->save($address);
         $applicant->save();
 
         return redirect()->route('applicants.dashboard');
@@ -93,9 +107,8 @@ class ApplicantController extends Controller
     public function viewProfile()
     {
         $user = Auth::user();
-        $user->load('applicant');
+        $applicant = $user->applicant;
 
-        // dd($user->applicant->fname);
-        return view('applicants.profile', compact('user'));
+        return view('applicants.profile', compact('user', 'applicant'));
     }
 }

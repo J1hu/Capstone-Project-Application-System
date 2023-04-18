@@ -79,6 +79,11 @@ class UserController extends Controller
         //
     }
 
+    public function settings()
+    {
+        return view('settings');
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

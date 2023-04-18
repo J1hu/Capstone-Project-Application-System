@@ -110,11 +110,11 @@
     </div>
 
     <div>
-        <label for="total_fam_members">Total Family Members</label>
-        <input type="number" name="total_fam_members" id="total_fam_members" value="{{ old('total_fam_members') }}" required>
-        @if ($errors->has('total_fam_members'))
+        <label for="total_fam_children">Total Family Members</label>
+        <input type="number" name="total_fam_children" id="total_fam_children" value="{{ old('total_fam_children') }}" required>
+        @if ($errors->has('total_fam_children'))
         <div class="invalid-feedback text-red-500">
-            {{ $errors->first('total_fam_members') }}
+            {{ $errors->first('total_fam_children') }}
         </div>
         @endif
     </div>
