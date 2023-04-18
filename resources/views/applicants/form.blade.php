@@ -233,17 +233,3 @@
         </div>
         @endif
     </div>
-
-    <div>
-        <label for="date_accomplished">Date Accomplished</label>
-        <input type="date" name="date_accomplished" id="date_accomplished" value="{{ old('date_accomplished') }}" required>
-        @if ($errors->has('date_accomplished'))
-        <div class="invalid-feedback text-red-500">
-            {{ $errors->first('date_accomplished') }}
-        </div>
-        @endif
-    </div>
-    <div>
-        <button type="submit">Submit Application</button>
-    </div>
-</form>

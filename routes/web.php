@@ -52,7 +52,7 @@ Route::get('/dashboard', function () {
 Route::middleware(['auth', 'role:applicant', 'verified'])->group(function () {
     Route::prefix('applicants')->group(function () {
         Route::get('dashboard', [ApplicantController::class, 'index'])->name('applicants.dashboard');
-        Route::get('form', [ApplicantController::class, 'viewForm'])->name('applicants.form');
+        Route::get('form', [ApplicantController::class, 'viewForm'])->name('applicants.forms.form');
         Route::get('profile', [ApplicantController::class, 'viewProfile'])->name('applicants.profile');
         Route::post('store', [ApplicantController::class, 'store'])->name('applicants.store');
     });

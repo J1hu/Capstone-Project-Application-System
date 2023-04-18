@@ -20,7 +20,7 @@ class ApplicantController extends Controller
     public function viewForm()
     {
         $programs = Program::all();
-        return view('applicants.form', ['programs' => $programs]);
+        return view('applicants.forms.form', ['programs' => $programs]);
     }
 
     public function store(Request $request)
