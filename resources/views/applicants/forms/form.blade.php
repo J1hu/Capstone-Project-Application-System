@@ -163,6 +163,18 @@
                             @endif
                         </div>
 
+                        <div>
+                            <label for="birthdate" class="text-sm text-slate-700">Birthdate</label>
+                            <input
+                                class=" items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full"
+                                type="date" name="birthdate" id="birthdate" value="{{ old('birthdate') }}" required>
+                            @if ($errors->has('birthdate'))
+                                <div class="invalid-feedback text-red-500">
+                                    {{ $errors->first('birthdate') }}
+                                </div>
+                            @endif
+                        </div>
+
                         <div class="grid">
                             <label for="sex" class="text-sm text-slate-700">Sex</label>
                             <div class="grid grid-cols-4">
@@ -181,18 +193,6 @@
                             @if ($errors->has('sex'))
                                 <div class="invalid-feedback text-red-500">
                                     {{ $errors->first('sex') }}
-                                </div>
-                            @endif
-                        </div>
-
-                        <div>
-                            <label for="birthdate" class="text-sm text-slate-700">Birthdate</label>
-                            <input
-                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full"
-                                type="date" name="birthdate" id="birthdate" value="{{ old('birthdate') }}" required>
-                            @if ($errors->has('birthdate'))
-                                <div class="invalid-feedback text-red-500">
-                                    {{ $errors->first('birthdate') }}
                                 </div>
                             @endif
                         </div>
@@ -291,13 +291,13 @@
             {{-- Family Data --}}
             <div id="section-3" class="section">
                 <div class="bg-white py-5 px-10 border rounded-md mx-auto mt-10 mb-3">
-                    <div class="text-center font-bold text-2xl my-5">Applicant's Personal Information</div>
+                    <div class="text-center font-bold text-2xl my-5">Applicant's Family Information</div>
                     <div class="grid grid-cols-2 gap-x-6 gap-y-4">
                         <div>
                             <label for="total_fam_children" class="text-sm text-slate-700">No. of Children in the
                                 Family</label>
                             <input type="number" name="total_fam_children" id="total_fam_children"
-                                value="{{ old('total_fam_children') }}" required
+                                value="{{ old('total_fam_children') }}" min="0" required
                                 class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                             @if ($errors->has('total_fam_children'))
                                 <div class="invalid-feedback text-red-500">
@@ -319,9 +319,183 @@
                             @endif
                         </div>
                     </div>
-                    <div class="my-5">
-                        <div class="font-bold text-lg">Siblings also applying for LVCC Scholarship Grant</div>
-                        <div class="grid grid-cols-2 gap-x-6 gap-y-4"></div>
+                    {{-- Sibs applying --}}
+                    <div class="my-5 space-y-2">
+                        <div class="font-bold text-lg">SIBLINGS ALSO APPLYING FOR LVCC SCHOLARSHIP GRANT</div>
+                        <div>
+                            <p class="font-bold">Sibling 1</p>
+                            <div class="grid grid-cols-2 gap-x-6">
+                                <div>
+                                    <label for="full_name[]" class="text-sm text-slate-700">Name:</label>
+                                    <input type="text" id="full_name" name="full_name[]" required
+                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full"
+                                        value="{{ old('full_name.0') }}">
+                                </div>
+                                <div>
+                                    <label for="education_level[]" class="text-sm text-slate-700">Grade Level or
+                                        Program:</label>
+                                    <input type="text" id="education_level" name="education_level[]" required
+                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full"
+                                        value="{{ old('education_level.0') }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="font-bold">Sibling 2</p>
+                            <div class="grid grid-cols-2 gap-x-6">
+                                <div>
+                                    <label for="full_name[]" class="text-sm text-slate-700">Name:</label>
+                                    <input type="text" id="full_name" name="full_name[]" required
+                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full"
+                                        value="{{ old('full_name.1') }}">
+                                </div>
+                                <div>
+                                    <label for="education_level[]" class="text-sm text-slate-700">Grade Level or
+                                        Program:</label>
+                                    <input type="text" id="education_level" name="education_level[]" required
+                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full"
+                                        value="{{ old('education_level.1') }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Parents Data --}}
+                    <div class="my-5 space-y-2">
+                        <div class="font-bold text-lg">PARENT / GUARDIAN DATA</div>
+                        <div>
+                            <p class="font-bold">Mother's Data</p>
+                            <div class="grid grid-cols-2 gap-x-6">
+                                <div>
+                                    <label for="zip_code" class="text-sm text-slate-700">Firstname:</label>
+                                    <input type="text" id="zip_code" name="zip_code" required
+                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                </div>
+                                <div>
+                                    <label for="zip_code" class="text-sm text-slate-700">Religion</label>
+                                    <input type="text" id="zip_code" name="zip_code" required
+                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                </div>
+                                <div>
+                                    <label for="zip_code" class="text-sm text-slate-700">Middle Name: (Maiden
+                                        Name)</label>
+                                    <input type="text" id="zip_code" name="zip_code" required
+                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                </div>
+                                <div>
+                                    <label for="zip_code" class="text-sm text-slate-700">Occupation</label>
+                                    <input type="text" id="zip_code" name="zip_code" required
+                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                </div>
+                                <div>
+                                    <label for="zip_code" class="text-sm text-slate-700">Last Name: (Maiden
+                                        Name)</label>
+                                    <input type="text" id="zip_code" name="zip_code" required
+                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                </div>
+                                <div>
+                                    <label for="zip_code" class="text-sm text-slate-700">Annual Income</label>
+                                    <select name="" id=""
+                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                        <option value="">Select Annual Income Range</option>
+                                        <option value="">250,000PHP and less</option>
+                                        <option value="">250,000PHP to 400,000PHP</option>
+                                        <option value="">400,000PHP to 800,000PHP</option>
+                                        <option value="">800,000PHP to 2,000,000PHP</option>
+                                        <option value="">2,000,000PHP to 8,000,000PHP</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="zip_code" class="text-sm text-slate-700">Phone Number</label>
+                                    <input type="text" id="zip_code" name="zip_code" required
+                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="font-bold">Father's Data</p>
+                            <div class="grid grid-cols-2 gap-x-6">
+                                <div>
+                                    <label for="zip_code" class="text-sm text-slate-700">Firstname:</label>
+                                    <input type="text" id="zip_code" name="zip_code" required
+                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                </div>
+                                <div>
+                                    <label for="zip_code" class="text-sm text-slate-700">Religion</label>
+                                    <input type="text" id="zip_code" name="zip_code" required
+                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                </div>
+                                <div>
+                                    <label for="zip_code" class="text-sm text-slate-700">Middle Name: (Maiden
+                                        Name)</label>
+                                    <input type="text" id="zip_code" name="zip_code" required
+                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                </div>
+                                <div>
+                                    <label for="zip_code" class="text-sm text-slate-700">Occupation</label>
+                                    <input type="text" id="zip_code" name="zip_code" required
+                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                </div>
+                                <div>
+                                    <label for="zip_code" class="text-sm text-slate-700">Last Name: (Maiden
+                                        Name)</label>
+                                    <input type="text" id="zip_code" name="zip_code" required
+                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                </div>
+                                <div>
+                                    <label for="zip_code" class="text-sm text-slate-700">Annual Income</label>
+                                    <select name="" id=""
+                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                        <option value="">Select Annual Income Range</option>
+                                        <option value="">250,000PHP and less</option>
+                                        <option value="">250,000PHP to 400,000PHP</option>
+                                        <option value="">400,000PHP to 800,000PHP</option>
+                                        <option value="">800,000PHP to 2,000,000PHP</option>
+                                        <option value="">2,000,000PHP to 8,000,000PHP</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="zip_code" class="text-sm text-slate-700">Phone Number</label>
+                                    <input type="text" id="zip_code" name="zip_code" required
+                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                </div>
+                            </div>
+                        </div>
+                        {{-- Guardian's Data --}}
+                        <div>
+                            <label for="sex" class="font-bold">Legal Guardian's Data</label>
+                            <div>
+                                <input type="radio" name="sex" id="male" value="Male"
+                                    {{ old('sex') == 'Male' ? 'checked' : '' }} required>
+                                <label for="male">Father</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="sex" id="female" value="Female"
+                                    {{ old('sex') == 'Female' ? 'checked' : '' }} required>
+                                <label for="female">Mother</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="sex" id="female" value="Female"
+                                    {{ old('sex') == 'Female' ? 'checked' : '' }} required>
+                                <label for="female">Others</label>
+                            </div>
+
+                            {{-- Upload a pic --}}
+                            <div class="my-5">
+                                <label for="avatar" class="text-lg font-bold">Upload a PDF of the following:</label>
+                                <ul class="text-slate-700 text-sm list-disc list-inside">
+                                    <li>Photocopy of Parent/Legal Guardian's Income Tax Return (ITR)</li>
+                                    <li>or Certificate of Non-Tax Payment</li>
+                                    <li>or Certificate of Indigency</li>
+                                </ul>
+                                <input type="file" name="avatar" id="avatar" required
+                                    class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/2">
+                                @if ($errors->has('avatar'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('avatar') }}
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="grid grid-cols-2">
@@ -339,7 +513,7 @@
             {{-- Educational Background --}}
             <div id="section-4" class="section">
                 <div class="bg-white py-5 px-10 border rounded-md mx-auto mt-10 mb-3">
-                    <div class="text-center font-bold text-2xl my-5">Applicant's Personal Information</div>
+                    <div class="text-center font-bold text-2xl my-5">Educational Background</div>
                     <div class="grid grid-cols-2 gap-x-6 gap-y-4">
                         <div>
                             <label for="last_school" class="text-sm text-slate-700">Last School Attended</label>
@@ -349,17 +523,6 @@
                             @if ($errors->has('last_school'))
                                 <div class="invalid-feedback text-red-500">
                                     {{ $errors->first('last_school') }}
-                                </div>
-                            @endif
-                        </div>
-                        <div>
-                            <label for="last_school_address" class="text-sm text-slate-700">Address of Last School
-                                Attended</label>
-                            <textarea name="last_school_address" id="last_school_address" required
-                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">{{ old('last_school_address') }}</textarea>
-                            @if ($errors->has('last_school_address'))
-                                <div class="invalid-feedback text-red-500">
-                                    {{ $errors->first('last_school_address') }}
                                 </div>
                             @endif
                         </div>
@@ -383,6 +546,117 @@
                                 </div>
                             @endif
                         </div>
+                    </div>
+
+                    <div>
+                        <label for="last_school_address" class="text-sm text-slate-700">Address of Last School
+                            Attended</label>
+                        <textarea name="last_school_address" id="last_school_address" required
+                            class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">{{ old('last_school_address') }}</textarea>
+                        @if ($errors->has('last_school_address'))
+                            <div class="invalid-feedback text-red-500">
+                                {{ $errors->first('last_school_address') }}
+                            </div>
+                        @endif
+                    </div>
+                    <div class="my-5 space-y-2">
+                        <div class="font-bold text-lg">ACADEMIC AWARDS AND ACHIEVEMENTS DURING THE PREVIOUS YEAR</div>
+                        <div class="grid grid-cols-2">
+                            <div>
+                                <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
+                                    value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                                @if ($errors->has('data_privacy_consent'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('data_privacy_consent') }}
+                                    </div>
+                                @endif
+                                <label for="data_privacy_consent" class="mx-2">With Highest Honors</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
+                                    value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                                @if ($errors->has('data_privacy_consent'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('data_privacy_consent') }}
+                                    </div>
+                                @endif
+                                <label for="data_privacy_consent" class="mx-2">With High Honors</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
+                                    value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                                @if ($errors->has('data_privacy_consent'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('data_privacy_consent') }}
+                                    </div>
+                                @endif
+                                <label for="data_privacy_consent" class="mx-2">With Honors</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
+                                    value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                                @if ($errors->has('data_privacy_consent'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('data_privacy_consent') }}
+                                    </div>
+                                @endif
+                                <label for="data_privacy_consent" class="mx-2">Valedictorian</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
+                                    value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                                @if ($errors->has('data_privacy_consent'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('data_privacy_consent') }}
+                                    </div>
+                                @endif
+                                <label for="data_privacy_consent" class="mx-2">Salutatorian</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
+                                    value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                                @if ($errors->has('data_privacy_consent'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('data_privacy_consent') }}
+                                    </div>
+                                @endif
+                                <label for="data_privacy_consent" class="mx-2">Dean's Lister</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
+                                    value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                                @if ($errors->has('data_privacy_consent'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('data_privacy_consent') }}
+                                    </div>
+                                @endif
+                                <label for="data_privacy_consent" class="mx-2">President's Lister</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
+                                    value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                                @if ($errors->has('data_privacy_consent'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('data_privacy_consent') }}
+                                    </div>
+                                @endif
+                                <label for="data_privacy_consent" class="mx-2">Not Applicable</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
+                                    value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                                @if ($errors->has('data_privacy_consent'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('data_privacy_consent') }}
+                                    </div>
+                                @endif
+                                <label for="data_privacy_consent" class="mx-2">Others</label>
+                                <input type="text" id="zip_code" name="zip_code" required
+                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-x-6 gap-y-4">
                         <div>
                             <label for="lrn" class="text-sm text-slate-700">Learner Reference Number
                                 (LRN)</label>
@@ -425,6 +699,21 @@
                             @endif
                         </div>
                     </div>
+                    {{-- Upload a pic --}}
+                    <div class="my-5">
+                        <label for="avatar" class="text-lg font-bold">Upload a PDF of the following:</label>
+                        <ul class="text-slate-700 text-sm list-disc list-inside">
+                            <li>Photocopy of Previous year's Report Card (F138)</li>
+                            <li>Photocopy of Certification of Grades/TOR (For College Transferees)</li>
+                        </ul>
+                        <input type="file" name="avatar" id="avatar" required
+                            class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/2">
+                        @if ($errors->has('avatar'))
+                            <div class="invalid-feedback text-red-500">
+                                {{ $errors->first('avatar') }}
+                            </div>
+                        @endif
+                    </div>
                 </div>
                 <div class="grid grid-cols-2">
                     <button type="button"
@@ -439,25 +728,25 @@
             {{-- Program to take --}}
             <div id="section-5" class="section">
                 <div class="bg-white py-5 px-10 border rounded-md mx-auto mt-10 mb-3">
-                    <div class="text-center font-bold text-2xl my-5">Applicant's Personal Information</div>
-                        <div>
-                            <label for="program_id" class="text-sm text-slate-700">Program Choice</label>
-                            <select name="program_id" id="program_id" required
-                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
-                                <option value="" disabled selected>Select Program</option>
-                                @foreach ($programs as $program)
-                                    <option value="{{ $program->id }}"
-                                        {{ old('program_id') == $program->id ? 'selected' : '' }}>
-                                        {{ $program->program_name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @if ($errors->has('program_id'))
-                                <div class="invalid-feedback text-red-500">
-                                    {{ $errors->first('program_id') }}
-                                </div>
-                            @endif
-                        </div>
+                    <div class="text-center font-bold text-2xl my-5">Program Selection</div>
+                    <div>
+                        <label for="program_id" class="text-sm text-slate-700">Program Choice</label>
+                        <select name="program_id" id="program_id" required
+                            class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            <option value="" disabled selected>Select Program</option>
+                            @foreach ($programs as $program)
+                                <option value="{{ $program->id }}"
+                                    {{ old('program_id') == $program->id ? 'selected' : '' }}>
+                                    {{ $program->program_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @if ($errors->has('program_id'))
+                            <div class="invalid-feedback text-red-500">
+                                {{ $errors->first('program_id') }}
+                            </div>
+                        @endif
+                    </div>
                 </div>
                 <div class="grid grid-cols-2">
                     <button type="button"
@@ -470,65 +759,287 @@
 
 
             {{-- SECTION 6 --}}
-            {{-- Program to take --}}
+            {{-- Others --}}
             <div id="section-6" class="section">
                 <div class="bg-white py-5 px-10 border rounded-md mx-auto mt-10 mb-3">
-                    <div class="text-center font-bold text-2xl my-5">Applicant's Personal Information</div>
+                    <div class="text-center font-bold text-2xl my-5">Other Information</div>
+                    <div class="font-bold text-lg my-3">INTERNET AND GADGETS</div>
                     <div class="grid grid-cols-2 gap-x-6 gap-y-4">
-
                         <div>
-                            <label for="free_ebill_reason" class="text-sm text-slate-700">Reason for availing of the
-                                free
-                                e-bill
-                                service</label>
-                            <textarea name="free_ebill_reason" id="free_ebill_reason" required
-                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">{{ old('free_ebill_reason') }}</textarea>
-                            @if ($errors->has('free_ebill_reason'))
-                                <div class="invalid-feedback text-red-500">
-                                    {{ $errors->first('free_ebill_reason') }}
-                                </div>
-                            @endif
+                            <p>Device/Gadgets to be used during Blended Learning:</p>
+                            <div>
+                                <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
+                                    value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                                @if ($errors->has('data_privacy_consent'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('data_privacy_consent') }}
+                                    </div>
+                                @endif
+                                <label for="data_privacy_consent" class="mx-2">Smartphone</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
+                                    value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                                @if ($errors->has('data_privacy_consent'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('data_privacy_consent') }}
+                                    </div>
+                                @endif
+                                <label for="data_privacy_consent" class="mx-2">Tablet</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
+                                    value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                                @if ($errors->has('data_privacy_consent'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('data_privacy_consent') }}
+                                    </div>
+                                @endif
+                                <label for="data_privacy_consent" class="mx-2">Laptop</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
+                                    value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                                @if ($errors->has('data_privacy_consent'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('data_privacy_consent') }}
+                                    </div>
+                                @endif
+                                <label for="data_privacy_consent" class="mx-2">Desktop</label>
+                            </div>
                         </div>
                         <div>
-                            <label for="monthly_rental" class="text-sm text-slate-700">Monthly Rental</label>
-                            <input type="number" name="monthly_rental" id="monthly_rental" min="0"
-                                step="0.01" value="{{ old('monthly_rental') }}" required
-                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
-                            @if ($errors->has('monthly_rental'))
-                                <div class="invalid-feedback text-red-500">
-                                    {{ $errors->first('monthly_rental') }}
-                                </div>
-                            @endif
-                        </div>
-                        <div>
-                            <label for="data_privacy_consent" class="text-sm text-slate-700">Data Privacy
-                                Consent</label>
-                            <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
-                                value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
-                            @if ($errors->has('data_privacy_consent'))
-                                <div class="invalid-feedback text-red-500">
-                                    {{ $errors->first('data_privacy_consent') }}
-                                </div>
-                            @endif
-                        </div>
-
-                        <div>
-                            <label for="date_accomplished" class="text-sm text-slate-700">Date Accomplished</label>
-                            <input type="date" name="date_accomplished" id="date_accomplished"
-                                value="{{ old('date_accomplished') }}" required
-                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
-                            @if ($errors->has('date_accomplished'))
-                                <div class="invalid-feedback text-red-500">
-                                    {{ $errors->first('date_accomplished') }}
-                                </div>
-                            @endif
-                        </div>
-                        <div class="grid grid-cols-2">
-                            <button type="button"
-                                class="back-btn justify-self-start bg-slate-100 px-10 py-2 border-2 w-1/2 rounded-md border-slate-300 text-black">Back</button>
-                            <button type="submit">Submit Application</button>
+                            <p>Internet Connection to be used during Blended Learning:</p>
+                            <div>
+                                <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
+                                    value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                                @if ($errors->has('data_privacy_consent'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('data_privacy_consent') }}
+                                    </div>
+                                @endif
+                                <label for="data_privacy_consent" class="mx-2">Prepaid Mobile Data</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
+                                    value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                                @if ($errors->has('data_privacy_consent'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('data_privacy_consent') }}
+                                    </div>
+                                @endif
+                                <label for="data_privacy_consent" class="mx-2">Postpaid Mobile Data</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
+                                    value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                                @if ($errors->has('data_privacy_consent'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('data_privacy_consent') }}
+                                    </div>
+                                @endif
+                                <label for="data_privacy_consent" class="mx-2">Prepaid Wifi (Ex: Globe at Home, PLDT Home, etc.)</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
+                                    value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                                @if ($errors->has('data_privacy_consent'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('data_privacy_consent') }}
+                                    </div>
+                                @endif
+                                <label for="data_privacy_consent" class="mx-2">Broadband Line (Ex: PLDT Fibr, Converge, Sky Fibr, etc.)</label>
+                            </div>
                         </div>
                     </div>
+                    <div class="font-bold text-lg my-3">ELECTRIC CONSUMPTION FOR THE LAST THREE MONTHS</div>
+                    <div class="grid grid-cols-2 gap-x-6 gap-y-4">
+                        <div>
+                            <label for="zip_code" class="text-sm text-slate-700">Month 1:</label>
+                            <select name="" id=""
+                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                <option value="">Select a month</option>
+                                <option value="">January</option>
+                                <option value="">February</option>
+                                <option value="">March</option>
+                                <option value="">April</option>
+                                <option value="">May</option>
+                                <option value="">June</option>
+                                <option value="">July</option>
+                                <option value="">August</option>
+                                <option value="">September</option>
+                                <option value="">October</option>
+                                <option value="">November</option>
+                                <option value="">December</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="zip_code" class="text-sm text-slate-700">Electric Bill for Month 1:</label>
+                            <input type="text" id="zip_code" name="zip_code" required
+                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                        </div>
+                        <div>
+                            <label for="zip_code" class="text-sm text-slate-700">Month 2:</label>
+                            <select name="" id=""
+                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                <option value="">Select a month</option>
+                                <option value="">January</option>
+                                <option value="">February</option>
+                                <option value="">March</option>
+                                <option value="">April</option>
+                                <option value="">May</option>
+                                <option value="">June</option>
+                                <option value="">July</option>
+                                <option value="">August</option>
+                                <option value="">September</option>
+                                <option value="">October</option>
+                                <option value="">November</option>
+                                <option value="">December</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="zip_code" class="text-sm text-slate-700">Electric Bill for Month 2:</label>
+                            <input type="text" id="zip_code" name="zip_code" required
+                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                        </div>
+                        <div>
+                            <label for="zip_code" class="text-sm text-slate-700">Month 3:</label>
+                            <select name="" id=""
+                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                <option value="">Select a month</option>
+                                <option value="">January</option>
+                                <option value="">February</option>
+                                <option value="">March</option>
+                                <option value="">April</option>
+                                <option value="">May</option>
+                                <option value="">June</option>
+                                <option value="">July</option>
+                                <option value="">August</option>
+                                <option value="">September</option>
+                                <option value="">October</option>
+                                <option value="">November</option>
+                                <option value="">December</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="zip_code" class="text-sm text-slate-700">Electric Bill for Month 3:</label>
+                            <input type="text" id="zip_code" name="zip_code" required
+                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                        </div>
+                    </div>
+                    <div class="mt-5">
+                        <label for="zip_code" class="text-sm text-slate-700">If your electric consumption is free, please provide a brief explanation why it’s free. </label>
+                        <input type="text" id="zip_code" name="zip_code" required
+                            class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                    </div>
+                    {{-- Upload a pic --}}
+                    <div class="my-5">
+                        <label for="avatar">Upload a Clear Picture of the Electric Bills for the last three months</label>
+                        <input type="file" name="avatar" id="avatar" required
+                            class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/2">
+                        @if ($errors->has('avatar'))
+                            <div class="invalid-feedback text-red-500">
+                                {{ $errors->first('avatar') }}
+                            </div>
+                        @endif
+                    </div>
+                    <div class="my-5 space-y-2">
+                        <div class="font-bold text-lg">OWNERSHIP OF THE HOUSING UNIT</div>
+                        <div>
+                            <div>
+                                <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
+                                    value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                                @if ($errors->has('data_privacy_consent'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('data_privacy_consent') }}
+                                    </div>
+                                @endif
+                                <label for="data_privacy_consent" class="mx-2">Owned, Fully Paid</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
+                                    value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                                @if ($errors->has('data_privacy_consent'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('data_privacy_consent') }}
+                                    </div>
+                                @endif
+                                <label for="data_privacy_consent" class="mx-2">Owned, Amortized</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
+                                    value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                                @if ($errors->has('data_privacy_consent'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('data_privacy_consent') }}
+                                    </div>
+                                @endif
+                                <label for="data_privacy_consent" class="mx-2">Rented</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
+                                    value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                                @if ($errors->has('data_privacy_consent'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('data_privacy_consent') }}
+                                    </div>
+                                @endif
+                                <label for="data_privacy_consent" class="mx-2">Free/Living with relatives/Inherited</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
+                                    value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                                @if ($errors->has('data_privacy_consent'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('data_privacy_consent') }}
+                                    </div>
+                                @endif
+                                <label for="data_privacy_consent" class="mx-2">Others</label>
+                                <input type="text" id="zip_code" name="zip_code" required
+                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="data_privacy_consent" class="mx-2">If you're renting, please enter monthly rental fee:</label>
+                            <input type="text" id="zip_code" name="zip_code" required
+                            class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2">
+                    <button type="button"
+                        class="back-btn justify-self-start bg-slate-100 px-10 py-2 border-2 w-1/2 rounded-md border-slate-300 text-black">Back</button>
+                        <button type="button"
+                        class="next-btn justify-self-end bg-blue-500 px-10 py-2 border-2 w-1/2 rounded-md border-slate-300 text-white">Next</button>
+                    
+                </div>
+            </div>
+
+
+
+            
+            {{-- SECTION 7 --}}
+            {{-- Program to take --}}
+            <div id="section-5" class="section">
+                <div class="bg-white py-5 px-10 border rounded-md mx-auto mt-10 mb-3">
+                    <div class="text-center font-bold text-2xl my-5">Signed Declaration and Data Privacy Consent</div>
+                    <p class="capitalized">Signed declaration by the parents/legal guardian:</p>
+                    <p><em>“I/We hereby certify to the truthfulness and completeness of the information provided. Any misinformation or withholding of information will automatically disqualify my/our child from the LVCC Scholarship Program. In connection with this application for financial aid, I/we hereby authorize the LVCC Scholarship Committee to conduct an investigation on the family's finances, including bank accounts, credit card, SSS, GSIS, etc. and visit our family's dwelling place.”</em></p>
+                    <div class="mb-5">
+                        <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
+                            value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                        @if ($errors->has('data_privacy_consent'))
+                            <div class="invalid-feedback text-red-500">
+                                {{ $errors->first('data_privacy_consent') }}
+                            </div>
+                        @endif
+                        <label for="data_privacy_consent" class="mx-2">I ACCEPT</label>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2">
+                    <button type="button"
+                        class="back-btn justify-self-start bg-slate-100 px-10 py-2 border-2 w-1/2 rounded-md border-slate-300 text-black">Back</button>
+                        <button type="submit" class="justify-self-end bg-blue-700 px-10 py-2 border-2 w-fit rounded-md border-slate-300 text-white">Submit Application</button>
                 </div>
             </div>
     </div>
