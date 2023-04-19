@@ -4,7 +4,7 @@
     </h1>
     <div class="bg-white px-10 py-5 my-5 rounded-md border-l-blue-500 border-l-8 grid grid-col-1">
         {{-- @if (status->user->status) --}}
-        <h2 class="font-bold">You have successfully finished verifying ypur account.</h2>
+        <h2 class="font-bold">You have successfully finished verifying your account.</h2>
         <p class="text-sm">You may now proceed to the next step by answering the application form.</p>
         <div class="justify-self-end">
             <a href="" class="bg-blue-500 p-2 rounded-sm text-white text-sm justify-self-end hover:bg-blue-800">Answer the Form</a>
