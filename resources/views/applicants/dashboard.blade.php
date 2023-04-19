@@ -69,15 +69,6 @@
                 </span>
                 <h3 class="font-medium leading-tight">Entrance Examination</h3>
                 <p class="text-sm">Step details here</p>
-                {{-- 
-                    Account Creation
-                    Verification
-                    Submission of Application form
-                    Assessment
-                    Entrance Exam
-                    Interview
-                    Announcement of Scholarship Status
-                    --}}
             </li>
         </ol>
     </div>
