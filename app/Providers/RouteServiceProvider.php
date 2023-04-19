@@ -18,7 +18,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = 'applicants/dashboard';
-    public const FORM = 'applicants/forms/form';
+    public const FORM = 'applicants/form';
     public const ADMIN = 'dashboard';
 
     /**
