@@ -1,5 +1,4 @@
 <x-form-layout>
-
     <div class="flex items-center justify-center h-screen">
         <form method="POST" action="{{ route('applicants.store') }}" enctype="multipart/form-data"
             class="absolute top-24 w-3/5 py-10">
@@ -652,7 +651,7 @@
                                 @endif
                                 <label for="data_privacy_consent" class="mx-2">Others</label>
                                 <input type="text" id="zip_code" name="zip_code" required
-                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                    class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                             </div>
                         </div>
                     </div>
@@ -838,7 +837,8 @@
                                         {{ $errors->first('data_privacy_consent') }}
                                     </div>
                                 @endif
-                                <label for="data_privacy_consent" class="mx-2">Prepaid Wifi (Ex: Globe at Home, PLDT Home, etc.)</label>
+                                <label for="data_privacy_consent" class="mx-2">Prepaid Wifi (Ex: Globe at Home, PLDT
+                                    Home, etc.)</label>
                             </div>
                             <div>
                                 <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
@@ -848,7 +848,8 @@
                                         {{ $errors->first('data_privacy_consent') }}
                                     </div>
                                 @endif
-                                <label for="data_privacy_consent" class="mx-2">Broadband Line (Ex: PLDT Fibr, Converge, Sky Fibr, etc.)</label>
+                                <label for="data_privacy_consent" class="mx-2">Broadband Line (Ex: PLDT Fibr,
+                                    Converge, Sky Fibr, etc.)</label>
                             </div>
                         </div>
                     </div>
@@ -928,13 +929,15 @@
                         </div>
                     </div>
                     <div class="mt-5">
-                        <label for="zip_code" class="text-sm text-slate-700">If your electric consumption is free, please provide a brief explanation why it’s free. </label>
+                        <label for="zip_code" class="text-sm text-slate-700">If your electric consumption is free,
+                            please provide a brief explanation why it’s free. </label>
                         <input type="text" id="zip_code" name="zip_code" required
                             class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                     </div>
                     {{-- Upload a pic --}}
                     <div class="my-5">
-                        <label for="avatar">Upload a Clear Picture of the Electric Bills for the last three months</label>
+                        <label for="avatar">Upload a Clear Picture of the Electric Bills for the last three
+                            months</label>
                         <input type="file" name="avatar" id="avatar" required
                             class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/2">
                         @if ($errors->has('avatar'))
@@ -984,7 +987,8 @@
                                         {{ $errors->first('data_privacy_consent') }}
                                     </div>
                                 @endif
-                                <label for="data_privacy_consent" class="mx-2">Free/Living with relatives/Inherited</label>
+                                <label for="data_privacy_consent" class="mx-2">Free/Living with
+                                    relatives/Inherited</label>
                             </div>
                             <div>
                                 <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
@@ -996,38 +1000,43 @@
                                 @endif
                                 <label for="data_privacy_consent" class="mx-2">Others</label>
                                 <input type="text" id="zip_code" name="zip_code" required
-                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                    class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                             </div>
                         </div>
                         <div>
-                            <label for="data_privacy_consent" class="mx-2">If you're renting, please enter monthly rental fee:</label>
+                            <label for="data_privacy_consent" class="mx-2">If you're renting, please enter monthly
+                                rental fee:</label>
                             <input type="text" id="zip_code" name="zip_code" required
-                            class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                         </div>
                     </div>
                 </div>
                 <div class="grid grid-cols-2">
                     <button type="button"
                         class="back-btn justify-self-start bg-slate-100 px-10 py-2 border-2 w-1/2 rounded-md border-slate-300 text-black">Back</button>
-                        <button type="button"
+                    <button type="button"
                         class="next-btn justify-self-end bg-blue-500 px-10 py-2 border-2 w-1/2 rounded-md border-slate-300 text-white">Next</button>
-                    
+
                 </div>
             </div>
-
-
-
-            
             {{-- SECTION 7 --}}
             {{-- Program to take --}}
-            <div id="section-5" class="section">
+            <div id="section-7" class="section">
                 <div class="bg-white py-5 px-10 border rounded-md mx-auto mt-10 mb-3">
                     <div class="text-center font-bold text-2xl my-5">Signed Declaration and Data Privacy Consent</div>
                     <p class="capitalized">Signed declaration by the parents/legal guardian:</p>
-                    <p><em>“I/We hereby certify to the truthfulness and completeness of the information provided. Any misinformation or withholding of information will automatically disqualify my/our child from the LVCC Scholarship Program. In connection with this application for financial aid, I/we hereby authorize the LVCC Scholarship Committee to conduct an investigation on the family's finances, including bank accounts, credit card, SSS, GSIS, etc. and visit our family's dwelling place.”</em></p>
+                    <p><em>“I/We hereby certify to the truthfulness and completeness of the information provided. Any
+                            misinformation or withholding of information will automatically disqualify my/our child from
+                            the
+                            LVCC Scholarship Program. In connection with this application for financial aid, I/we hereby
+                            authorize the LVCC Scholarship Committee to conduct an investigation on the family's
+                            finances,
+                            including bank accounts, credit card, SSS, GSIS, etc. and visit our family's dwelling
+                            place.”</em>
+                    </p>
                     <div class="mb-5">
-                        <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent"
-                            value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                        <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent" value="1"
+                            {{ old('data_privacy_consent') ? 'checked' : '' }}>
                         @if ($errors->has('data_privacy_consent'))
                             <div class="invalid-feedback text-red-500">
                                 {{ $errors->first('data_privacy_consent') }}
@@ -1039,10 +1048,14 @@
                 <div class="grid grid-cols-2">
                     <button type="button"
                         class="back-btn justify-self-start bg-slate-100 px-10 py-2 border-2 w-1/2 rounded-md border-slate-300 text-black">Back</button>
-                        <button type="submit" class="justify-self-end bg-blue-700 px-10 py-2 border-2 w-fit rounded-md border-slate-300 text-white">Submit Application</button>
+                    <button type="submit"
+                        class="justify-self-end bg-blue-700 px-10 py-2 border-2 w-fit rounded-md border-slate-300 text-white">Submit
+                        Application</button>
                 </div>
             </div>
+
     </div>
+
 
     </form>
     </div>
@@ -1059,6 +1072,7 @@
             $('#section-4').hide();
             $('#section-5').hide();
             $('#section-6').hide();
+            $('#section-7').hide();
 
             // Handle next button clicks
             $('.next-btn').click(function() {
