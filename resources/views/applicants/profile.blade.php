@@ -19,7 +19,7 @@
 
         <div>
             <label>Email:</label>
-            <p>{{ $user->applicant->applicant_type }}</p>
+            <p>{{ $user->email }}</p>
         </div>
 
         <div>

@@ -17,6 +17,8 @@ return new class extends Migration
             //student personal data
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->boolean('contact_consent');
+            $table->boolean('document_consent');
             $table->string('fname');
             $table->string('mname')->nullable();
             $table->string('lname');
@@ -44,9 +46,8 @@ return new class extends Migration
             // other information
             $table->string('ebill_proof');
             $table->text('free_ebill_reason')->nullable();
-            $table->float('monthly_rental');
+            $table->float('monthly_rental')->nullable();
             $table->boolean('data_privacy_consent');
-            $table->boolean('document_consent');
             $table->date('date_accomplished');
             // system requirements
             $table->foreignId('batch_id')->nullable()->constrained('batches')->cascadeOnDelete();

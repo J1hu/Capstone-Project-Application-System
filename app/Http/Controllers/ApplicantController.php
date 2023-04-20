@@ -9,12 +9,13 @@ use App\Models\Applicant;
 use App\Models\ElectricBill;
 use App\Models\InternetType;
 use Illuminate\Http\Request;
+use App\Models\HouseOwnership;
 use App\Models\ApplicantFather;
 use App\Models\ApplicantMother;
+use Illuminate\Validation\Rule;
 use App\Models\ApplicantAddress;
 use App\Models\ApplicantSibling;
 use App\Models\ApplicantGuardian;
-use App\Models\HouseOwnership;
 use Illuminate\Support\Facades\Auth;
 use Database\Seeders\ApplicantSeeder;
 use Illuminate\Support\Facades\Validator;
@@ -36,6 +37,8 @@ class ApplicantController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'contact_consent' => 'required',
+            'document_consent' => 'required',
             'fname' => 'required',
             'lname' => 'required',
             'applicant_type' => 'required',
@@ -44,34 +47,87 @@ class ApplicantController extends Controller
             'phone_num' => 'required',
             'fb_link' => 'required',
             'religion' => 'required',
+            //home address
+            'province' => 'required',
+            'city_municipality' => 'required',
+            'barangay' => 'required',
+            'street' => 'required',
+            'zip_code' => 'required',
             'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'total_fam_children' => 'required|integer',
             'birth_order' => 'required',
-            'last_school' => 'required',
-            'last_school_address' => 'required',
-            'school_type' => 'required',
+            //sibling
+            'full_name.*' => 'required|string|max:255',
+            'education_level.*' => 'required|string|max:255',
+            //mother
+            'mother_fname' => 'required|max:255',
+            'mother_religion' => 'required|max:255',
+            'mother_mname' => 'required|max:255',
+            'mother_occupation' => 'required|max:255',
+            'mother_lname' => 'required|max:255',
+            'mother_annual_income' => 'required|in:250,000PHP and less,250,000PHP to 400,000PHP,400,000PHP to 800,000PHP,800,000PHP to 2,000,000PHP,2,000,000PHP to 8,000,000PHP',
+            'mother_phone_num' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
+            //father
+            'father_fname' => 'required|max:255',
+            'father_religion' => 'required|max:255',
+            'father_mname' => 'required|max:255',
+            'father_occupation' => 'required|max:255',
+            'father_lname' => 'required|max:255',
+            'father_annual_income' => 'required|in:250,000PHP and less,250,000PHP to 400,000PHP,400,000PHP to 800,000PHP,800,000PHP to 2,000,000PHP,2,000,000PHP to 8,000,000PHP',
+            'father_phone_num' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
+            //guardian
+            'guardian_fname' => 'required|max:255',
+            'guardian_religion' => 'required|max:255',
+            'guardian_mname' => 'required|max:255',
+            'guardian_occupation' => 'required|max:255',
+            'guardian_lname' => 'required|max:255',
+            'guardian_annual_income' => 'required|in:250,000PHP and less,250,000PHP to 400,000PHP,400,000PHP to 800,000PHP,800,000PHP to 2,000,000PHP,2,000,000PHP to 8,000,000PHP',
+            'guardian_phone_num' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
+            //cert
+            'certificate' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            //last school
+            'last_school' => 'required|string|max:255',
+            'school_type' => 'required|in:Public,Private,State University',
+            'last_school_address' => 'required|string|max:255',
+            // award
+            'award_name' => 'required|array|min:1',
+            //
             'lrn' => 'required',
-            // 'esc_grantee' => 'required',
-            // 'esc_num' => 'required',
+            'esc_grantee' => 'string',
+            'esc_num' => 'string',
+            //report card
+            'report_card' => 'required|mimes:pdf|max:2048',
+            //chosen program
             'program_id' => 'required',
+            //gadgets
+            'gadget_name' => ['required', 'array', 'min:1', Rule::in(['smartphone', 'tablet', 'laptop', 'desktop'])],
+            //internet
+            'internet_name' => 'required|array|min:1',
+            'internet_name.*' => 'string|in:postpaid,prepaid,prepaid_wifi,broadband',
+            //electric
+            'electric_month_1' => 'required|in:january,february,march,april,may,june,july,august,september,october,november,december',
+            'electric_amount_1' => 'required|numeric|min:0',
+            'electric_month_2' => 'required|in:january,february,march,april,may,june,july,august,september,october,november,december',
+            'electric_amount_2' => 'required|numeric|min:0',
+            'electric_month_3' => 'required|in:january,february,march,april,may,june,july,august,september,october,november,december',
+            'electric_amount_3' => 'required|numeric|min:0',
+            // ebill proof
+            'ebill_proof' => 'required|mimes:jpeg,jpg,png|max:2048',
+            'ebill_proof.required' => 'Please upload a picture of the electric bills for the last three months',
+            'ebill_proof.mimes' => 'The picture must be in jpeg, jpg or png format',
+            'ebill_proof.max' => 'The picture must not be larger than 2MB',
             'free_ebill_reason' => 'required',
-            'monthly_rental' => 'required',
+            // ownership
+            'ownership_type' => ['required', 'string', Rule::in(['Owned, Fully Paid', 'Owned, Amortized', 'Rented', 'Free/Living with relatives/Inherited'])],
+            'monthly_rental' => ['required_if:ownership_type,Rented', 'numeric', 'min:0'],
+            // section 7
             'data_privacy_consent' => 'required',
-            'document_consent' => 'required',
             'date_accomplished' => 'required',
-            'province' => 'required|string|max:255',
-            'city_municipality' => 'required|string|max:255',
-            'barangay' => 'required|string|max:255',
-            'zip_code' => 'required|string|max:10',
         ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
-
         $applicant = new Applicant();
+        $applicant->contact_consent = $request->input('contact_consent');
+        $applicant->document_consent = $request->input('document_consent');
         $applicant->fname = $request->input('fname');
         $applicant->mname = $request->input('mname');
         $applicant->lname = $request->input('lname');
@@ -101,7 +157,6 @@ class ApplicantController extends Controller
         $applicant->free_ebill_reason = $request->input('free_ebill_reason');
         $applicant->monthly_rental = $request->input('monthly_rental');
         $applicant->data_privacy_consent = $request->input('data_privacy_consent');
-        $applicant->document_consent = $request->input('document_consent');
         $applicant->date_accomplished = $request->input('date_accomplished');
 
         $applicant->user_id = Auth::id();
@@ -113,17 +168,17 @@ class ApplicantController extends Controller
 
         // saving certificates of applicants
         $cert = time() . '.' . request()->certificate->getClientOriginalExtension();
-        $request->certificate->storeAs('certificates', $cert, 'private');
+        $request->certificate->move(storage_path('certificates'), $cert);
         $applicant->certificate = $cert;
 
         //report card
         $reportCard = time() . '.' . request()->report_card->getClientOriginalExtension();
-        $request->report_card->storeAs('report-cards', $reportCard, 'private');
+        $request->report_card->move(storage_path('report-cards'), $reportCard);
         $applicant->report_card = $reportCard;
 
         //ebill proof
-        $ebill = time() . '.' . request()->avatar->getClientOriginalExtension();
-        $request->ebill_proof->storeAs('ebill-proofs', $ebill, 'private');
+        $ebill = time() . '.' . request()->ebill_proof->getClientOriginalExtension();
+        $request->ebill_proof->move(storage_path('ebill-proofs'), $ebill);
         $applicant->ebill_proof = $ebill;
 
         $applicant->save();
@@ -134,6 +189,7 @@ class ApplicantController extends Controller
         $address->province = $request->input('province');
         $address->city_municipality = $request->input('city_municipality');
         $address->barangay = $request->input('barangay');
+        $address->street = $request->input('street');
         $address->zip_code = $request->input('zip_code');
         $address->applicant_id = $applicantId;
 
@@ -151,8 +207,6 @@ class ApplicantController extends Controller
                 'applicant_id' => $applicantId
             ];
         }
-
-        // Save the siblings to the database
         $applicant->siblings()->createMany($siblings);
 
         $mother = new ApplicantMother();
@@ -192,12 +246,14 @@ class ApplicantController extends Controller
 
         $applicant->guardian()->save($guardian);
 
-        //academic awards of applicant
         $acadAwards = $request->input('award_name');
+        // dd($acadAwards);
+
         foreach ($acadAwards as $award) {
-            $acadAward = new AcadAward();
-            $acadAward->award_name = $award;
-            $acadAward->applicant_id = $applicantId;
+            $acadAward = new AcadAward([
+                'award_name' => $award,
+                'applicant_id' => $applicantId
+            ]);
 
             $applicant->acadAwards()->save($acadAward);
         }
@@ -215,6 +271,7 @@ class ApplicantController extends Controller
         }
 
         Gadget::insert($gadgets);
+
 
         // internet type
         $internetNames = $request->input('internet_name');
@@ -237,7 +294,7 @@ class ApplicantController extends Controller
             $electricBillData[] = [
                 'electric_month' => $electricBill['electric_month'],
                 'electric_amount' => $electricBill['electric_amount'],
-                'applicant_id' => $electricBill['applicant_id']
+                'applicant_id' => $applicantId
             ];
         }
 

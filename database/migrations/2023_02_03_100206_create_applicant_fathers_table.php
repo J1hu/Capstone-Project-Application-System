@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('father_lname');
             $table->string('father_religion');
             $table->string('father_occupation');
-            $table->float('father_annual_income');
+            $table->string('father_annual_income');
             $table->string('father_phone_num');
             $table->timestamps();
         });
