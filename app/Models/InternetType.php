@@ -10,7 +10,8 @@ class InternetType extends Model
     use HasFactory;
 
     protected $fillable = [
-        'internet_name'
+        'internet_name',
+        'applicant_id'
     ];
 
     public function applicant()

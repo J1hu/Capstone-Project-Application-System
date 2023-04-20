@@ -16,7 +16,8 @@ class ApplicantFather extends Model
         'father_religion',
         'father_occupation',
         'father_annual_income',
-        'father_phone_num'
+        'father_phone_num',
+        'applicant_id'
     ];
 
     public function applicant()

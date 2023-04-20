@@ -11,6 +11,7 @@ class AcadAward extends Model
 
     protected $fillable = [
         'award_name',
+        'applicant_id'
     ];
 
     public function applicant()

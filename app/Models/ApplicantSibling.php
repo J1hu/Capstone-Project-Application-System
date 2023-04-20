@@ -11,7 +11,8 @@ class ApplicantSibling extends Model
 
     protected $fillable = [
         'full_name',
-        'education_level'
+        'education_level',
+        'applicant_id'
     ];
 
     public function applicant()

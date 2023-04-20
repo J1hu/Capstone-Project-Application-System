@@ -16,7 +16,8 @@ class ApplicantMother extends Model
         'mother_religion',
         'mother_occupation',
         'mother_annual_income',
-        'mother_phone_num'
+        'mother_phone_num',
+        'applicant_id'
     ];
 
     public function applicant()

@@ -28,6 +28,7 @@ class Applicant extends Model
         'fb_link',
         'religion',
         'avatar',
+        'certificate',
         // family data
         'total_fam_children',
         'birth_order',
@@ -111,7 +112,7 @@ class Applicant extends Model
         return $this->hasMany(ElectricBill::class);
     }
 
-    public function houseOwnerships()
+    public function houseOwnership()
     {
         return $this->hasOne(HouseOwnership::class);
     }

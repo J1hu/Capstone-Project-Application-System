@@ -11,6 +11,7 @@ class Gadget extends Model
 
     protected $fillable = [
         'gadget_name',
+        'applicant_id'
     ];
 
     public function applicant()

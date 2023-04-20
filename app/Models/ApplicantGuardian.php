@@ -16,7 +16,8 @@ class ApplicantGuardian extends Model
         'guardian_religion',
         'guardian_occupation',
         'guardian_annual_income',
-        'guardian_phone_num'
+        'guardian_phone_num',
+        'applicant_id'
     ];
 
     public function applicant()

@@ -11,6 +11,7 @@ class HouseOwnership extends Model
 
     protected $fillable = [
         'ownership_type',
+        'applicant_id'
     ];
 
     public function applicant()
