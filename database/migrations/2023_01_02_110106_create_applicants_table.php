@@ -48,7 +48,6 @@ return new class extends Migration
             $table->text('free_ebill_reason')->nullable();
             $table->float('monthly_rental')->nullable();
             $table->boolean('data_privacy_consent');
-            $table->date('date_accomplished');
             // system requirements
             $table->foreignId('batch_id')->nullable()->constrained('batches')->cascadeOnDelete();
             $table->foreignId('application_status_id')->nullable()->constrained()->cascadeOnDelete();

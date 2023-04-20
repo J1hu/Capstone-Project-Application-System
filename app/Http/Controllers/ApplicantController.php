@@ -122,7 +122,6 @@ class ApplicantController extends Controller
             'monthly_rental' => ['required_if:ownership_type,Rented', 'numeric', 'min:0'],
             // section 7
             'data_privacy_consent' => 'required',
-            'date_accomplished' => 'required',
         ]);
 
         $applicant = new Applicant();
@@ -157,7 +156,6 @@ class ApplicantController extends Controller
         $applicant->free_ebill_reason = $request->input('free_ebill_reason');
         $applicant->monthly_rental = $request->input('monthly_rental');
         $applicant->data_privacy_consent = $request->input('data_privacy_consent');
-        $applicant->date_accomplished = $request->input('date_accomplished');
 
         $applicant->user_id = Auth::id();
 

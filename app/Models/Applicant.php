@@ -46,7 +46,6 @@ class Applicant extends Model
         'free_ebill_reason',
         'monthly_rental',
         'contact_consent',
-        'date_accomplished',
         'data_privacy_consent',
         'batch_id',
         'exam_score_id',

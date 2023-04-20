@@ -46,7 +46,6 @@ class ApplicantFactory extends Factory
             'contact_consent' => fake()->boolean(100),
             'document_consent' => fake()->boolean(100),
             'data_privacy_consent' => fake()->boolean(100),
-            'date_accomplished' => fake()->date(),
             'batch_id' => rand(1, 50),
             'application_status_id' => rand(1, 4),
             'applicant_status_id' => rand(1, 2),
