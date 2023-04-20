@@ -86,9 +86,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="grid grid-cols-2">
-                    <button type="button" class="back-btn justify-self-start bg-slate-100 px-10 py-2 border-2 w-1/2 rounded-md border-slate-300 text-black">Back</button>
-                    <button type="button" class="next-btn justify-self-end bg-blue-500 px-10 py-2 border-2 w-1/2 rounded-md border-slate-300 text-white">Next</button>
+                <div class="grid">
+                    <button type="button" class="next-btn justify-self-end bg-blue-500 px-10 py-2 border-2 w-1/4 rounded-md border-slate-300 text-white">Next</button>
                 </div>
             </div>
 
