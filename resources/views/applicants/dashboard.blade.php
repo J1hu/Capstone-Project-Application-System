@@ -7,7 +7,7 @@
         <h2 class="font-bold">You have successfully finished verifying your account.</h2>
         <p class="text-sm">You may now proceed to the next step by answering the application form.</p>
         <div class="justify-self-end">
-            <a href="" class="bg-blue-500 p-2 rounded-sm text-white text-sm justify-self-end hover:bg-blue-800">Answer the Form</a>
+            <a href="{{ route('applicants.forms.form') }}" class="bg-blue-500 p-2 rounded-sm text-white text-sm justify-self-end hover:bg-blue-800">Answer the Form</a>
         </div>
 
         {{-- @endif --}}
