@@ -1082,9 +1082,6 @@
                         <label for="data_privacy_consent" class="mx-2">I ACCEPT</label>
                     </div>
                 </div>
-                <div>
-                    <input type="date" id="date_accomplished" name="date_accomplished" value="{{ old('date_accomplished') }}" class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
-                </div>
                 <div class="grid grid-cols-2">
                     <button type="button" class="back-btn justify-self-start bg-slate-100 px-10 py-2 border-2 w-1/2 rounded-md border-slate-300 text-black">Back</button>
                     <button type="submit" class="justify-self-end bg-blue-700 px-10 py-2 border-2 w-fit rounded-md border-slate-300 text-white">Submit
