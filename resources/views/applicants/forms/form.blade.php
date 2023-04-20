@@ -1072,7 +1072,7 @@
                             place.”</em>
                     </p>
                     <div class="mb-5">
-                        <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent" value="0" {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                        <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent" value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
                         @if ($errors->has('data_privacy_consent'))
                         <div class="invalid-feedback text-red-500">
                             {{ $errors->first('data_privacy_consent') }}
