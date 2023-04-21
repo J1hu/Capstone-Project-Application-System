@@ -84,7 +84,7 @@ class ApplicantController extends Controller
             'guardian_annual_income' => 'required|in:250,000PHP and less,250,000PHP to 400,000PHP,400,000PHP to 800,000PHP,800,000PHP to 2,000,000PHP,2,000,000PHP to 8,000,000PHP',
             'guardian_phone_num' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
             //cert
-            'certificate' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'certificate' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             //last school
             'last_school' => 'required|string|max:255',
             'school_type' => 'required|in:Public,Private,State University',

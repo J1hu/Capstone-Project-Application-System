@@ -16,8 +16,10 @@ class BatchFactory extends Factory
      */
     public function definition()
     {
+        $batchNumbers = range(1, 10);
+
         return [
-            'batch_num' => fake()->randomNumber()
+            'batch_num' => $batchNumbers[array_rand($batchNumbers)],
         ];
     }
 }

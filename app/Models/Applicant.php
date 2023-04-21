@@ -136,9 +136,9 @@ class Applicant extends Model
         return $this->hasMany(Evaluation::class);
     }
 
-    public function batch()
+    public function batches()
     {
-        return $this->belongsTo(Batch::class);
+        return $this->belongsToMany(Batch::class)->withTimestamps();
     }
 
     public function statuses()

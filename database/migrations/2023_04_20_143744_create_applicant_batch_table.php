@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('batches', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedInteger('batch_num');
-            $table->boolean('is_archived')->default(false);
+        Schema::create('applicant_batch', function (Blueprint $table) {
+            $table->foreignId('applicant_id')->constrained('applicants')->cascadeOnDelete();
+            $table->foreignId('batch_id')->constrained('batches')->cascadeOnDelete();
             $table->timestamps();
+            $table->primary(['applicant_id', 'batch_id']);
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('batches');
+        Schema::dropIfExists('applicant_batch');
     }
 };
