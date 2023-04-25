@@ -4,7 +4,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\BatchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApplicantController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -57,11 +56,6 @@ Route::middleware(['auth', 'role:applicant', 'verified'])->group(function () {
         Route::get('profile', [ApplicantController::class, 'viewProfile'])->name('applicants.profile');
         Route::post('store', [ApplicantController::class, 'store'])->name('applicants.store');
     });
-});
-
-Route::middleware(['auth', 'role:admin|registrar_staff'])->group(function () {
-    Route::get('/batch/form', [BatchController::class, 'viewBatchForm'])->name('batch.form');
-    Route::post('/batch/mass-assign', [BatchController::class, 'massAssignBatch'])->name('batch.massAssign');
 });
 
 Route::middleware(['auth', 'role:applicant|admin|program_head|mancom|registrar_staff', 'verified'])->group(function () {

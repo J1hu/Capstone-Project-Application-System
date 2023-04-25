@@ -10,17 +10,11 @@ class Batch extends Model
     use HasFactory;
 
     protected $fillable = [
-        'batch_num',
-        'is_archived'
+        'batch_num'
     ];
 
-    public function applicants()
+    public function applicant()
     {
-        return $this->belongsToMany(Applicant::class)->withTimestamps();
-    }
-
-    public function scopeActive($query)
-    {
-        return $query->where('is_archived', false);
+        return $this->hasMany(Applicant::class);
     }
 }
