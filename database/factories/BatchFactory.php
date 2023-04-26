@@ -17,8 +17,8 @@ class BatchFactory extends Factory
     public function definition()
     {
         return [
-            'batch_num' => fake()->randomNumber(),
-            'is_archived' => fake()->boolean(100)
+            'batch_num' => fake()->randomElement([1, 2, 3, 4, 5]),
+            'is_archived' => fake()->boolean(0)
         ];
     }
 }

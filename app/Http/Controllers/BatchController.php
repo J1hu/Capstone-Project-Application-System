@@ -7,13 +7,12 @@ use Illuminate\Http\Request;
 
 class BatchController extends Controller
 {
-    public function showApplicants($batch_num)
+    public function showActiveBatches()
     {
-        $batch = Batch::where('batch_num', $batch_num)
-            ->where('is_archived', false)
+        $batches = Batch::where('is_archived', false)
             ->with('applicant')
-            ->firstOrFail();
+            ->get();
 
-        return view('students', compact('batch'));
+        return view('batches.list', compact('batches'));
     }
 }

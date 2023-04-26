@@ -53,6 +53,27 @@ class Applicant extends Model
         'applicant_status_id'
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($applicant) {
+            // Get the current batch for the applicant
+            $currentBatch = $applicant->batch;
+
+            // If the current batch has reached the limit of 50 applicants, create a new batch and assign the applicant to it
+            if ($currentBatch && $currentBatch->applicants()->count() >= 50) {
+                $newBatchNumber = Batch::getNextBatchNumber();
+                $newBatch = Batch::create([
+                    'batch_num' => $newBatchNumber,
+                    'is_archived' => false,
+                ]);
+                $applicant->batch()->associate($newBatch);
+                $applicant->save();
+            }
+        });
+    }
+
     public function getFullNameAttribute()
     {
         return "{$this->fname} {$this->mname} {$this->lname}";
@@ -110,7 +131,6 @@ class Applicant extends Model
 
     public function electricBills()
     {
-        // plural
         return $this->hasMany(ElectricBill::class);
     }
 
@@ -126,13 +146,11 @@ class Applicant extends Model
 
     public function examScores()
     {
-        // plural
         return $this->hasOne(ExamScore::class);
     }
 
     public function evaluations()
     {
-        // plural
         return $this->hasMany(Evaluation::class);
     }
 

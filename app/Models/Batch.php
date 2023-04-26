@@ -13,8 +13,14 @@ class Batch extends Model
         'batch_num'
     ];
 
-    public function applicant()
+    public function applicants()
     {
         return $this->hasMany(Applicant::class);
+    }
+
+    public static function getNextBatchNumber()
+    {
+        $maxBatchNumber = self::max('batch_num') ?? 0;
+        return $maxBatchNumber + 1;
     }
 }
