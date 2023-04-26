@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('batches', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('batch_num');
+            $table->boolean('is_archived')->default(false);
             $table->timestamps();
         });
     }

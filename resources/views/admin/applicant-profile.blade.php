@@ -38,6 +38,19 @@
         </div>
     </div>
 
+    <!-- Placing Remarks -->
+    <form action="{{ route('remarks.store') }}">
+        <div>
+            <label for="fname">First Name</label>
+            <input type="text" name="fname" id="fname" value="{{ old('fname') }}" required>
+            @if ($errors->has('fname'))
+            <div class="invalid-feedback text-red-500">
+                {{ $errors->first('fname') }}
+            </div>
+            @endif
+        </div>
+    </form>
+
     {{-- Tabs --}}
     <div class="my-4 border-b bg-white border-gray-200 dark:border-gray-700">
         <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">

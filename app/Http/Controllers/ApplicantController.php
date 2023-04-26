@@ -25,11 +25,23 @@ class ApplicantController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('applicants.dashboard', compact('user'));
+
+        // Check if the user has applicant data
+        if ($user->applicant) {
+            return view('applicants.dashboard', compact('user'));
+        }
+
+        // Redirect to application form
+        return redirect()->route('applicants.forms.form');
     }
 
     public function viewForm()
     {
+        $user = Auth::user();
+        if ($user->applicant()->exists()) {
+            return redirect()->route('applicants.dashboard');
+        }
+
         $programs = Program::all();
         return view('applicants.forms.form', ['programs' => $programs]);
     }
@@ -298,12 +310,11 @@ class ApplicantController extends Controller
 
         ElectricBill::insert($electricBillData);
 
-        //ownershipType
-        $houseOwnership = new HouseOwnership();
-        $houseOwnership->ownership_type = $request->input('ownership_type');
-        $houseOwnership->applicant_id = $applicantId;
-
-        $applicant->houseOwnership()->save($houseOwnership);
+        //ownershipType 
+        $houseOwnership = $applicant->houseOwnership()->create([
+            'ownership_type' => $request->input('ownership_type'),
+            'applicant_id' => $applicantId
+        ]);
 
         return redirect()->route('applicants.dashboard');
     }
