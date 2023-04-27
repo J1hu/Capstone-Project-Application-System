@@ -1242,13 +1242,13 @@
     <!-- Modal -->
 <div id="modal" class="fixed z-10 inset-0 overflow-y-auto hidden modal">
     <div class="flex items-center justify-center min-h-screen px-4 bg-gray-500 bg-opacity-75">
-        <div class="bg-white rounded-lg overflow-hidden shadow-xl max-w-md w-full px-6 pt-3 pb-5">
+        <div class="bg-white rounded-lg overflow-hidden shadow-xl max-w-md w-full px-6 py-4">
             <div class="modal-content">
                 <div class="flex justify-between items-center">
                     <h1 class="font-bold uppercase text-lg text-yellow-500">Warning!</h1>
                     <span class="close text-3xl text-gray-500 font-bold hover:text-yellow-600 cursor-pointer">&times;</span>
                 </div>
-                <p>Please fill the required fields to proceed to the next page.</p>
+                <p class="mt-3">Please fill the required fields to proceed to the next page.</p>
             </div>
         </div>
     </div>
