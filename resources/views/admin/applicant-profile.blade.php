@@ -10,7 +10,8 @@
     <div class="bg-white border rounded-md p-5">
         <div class="grid grid-cols-3">
             <div>
-                <img src="{{ asset('avatars/' . $applicant->avatar) }}" width="100px" height="100px" alt="Applicant Avatar">
+                <img src="{{ asset('avatars/' . $applicant->avatar) }}" width="100px" height="100px"
+                    alt="Applicant Avatar">
             </div>
             <div class="col-span-2 grid grid-cols-3">
                 <div class="grid-rows-5 col-span-2">
@@ -40,84 +41,111 @@
 
     {{-- For Evaluation --}}
     @hasanyrole('program_head')
-    @if (is_null($preassessment))
-    <div>
-        <h2>Profile Preassessment</h2>
-        <form method="POST" action="{{ route('preassessments.store') }}">
-            @csrf
+        @if (is_null($preassessment))
+            <div class="bg-white border rounded-md p-5 mt-4">
+                <h2 class="font-bold">Profile Preassessment</h2>
+                <form method="POST" action="{{ route('preassessments.store') }}" class="mt-4">
+                    @csrf
 
-            <div class="form-group">
-                <input type="text" class="form-control" id="applicant_id" name="applicant_id" value="{{ $applicant->id }}" hidden required>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="applicant_id" name="applicant_id"
+                            value="{{ $applicant->id }}" hidden required>
+                    </div>
+
+                    <div class="form-group flex flex-col">
+                        <label for="is_approved" class="text-sm text-slate-700">Is Approved:</label>
+                        <select
+                            class="form-control items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/4"
+                            id="is_approved" name="is_approved" required>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                        @if ($errors->has('is_approved'))
+                            <div class="invalid-feedback text-red-500">
+                                {{ $errors->first('is_approved') }}
+                            </div>
+                        @endif
+                    </div>
+
+                    <div class="form-group flex flex-col">
+                        <label for="remarks" class="text-sm text-slate-700">Remarks:</label>
+                        <textarea
+                            class="form-control items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full"
+                            id="remarks" name="remarks" required></textarea>
+                        @if ($errors->has('remarks'))
+                            <div class="invalid-feedback text-red-500">
+                                {{ $errors->first('remarks') }}
+                            </div>
+                        @endif
+                    </div>
+
+                    <div class="grid">
+                        <button type="submit"
+                            class="btn btn-primary justify-self-end bg-blue-500 hover:bg-blue-700 px-10 py-2 border-2 w-fit rounded-md border-slate-300 text-white mt-4">Submit</button>
+                    </div>
+                </form>
             </div>
+        @elseif ($preassessment)
+            <div class="bg-white border rounded-md p-5 mt-4">
+                <h2 class="font-bold">Profile Preassessment</h2>
+                <div class="mt-4 space-y-3">
+                    <div class="flex space-x-10">
+                        <p class="font-bold">Exam Approval:</p>
+                        @if ($preassessment->is_approved)
+                            <p class="text-blue-500">Approved</p>
+                        @else
+                            <p class="text-red-600">Not Approved</p>
+                        @endif
+                    </div>
 
-            <div class="form-group">
-                <label for="is_approved">Is Approved:</label>
-                <select class="form-control" id="is_approved" name="is_approved" required>
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
-                </select>
-                @if ($errors->has('is_approved'))
-                <div class="invalid-feedback text-red-500">
-                    {{ $errors->first('is_approved') }}
+                    <div class="form-group flex flex-col">
+                        <label for="remarks" class="font-bold">Remarks:</label>
+                        <textarea
+                            class="form-control items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full"
+                            id="remarks" name="remarks" required disabled>{{ $preassessment->remarks }}</textarea>
+                    </div>
                 </div>
-                @endif
             </div>
-
-            <div class="form-group">
-                <label for="remarks">Remarks:</label>
-                <textarea class="form-control" id="remarks" name="remarks" required></textarea>
-                @if ($errors->has('remarks'))
-                <div class="invalid-feedback text-red-500">
-                    {{ $errors->first('remarks') }}
-                </div>
-                @endif
-            </div>
-
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
-    @elseif ($preassessment)
-    <h2>Profile Preassessment</h2>
-    <div>
-        <div>
-            <p>Exam Approval:</p>
-            @if ($preassessment->is_approved)
-            <p>Approved</p>
-            @else
-            <p>Not Approved</p>
-            @endif
-        </div>
-
-        <div class="form-group">
-            <label for="remarks">Remarks:</label>
-            <textarea class="form-control" id="remarks" name="remarks" required disabled>{{ $preassessment->remarks }}</textarea>
-        </div>
-    </div>
-    @endif
+        @endif
     @endhasanyrole
 
     {{-- Tabs --}}
     <div class="my-4 border-b bg-white border-gray-200 dark:border-gray-700">
-        <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
+        <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab"
+            data-tabs-toggle="#myTabContent" role="tablist">
             <li class="mr-2" role="presentation">
-                <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Personal Info</button>
+                <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile"
+                    type="button" role="tab" aria-controls="profile" aria-selected="false">Personal Info</button>
             </li>
             <li class="mr-2" role="presentation">
-                <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="family_data-tab" data-tabs-target="#family_data" type="button" role="tab" aria-controls="family_data" aria-selected="false">Family Data</button>
+                <button
+                    class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300"
+                    id="family_data-tab" data-tabs-target="#family_data" type="button" role="tab"
+                    aria-controls="family_data" aria-selected="false">Family Data</button>
             </li>
             <li class="mr-2" role="presentation">
-                <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="educ_bg-tab" data-tabs-target="#educ_bg" type="button" role="tab" aria-controls="educ_bg" aria-selected="false">Educational Background</button>
+                <button
+                    class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300"
+                    id="educ_bg-tab" data-tabs-target="#educ_bg" type="button" role="tab" aria-controls="educ_bg"
+                    aria-selected="false">Educational Background</button>
             </li>
             <li class="mr-2" role="presentation">
-                <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="others-tab" data-tabs-target="#others" type="button" role="tab" aria-controls="others" aria-selected="false">Other Information</button>
+                <button
+                    class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300"
+                    id="others-tab" data-tabs-target="#others" type="button" role="tab" aria-controls="others"
+                    aria-selected="false">Other Information</button>
             </li>
             <li role="presentation">
-                <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="sign-tab" data-tabs-target="#sign" type="button" role="tab" aria-controls="sign" aria-selected="false">Signed Declaration</button>
+                <button
+                    class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300"
+                    id="sign-tab" data-tabs-target="#sign" type="button" role="tab" aria-controls="sign"
+                    aria-selected="false">Signed Declaration</button>
             </li>
         </ul>
     </div>
     <div id="myTabContent">
-        <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="profile" role="tabpanel"
+            aria-labelledby="profile-tab">
             <div class="grid grid-cols-4">
                 <div class="grid grid-flow-row">
                     <label class="font-semibold">Date of Birth:</label>
@@ -142,14 +170,14 @@
                 <p class="font-bold">Siblings:</p>
                 <div class="grid grid-cols-4">
                     @foreach ($applicant->siblings as $sibling)
-                    <div class="grid grid-flow-row">
-                        <label class="font-semibold">Name:</label>
-                        <label class="font-semibold">Education level:</label>
-                    </div>
-                    <div class="col-span-3">
-                        <p class="capitalize">{{ $sibling->full_name }}</p>
-                        <p class="capitalize">{{ $sibling->education_level }}</p>
-                    </div>
+                        <div class="grid grid-flow-row">
+                            <label class="font-semibold">Name:</label>
+                            <label class="font-semibold">Education level:</label>
+                        </div>
+                        <div class="col-span-3">
+                            <p class="capitalize">{{ $sibling->full_name }}</p>
+                            <p class="capitalize">{{ $sibling->education_level }}</p>
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -164,7 +192,8 @@
                         <label class="font-semibold">Phone Number:</label>
                     </div>
                     <div class="col-span-3">
-                        <p class="capitalize">{{ $applicant->mother->mother_fname }} {{ $applicant->mother->mother_mname }}
+                        <p class="capitalize">{{ $applicant->mother->mother_fname }}
+                            {{ $applicant->mother->mother_mname }}
                             {{ $applicant->mother->mother_lname }}
                         </p>
                         <p class="capitalize">{{ $applicant->mother->mother_religion }}</p>
@@ -185,7 +214,8 @@
                         <label class="font-semibold">Phone Number:</label>
                     </div>
                     <div class="col-span-3">
-                        <p class="capitalize">{{ $applicant->father->father_fname }} {{ $applicant->father->father_mname }}
+                        <p class="capitalize">{{ $applicant->father->father_fname }}
+                            {{ $applicant->father->father_mname }}
                             {{ $applicant->father->father_lname }}
                         </p>
                         <p class="capitalize">{{ $applicant->father->father_religion }}</p>
@@ -238,7 +268,7 @@
                 <div>
                     <ul class="list-inside list-disc">
                         @foreach ($applicant->acadAwards as $award)
-                        <li class="capitalize">{{ $award->award_name }}</li>
+                            <li class="capitalize">{{ $award->award_name }}</li>
                         @endforeach
                     </ul>
                 </div>
@@ -250,7 +280,7 @@
                 <div>
                     <ul class="list-inside list-disc">
                         @foreach ($applicant->gadgets as $gadget)
-                        <li class="capitalize">{{ $gadget->gadget_name }}</li>
+                            <li class="capitalize">{{ $gadget->gadget_name }}</li>
                         @endforeach
                     </ul>
                 </div>
@@ -260,7 +290,7 @@
                 <div>
                     <ul class="list-inside list-disc">
                         @foreach ($applicant->internetTypes as $internet)
-                        <li class="capitalize">{{ $internet->internet_name }}</li>
+                            <li class="capitalize">{{ $internet->internet_name }}</li>
                         @endforeach
                     </ul>
                 </div>
@@ -269,14 +299,14 @@
                 <p class="font-bold">Electric consumption for the last three months:</p>
                 <div class="grid grid-cols-4">
                     @foreach ($applicant->electricBills as $electric)
-                    <div class="grid grid-flow-row my-1">
-                        <label class="font-semibold">Month of:</label>
-                        <label class="font-semibold">Amount:</label>
-                    </div>
-                    <div class="col-span-3">
-                        <p class="capitalize">{{ $electric->electric_month }}</p>
-                        <p class="capitalize">{{ $electric->electric_amount }}</p>
-                    </div>
+                        <div class="grid grid-flow-row my-1">
+                            <label class="font-semibold">Month of:</label>
+                            <label class="font-semibold">Amount:</label>
+                        </div>
+                        <div class="col-span-3">
+                            <p class="capitalize">{{ $electric->electric_month }}</p>
+                            <p class="capitalize">{{ $electric->electric_amount }}</p>
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -313,9 +343,9 @@
                 </p>
 
                 @if ($applicant->data_privacy_consent)
-                <span>Applicant Agreed.</span>
+                    <span class="text-blue-500">Applicant Agreed.</span>
                 @else
-                <span>Applicant did not agreed.</span>
+                    <span class="text-red-600">Applicant did not agreed.</span>
                 @endif
             </div>
         </div>
