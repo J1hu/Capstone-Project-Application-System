@@ -34,7 +34,7 @@
                                 {{ $program->program_name }}@if(!$loop->last), @endif
                                 @endforeach
                             </td>
-                            <td class="p-2"><a href="{{ route('evaluators.edit', $evaluator->id) }}" class="btn btn-primary text-blue-600 hover:font-semibold">Edit Evaluator</a></td>
+                            <td class="p-2"><a href="{{ route('evaluators.edit', $evaluator->id) }}" class="bg-green-500 text-white px-2 py-1 rounded-md text-xs">Edit Evaluator</a></td>
                         </tr>
                         @endforeach
                     </tbody>
