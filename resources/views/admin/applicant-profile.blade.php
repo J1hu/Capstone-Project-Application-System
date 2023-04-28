@@ -38,61 +38,59 @@
         </div>
     </div>
 
+    {{-- For Evaluation --}}
     @hasanyrole('program_head')
     @if (is_null($preassessment))
-    <!-- Preassessment -->
     <div>
-        <div>
-            <h2>Profile Preassessment</h2>
-            <form method="POST" action="{{ route('preassessments.store') }}">
-                @csrf
-
-                <div class="form-group">
-                    <input type="text" class="form-control" id="applicant_id" name="applicant_id" value="{{ $applicant->id }}" hidden required>
-                </div>
-
-                <div class="form-group">
-                    <label for="is_approved">Is Approved:</label>
-                    <select class="form-control" id="is_approved" name="is_approved" required>
-                        <option value="1">Yes</option>
-                        <option value="0">No</option>
-                    </select>
-                    @if ($errors->has('is_approved'))
-                    <div class="invalid-feedback text-red-500">
-                        {{ $errors->first('is_approved') }}
-                    </div>
-                    @endif
-                </div>
-
-                <div class="form-group">
-                    <label for="remarks">Remarks:</label>
-                    <textarea class="form-control" id="remarks" name="remarks" required></textarea>
-                    @if ($errors->has('remarks'))
-                    <div class="invalid-feedback text-red-500">
-                        {{ $errors->first('remarks') }}
-                    </div>
-                    @endif
-                </div>
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-        @elseif ($preassessment)
         <h2>Profile Preassessment</h2>
-        <div>
-            <div>
-                <p>Exam Approval:</p>
-                @if ($preassessment->is_approved)
-                <p>Approved</p>
-                @else
-                <p>Not Approved</p>
+        <form method="POST" action="{{ route('preassessments.store') }}">
+            @csrf
+
+            <div class="form-group">
+                <input type="text" class="form-control" id="applicant_id" name="applicant_id" value="{{ $applicant->id }}" hidden required>
+            </div>
+
+            <div class="form-group">
+                <label for="is_approved">Is Approved:</label>
+                <select class="form-control" id="is_approved" name="is_approved" required>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+                @if ($errors->has('is_approved'))
+                <div class="invalid-feedback text-red-500">
+                    {{ $errors->first('is_approved') }}
+                </div>
                 @endif
             </div>
 
             <div class="form-group">
                 <label for="remarks">Remarks:</label>
-                <textarea class="form-control" id="remarks" name="remarks" required disabled>{{ $preassessment->remarks }}</textarea>
+                <textarea class="form-control" id="remarks" name="remarks" required></textarea>
+                @if ($errors->has('remarks'))
+                <div class="invalid-feedback text-red-500">
+                    {{ $errors->first('remarks') }}
+                </div>
+                @endif
             </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    @elseif ($preassessment)
+    <h2>Profile Preassessment</h2>
+    <div>
+        <div>
+            <p>Exam Approval:</p>
+            @if ($preassessment->is_approved)
+            <p>Approved</p>
+            @else
+            <p>Not Approved</p>
+            @endif
+        </div>
+
+        <div class="form-group">
+            <label for="remarks">Remarks:</label>
+            <textarea class="form-control" id="remarks" name="remarks" required disabled>{{ $preassessment->remarks }}</textarea>
         </div>
     </div>
     @endif
