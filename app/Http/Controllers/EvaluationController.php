@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\Models\Applicant;
+use App\Models\ExamScore;
 use Illuminate\Http\Request;
 use App\Models\Preassessment;
-use Auth;
 
 class EvaluationController extends Controller
 {
@@ -28,5 +30,27 @@ class EvaluationController extends Controller
         Preassessment::create($validatedData);
 
         return redirect()->back()->with('success', 'Preassessment created successfully.');
+    }
+
+    public function examScore(Request $request)
+    {
+        $validatedData = $request->validate([
+            'applicant_id' => 'required',
+            'intelligence_score' => 'required|integer|min:0|max:100',
+            'aptitude_score' => 'required|integer|min:0|max:100',
+        ]);
+
+        $examScore = ExamScore::create([
+            'applicant_id' => $request->input('applicant_id'),
+            'intelligence_score' => $request->input('intelligence_score'),
+            'aptitude_score' => $request->input('aptitude_score'),
+            'average_score' => ($request->input('intelligence_score') + $request->input('aptitude_score')) / 2,
+        ]);
+
+        if (!$examScore) {
+            return redirect()->back()->with('error', $validatedData);
+        }
+
+        return redirect()->back()->with('success', 'Exam Score created successfully.');
     }
 }

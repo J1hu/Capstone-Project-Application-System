@@ -338,8 +338,9 @@ class ApplicantController extends Controller
         $user = $applicant->user;
 
         $preassessment = $applicant->preassessment;
+        $exam_score = $applicant->examScore;
         // dd($preassessment->is_approved);
 
-        return view('admin.applicant-profile', compact('user', 'applicant', 'preassessment'));
+        return view('admin.applicant-profile', compact('user', 'applicant', 'preassessment', 'exam_score'));
     }
 }

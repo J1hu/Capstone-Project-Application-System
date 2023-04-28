@@ -40,7 +40,7 @@
     </div>
 
     {{-- For Evaluation --}}
-    @hasanyrole('program_head')
+    @hasanyrole('program_head|registrar_staff')
         @if (is_null($preassessment))
             <div class="bg-white border rounded-md p-5 mt-4">
                 <h2 class="font-bold">Profile Preassessment</h2>
@@ -108,6 +108,8 @@
             </div>
         @endif
     @endhasanyrole
+
+
 
     {{-- Tabs --}}
     <div class="my-4 border-b bg-white border-gray-200 dark:border-gray-700">
