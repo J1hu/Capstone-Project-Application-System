@@ -40,19 +40,19 @@
 
     {{-- For Evaluation --}}
     @hasanyrole('program_head|registrar_staff')
-    <div>
-        <h2>Profile Preassessment</h2>
-        @if (is_null($preassessment))
-        <form method="POST" action="{{ route('preassessments.store') }}">
+    @if (is_null($preassessment))
+    <div class="bg-white border rounded-md p-5 mt-4">
+        <h2 class="font-bold">Profile Preassessment</h2>
+        <form method="POST" action="{{ route('preassessments.store') }}" class="mt-4">
             @csrf
 
             <div class="form-group">
                 <input type="text" class="form-control" id="applicant_id" name="applicant_id" value="{{ $applicant->id }}" hidden required>
             </div>
 
-            <div class="form-group">
-                <label for="is_approved">Is Approved:</label>
-                <select class="form-control" id="is_approved" name="is_approved" required>
+            <div class="form-group flex flex-col">
+                <label for="is_approved" class="text-sm text-slate-700">Is Approved:</label>
+                <select class="form-control items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/4" id="is_approved" name="is_approved" required>
                     <option value="1">Yes</option>
                     <option value="0">No</option>
                 </select>
@@ -63,9 +63,9 @@
                 @endif
             </div>
 
-            <div class="form-group">
-                <label for="remarks">Remarks:</label>
-                <textarea class="form-control" id="remarks" name="remarks" required></textarea>
+            <div class="form-group flex flex-col">
+                <label for="remarks" class="text-sm text-slate-700">Remarks:</label>
+                <textarea class="form-control items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" id="remarks" name="remarks" required></textarea>
                 @if ($errors->has('remarks'))
                 <div class="invalid-feedback text-red-500">
                     {{ $errors->first('remarks') }}
@@ -73,80 +73,31 @@
                 @endif
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="grid">
+                <button type="submit" class="btn btn-primary justify-self-end bg-blue-500 hover:bg-blue-700 px-10 py-2 border-2 w-fit rounded-md border-slate-300 text-white mt-4">Submit</button>
+            </div>
         </form>
     </div>
     @elseif ($preassessment)
-    <div>
-        <div>
-            <p>Exam Approval:</p>
-            @if ($preassessment->is_approved)
-            <p>Approved</p>
-            @else
-            <p>Not Approved</p>
-            @endif
-        </div>
+    <div class="bg-white border rounded-md p-5 mt-4">
+        <h2 class="font-bold">Profile Preassessment</h2>
+        <div class="mt-4 space-y-3">
+            <div class="flex space-x-10">
+                <p class="font-bold">Exam Approval:</p>
+                @if ($preassessment->is_approved)
+                <p class="text-blue-500">Approved</p>
+                @else
+                <p class="text-red-600">Not Approved</p>
+                @endif
+            </div>
 
-        <div class="form-group">
-            <label for="remarks">Remarks:</label>
-            <textarea class="form-control" id="remarks" name="remarks" required disabled>{{ $preassessment->remarks }}</textarea>
+            <div class="form-group flex flex-col">
+                <label for="remarks" class="font-bold">Remarks:</label>
+                <textarea class="form-control items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" id="remarks" name="remarks" required disabled>{{ $preassessment->remarks }}</textarea>
+            </div>
         </div>
     </div>
     @endif
-
-    {{-- For Exam Results --}}
-    <div>
-        <h2>Exam Results</h2>
-        @if (is_null($exam_score))
-        <p>Applicant has not yet taken the exam</p>
-        @hasanyrole('registrar_staff')
-        <form method="POST" action="{{ route('exam_scores.store') }}">
-            @csrf
-
-            <div class="form-group">
-                <input type="text" class="form-control" id="applicant_id" name="applicant_id" value="{{ $applicant->id }}" hidden required>
-            </div>
-
-            <div class="form-group">
-                <label for="intelligence_score">Intelligence Score:</label>
-                <input type="number" class="form-control" id="intelligence_score" name="intelligence_score" value="{{ old('intelligence_score') }}" required>
-                @if ($errors->has('intelligence_score'))
-                <div class="invalid-feedback">
-                    {{ $errors->first('intelligence_score') }}
-                </div>
-                @endif
-            </div>
-
-            <div class="form-group">
-                <label for="aptitude_score">Aptitude Score:</label>
-                <input type="number" class="form-control" id="aptitude_score" name="aptitude_score" value="{{ old('aptitude_score') }}" required>
-                @if ($errors->has('aptitude_score'))
-                <div class="invalid-feedback">
-                    {{ $errors->first('aptitude_score') }}
-                </div>
-                @endif
-            </div>
-
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-        @endhasanyrole
-        @elseif ($exam_score)
-        <div>
-            <div>
-                <label>Intelligence Exam Score:</label>
-                <p>{{ $exam_score->intelligence_score }}</p>
-            </div>
-            <div>
-                <label>Aptitude Exam Score:</label>
-                <p>{{ $exam_score->aptitude_score }}</p>
-            </div>
-            <div>
-                <label>Average Score:</label>
-                <p>{{ $exam_score->average_score }}</p>
-            </div>
-        </div>
-        @endif
-    </div>
 
     {{-- Initial Assessment --}}
     <div>
@@ -309,7 +260,8 @@
                         <label class="font-semibold">Phone Number:</label>
                     </div>
                     <div class="col-span-3">
-                        <p class="capitalize">{{ $applicant->mother->mother_fname }} {{ $applicant->mother->mother_mname }}
+                        <p class="capitalize">{{ $applicant->mother->mother_fname }}
+                            {{ $applicant->mother->mother_mname }}
                             {{ $applicant->mother->mother_lname }}
                         </p>
                         <p class="capitalize">{{ $applicant->mother->mother_religion }}</p>
@@ -330,7 +282,8 @@
                         <label class="font-semibold">Phone Number:</label>
                     </div>
                     <div class="col-span-3">
-                        <p class="capitalize">{{ $applicant->father->father_fname }} {{ $applicant->father->father_mname }}
+                        <p class="capitalize">{{ $applicant->father->father_fname }}
+                            {{ $applicant->father->father_mname }}
                             {{ $applicant->father->father_lname }}
                         </p>
                         <p class="capitalize">{{ $applicant->father->father_religion }}</p>
@@ -458,9 +411,9 @@
                 </p>
 
                 @if ($applicant->data_privacy_consent)
-                <span>Applicant Agreed.</span>
+                <span class="text-blue-500">Applicant Agreed.</span>
                 @else
-                <span>Applicant did not agreed.</span>
+                <span class="text-red-600">Applicant did not agreed.</span>
                 @endif
             </div>
         </div>

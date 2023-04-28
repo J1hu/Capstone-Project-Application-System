@@ -29,7 +29,7 @@
                         <tr class="odd:bg-white even:bg-slate-50 hover:bg-blue-100">
                             <td class="px-6">{{ $staff->name }}</td>
                             <td class="p-2">{{ $staff->email }}</td>
-                            <td class="p-2"><a href="{{ route('staffs.edit', $staff->id) }}" class="btn btn-primary text-blue-600 hover:font-semibold">Edit</a></td>
+                            <td class="p-2"><a href="{{ route('staffs.edit', $staff->id) }}" class="bg-green-500 text-white px-2 py-1 rounded-md text-xs">Edit Staff</a></td>
                         </tr>
                         @endforeach
                     </tbody>

@@ -1,4 +1,4 @@
-<nav x-data="open" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 w-1/4 h-screen fixed top-20">
+<nav x-data="open" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 w-1/5 h-screen fixed top-20">
     <div class="grid mx-7 py-10">
 
         @hasrole('applicant')
@@ -69,7 +69,7 @@
         <x-nav-head>BATCH MANAGEMENT</x-nav-head>
         <x-nav-link :href="route('batches.list')" :active="request()->routeIs('batches') || strpos(url()->current(), 'batches') !== false">
             <span class="material-symbols-outlined mr-5">
-
+                view_agenda
             </span>
             {{ __('List of Batches') }}
         </x-nav-link>

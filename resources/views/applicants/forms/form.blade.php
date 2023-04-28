@@ -1,7 +1,28 @@
-<x-form-layout>
+<x-form-layout> 
+    <!-- Stepper -->
+    <div class="mx-auto my-36 w-3/5">
+        <ol class="flex w-full items-center">
+            <li class="flex w-full items-center after:text-blue-600 after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block">
+                <span class="flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full lg:h-12 lg:w-12 dark:bg-blue-800 shrink-0">
+                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 after:text-blue-600 lg:w-6 lg:h-6 dark:text-blue-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                </span>
+            </li>
+            <li class="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
+                <span class="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
+                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 lg:w-6 lg:h-6 dark:text-gray-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a1 1 0 00-1 1v1a1 1 0 002 0V3a1 1 0 00-1-1zM4 4h3a3 3 0 006 0h3a2 2 0 012 2v9a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2zm2.5 7a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm2.45 4a2.5 2.5 0 10-4.9 0h4.9zM12 9a1 1 0 100 2h3a1 1 0 100-2h-3zm-1 4a1 1 0 011-1h2a1 1 0 110 2h-2a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+                </span>
+            </li>
+            <li class="flex items-center w-full">
+                <span class="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
+                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 lg:w-6 lg:h-6 dark:text-gray-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                </span>
+            </li>
+        </ol>
+    </div>
+    
     <div class="flex items-center justify-center h-screen">
         <form method="POST" action="{{ route('applicants.store') }}" enctype="multipart/form-data"
-            class="absolute top-24 w-3/5 py-10">
+            class="absolute top-20 w-3/5 py-10">
             @csrf
             {{-- SECTION 1 - DATA PRIVACY --}}
             <div id="section-1" class="section">
@@ -91,7 +112,8 @@
                 </div>
                 <div class="grid">
                     <button type="button"
-                        class="next-btn justify-self-end bg-blue-500 px-10 py-2 border-2 w-1/4 rounded-md border-slate-300 text-white">Next</button>
+                        class="next-btn justify-self-end bg-blue-500 px-10 py-2 border-2 w-1/4 rounded-md border-slate-300 text-white" onclick="updateStepper();
+                        ">Next</button>
                 </div>
             </div>
 
@@ -1214,8 +1236,8 @@
                             place.”</em>
                     </p>
                     <div class="mb-5">
-                        <input type="checkbox" name="data_privacy_consent" required id="data_privacy_consent" value="1"
-                            {{ old('data_privacy_consent') ? 'checked' : '' }}>
+                        <input type="checkbox" name="data_privacy_consent" required id="data_privacy_consent"
+                            value="1" {{ old('data_privacy_consent') ? 'checked' : '' }}>
                         @if ($errors->has('data_privacy_consent'))
                             <div class="invalid-feedback text-red-500">
                                 {{ $errors->first('data_privacy_consent') }}
@@ -1236,21 +1258,22 @@
     </form>
     </div>
     <!-- Modal -->
-<div id="modal" class="fixed z-10 inset-0 overflow-y-auto hidden modal">
-    <div class="flex items-center justify-center min-h-screen px-4 bg-gray-500 bg-opacity-75">
-        <div class="bg-white rounded-lg overflow-hidden shadow-xl max-w-md w-full px-6 py-4">
-            <div class="modal-content">
-                <div class="flex justify-between items-center">
-                    <h1 class="font-bold uppercase text-lg text-yellow-500">Warning!</h1>
-                    <span class="close text-3xl text-gray-500 font-bold hover:text-yellow-600 cursor-pointer">&times;</span>
+    <div id="modal" class="fixed z-10 inset-0 overflow-y-auto hidden modal">
+        <div class="flex items-center justify-center min-h-screen px-4 bg-gray-500 bg-opacity-75">
+            <div class="bg-white rounded-lg overflow-hidden shadow-xl max-w-md w-full px-6 py-4">
+                <div class="modal-content">
+                    <div class="flex justify-between items-center">
+                        <h1 class="font-bold uppercase text-lg text-yellow-500">Warning!</h1>
+                        <span
+                            class="close text-3xl text-gray-500 font-bold hover:text-yellow-600 cursor-pointer">&times;</span>
+                    </div>
+                    <p class="mt-3">Please fill the required fields to proceed to the next page.</p>
                 </div>
-                <p class="mt-3">Please fill the required fields to proceed to the next page.</p>
             </div>
         </div>
     </div>
-</div>
 
-  
+
 </x-form-layout>
 <script>
     $(document).ready(function() {
@@ -1269,6 +1292,7 @@
         $('.next-btn').click(function() {
             var current = $(this).closest('.section');
             var next = current.next('.section');
+            updateStepper();
 
             // Check if required input fields are filled
             var requiredFields = current.find('input[required]');
@@ -1299,7 +1323,7 @@
         var span = document.getElementsByClassName("close")[0];
         // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
-        modal.style.display = "none";
+            modal.style.display = "none";
         }
 
         // Handle back button clicks
@@ -1312,8 +1336,8 @@
 
     });
 
-         // Array of input field IDs
-        const inputFieldIds = [
+    // Array of input field IDs
+    const inputFieldIds = [
         "phone_num",
         "total_fam_children",
         "birth_order",
@@ -1328,18 +1352,46 @@
         "monthly_rental",
     ];
 
-        // Loop through each ID and apply the restrictToNumbers function
-        inputFieldIds.forEach(function(id) {
+    // Loop through each ID and apply the restrictToNumbers function
+    inputFieldIds.forEach(function(id) {
         const inputField = document.getElementById(id);
         restrictToNumbers(inputField);
-        });
+    });
 
-        function restrictToNumbers(inputField) {
+    function restrictToNumbers(inputField) {
         inputField.addEventListener("keypress", function(event) {
             if (isNaN(event.key)) {
-            event.preventDefault();
+                event.preventDefault();
             }
         });
+    }
+
+    // Stepper
+    let currentStep = 1;
+
+    const stepperItems = document.querySelectorAll('.flex.w-full.items-center');
+    stepperItems.forEach((item, index) => {
+    item.addEventListener('click', () => {
+        // Update the current step
+        currentStep = index + 1;
+        
+        // Update the UI
+        updateStepper();
+    });
+    });
+
+    function updateStepper() {
+    stepperItems.forEach((item, index) => {
+        if (index < currentStep - 1) {
+        item.classList.add('after:text-blue-600', 'after:border-white');
+        } else if (index === currentStep - 1) {
+        item.classList.remove('after:text-blue-600', 'after:border-blue-100');
+        item.classList.add('after:text-gray-500', 'after:border-gray-100');
+        } else {
+        item.classList.remove('after:text-blue-600', 'after:border-blue-100', 'after:text-gray-500', 'after:border-gray-100');
         }
+    });
+    }
+
 
 </script>

@@ -25,7 +25,7 @@
         @include('layouts.sidenavigation')
 
         <!-- Page Content -->
-        <main class="right-0 py-6 px-4 sm:px-6 lg:px-8 w-3/4 absolute top-20">
+        <main class="right-0 py-6 px-4 sm:px-6 lg:px-8 w-4/5 absolute top-20">
             <!-- Page Heading -->
             @if (isset($header))
             <header>
