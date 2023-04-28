@@ -8,11 +8,11 @@
 
     {{-- first card --}}
     <div class="bg-white border rounded-md p-5">
-        <div class="grid grid-cols-3">
+        <div class="grid grid-cols-5">
             <div>
-                <img src="{{ asset('avatars/' . $applicant->avatar) }}" width="100px" height="100px" alt="Applicant Avatar">
+                <img src="{{ asset('avatars/' . $applicant->avatar) }}" width="150px" height="150px" alt="Applicant Avatar">
             </div>
-            <div class="col-span-2 grid grid-cols-3">
+            <div class="col-span-4 grid grid-cols-3">
                 <div class="grid-rows-5 col-span-2">
                     <p class="text-lg font-bold uppercase">{{ $applicant->fname }} {{ $applicant->mname }}
                         {{ $applicant->lname }}
