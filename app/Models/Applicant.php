@@ -124,7 +124,7 @@ class Applicant extends Model
         return $this->hasOne(ApplicationStatus::class);
     }
 
-    public function examScores()
+    public function examScore()
     {
         return $this->hasOne(ExamScore::class);
     }

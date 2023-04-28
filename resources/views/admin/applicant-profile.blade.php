@@ -39,10 +39,10 @@
     </div>
 
     {{-- For Evaluation --}}
-    @hasanyrole('program_head')
-    @if (is_null($preassessment))
+    @hasanyrole('program_head|registrar_staff')
     <div>
         <h2>Profile Preassessment</h2>
+        @if (is_null($preassessment))
         <form method="POST" action="{{ route('preassessments.store') }}">
             @csrf
 
@@ -77,7 +77,6 @@
         </form>
     </div>
     @elseif ($preassessment)
-    <h2>Profile Preassessment</h2>
     <div>
         <div>
             <p>Exam Approval:</p>
@@ -94,7 +93,63 @@
         </div>
     </div>
     @endif
+
+    {{-- For Exam Results --}}
+    <div>
+        <h2>Exam Results</h2>
+        @if (is_null($exam_score))
+        <p>Applicant has not yet taken the exam</p>
+        @hasanyrole('registrar_staff')
+        <form method="POST" action="{{ route('exam_scores.store') }}">
+            @csrf
+
+            <div class="form-group">
+                <input type="text" class="form-control" id="applicant_id" name="applicant_id" value="{{ $applicant->id }}" hidden required>
+            </div>
+
+            <div class="form-group">
+                <label for="intelligence_score">Intelligence Score:</label>
+                <input type="number" class="form-control" id="intelligence_score" name="intelligence_score" value="{{ old('intelligence_score') }}" required>
+                @if ($errors->has('intelligence_score'))
+                <div class="invalid-feedback">
+                    {{ $errors->first('intelligence_score') }}
+                </div>
+                @endif
+            </div>
+
+            <div class="form-group">
+                <label for="aptitude_score">Aptitude Score:</label>
+                <input type="number" class="form-control" id="aptitude_score" name="aptitude_score" value="{{ old('aptitude_score') }}" required>
+                @if ($errors->has('aptitude_score'))
+                <div class="invalid-feedback">
+                    {{ $errors->first('aptitude_score') }}
+                </div>
+                @endif
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        @endhasanyrole
+        @elseif ($exam_score)
+        <div>
+            <div>
+                <label>Intelligence Exam Score:</label>
+                <p>{{ $exam_score->intelligence_score }}</p>
+            </div>
+            <div>
+                <label>Aptitude Exam Score:</label>
+                <p>{{ $exam_score->aptitude_score }}</p>
+            </div>
+            <div>
+                <label>Average Score:</label>
+                <p>{{ $exam_score->average_score }}</p>
+            </div>
+        </div>
+        @endif
+    </div>
     @endhasanyrole
+
+
 
     {{-- Tabs --}}
     <div class="my-4 border-b bg-white border-gray-200 dark:border-gray-700">

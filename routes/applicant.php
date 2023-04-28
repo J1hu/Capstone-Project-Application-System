@@ -13,6 +13,7 @@ Route::middleware(['role:admin|program_head|mancom|registrar_staff', 'verified']
     Route::get('/applicants/{id}/profile', [ApplicantController::class, 'viewProfileById'])->name('applicants.admin-view');
 
     Route::post('/preassessments', [EvaluationController::class, 'preassessment'])->name('preassessments.store');
+    Route::post('/exam-scores', [EvaluationController::class, 'examScore'])->name('exam_scores.store');
 
     // Route::get('/applicants/create', [ApplicantController::class, 'create'])->name('applicants.create');
     // Route::post('/applicants', [ApplicantController::class, 'store'])->name('applicants.store');
