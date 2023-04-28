@@ -69,7 +69,7 @@
         <x-nav-head>BATCH MANAGEMENT</x-nav-head>
         <x-nav-link :href="route('batches.list')" :active="request()->routeIs('batches') || strpos(url()->current(), 'batches') !== false">
             <span class="material-symbols-outlined mr-5">
-
+                view_agenda
             </span>
             {{ __('List of Batches') }}
         </x-nav-link>
