@@ -38,10 +38,26 @@
         </div>
     </div>
 
+    {{-- Tabs --}}
+    <div class="my-4 border-b bg-white border-gray-200 dark:border-gray-700">
+        <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#assessment" role="tablist">
+            <li class="mr-2" role="presentation">
+                <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-assessment-tab" data-tabs-target="#profile_assessment" type="button" role="tab" aria-controls="profile_assessment" aria-selected="false">Profile Assessment</button>
+            </li>
+            <li class="mr-2" role="presentation">
+                <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="initial-assessment-tab" data-tabs-target="#initial_assessment" type="button" role="tab" aria-controls="initial_assessment" aria-selected="false">Initial Assessment</button>
+            </li>
+            <li class="mr-2" role="presentation">
+                <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="final-assessment-tab" data-tabs-target="#final_assessment" type="button" role="tab" aria-controls="final_assessment" aria-selected="false">Final Assessment</button>
+            </li>
+        </ul>
+    </div>
+
+    <div id="assessment">
     {{-- For Evaluation --}}
     @hasanyrole('program_head|registrar_staff')
     @if (is_null($preassessment))
-    <div class="bg-white border rounded-md p-5 mt-4">
+    <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="profile_assessment" role="tabpanel" aria-labelledby="profile-assessment-tab">
         <h2 class="font-bold">Profile Preassessment</h2>
         <form method="POST" action="{{ route('preassessments.store') }}" class="mt-4">
             @csrf
@@ -100,24 +116,24 @@
     @endif
 
     {{-- Initial Assessment --}}
-    <div>
-        <h2>Initial Assessment</h2>
+    <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="initial_assessment" role="tabpanel" aria-labelledby="initial-assessment-tab">
+        <h2 class="font-bold">Initial Assessment</h2>
         @if (is_null($initial_assessment))
-        <form method="POST" action="{{ route('initial_assessments.store') }}">
+        <form method="POST" action="{{ route('initial_assessments.store') }}" class="mt-4 space-y-2">
             @csrf
             <input type="hidden" name="applicant_id" value="{{ $applicant->id }}">
 
-            <div class="form-group">
-                <label for="remarks">Remarks:</label>
-                <input type="text" class="form-control @error('remarks') is-invalid @enderror" id="remarks" name="remarks" value="{{ old('remarks') }}">
+            <div class="form-group flex flex-col">
+                <label for="remarks" class="text-sm text-slate-700">Remarks:</label>
+                <textarea class="form-control @error('remarks') is-invalid @enderror items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" id="remarks" name="remarks">{{ old('remarks') }}</textarea>
                 @error('remarks')
                 <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="scholarship_type">Scholarship Type:</label>
-                <select class="form-control @error('scholarship_type') is-invalid @enderror" id="scholarship_type" name="scholarship_type">
+            <div class="form-group flex flex-col">
+                <label for="scholarship_type" class="text-sm text-slate-700">Scholarship Type:</label>
+                <select class="form-control @error('scholarship_type') is-invalid @enderror items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/4" id="scholarship_type" name="scholarship_type">
                     <option value="">Select Scholarship Type</option>
                     <option value="Institutional Scholar" {{ old('scholarship_type') === 'Institutional Scholar' ? 'selected' : '' }}>Institutional Scholar</option>
                     <option value="Presidential Scholar" {{ old('scholarship_type') === 'Presidential Scholar' ? 'selected' : '' }}>Presidential Scholar</option>
@@ -128,16 +144,18 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="grid">
+                <button type="submit" class="btn btn-primary justify-self-end bg-blue-500 hover:bg-blue-700 px-10 py-2 border-2 w-fit rounded-md border-slate-300 text-white mt-4">Submit</button>
+            </div>
         </form>
         @elseif ($initial_assessment)
-        <div>
-            <div>
-                <label>Evaluator's Initial Interview Remarks:</label>
+        <div class="space-y-2">
+            <div class="flex flex-col">
+                <label class="text-sm text-slate-700">Evaluator's Initial Interview Remarks:</label>
                 <p>{{ $initial_assessment->remarks }}</p>
             </div>
-            <div>
-                <label>Initial Scholarship Type:</label>
+            <div class="flex flex-col">
+                <label class="text-sm text-slate-700">Initial Scholarship Type:</label>
                 <p>{{ $initial_assessment->scholarship_type }}</p>
             </div>
         </div>
@@ -145,24 +163,24 @@
     </div>
 
     {{-- Final Assessment --}}
-    <div>
-        <h2>Final Assessment</h2>
+    <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="final_assessment" role="tabpanel" aria-labelledby="final-assessment-tab">
+        <h2 class="font-bold">Final Assessment</h2>
         @if (is_null($final_assessment))
-        <form method="POST" action="{{ route('final_assessments.store') }}">
+        <form method="POST" action="{{ route('final_assessments.store') }}" class="mt-4 space-y-2">
             @csrf
             <input type="hidden" name="applicant_id" value="{{ $applicant->id }}">
 
-            <div class="form-group">
-                <label for="remarks">Remarks:</label>
-                <input type="text" class="form-control @error('remarks') is-invalid @enderror" id="remarks" name="remarks" value="{{ old('remarks') }}">
+            <div class="form-group flex flex-col">
+                <label for="remarks" class="text-sm text-slate-700">Remarks:</label>
+                <textarea class="form-control @error('remarks') is-invalid @enderror items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" id="remarks" name="remarks">{{ old('remarks') }}</textarea>
                 @error('remarks')
                 <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="scholarship_type">Scholarship Type:</label>
-                <select class="form-control @error('scholarship_type') is-invalid @enderror" id="scholarship_type" name="scholarship_type">
+            <div class="form-group flex flex-col">
+                <label for="scholarship_type" class="text-sm text-slate-700">Scholarship Type:</label>
+                <select class="form-control @error('scholarship_type') is-invalid @enderror items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/4" id="scholarship_type" name="scholarship_type" id="scholarship_type" name="scholarship_type">
                     <option value="">Select Scholarship Type</option>
                     <option value="Institutional Scholar" {{ old('scholarship_type') === 'Institutional Scholar' ? 'selected' : '' }}>Institutional Scholar</option>
                     <option value="Presidential Scholar" {{ old('scholarship_type') === 'Presidential Scholar' ? 'selected' : '' }}>Presidential Scholar</option>
@@ -173,7 +191,9 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="grid">
+                <button type="submit" class="btn btn-primary justify-self-end bg-blue-500 hover:bg-blue-700 px-10 py-2 border-2 w-fit rounded-md border-slate-300 text-white mt-4">Submit</button>
+            </div>
         </form>
         @elseif ($final_assessment)
         <div>
@@ -189,7 +209,7 @@
         @endif
     </div>
     @endhasanyrole
-
+</div>
 
 
     {{-- Tabs --}}
