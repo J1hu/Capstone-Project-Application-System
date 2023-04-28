@@ -147,6 +147,96 @@
         </div>
         @endif
     </div>
+
+    {{-- Initial Assessment --}}
+    <div>
+        <h2>Initial Assessment</h2>
+        @if (is_null($initial_assessment))
+        <form method="POST" action="{{ route('initial_assessments.store') }}">
+            @csrf
+            <input type="hidden" name="applicant_id" value="{{ $applicant->id }}">
+
+            <div class="form-group">
+                <label for="remarks">Remarks:</label>
+                <input type="text" class="form-control @error('remarks') is-invalid @enderror" id="remarks" name="remarks" value="{{ old('remarks') }}">
+                @error('remarks')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="scholarship_type">Scholarship Type:</label>
+                <select class="form-control @error('scholarship_type') is-invalid @enderror" id="scholarship_type" name="scholarship_type">
+                    <option value="">Select Scholarship Type</option>
+                    <option value="Institutional Scholar" {{ old('scholarship_type') === 'Institutional Scholar' ? 'selected' : '' }}>Institutional Scholar</option>
+                    <option value="Presidential Scholar" {{ old('scholarship_type') === 'Presidential Scholar' ? 'selected' : '' }}>Presidential Scholar</option>
+                    <option value="Half Scholar" {{ old('scholarship_type') === 'Half Scholar' ? 'selected' : '' }}>Half Scholar</option>
+                </select>
+                @error('scholarship_type')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        @elseif ($initial_assessment)
+        <div>
+            <div>
+                <label>Evaluator's Initial Interview Remarks:</label>
+                <p>{{ $initial_assessment->remarks }}</p>
+            </div>
+            <div>
+                <label>Initial Scholarship Type:</label>
+                <p>{{ $initial_assessment->scholarship_type }}</p>
+            </div>
+        </div>
+        @endif
+    </div>
+
+    {{-- Final Assessment --}}
+    <div>
+        <h2>Final Assessment</h2>
+        @if (is_null($final_assessment))
+        <form method="POST" action="{{ route('final_assessments.store') }}">
+            @csrf
+            <input type="hidden" name="applicant_id" value="{{ $applicant->id }}">
+
+            <div class="form-group">
+                <label for="remarks">Remarks:</label>
+                <input type="text" class="form-control @error('remarks') is-invalid @enderror" id="remarks" name="remarks" value="{{ old('remarks') }}">
+                @error('remarks')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="scholarship_type">Scholarship Type:</label>
+                <select class="form-control @error('scholarship_type') is-invalid @enderror" id="scholarship_type" name="scholarship_type">
+                    <option value="">Select Scholarship Type</option>
+                    <option value="Institutional Scholar" {{ old('scholarship_type') === 'Institutional Scholar' ? 'selected' : '' }}>Institutional Scholar</option>
+                    <option value="Presidential Scholar" {{ old('scholarship_type') === 'Presidential Scholar' ? 'selected' : '' }}>Presidential Scholar</option>
+                    <option value="Half Scholar" {{ old('scholarship_type') === 'Half Scholar' ? 'selected' : '' }}>Half Scholar</option>
+                </select>
+                @error('scholarship_type')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        @elseif ($final_assessment)
+        <div>
+            <div>
+                <label>Evaluator's Final Interview Remarks:</label>
+                <p>{{ $final_assessment->remarks }}</p>
+            </div>
+            <div>
+                <label>Final Scholarship Type:</label>
+                <p>{{ $final_assessment->scholarship_type }}</p>
+            </div>
+        </div>
+        @endif
+    </div>
     @endhasanyrole
 
 

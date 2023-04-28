@@ -50,6 +50,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'role:admin|program_head|mancom|registrar_staff', 'verified'])->name('dashboard');
 
+// APPLICANTS
 Route::middleware(['auth', 'role:applicant', 'verified'])->group(function () {
     Route::prefix('applicants')->group(function () {
         Route::get('dashboard', [ApplicantController::class, 'index'])->name('applicants.dashboard');
@@ -57,6 +58,11 @@ Route::middleware(['auth', 'role:applicant', 'verified'])->group(function () {
         Route::get('profile', [ApplicantController::class, 'viewProfile'])->name('applicants.profile');
         Route::post('store', [ApplicantController::class, 'store'])->name('applicants.store');
     });
+});
+
+// USERS
+Route::middleware('auth')->group(function () {
+    //
 });
 
 // ADMIN LOGIN
