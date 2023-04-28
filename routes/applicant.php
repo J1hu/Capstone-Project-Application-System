@@ -14,6 +14,8 @@ Route::middleware(['role:admin|program_head|mancom|registrar_staff', 'verified']
 
     Route::post('/preassessments', [EvaluationController::class, 'preassessment'])->name('preassessments.store');
     Route::post('/exam-scores', [EvaluationController::class, 'examScore'])->name('exam_scores.store');
+    Route::post('/initial_assessments', [EvaluationController::class, 'initialAssessment'])->name('initial_assessments.store');
+    Route::post('/final_assessments', [EvaluationController::class, 'finalAssessment'])->name('final_assessments.store');
 
     // Route::get('/applicants/create', [ApplicantController::class, 'create'])->name('applicants.create');
     // Route::post('/applicants', [ApplicantController::class, 'store'])->name('applicants.store');

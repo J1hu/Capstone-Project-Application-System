@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('evaluations', function (Blueprint $table) {
+        Schema::create('final_assessments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('applicant_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('remarks')->nullable();
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('evaluations');
+        Schema::dropIfExists('final_assessments');
     }
 };

@@ -129,6 +129,16 @@ class Applicant extends Model
         return $this->hasOne(ExamScore::class);
     }
 
+    public function initialAssessment()
+    {
+        return $this->hasOne(InitialAssessment::class);
+    }
+
+    public function finalAssessment()
+    {
+        return $this->hasOne(FinalAssessment::class);
+    }
+
     public function evaluations()
     {
         return $this->hasMany(Evaluation::class);

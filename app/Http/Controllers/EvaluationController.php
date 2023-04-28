@@ -7,6 +7,8 @@ use App\Models\Applicant;
 use App\Models\ExamScore;
 use Illuminate\Http\Request;
 use App\Models\Preassessment;
+use App\Models\FinalAssessment;
+use App\Models\InitialAssessment;
 
 class EvaluationController extends Controller
 {
@@ -52,5 +54,31 @@ class EvaluationController extends Controller
         }
 
         return redirect()->back()->with('success', 'Exam Score created successfully.');
+    }
+
+    public function initialAssessment(Request $request)
+    {
+        $validatedData = $request->validate([
+            'applicant_id' => 'required',
+            'remarks' => 'required',
+            'scholarship_type' => 'required',
+        ]);
+
+        InitialAssessment::create($validatedData);
+
+        return redirect()->back()->with('success', 'Initial Assessment created successfully.');
+    }
+
+    public function finalAssessment(Request $request)
+    {
+        $validatedData = $request->validate([
+            'applicant_id' => 'required',
+            'remarks' => 'required',
+            'scholarship_type' => 'required',
+        ]);
+
+        FinalAssessment::create($validatedData);
+
+        return redirect()->back()->with('success', 'Initial Assessment created successfully.');
     }
 }
