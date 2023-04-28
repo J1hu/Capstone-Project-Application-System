@@ -45,6 +45,9 @@
                 <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-assessment-tab" data-tabs-target="#profile_assessment" type="button" role="tab" aria-controls="profile_assessment" aria-selected="false">Profile Assessment</button>
             </li>
             <li class="mr-2" role="presentation">
+                <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="exam-score-tab" data-tabs-target="#exam_score" type="button" role="tab" aria-controls="exam_score" aria-selected="false">Exam Score</button>
+            </li>
+            <li class="mr-2" role="presentation">
                 <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="initial-assessment-tab" data-tabs-target="#initial_assessment" type="button" role="tab" aria-controls="initial_assessment" aria-selected="false">Initial Assessment</button>
             </li>
             <li class="mr-2" role="presentation">
@@ -54,49 +57,47 @@
     </div>
 
     <div id="assessment">
-    {{-- For Evaluation --}}
-    @hasanyrole('program_head|registrar_staff')
-    @if (is_null($preassessment))
-    <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="profile_assessment" role="tabpanel" aria-labelledby="profile-assessment-tab">
-        <h2 class="font-bold">Profile Preassessment</h2>
-        <form method="POST" action="{{ route('preassessments.store') }}" class="mt-4">
-            @csrf
+        {{-- For Evaluation --}}
+        @hasanyrole('program_head|registrar_staff')
+        <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="profile_assessment" role="tabpanel" aria-labelledby="profile-assessment-tab">
+            <h2 class="font-bold">Profile Preassessment</h2>
+            @if (is_null($preassessment))
+            <form method="POST" action="{{ route('preassessments.store') }}" class="mt-4">
+                @csrf
 
-            <div class="form-group">
-                <input type="text" class="form-control" id="applicant_id" name="applicant_id" value="{{ $applicant->id }}" hidden required>
-            </div>
-
-            <div class="form-group flex flex-col">
-                <label for="is_approved" class="text-sm text-slate-700">Is Approved:</label>
-                <select class="form-control items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/4" id="is_approved" name="is_approved" required>
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
-                </select>
-                @if ($errors->has('is_approved'))
-                <div class="invalid-feedback text-red-500">
-                    {{ $errors->first('is_approved') }}
+                <div class="form-group">
+                    <input type="text" class="form-control" id="applicant_id" name="applicant_id" value="{{ $applicant->id }}" hidden required>
                 </div>
-                @endif
-            </div>
 
-            <div class="form-group flex flex-col">
-                <label for="remarks" class="text-sm text-slate-700">Remarks:</label>
-                <textarea class="form-control items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" id="remarks" name="remarks" required></textarea>
-                @if ($errors->has('remarks'))
-                <div class="invalid-feedback text-red-500">
-                    {{ $errors->first('remarks') }}
+                <div class="form-group flex flex-col">
+                    <label for="is_approved" class="text-sm text-slate-700">Is Approved:</label>
+                    <select class="form-control items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/4" id="is_approved" name="is_approved" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                    @if ($errors->has('is_approved'))
+                    <div class="invalid-feedback text-red-500">
+                        {{ $errors->first('is_approved') }}
+                    </div>
+                    @endif
                 </div>
-                @endif
-            </div>
 
-            <div class="grid">
-                <button type="submit" class="btn btn-primary justify-self-end bg-blue-500 hover:bg-blue-700 px-10 py-2 border-2 w-fit rounded-md border-slate-300 text-white mt-4">Submit</button>
-            </div>
-        </form>
-    </div>
-    @elseif ($preassessment)
-    <div class="bg-white border rounded-md p-5 mt-4">
-        <h2 class="font-bold">Profile Preassessment</h2>
+                <div class="form-group flex flex-col">
+                    <label for="remarks" class="text-sm text-slate-700">Remarks:</label>
+                    <textarea class="form-control items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" id="remarks" name="remarks" required></textarea>
+                    @if ($errors->has('remarks'))
+                    <div class="invalid-feedback text-red-500">
+                        {{ $errors->first('remarks') }}
+                    </div>
+                    @endif
+                </div>
+
+                <div class="grid">
+                    <button type="submit" class="btn btn-primary justify-self-end bg-blue-500 hover:bg-blue-700 px-10 py-2 border-2 w-fit rounded-md border-slate-300 text-white mt-4">Submit</button>
+                </div>
+            </form>
+        </div>
+        @elseif ($preassessment)
         <div class="mt-4 space-y-3">
             <div class="flex space-x-10">
                 <p class="font-bold">Exam Approval:</p>
@@ -112,8 +113,62 @@
                 <textarea class="form-control items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" id="remarks" name="remarks" required disabled>{{ $preassessment->remarks }}</textarea>
             </div>
         </div>
+        @endif
     </div>
-    @endif
+
+    {{-- Exam Score --}}
+    <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="exam_score" role="tabpanel" aria-labelledby="exam-score-tab">
+        <h2>Exam Score</h2>
+        @if (is_null($exam_score))
+        <p>Applicant has not yet taken the exam</p>
+        @hasanyrole('registrar_staff')
+        <form method="POST" action="{{ route('exam_scores.store') }}">
+            @csrf
+
+            <div class="form-group">
+                <input type="text" class="form-control" id="applicant_id" name="applicant_id" value="{{ $applicant->id }}" hidden required>
+            </div>
+
+            <div class="form-group">
+                <label for="intelligence_score">Intelligence Score:</label>
+                <input type="number" class="form-control" id="intelligence_score" name="intelligence_score" value="{{ old('intelligence_score') }}" required>
+                @if ($errors->has('intelligence_score'))
+                <div class="invalid-feedback">
+                    {{ $errors->first('intelligence_score') }}
+                </div>
+                @endif
+            </div>
+
+            <div class="form-group">
+                <label for="aptitude_score">Aptitude Score:</label>
+                <input type="number" class="form-control" id="aptitude_score" name="aptitude_score" value="{{ old('aptitude_score') }}" required>
+                @if ($errors->has('aptitude_score'))
+                <div class="invalid-feedback">
+                    {{ $errors->first('aptitude_score') }}
+                </div>
+                @endif
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        @endhasanyrole
+        @elseif ($exam_score)
+        <div>
+            <div>
+                <label>Intelligence Exam Score:</label>
+                <p>{{ $exam_score->intelligence_score }}</p>
+            </div>
+            <div>
+                <label>Aptitude Exam Score:</label>
+                <p>{{ $exam_score->aptitude_score }}</p>
+            </div>
+            <div>
+                <label>Average Score:</label>
+                <p>{{ $exam_score->average_score }}</p>
+            </div>
+        </div>
+        @endif
+    </div>
 
     {{-- Initial Assessment --}}
     <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="initial_assessment" role="tabpanel" aria-labelledby="initial-assessment-tab">
@@ -209,7 +264,7 @@
         @endif
     </div>
     @endhasanyrole
-</div>
+    </div>
 
 
     {{-- Tabs --}}
