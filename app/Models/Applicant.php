@@ -4,8 +4,9 @@ namespace App\Models;
 
 use App\Models\Program;
 use App\Models\ElectricBill;
-use App\Models\ApplicationStatus;
+use App\Models\Preassessment;
 use App\Models\ApplicantStatus;
+use App\Models\ApplicationStatus;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Model;
@@ -50,7 +51,7 @@ class Applicant extends Model
         'batch_id',
         'exam_score_id',
         'application_status_id',
-        'applicant_status_id'
+        'applicant_status_id',
     ];
 
     public function getFullNameAttribute()
@@ -146,6 +147,11 @@ class Applicant extends Model
     public function applicant_status()
     {
         return $this->belongsTo(ApplicantStatus::class);
+    }
+
+    public function preassessment()
+    {
+        return $this->hasOne(Preassessment::class);
     }
 
     //Applicant Milestones

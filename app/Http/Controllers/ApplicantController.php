@@ -17,6 +17,7 @@ use App\Events\ApplicantCreated;
 use App\Models\ApplicantAddress;
 use App\Models\ApplicantSibling;
 use App\Models\ApplicantGuardian;
+use App\Models\Preassessment;
 use Illuminate\Support\Facades\Auth;
 use Database\Seeders\ApplicantSeeder;
 use Illuminate\Support\Facades\Validator;
@@ -169,6 +170,7 @@ class ApplicantController extends Controller
         $applicant->free_ebill_reason = $request->input('free_ebill_reason');
         $applicant->monthly_rental = $request->input('monthly_rental');
         $applicant->data_privacy_consent = $request->input('data_privacy_consent');
+        $applicant->applicant_status_id = 1;
 
         $applicant->user_id = Auth::id();
 
@@ -328,5 +330,16 @@ class ApplicantController extends Controller
         $applicant = $user->applicant;
 
         return view('applicants.profile', compact('user', 'applicant'));
+    }
+
+    public function viewProfileById($id)
+    {
+        $applicant = Applicant::findOrFail($id);
+        $user = $applicant->user;
+
+        $preassessment = $applicant->preassessment;
+        // dd($preassessment->is_approved);
+
+        return view('admin.applicant-profile', compact('user', 'applicant', 'preassessment'));
     }
 }

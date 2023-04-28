@@ -18,7 +18,7 @@
                         {{ $applicant->lname }}
                     </p>
                     <div class="grid grid-cols-2">
-                        <p><em>{{ $user->applicant->phone_num }}</em></p>
+                        <p><em>{{ $applicant->phone_num }}</em></p>
                         <p><em>{{ $user->email }}</em></p>
                     </div>
                     <br />
@@ -38,18 +38,65 @@
         </div>
     </div>
 
-    <!-- Placing Remarks -->
-    <form action="{{ route('remarks.store') }}">
+    @hasanyrole('program_head')
+    @if (is_null($preassessment))
+    <!-- Preassessment -->
+    <div>
         <div>
-            <label for="fname">First Name</label>
-            <input type="text" name="fname" id="fname" value="{{ old('fname') }}" required>
-            @if ($errors->has('fname'))
-            <div class="invalid-feedback text-red-500">
-                {{ $errors->first('fname') }}
-            </div>
-            @endif
+            <h2>Profile Preassessment</h2>
+            <form method="POST" action="{{ route('preassessments.store') }}">
+                @csrf
+
+                <div class="form-group">
+                    <input type="text" class="form-control" id="applicant_id" name="applicant_id" value="{{ $applicant->id }}" hidden required>
+                </div>
+
+                <div class="form-group">
+                    <label for="is_approved">Is Approved:</label>
+                    <select class="form-control" id="is_approved" name="is_approved" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                    @if ($errors->has('is_approved'))
+                    <div class="invalid-feedback text-red-500">
+                        {{ $errors->first('is_approved') }}
+                    </div>
+                    @endif
+                </div>
+
+                <div class="form-group">
+                    <label for="remarks">Remarks:</label>
+                    <textarea class="form-control" id="remarks" name="remarks" required></textarea>
+                    @if ($errors->has('remarks'))
+                    <div class="invalid-feedback text-red-500">
+                        {{ $errors->first('remarks') }}
+                    </div>
+                    @endif
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
         </div>
-    </form>
+        @elseif ($preassessment)
+        <h2>Profile Preassessment</h2>
+        <div>
+            <div>
+                <p>Exam Approval:</p>
+                @if ($preassessment->is_approved)
+                <p>Approved</p>
+                @else
+                <p>Not Approved</p>
+                @endif
+            </div>
+
+            <div class="form-group">
+                <label for="remarks">Remarks:</label>
+                <textarea class="form-control" id="remarks" name="remarks" required disabled>{{ $preassessment->remarks }}</textarea>
+            </div>
+        </div>
+    </div>
+    @endif
+    @endhasanyrole
 
     {{-- Tabs --}}
     <div class="my-4 border-b bg-white border-gray-200 dark:border-gray-700">
@@ -82,10 +129,10 @@
                     <h1>Home Address:</h1>
                 </div>
                 <div class="col-span-3">
-                    <p class="capitalize">{{ $user->applicant->birthdate }}</p>
-                    <p class="capitalize">{{ $user->applicant->sex }}</p>
-                    <p class="capitalize">{{ $user->applicant->religion }}</p>
-                    <a href="https://{{ $user->applicant->fb_link }}" class="text-blue-500">{{ $user->applicant->fb_link }}</a>
+                    <p class="capitalize">{{ $applicant->birthdate }}</p>
+                    <p class="capitalize">{{ $applicant->sex }}</p>
+                    <p class="capitalize">{{ $applicant->religion }}</p>
+                    <a href="https://{{ $applicant->fb_link }}" class="text-blue-500">{{ $applicant->fb_link }}</a>
                     <p class="capitalize">{{ $applicant->address->street }}, {{ $applicant->address->barangay }},
                         {{ $applicant->address->city_municipality }}, {{ $applicant->address->province }}
                     </p>
@@ -96,7 +143,7 @@
             <div class="p-4 rounded-lg bg-white dark:bg-gray-800">
                 <p class="font-bold">Siblings:</p>
                 <div class="grid grid-cols-4">
-                    @foreach ($user->applicant->siblings as $sibling)
+                    @foreach ($applicant->siblings as $sibling)
                     <div class="grid grid-flow-row">
                         <label class="font-semibold">Name:</label>
                         <label class="font-semibold">Education level:</label>
@@ -119,13 +166,13 @@
                         <label class="font-semibold">Phone Number:</label>
                     </div>
                     <div class="col-span-3">
-                        <p class="capitalize">{{ $user->applicant->mother->mother_fname }} {{ $user->applicant->mother->mother_mname }}
-                            {{ $user->applicant->mother->mother_lname }}
+                        <p class="capitalize">{{ $applicant->mother->mother_fname }} {{ $applicant->mother->mother_mname }}
+                            {{ $applicant->mother->mother_lname }}
                         </p>
-                        <p class="capitalize">{{ $user->applicant->mother->mother_religion }}</p>
-                        <p class="capitalize">{{ $user->applicant->mother->mother_occupation }}</p>
-                        <p class="capitalize">{{ $user->applicant->mother->mother_annual_income }}</p>
-                        <p class="capitalize">{{ $user->applicant->mother->mother_phone_num }}</p>
+                        <p class="capitalize">{{ $applicant->mother->mother_religion }}</p>
+                        <p class="capitalize">{{ $applicant->mother->mother_occupation }}</p>
+                        <p class="capitalize">{{ $applicant->mother->mother_annual_income }}</p>
+                        <p class="capitalize">{{ $applicant->mother->mother_phone_num }}</p>
                     </div>
                 </div>
             </div>
@@ -140,13 +187,13 @@
                         <label class="font-semibold">Phone Number:</label>
                     </div>
                     <div class="col-span-3">
-                        <p class="capitalize">{{ $user->applicant->father->father_fname }} {{ $user->applicant->father->father_mname }}
-                            {{ $user->applicant->father->father_lname }}
+                        <p class="capitalize">{{ $applicant->father->father_fname }} {{ $applicant->father->father_mname }}
+                            {{ $applicant->father->father_lname }}
                         </p>
-                        <p class="capitalize">{{ $user->applicant->father->father_religion }}</p>
-                        <p class="capitalize">{{ $user->applicant->father->father_occupation }}</p>
-                        <p class="capitalize">{{ $user->applicant->father->father_annual_income }}</p>
-                        <p class="capitalize">{{ $user->applicant->father->father_phone_num }}</p>
+                        <p class="capitalize">{{ $applicant->father->father_religion }}</p>
+                        <p class="capitalize">{{ $applicant->father->father_occupation }}</p>
+                        <p class="capitalize">{{ $applicant->father->father_annual_income }}</p>
+                        <p class="capitalize">{{ $applicant->father->father_phone_num }}</p>
                     </div>
                 </div>
             </div>
@@ -161,14 +208,14 @@
                         <label class="font-semibold">Phone Number:</label>
                     </div>
                     <div class="col-span-3">
-                        <p class="capitalize">{{ $user->applicant->guardian->guardian_fname }}
-                            {{ $user->applicant->guardian->guardian_mname }}
-                            {{ $user->applicant->guardian->guardian_lname }}
+                        <p class="capitalize">{{ $applicant->guardian->guardian_fname }}
+                            {{ $applicant->guardian->guardian_mname }}
+                            {{ $applicant->guardian->guardian_lname }}
                         </p>
-                        <p class="capitalize">{{ $user->applicant->guardian->guardian_religion }}</p>
-                        <p class="capitalize">{{ $user->applicant->guardian->guardian_occupation }}</p>
-                        <p class="capitalize">{{ $user->applicant->guardian->guardian_annual_income }}</p>
-                        <p class="capitalize">{{ $user->applicant->guardian->guardian_phone_num }}</p>
+                        <p class="capitalize">{{ $applicant->guardian->guardian_religion }}</p>
+                        <p class="capitalize">{{ $applicant->guardian->guardian_occupation }}</p>
+                        <p class="capitalize">{{ $applicant->guardian->guardian_annual_income }}</p>
+                        <p class="capitalize">{{ $applicant->guardian->guardian_phone_num }}</p>
                     </div>
                 </div>
             </div>
@@ -182,9 +229,9 @@
                         <label class="font-semibold">School's Address:</label>
                     </div>
                     <div class="col-span-3">
-                        <p class="capitalize">{{ $user->applicant->last_school }}</p>
-                        <p class="capitalize">{{ $user->applicant->school_type }}</p>
-                        <p class="capitalize">{{ $user->applicant->last_school_address }}</p>
+                        <p class="capitalize">{{ $applicant->last_school }}</p>
+                        <p class="capitalize">{{ $applicant->school_type }}</p>
+                        <p class="capitalize">{{ $applicant->last_school_address }}</p>
                     </div>
                 </div>
             </div>
@@ -192,7 +239,7 @@
                 <p class="font-bold">Academic Awards and Achievements</p>
                 <div>
                     <ul class="list-inside list-disc">
-                        @foreach ($user->applicant->acadAwards as $award)
+                        @foreach ($applicant->acadAwards as $award)
                         <li class="capitalize">{{ $award->award_name }}</li>
                         @endforeach
                     </ul>
@@ -204,7 +251,7 @@
                 <p class="font-bold">Gadgets to be used during blended learning:</p>
                 <div>
                     <ul class="list-inside list-disc">
-                        @foreach ($user->applicant->gadgets as $gadget)
+                        @foreach ($applicant->gadgets as $gadget)
                         <li class="capitalize">{{ $gadget->gadget_name }}</li>
                         @endforeach
                     </ul>
@@ -214,7 +261,7 @@
                 <p class="font-bold">Internet Connection to be used during blended learning:</p>
                 <div>
                     <ul class="list-inside list-disc">
-                        @foreach ($user->applicant->internetTypes as $internet)
+                        @foreach ($applicant->internetTypes as $internet)
                         <li class="capitalize">{{ $internet->internet_name }}</li>
                         @endforeach
                     </ul>
@@ -223,7 +270,7 @@
             <div class="p-4 rounded-lg bg-white dark:bg-gray-800">
                 <p class="font-bold">Electric consumption for the last three months:</p>
                 <div class="grid grid-cols-4">
-                    @foreach ($user->applicant->electricBills as $electric)
+                    @foreach ($applicant->electricBills as $electric)
                     <div class="grid grid-flow-row my-1">
                         <label class="font-semibold">Month of:</label>
                         <label class="font-semibold">Amount:</label>
@@ -240,16 +287,16 @@
                     <div class="grid grid-flow-row">
                         <div>
                             <label class="font-semibold">Reason electric consumption is free:</label>
-                            <p class="capitalize">{{ $user->applicant->free_ebill_reason }}</p>
+                            <p class="capitalize">{{ $applicant->free_ebill_reason }}</p>
                         </div>
                         <div>
                             <label class="font-semibold">House Ownership Type:</label>
-                            <p class="capitalize">{{ $user->applicant->houseOwnership->ownership_type }}</p>
+                            <p class="capitalize">{{ $applicant->houseOwnership->ownership_type }}</p>
                         </div>
                         <div>
                             <label class="font-semibold">Monthly Rental:</label>
                             <p class="capitalize">
-                                {{ $user->applicant->monthly_rental ? $user->applicant->monthly_rental : 'No Monthly Rental' }}
+                                {{ $applicant->monthly_rental ? $applicant->monthly_rental : 'No Monthly Rental' }}
                             </p>
                         </div>
                     </div>
@@ -267,10 +314,10 @@
                     including bank accounts, credit card, SSS, GSIS, etc. and visit our family's dwelling place.”
                 </p>
 
-                @if ($user->applicant->data_privacy_consent)
-                <span>I agree</span>
+                @if ($applicant->data_privacy_consent)
+                <span>Applicant Agreed.</span>
                 @else
-                <span>I do not agree.</span>
+                <span>Applicant did not agreed.</span>
                 @endif
             </div>
         </div>

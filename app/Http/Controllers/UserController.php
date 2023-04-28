@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Program;
 use Illuminate\Http\Request;
@@ -54,6 +55,7 @@ class UserController extends Controller
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
+            'email_verified_at' => Carbon::now(),
         ]);
 
         $programIds = $validatedData['program_id'];
