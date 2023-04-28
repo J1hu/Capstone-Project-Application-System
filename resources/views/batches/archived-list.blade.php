@@ -17,21 +17,22 @@
                 </div>
                 @auth
                 @foreach ($batches->groupBy('batch_num') as $batchGroup)
-                <h3 class="font-bold">Batch {{ $batchGroup->first()->batch_num }}</h3>
+                <div class="flex justify-between items-center px-6 py-3">
+                    <h3 class="font-bold">Batch {{ $batchGroup->first()->batch_num }}</h3>
+                    @foreach ($batchGroup as $batch)
+                    <form method="POST" action="{{ route('batches.unarchive', $batch) }}" class="grid">
+                        @csrf
+                        <button type="submit" class="justify-self-end bg-amber-500 px-7 py-2 border-2 w-fit rounded-md border-slate-300 text-white uppercase text-xs font-bold">Unarchive this batch</button>
+                    </form>
+                    @endforeach
+                </div>
+                
                 <table class="w-full py-3 table-auto">
                     <thead class="bg-slate-100 text-left">
                         <tr>
                             <th class="py-2 px-6">Name</th>
                             <th class="py-2">Email</th>
                             <th class="py-2">Program</th>
-                            <th>
-                                @foreach ($batchGroup as $batch)
-                                <form method="POST" action="{{ route('batches.unarchive', $batch) }}">
-                                    @csrf
-                                    <button type="submit">Unarchive this batch</button>
-                                </form>
-                                @endforeach
-                            </th>
                         </tr>
                     </thead>
                     <tbody>
