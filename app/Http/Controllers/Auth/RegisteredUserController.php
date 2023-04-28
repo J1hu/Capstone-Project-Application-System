@@ -43,7 +43,6 @@ class RegisteredUserController extends Controller
         ]);
 
         $user->assignRole('applicant');
-        $user->sendEmailVerificationNotification();
 
         event(new Registered($user));
 

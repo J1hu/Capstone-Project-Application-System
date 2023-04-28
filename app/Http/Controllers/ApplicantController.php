@@ -13,6 +13,7 @@ use App\Models\HouseOwnership;
 use App\Models\ApplicantFather;
 use App\Models\ApplicantMother;
 use Illuminate\Validation\Rule;
+use App\Events\ApplicantCreated;
 use App\Models\ApplicantAddress;
 use App\Models\ApplicantSibling;
 use App\Models\ApplicantGuardian;
@@ -315,6 +316,8 @@ class ApplicantController extends Controller
             'ownership_type' => $request->input('ownership_type'),
             'applicant_id' => $applicantId
         ]);
+
+        event(new ApplicantCreated($applicant));
 
         return redirect()->route('applicants.dashboard');
     }

@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Batch;
 use Random\RandomError;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Applicant>
@@ -17,6 +18,7 @@ class ApplicantFactory extends Factory
      */
     public function definition()
     {
+
         return [
             'user_id' => rand(1, 50),
             'fname' => fake()->firstName(),
@@ -46,7 +48,7 @@ class ApplicantFactory extends Factory
             'contact_consent' => fake()->boolean(100),
             'document_consent' => fake()->boolean(100),
             'data_privacy_consent' => fake()->boolean(100),
-            'batch_id' => rand(1, 50),
+            'batch_id' => 1,
             'application_status_id' => rand(1, 4),
             'applicant_status_id' => rand(1, 2),
         ];

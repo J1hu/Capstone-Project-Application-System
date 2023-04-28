@@ -10,10 +10,12 @@
         <div class="max-w-7xl mx-auto">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div>
-                    <h1 class="font-bold p-6">List of Batches</h1>
+                    <h1 class="font-bold p-6">List of Archived Batches</h1>
                 </div>
                 <div>
-                    <a href="{{ route('batches.archived-list') }}" class="btn btn-primary">View Archived Batches</a>
+                    <a href="{{ route('batches.list') }}">
+                        View Active Batches
+                    </a>
                 </div>
                 @auth
                 @foreach ($batches->groupBy('batch_num') as $batchGroup)
@@ -26,9 +28,9 @@
                             <th>Program</th>
                             <th>
                                 @foreach ($batchGroup as $batch)
-                                <form method="POST" action="{{ route('batches.archive', $batch) }}">
+                                <form method="POST" action="{{ route('batches.unarchive', $batch) }}">
                                     @csrf
-                                    <button type="submit">Archive this batch</button>
+                                    <button type="submit">Unarchive this batch</button>
                                 </form>
                                 @endforeach
                             </th>

@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-    
+
         User::factory()->times(100)->create()->each(function ($user) use ($faker) {
             $programIds = Program::pluck('id')->shuffle()->take(rand(1, 6)); // Get a random number of program IDs
             $user->programs()->attach($programIds); // Attach the selected program IDs to the user

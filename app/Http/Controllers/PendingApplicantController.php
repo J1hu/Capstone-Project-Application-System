@@ -24,7 +24,7 @@ class PendingApplicantController extends Controller
             $applicants->whereIn('program_id', $programIds);
         }
 
-        $applicants = $applicants->simplePaginate(15);
+        $applicants = $applicants->paginate(15);
 
         return view('applicants.pendinglist', compact('applicants'));
     }
