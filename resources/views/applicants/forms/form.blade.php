@@ -197,7 +197,7 @@
                         <div>
                             <label for="phone_num" class="text-sm text-slate-700">Phone Number</label>
                             <input type="text" name="phone_num" id="phone_num" value="{{ old('phone_num') }}"
-                                required
+                                required min="0" max="11"
                                 class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                             @if ($errors->has('phone_num'))
                                 <div class="invalid-feedback text-red-500">
@@ -519,8 +519,7 @@
                                     @endif
                                 </div>
                                 <div>
-                                    <label for="father_mname" class="text-sm text-slate-700">Middle Name: (Maiden
-                                        Name)</label>
+                                    <label for="father_mname" class="text-sm text-slate-700">Middle Name:</label>
                                     <input type="text" id="father_mname" name="father_mname" required
                                         class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                                     @if ($errors->has('father_mname'))
@@ -540,8 +539,7 @@
                                     @endif
                                 </div>
                                 <div>
-                                    <label for="father_lname" class="text-sm text-slate-700">Last Name: (Maiden
-                                        Name)</label>
+                                    <label for="father_lname" class="text-sm text-slate-700">Last Name:</label>
                                     <input type="text" id="father_lname" name="father_lname" required
                                         class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                                     @if ($errors->has('father_lname'))
@@ -609,8 +607,7 @@
                                     </div>
                                     <div>
                                         <label for="guardian_mname" class="text-sm text-slate-700">Middle Name:
-                                            (Maiden
-                                            Name)</label>
+                                        </label>
                                         <input type="text" id="guardian_mname" name="guardian_mname" required
                                             class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                                         @if ($errors->has('guardian_mname'))
@@ -632,8 +629,7 @@
                                         @endif
                                     </div>
                                     <div>
-                                        <label for="guardian_lname" class="text-sm text-slate-700">Last Name: (Maiden
-                                            Name)</label>
+                                        <label for="guardian_lname" class="text-sm text-slate-700">Last Name:</label>
                                         <input type="text" id="guardian_lname" name="guardian_lname" required
                                             class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                                         @if ($errors->has('guardian_lname'))
@@ -1218,7 +1214,7 @@
                             place.”</em>
                     </p>
                     <div class="mb-5">
-                        <input type="checkbox" name="data_privacy_consent" id="data_privacy_consent" value="1"
+                        <input type="checkbox" name="data_privacy_consent" required id="data_privacy_consent" value="1"
                             {{ old('data_privacy_consent') ? 'checked' : '' }}>
                         @if ($errors->has('data_privacy_consent'))
                             <div class="invalid-feedback text-red-500">
@@ -1306,13 +1302,6 @@
         modal.style.display = "none";
         }
 
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-        }
-
         // Handle back button clicks
         $('.back-btn').click(function() {
             var current = $(this).closest('.section');
@@ -1322,4 +1311,35 @@
         });
 
     });
+
+         // Array of input field IDs
+        const inputFieldIds = [
+        "phone_num",
+        "total_fam_children",
+        "birth_order",
+        "mother_phone_num",
+        "father_phone_num",
+        "guardian_phone_num",
+        "lrn",
+        "esc_num",
+        "electric_amount_1",
+        "electric_amount_2",
+        "electric_amount_3",
+        "monthly_rental",
+    ];
+
+        // Loop through each ID and apply the restrictToNumbers function
+        inputFieldIds.forEach(function(id) {
+        const inputField = document.getElementById(id);
+        restrictToNumbers(inputField);
+        });
+
+        function restrictToNumbers(inputField) {
+        inputField.addEventListener("keypress", function(event) {
+            if (isNaN(event.key)) {
+            event.preventDefault();
+            }
+        });
+        }
+
 </script>
