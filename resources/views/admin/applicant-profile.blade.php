@@ -50,9 +50,11 @@
             <li class="mr-2" role="presentation">
                 <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="initial-assessment-tab" data-tabs-target="#initial_assessment" type="button" role="tab" aria-controls="initial_assessment" aria-selected="false">Initial Assessment</button>
             </li>
+            @hasanyrole('mancom')
             <li class="mr-2" role="presentation">
                 <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="final-assessment-tab" data-tabs-target="#final_assessment" type="button" role="tab" aria-controls="final_assessment" aria-selected="false">Final Assessment</button>
             </li>
+            @endhasanyrole
         </ul>
     </div>
 
@@ -218,6 +220,7 @@
     </div>
 
     {{-- Final Assessment --}}
+    @hasanyrole('mancom')
     <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="final_assessment" role="tabpanel" aria-labelledby="final-assessment-tab">
         <h2 class="font-bold">Final Assessment</h2>
         @if (is_null($final_assessment))
@@ -263,6 +266,7 @@
         </div>
         @endif
     </div>
+    @endhasanyrole
     @endhasanyrole
     </div>
 
