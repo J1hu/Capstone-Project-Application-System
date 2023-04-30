@@ -25,10 +25,12 @@ class RoleMiddleware
             }
             return $next($request);
         }
+
         // redirect to applicant dashboard for applicants
         if (Auth::user()->hasRole('applicant')) {
-            if ($request->is('dashboard')) {
-                return redirect()->route('applicant.dashboard');
+            $applicant = Auth::user()->applicant;
+            if ($applicant && $request->is('dashboard')) {
+                return redirect()->route('applicants.dashboard');
             }
             return $next($request);
         }

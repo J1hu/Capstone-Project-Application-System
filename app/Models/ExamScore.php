@@ -12,7 +12,8 @@ class ExamScore extends Model
     protected $fillable = [
         'intelligence_score',
         'aptitude_score',
-        'average_score'
+        'average_score',
+        'applicant_id'
     ];
 
     public function applicant()

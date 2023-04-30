@@ -23,7 +23,7 @@ class ApplicantFatherFactory extends Factory
             'father_lname' => fake()->lastName(),
             'father_religion' => fake()->text(10),
             'father_occupation' => fake()->text(10),
-            'father_annual_income' => 102324.12,
+            'father_annual_income' => fake()->text(10),
             'father_phone_num' => fake()->phoneNumber()
         ];
     }

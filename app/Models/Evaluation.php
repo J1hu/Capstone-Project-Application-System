@@ -12,7 +12,8 @@ class Evaluation extends Model
     protected $fillable = [
         'remarks',
         'evaluation_type',
-        'approval'
+        'approval',
+        'applicant_id'
     ];
 
     public function scholarshipType()

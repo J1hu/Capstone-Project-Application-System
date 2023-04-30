@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Batch;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,8 @@ class BatchFactory extends Factory
     public function definition()
     {
         return [
-            'batch_num' => fake()->randomNumber()
+            'batch_num' => Batch::getNextBatchNumber(),
+            'is_archived' => fake()->boolean(0)
         ];
     }
 }

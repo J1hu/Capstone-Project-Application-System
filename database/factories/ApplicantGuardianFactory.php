@@ -23,7 +23,7 @@ class ApplicantGuardianFactory extends Factory
             'guardian_lname' => fake()->lastName(),
             'guardian_religion' => fake()->text(10),
             'guardian_occupation' => fake()->text(10),
-            'guardian_annual_income' => 102334.12,
+            'guardian_annual_income' => fake()->text(10),
             'guardian_phone_num' => fake()->phoneNumber()
         ];
     }

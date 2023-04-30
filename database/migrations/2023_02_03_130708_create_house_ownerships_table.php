@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('house_ownerships', function (Blueprint $table) {
             $table->id();
             $table->foreignId('applicant_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->string('ownership_type');
+            $table->string('ownership_type')->nullable();
             $table->timestamps();
         });
     }

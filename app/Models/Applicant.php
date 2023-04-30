@@ -4,8 +4,9 @@ namespace App\Models;
 
 use App\Models\Program;
 use App\Models\ElectricBill;
-use App\Models\ApplicationStatus;
+use App\Models\Preassessment;
 use App\Models\ApplicantStatus;
+use App\Models\ApplicationStatus;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Model;
@@ -28,8 +29,9 @@ class Applicant extends Model
         'fb_link',
         'religion',
         'avatar',
+        'certificate',
         // family data
-        'total_fam_members',
+        'total_fam_children',
         'birth_order',
         // educational background
         'last_school',
@@ -38,11 +40,18 @@ class Applicant extends Model
         'lrn',
         'esc_grantee',
         'esc_num',
+        'report_card',
+        'program_id',
         // other information
+        'ebill_proof',
         'free_ebill_reason',
         'monthly_rental',
+        'contact_consent',
         'data_privacy_consent',
-        'date_accomplished',
+        'batch_id',
+        'exam_score_id',
+        'application_status_id',
+        'applicant_status_id',
     ];
 
     public function getFullNameAttribute()
@@ -102,11 +111,10 @@ class Applicant extends Model
 
     public function electricBills()
     {
-        // plural
         return $this->hasMany(ElectricBill::class);
     }
 
-    public function houseOwnerships()
+    public function houseOwnership()
     {
         return $this->hasOne(HouseOwnership::class);
     }
@@ -116,15 +124,23 @@ class Applicant extends Model
         return $this->hasOne(ApplicationStatus::class);
     }
 
-    public function examScores()
+    public function examScore()
     {
-        // plural
         return $this->hasOne(ExamScore::class);
+    }
+
+    public function initialAssessment()
+    {
+        return $this->hasOne(InitialAssessment::class);
+    }
+
+    public function finalAssessment()
+    {
+        return $this->hasOne(FinalAssessment::class);
     }
 
     public function evaluations()
     {
-        // plural
         return $this->hasMany(Evaluation::class);
     }
 
@@ -141,5 +157,41 @@ class Applicant extends Model
     public function applicant_status()
     {
         return $this->belongsTo(ApplicantStatus::class);
+    }
+
+    public function preassessment()
+    {
+        return $this->hasOne(Preassessment::class);
+    }
+
+    //Applicant Milestones
+    public function isVerified()
+    {
+        //
+    }
+
+    public function isFormSubmitted()
+    {
+        //
+    }
+
+    public function isAssessed()
+    {
+        //
+    }
+
+    public function hasExam()
+    {
+        //
+    }
+
+    public function isInterviewed()
+    {
+        //
+    }
+
+    public function hasStatus()
+    {
+        //
     }
 }

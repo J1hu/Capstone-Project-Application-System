@@ -14,7 +14,8 @@ class ApplicantAddress extends Model
         'city_municipality',
         'barangay',
         'street',
-        'zip_code'
+        'zip_code',
+        'applicant_id'
     ];
 
     public function applicant()

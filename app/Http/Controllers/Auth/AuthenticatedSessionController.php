@@ -29,7 +29,15 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        // Check if the authenticated user has the applicant role
+        if (Auth::user()->hasRole('applicant')) {
+            return redirect()->intended(RouteServiceProvider::HOME);
+        } else {
+            Auth::logout();
+            return redirect()->back()->withErrors([
+                'email' => 'There is a dedicated login page for admins',
+            ]);
+        }
     }
 
     /**

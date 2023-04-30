@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('guardian_lname');
             $table->string('guardian_religion');
             $table->string('guardian_occupation');
-            $table->float('guardian_annual_income');
+            $table->string('guardian_annual_income');
             $table->string('guardian_phone_num');
             $table->timestamps();
         });

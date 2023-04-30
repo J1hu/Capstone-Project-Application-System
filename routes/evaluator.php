@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
-Route::middleware(['role:admin'])->group(function () {
+Route::middleware(['role:admin', 'verified'])->group(function () {
     Route::get('/evaluators/list', [UserController::class, 'index'])->name('evaluators.list');
 
     Route::get('/evaluators/create', [UserController::class, 'create'])->name('evaluators.create');

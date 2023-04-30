@@ -17,6 +17,8 @@ return new class extends Migration
             //student personal data
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->boolean('contact_consent');
+            $table->boolean('document_consent');
             $table->string('fname');
             $table->string('mname')->nullable();
             $table->string('lname');
@@ -27,8 +29,9 @@ return new class extends Migration
             $table->string('fb_link');
             $table->string('religion');
             $table->string('avatar');
+            $table->string('certificate');
             // family data
-            $table->unsignedInteger('total_fam_members');
+            $table->unsignedInteger('total_fam_children');
             $table->string('birth_order');
             // educational background
             $table->string('last_school');
@@ -37,13 +40,14 @@ return new class extends Migration
             $table->string('lrn');
             $table->enum('esc_grantee', ['Yes', 'No', 'N/A']);
             $table->string('esc_num')->nullable();
+            $table->string('report_card');
             // program choice
             $table->foreignId('program_id')->constrained()->cascadeOnDelete();
             // other information
-            $table->text('free_ebill_reason');
-            $table->float('monthly_rental');
+            $table->string('ebill_proof');
+            $table->text('free_ebill_reason')->nullable();
+            $table->float('monthly_rental')->nullable();
             $table->boolean('data_privacy_consent');
-            $table->date('date_accomplished');
             // system requirements
             $table->foreignId('batch_id')->nullable()->constrained('batches')->cascadeOnDelete();
             $table->foreignId('application_status_id')->nullable()->constrained()->cascadeOnDelete();

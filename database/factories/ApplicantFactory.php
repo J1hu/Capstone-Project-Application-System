@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Batch;
 use Random\RandomError;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Applicant>
@@ -17,6 +18,7 @@ class ApplicantFactory extends Factory
      */
     public function definition()
     {
+
         return [
             'user_id' => rand(1, 50),
             'fname' => fake()->firstName(),
@@ -29,7 +31,8 @@ class ApplicantFactory extends Factory
             'fb_link' => fake()->text(10),
             'religion' => fake()->text(10),
             'avatar' => fake()->text(5),
-            'total_fam_members' => fake()->randomNumber(),
+            'certificate' => fake()->text(5),
+            'total_fam_children' => fake()->randomNumber(),
             'birth_order' => fake()->text(5),
             'last_school' => fake()->text(10),
             'last_school_address' => fake()->text(10),
@@ -37,12 +40,15 @@ class ApplicantFactory extends Factory
             'lrn' => fake()->text(10),
             'esc_grantee' => fake()->randomElement(['Yes', 'No', 'N/A']),
             'esc_num' => fake()->text(10),
+            'report_card' => fake()->text(5),
             'program_id' => rand(1, 6),
+            'ebill_proof' => fake()->text(5),
             'free_ebill_reason' => fake()->text(40),
             'monthly_rental' => fake()->randomElement([1000, 900, 12324, 3423.53, 23144.42]),
+            'contact_consent' => fake()->boolean(100),
+            'document_consent' => fake()->boolean(100),
             'data_privacy_consent' => fake()->boolean(100),
-            'date_accomplished' => fake()->date(),
-            'batch_id' => rand(1, 50),
+            'batch_id' => 1,
             'application_status_id' => rand(1, 4),
             'applicant_status_id' => rand(1, 2),
         ];

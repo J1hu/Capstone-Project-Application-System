@@ -11,7 +11,8 @@ class ElectricBill extends Model
 
     protected $fillable = [
         'electric_month',
-        'electric_amount'
+        'electric_amount',
+        'applicant_id'
     ];
 
     public function applicant()
