@@ -8,6 +8,7 @@ use App\Http\Controllers\BatchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApplicantController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\CsvController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,6 +87,36 @@ Route::middleware(['auth', 'role:applicant|admin|program_head|mancom|registrar_s
     Route::post('/batches/{batch}/archive', [BatchController::class, 'archive'])->name('batches.archive');
     Route::post('/batches/{batch}/unarchive', [BatchController::class, 'unarchive'])->name('batches.unarchive');
 });
+
+// CSV GENERATION
+Route::middleware(['auth', 'role:applicant|admin|program_head|mancom|registrar_staff', 'verified'])->group(function () {
+    Route::prefix('generate')->group(function () {
+        Route::get('/evaluated-applicant-csv', [CsvController::class, 'generateEvaluatedApplicantsCSV'])->name('generate.one');
+        Route::get('/pending-applicant-csv', [CsvController::class, 'generatePendingApplicantsCSV'])->name('generate.two');
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/mancom.php';

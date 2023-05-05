@@ -9,8 +9,13 @@
     <div class=" my-5">
         <div class="max-w-7xl mx-auto">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div>
-                    <h1 class="font-bold p-6">List of Pending Applicants</h1>
+                <div class="grid grid-cols-2 p-6">
+                    <div>
+                        <h1 class="font-bold">List of Pending Applicants</h1>
+                    </div>
+                    <div class="grid justify-self-end content-center">
+                        <x-primary-button class="px-5" id="generate-csv">Generate CSV</x-primary-button>
+                    </div>
                 </div>
                 @auth
                 <table class="w-full py-3 table-auto">
@@ -45,3 +50,8 @@
         </div>
     </div>
 </x-app-layout>
+<script>
+    document.getElementById('generate-csv').addEventListener('click', function() {
+        window.location.href = "{{ route('generate.two') }}";
+    });
+</script>

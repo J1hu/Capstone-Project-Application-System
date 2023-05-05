@@ -27,6 +27,6 @@ class EvaluatedApplicantController extends Controller
 
         $applicants = $applicants->paginate(15);
 
-        return view('applicants.pendinglist', compact('applicants'));
+        return view('applicants.evaluatedlist', compact('applicants'));
     }
 }

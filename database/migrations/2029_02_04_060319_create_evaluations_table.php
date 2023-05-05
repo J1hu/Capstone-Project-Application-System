@@ -16,8 +16,11 @@ return new class extends Migration
         Schema::create('evaluations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('applicant_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignID('user_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('remarks')->nullable();
-            $table->string('scholarship_type')->nullable();
+            $table->string('evaluation_type')->nullable();
+            $table->string('approval')->nullable();
+            $table->foreignId('scholarship_type_id')->nullable();
             $table->timestamps();
         });
     }

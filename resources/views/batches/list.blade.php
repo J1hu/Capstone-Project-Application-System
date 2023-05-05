@@ -22,7 +22,7 @@
                     @foreach ($batchGroup as $batch)
                     <form method="POST" action="{{ route('batches.archive', $batch) }}" class="grid">
                         @csrf
-                        <button type="submit" class="justify-self-end bg-red-700 px-7 py-2 border-2 w-fit rounded-md border-slate-300 text-white uppercase text-xs font-bold">Archive this batch</button>
+                        <button type="submit" class="justify-self-end hover:bg-red-500 bg-red-700 px-7 py-2 border-2 w-fit rounded-md border-slate-300 text-white uppercase text-xs font-bold">Archive this batch</button>
                     </form>
                     @endforeach
                 </div>
