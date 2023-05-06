@@ -26,20 +26,13 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
-
         $user = Auth::user();
 
-        // Check if the authenticated user has the applicant role
         if ($user->hasRole('applicant')) {
-
-            // Check if the user has applicant data
             if ($user->applicant) {
-                return view('applicants.dashboard', compact('user'));
+                return redirect()->route('applicants.dashboard');
             } else {
-
-                // Redirect to application form
                 return redirect()->route('applicants.forms.form');
             }
         } else {

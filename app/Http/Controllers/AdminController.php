@@ -15,6 +15,16 @@ class AdminController extends Controller
         return view('admin.login');
     }
 
+    public function dashboard()
+    {
+        $user = Auth::user();
+
+        if ($user->applicant()->exists()) {
+            return redirect()->route('applicants.dashboard');
+        }
+        return redirect()->route('applicants.forms.form');
+    }
+
     public function login(Request $request)
     {
         $request->validate([

@@ -47,9 +47,9 @@ Route::view('/terms', 'terms')->name('terms');
 Route::view('/privacy', 'privacy')->name('privacy');
 Route::view('/test', 'testing')->name('test');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'role:admin|program_head|mancom|registrar_staff', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'role:admin|program_head|mancom|registrar_staff', 'verified'])->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+});
 
 // APPLICANTS
 Route::middleware(['auth', 'role:applicant', 'verified'])->group(function () {
