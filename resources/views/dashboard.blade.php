@@ -14,4 +14,12 @@
             </div>
         </div>
     </div>
+
+    <x-primary-button class="px-5" id="generate-csv">Generate CSV</x-primary-button>
 </x-app-layout>
+
+<script>
+    document.getElementById('generate-csv').addEventListener('click', function() {
+        window.location.href = "{{ route('generate.three') }}";
+    });
+</script>
