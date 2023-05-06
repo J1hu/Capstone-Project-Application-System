@@ -6,7 +6,7 @@ use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\PendingApplicantController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['role:admin|program_head|mancom|registrar_staff', 'verified'])->group(function () {
+Route::middleware(['auth', 'role:admin|program_head|mancom|registrar_staff', 'verified'])->group(function () {
     Route::get('/applicants/pending-list', [PendingApplicantController::class, 'index'])->name('applicants.pending-list');
     Route::get('/applicants/evaluated-list', [EvaluatedApplicantController::class, 'index'])->name('applicants.evaluated-list');
 
