@@ -50,17 +50,15 @@
             <li class="mr-2" role="presentation">
                 <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="initial-assessment-tab" data-tabs-target="#initial_assessment" type="button" role="tab" aria-controls="initial_assessment" aria-selected="false">Initial Assessment</button>
             </li>
-            @hasanyrole('mancom')
             <li class="mr-2" role="presentation">
                 <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="final-assessment-tab" data-tabs-target="#final_assessment" type="button" role="tab" aria-controls="final_assessment" aria-selected="false">Final Assessment</button>
             </li>
-            @endhasanyrole
         </ul>
     </div>
 
     <div id="assessment">
         {{-- For Evaluation --}}
-        @hasanyrole('program_head|registrar_staff')
+        @hasanyrole('program_head|registrar_staff|admin')
         <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="profile_assessment" role="tabpanel" aria-labelledby="profile-assessment-tab">
             <h2 class="font-bold">Profile Preassessment</h2>
             @if (is_null($preassessment))
@@ -123,7 +121,7 @@
         <h2>Exam Score</h2>
         @if (is_null($exam_score))
         <p>Applicant has not yet taken the exam</p>
-        @hasanyrole('registrar_staff')
+        @hasanyrole('registrar_staff|admin')
         <form method="POST" action="{{ route('exam_scores.store') }}">
             @csrf
 
