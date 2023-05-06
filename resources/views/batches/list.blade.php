@@ -16,6 +16,11 @@
                     <h1 class="font-bold px-6 pt-6 pb-3">List of Batches</h1>
                 </div>
                 @auth
+                @if ($batches->isEmpty())
+                <div class="font-bold px-6 pt-6 pb-3">
+                    <p>There is no Active Batches</p>
+                </div>
+                @elseif ($batches->isNotEmpty())
                 @foreach ($batches->groupBy('batch_num') as $batchGroup)
                 <div class="flex justify-between items-center px-6 py-3">
                     <h3 class="font-bold">Batch {{ $batchGroup->first()->batch_num }}</h3>
@@ -47,6 +52,7 @@
                     </tbody>
                 </table>
                 @endforeach
+                @endif
                 @endauth
             </div>
         </div>

@@ -29,9 +29,19 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        $user = Auth::user();
+
         // Check if the authenticated user has the applicant role
-        if (Auth::user()->hasRole('applicant')) {
-            return redirect()->intended(RouteServiceProvider::HOME);
+        if ($user->hasRole('applicant')) {
+
+            // Check if the user has applicant data
+            if ($user->applicant) {
+                return view('applicants.dashboard', compact('user'));
+            } else {
+
+                // Redirect to application form
+                return redirect()->route('applicants.forms.form');
+            }
         } else {
             Auth::logout();
             return redirect()->back()->withErrors([
