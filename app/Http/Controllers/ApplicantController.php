@@ -110,7 +110,7 @@ class ApplicantController extends Controller
             'esc_grantee' => 'string',
             'esc_num' => 'string',
             //report card
-            'report_card' => 'required|mimes:pdf|max:2048',
+            'report_card' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             //chosen program
             'program_id' => 'required',
             //gadgets
@@ -133,7 +133,7 @@ class ApplicantController extends Controller
             'free_ebill_reason' => 'required',
             // ownership
             'ownership_type' => ['required', 'string', Rule::in(['Owned, Fully Paid', 'Owned, Amortized', 'Rented', 'Free/Living with relatives/Inherited'])],
-            'monthly_rental' => ['required_if:ownership_type,Rented', 'numeric', 'min:0'],
+            'monthly_rental' => 'required|numeric|min:0',
             // section 7
             'data_privacy_consent' => 'required',
         ]);
@@ -313,11 +313,12 @@ class ApplicantController extends Controller
 
         ElectricBill::insert($electricBillData);
 
-        //ownershipType 
-        $houseOwnership = $applicant->houseOwnership()->create([
-            'ownership_type' => $request->input('ownership_type'),
-            'applicant_id' => $applicantId
-        ]);
+        //ownershipType
+        $houseOwnership = new HouseOwnership();
+        $houseOwnership->ownership_type = $request->input('ownership_type');
+        $houseOwnership->applicant_id = $applicantId;
+
+        $applicant->houseOwnership()->save($houseOwnership);
 
         event(new ApplicantCreated($applicant));
 
