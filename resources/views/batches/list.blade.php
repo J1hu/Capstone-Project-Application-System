@@ -16,43 +16,45 @@
                     <h1 class="font-bold px-6 pt-6 pb-3">List of Batches</h1>
                 </div>
                 @auth
-                @if ($batches->isEmpty())
-                <div class="font-bold px-6 pt-6 pb-3">
-                    <p>There is no Active Batches</p>
-                </div>
-                @elseif ($batches->isNotEmpty())
-                @foreach ($batches->groupBy('batch_num') as $batchGroup)
-                <div class="flex justify-between items-center px-6 py-3">
-                    <h3 class="font-bold">Batch {{ $batchGroup->first()->batch_num }}</h3>
-                    @foreach ($batchGroup as $batch)
-                    <form method="POST" action="{{ route('batches.archive', $batch) }}" class="grid">
-                        @csrf
-                        <button type="submit" class="justify-self-end hover:bg-red-500 bg-red-700 px-7 py-2 border-2 w-fit rounded-md border-slate-300 text-white uppercase text-xs font-bold">Archive this batch</button>
-                    </form>
-                    @endforeach
-                </div>
-                <table class="w-full py-3 table-auto">
-                    <thead class="bg-slate-100 text-left">
-                        <tr>
-                            <th class="py-2 px-6">Name</th>
-                            <th class="py-2">Email</th>
-                            <th class="py-2">Program</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($batchGroup as $batch)
-                        @foreach ($batch->applicants as $applicant)
-                        <tr class="odd:bg-white even:bg-slate-50 hover:bg-blue-100">
-                            <td class="px-6">{{ $applicant->user->name }}</td>
-                            <td class="p-2">{{ $applicant->user->email }}</td>
-                            <td class="p-2">{{ $applicant->program->program_name }}</td>
-                        </tr>
+                    @if ($batches->isEmpty())
+                        <div class="font-bold px-6 pt-6 pb-3">
+                            <p>There is no Active Batches</p>
+                        </div>
+                    @elseif ($batches->isNotEmpty())
+                        @foreach ($batches->groupBy('batch_num') as $batchGroup)
+                            <div class="flex justify-between items-center px-6 py-3">
+                                <h3 class="font-bold">Batch {{ $batchGroup->first()->batch_num }}</h3>
+                                @foreach ($batchGroup as $batch)
+                                    <form method="POST" action="{{ route('batches.archive', $batch) }}" class="grid">
+                                        @csrf
+                                        <button type="submit"
+                                            class="justify-self-end hover:bg-red-500 bg-red-700 px-7 py-2 border-2 w-fit rounded-md border-slate-300 text-white uppercase text-xs font-bold">Archive
+                                            this batch</button>
+                                    </form>
+                                @endforeach
+                            </div>
+                            <table class="w-full py-3 table-auto">
+                                <thead class="bg-slate-100 text-left">
+                                    <tr>
+                                        <th class="py-2 px-6">Name</th>
+                                        <th class="py-2">Email</th>
+                                        <th class="py-2">Program</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($batchGroup as $batch)
+                                        @foreach ($batch->applicants as $applicant)
+                                            <tr class="odd:bg-white even:bg-slate-50 hover:bg-blue-100">
+                                                <td class="px-6">{{ $applicant->user->name }}</td>
+                                                <td class="p-2">{{ $applicant->user->email }}</td>
+                                                <td class="p-2">{{ $applicant->program->program_name }}</td>
+                                            </tr>
+                                        @endforeach
+                                    @endforeach
+                                </tbody>
+                            </table>
                         @endforeach
-                        @endforeach
-                    </tbody>
-                </table>
-                @endforeach
-                @endif
+                    @endif
                 @endauth
             </div>
         </div>
