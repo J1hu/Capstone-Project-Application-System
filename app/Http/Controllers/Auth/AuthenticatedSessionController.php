@@ -30,17 +30,17 @@ class AuthenticatedSessionController extends Controller
         $user = Auth::user();
 
         if ($user->hasRole('applicant')) {
-            if ($user->applicant) {
+            // Check if the applicant has applicant data
+            $applicant = $user->applicant();
+
+            if ($applicant) {
+                // Applicant has data, redirect to applicant dashboard
                 return redirect()->route('applicants.dashboard');
-            } else {
-                return redirect()->route('applicants.forms.form');
             }
-        } else {
-            Auth::logout();
-            return redirect()->back()->withErrors([
-                'email' => 'There is a dedicated login page for admins',
-            ]);
         }
+
+        // User is not an applicant or doesn't have applicant data, redirect to general dashboard
+        return redirect()->route('dashboard');
     }
 
     /**
