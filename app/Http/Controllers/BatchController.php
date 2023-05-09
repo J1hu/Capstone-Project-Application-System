@@ -8,14 +8,16 @@ use Illuminate\Http\Request;
 class BatchController extends Controller
 {
     public function showActiveBatches()
-    {
-        $batches = Batch::where('is_archived', false)
-            ->with('applicants')
-            ->orderBy('batch_num', 'asc')
-            ->get();
+{
+    $batches = Batch::where('is_archived', false)
+        ->with('applicants')
+        ->orderBy('batch_num', 'asc')
+        ->get();
+        
 
-        return view('batches.list', compact('batches'));
-    }
+    return view('batches.list', compact('batches'));
+}
+
 
     public function showArchivedBatches()
     {

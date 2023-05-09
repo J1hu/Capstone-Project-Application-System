@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
     {{-- Icons --}}
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -28,15 +29,17 @@
         <main class="right-0 py-6 px-4 sm:px-6 lg:px-8 w-4/5 absolute top-20">
             <!-- Page Heading -->
             @if (isset($header))
-            <header>
-                <div class="max-w-7xl mx-auto grid grid-cols-2">
-                    {{ $header }}
-                </div>
-            </header>
+                <header>
+                    <div class="max-w-7xl mx-auto grid grid-cols-2">
+                        {{ $header }}
+                    </div>
+                </header>
             @endif
             {{ $slot }}
         </main>
     </div>
+    <script>
+        @yield('scripts')
+    </script>
 </body>
-
 </html>

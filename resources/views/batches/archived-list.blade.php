@@ -18,7 +18,7 @@
                 @auth
                 @if ($batches->isEmpty())
                 <div class="font-bold px-6 pt-6 pb-3">
-                    <p>There is no Archived Batches</p>
+                    <p>Archived Batches is currently empty</p>
                 </div>
                 @elseif ($batches->isNotEmpty())
                 @foreach ($batches->groupBy('batch_num') as $batchGroup)

@@ -22,4 +22,5 @@
     document.getElementById('generate-csv').addEventListener('click', function() {
         window.location.href = "{{ route('generate.three') }}";
     });
+    
 </script>
