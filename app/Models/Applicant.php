@@ -164,6 +164,61 @@ class Applicant extends Model
         return $this->hasOne(Preassessment::class);
     }
 
+    public function getAuthIdentifierName()
+    {
+        return 'id'; // Replace with the actual identifier name for your model
+    }
+
+    public function getAuthIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
+
+    public function getRememberToken()
+    {
+        return $this->{$this->getRememberTokenName()};
+    }
+
+    public function setRememberToken($value)
+    {
+        $this->{$this->getRememberTokenName()} = $value;
+    }
+
+    public function getRememberTokenName()
+    {
+        return 'remember_token'; // Replace with the actual remember token column name in your model's table
+    }
+
+    public function applicantStatus()
+    {
+        return $this->belongsTo(ApplicantStatus::class);
+    }
+
+    // for Dashboard
+    public static function getTotalApplicants()
+    {
+        return self::count();
+    }
+
+    public static function getPendingApplicants()
+    {
+        return self::whereHas('applicantStatus', function ($query) {
+            $query->where('applicant_status_name', 'pending');
+        })->count();
+    }
+
+    public static function getEvaluatedApplicants()
+    {
+        return self::whereHas('applicantStatus', function ($query) {
+            $query->where('applicant_status_name', 'evaluated');
+        })->count();
+    }
+
     //Applicant Milestones
     public function isVerified()
     {
