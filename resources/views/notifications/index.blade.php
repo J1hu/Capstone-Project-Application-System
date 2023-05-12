@@ -29,6 +29,8 @@
             <x-trix-field name="content" id="content" class="form-control" required :initial-value="''" />
         </div>
 
-        <x-primary-button type="submit" class="btn btn-primary">Send Notification</x-primary-button>
+        <div class="text-right px-5">
+            <x-primary-button type="submit" class="btn btn-primary">Send Notification</x-primary-button>
+        </div>
     </form>
 </x-app-layout>
