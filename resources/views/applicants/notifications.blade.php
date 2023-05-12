@@ -4,7 +4,7 @@
         @forelse ($notifications as $notification)
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Exam Date: {{ $notification->data['exam_date'] }}</h5>
+                <h5 class="card-title">Title: {{ $notification->data['title'] }}</h5>
                 <p class="card-text">Content: {{ $notification->data['content'] }}</p>
                 <form action="{{ route('notifications.mark-as-read', $notification->id) }}" method="POST">
                     @csrf

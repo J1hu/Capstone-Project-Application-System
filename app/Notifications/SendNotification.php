@@ -7,23 +7,23 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ExamNotification extends Notification
+class SendNotification extends Notification
 {
     use Queueable;
 
-    private $examDate;
+    private $title;
     private $content;
 
     /**
      * Create a new notification instance.
      *
-     * @param string $examDate
+     * @param string $title
      * @param string $content
      * @return void
      */
-    public function __construct($examDate, $content)
+    public function __construct($title, $content)
     {
-        $this->examDate = $examDate;
+        $this->title = $title;
         $this->content = $content;
     }
 
@@ -47,7 +47,7 @@ class ExamNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'exam_date' => $this->examDate,
+            'title' => $this->title,
             'content' => $this->content,
         ];
     }

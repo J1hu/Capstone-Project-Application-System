@@ -6,7 +6,7 @@ use App\Models\Batch;
 use App\Models\Program;
 use App\Models\Applicant;
 use Illuminate\Http\Request;
-use App\Notifications\ExamNotification;
+use App\Notifications\SendNotification;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,21 +14,15 @@ class NotificationController extends Controller
 {
     public function showNotification()
     {
-        // $staffs = User::role('registrar_staff')->cursorPaginate(15);
-        return view('notifications.index');
-    }
-
-    public function showExamForm()
-    {
         $programs = Program::all();
-        return view('notifications.exam', compact('programs'));
+        return view('notifications.index', compact('programs'));
     }
 
-    public function sendExamNotification(Request $request)
+    public function sendNotification(Request $request)
     {
         // Retrieve the input values from the form
         $programId = $request->input('programId');
-        $examDate = $request->input('exam_date');
+        $title = $request->input('title');
         $content = $request->input('content');
 
         // Retrieve the program
@@ -38,7 +32,7 @@ class NotificationController extends Controller
         $applicants = Applicant::where('program_id', $program->id)->get();
 
         foreach ($applicants as $applicant) {
-            $applicant->notify(new ExamNotification($examDate, $content));
+            $applicant->notify(new SendNotification($title, $content));
         }
 
         return redirect()->route('notifications.view');
