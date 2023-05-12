@@ -12,8 +12,9 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Contracts\Auth\Authenticatable;
 
-class Applicant extends Model
+class Applicant extends Model implements Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -162,6 +163,36 @@ class Applicant extends Model
     public function preassessment()
     {
         return $this->hasOne(Preassessment::class);
+    }
+
+    public function getAuthIdentifierName()
+    {
+        return 'id'; // Replace with the actual identifier name for your model
+    }
+
+    public function getAuthIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
+
+    public function getRememberToken()
+    {
+        return $this->{$this->getRememberTokenName()};
+    }
+
+    public function setRememberToken($value)
+    {
+        $this->{$this->getRememberTokenName()} = $value;
+    }
+
+    public function getRememberTokenName()
+    {
+        return 'remember_token'; // Replace with the actual remember token column name in your model's table
     }
 
     //Applicant Milestones

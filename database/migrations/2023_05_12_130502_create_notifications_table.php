@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('batches', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedInteger('batch_num');
-            $table->boolean('is_archived')->default(false);
-            $table->unsignedBigInteger('program_id')->nullable();
-            $table->foreign('program_id')->references('id')->on('programs');
+        Schema::create('notifications', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('type');
+            $table->morphs('notifiable');
+            $table->text('data');
+            $table->timestamp('read_at')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('batches');
+        Schema::dropIfExists('notifications');
     }
 };

@@ -19,7 +19,7 @@ class BatchFactory extends Factory
     {
         return [
             'batch_num' => Batch::getNextBatchNumber(),
-            'is_archived' => fake()->boolean(0)
+            'is_archived' => fake()->boolean(0),
         ];
     }
 }

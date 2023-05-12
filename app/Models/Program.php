@@ -39,4 +39,9 @@ class Program extends Model
 
         return $users;
     }
+
+    public function batches()
+    {
+        return $this->hasMany(Batch::class);
+    }
 }
