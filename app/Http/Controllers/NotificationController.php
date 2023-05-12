@@ -40,7 +40,6 @@ class NotificationController extends Controller
 
     public function showInterviewForm()
     {
-        // $staffs = User::role('registrar_staff')->cursorPaginate(15);
         return view('notifications.interview');
     }
 

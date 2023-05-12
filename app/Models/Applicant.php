@@ -196,6 +196,31 @@ class Applicant extends Model implements Authenticatable
         return 'remember_token'; // Replace with the actual remember token column name in your model's table
     }
 
+    public function applicantStatus()
+    {
+        return $this->belongsTo(ApplicantStatus::class);
+    }
+
+    // for Dashboard
+    public static function getTotalApplicants()
+    {
+        return self::count();
+    }
+
+    public static function getPendingApplicants()
+    {
+        return self::whereHas('applicantStatus', function ($query) {
+            $query->where('applicant_status_name', 'pending');
+        })->count();
+    }
+
+    public static function getEvaluatedApplicants()
+    {
+        return self::whereHas('applicantStatus', function ($query) {
+            $query->where('applicant_status_name', 'evaluated');
+        })->count();
+    }
+
     //Applicant Milestones
     public function isVerified()
     {
