@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $evaluators = User::role('program_head')->cursorPaginate(5);
+        $evaluators = User::role('program_head')->cursorPaginate(15);
         return view('evaluators.list', compact('evaluators'));
     }
 

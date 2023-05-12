@@ -12,10 +12,12 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Notifications\HasDatabaseNotifications;
 
-class Applicant extends Model
+class Applicant extends Model implements Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasDatabaseNotifications;
 
     protected $fillable = [
         // personal information

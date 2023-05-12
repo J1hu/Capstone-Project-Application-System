@@ -1,4 +1,5 @@
 import './bootstrap';
+import './libs/trix';
 import { Stepper,initTE } from "tw-elements";
 
 initTE({ Stepper });

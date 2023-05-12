@@ -3,7 +3,7 @@
 
         @hasrole('applicant')
         <x-nav-link :href="route('applicants.dashboard')" :active="request()->routeIs('applicants.dashboard')">
-            <span class="material-symbols-outlined">
+            <span class="material-symbols-outlined mr-5">
                 home
             </span>
             {{ __('Dashboard') }}
@@ -13,7 +13,14 @@
             <span class="material-symbols-outlined mr-5">
                 face
             </span>
-            {{ __('Application Profile') }}
+            {{ __('My Profile') }}
+        </x-nav-link>
+        <x-nav-head>NOTIFICATIONS</x-nav-head>
+        <x-nav-link :href="route('notifications')" :active="request()->routeIs('notifications') || strpos(url()->current(), 'notifications') !== false">
+            <span class="material-symbols-outlined mr-5">
+                notifications
+            </span>
+            {{ __('View Notifications') }}
         </x-nav-link>
         @endhasrole
 
@@ -72,6 +79,14 @@
                 view_agenda
             </span>
             {{ __('List of Batches') }}
+        </x-nav-link>
+
+        <x-nav-head>NOTIFICATION</x-nav-head>
+        <x-nav-link :href="route('notifications.view')" :active="request()->routeIs('notifications') || strpos(url()->current(), 'notifications') !== false">
+            <span class="material-symbols-outlined mr-5">
+                notifications
+            </span>
+            {{ __('Send Notifications') }}
         </x-nav-link>
         @endrole
     </div>
