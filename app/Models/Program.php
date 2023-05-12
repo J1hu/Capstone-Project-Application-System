@@ -39,4 +39,75 @@ class Program extends Model
 
         return $users;
     }
+
+    public function batches()
+    {
+        return $this->hasMany(Batch::class);
+    }
+
+    public static function getBSISApplicants()
+    {
+        $program = self::where('program_name', 'BSIS')->first();
+
+        if ($program) {
+            return $program->applicants()->count();
+        }
+
+        return 0;
+    }
+
+    public static function getACTApplicants()
+    {
+        $program = self::where('program_name', 'ACT')->first();
+
+        if ($program) {
+            return $program->applicants()->count();
+        }
+
+        return 0;
+    }
+
+    public static function getBABApplicants()
+    {
+        $program = self::where('program_name', 'BAB')->first();
+
+        if ($program) {
+            return $program->applicants()->count();
+        }
+
+        return 0;
+    }
+
+    public static function getBSAApplicants()
+    {
+        $program = self::where('program_name', 'BSA')->first();
+
+        if ($program) {
+            return $program->applicants()->count();
+        }
+
+        return 0;
+    }
+
+    public static function getBSAISApplicants()
+    {
+        $program = self::where('program_name', 'BSAIS')->first();
+
+        if ($program) {
+            return $program->applicants()->count();
+        }
+
+        return 0;
+    }
+
+    public static function getBSSWApplicants()
+    {
+        $program = self::where('program_name', 'BSSW')->first();
+
+        if ($program) {
+            return $program->applicants()->count();
+        }
+
+        return 0;
+    }
 }
