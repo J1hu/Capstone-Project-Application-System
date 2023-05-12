@@ -107,6 +107,7 @@ Route::middleware(['auth', 'role:applicant|admin|program_head|mancom|registrar_s
 
         // posts
         Route::post('/send-exam-notification', [NotificationController::class, 'sendExamNotification'])->name('notifications.exam-notification');
+        Route::put('/notifications/{notification}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.mark-as-read');
     });
 });
 

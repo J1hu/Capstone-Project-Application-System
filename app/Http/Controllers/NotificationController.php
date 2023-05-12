@@ -7,6 +7,8 @@ use App\Models\Program;
 use App\Models\Applicant;
 use Illuminate\Http\Request;
 use App\Notifications\ExamNotification;
+use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 
 class NotificationController extends Controller
 {
@@ -46,5 +48,20 @@ class NotificationController extends Controller
     {
         // $staffs = User::role('registrar_staff')->cursorPaginate(15);
         return view('notifications.interview');
+    }
+
+    public function markAsRead($notificationId)
+    {
+        $applicant = Auth::user()->applicant;
+
+        $notification = $applicant->unreadNotifications()
+            ->where('id', $notificationId)
+            ->first();
+
+        if ($notification) {
+            $notification->markAsRead();
+        }
+
+        return redirect()->back();
     }
 }
