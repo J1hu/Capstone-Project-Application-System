@@ -346,4 +346,11 @@ class ApplicantController extends Controller
 
         return view('admin.applicant-profile', compact('user', 'applicant', 'preassessment', 'exam_score', 'initial_assessment', 'final_assessment'));
     }
+
+    public function notifications()
+    {
+        $notifications = Auth::user()->applicant->notifications;
+
+        return view('applicants.notifications', compact('notifications'));
+    }
 }

@@ -13,12 +13,18 @@ class Batch extends Model
 
     protected $fillable = [
         'batch_num',
-        'is_archived'
+        'is_archived',
+        'program_id'
     ];
 
     public function applicants()
     {
         return $this->hasMany(Applicant::class);
+    }
+
+    public function program()
+    {
+        return $this->belongsTo(Program::class, 'program_id');
     }
 
     public static function getNextBatchNumber()

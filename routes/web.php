@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApplicantController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\CsvController;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,27 +99,16 @@ Route::middleware(['auth', 'role:applicant|admin|program_head|mancom|registrar_s
     });
 });
 
+// NOTIFICATIONS
+Route::middleware(['auth', 'role:applicant|admin|program_head|mancom|registrar_staff', 'verified'])->group(function () {
+    Route::prefix('notifications')->group(function () {
+        Route::get('/view', [NotificationController::class, 'showNotification'])->name('notifications.view');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        // posts
+        Route::post('/send-notification', [NotificationController::class, 'sendNotification'])->name('notifications.notification');
+        Route::put('/notifications/{notification}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.mark-as-read');
+    });
+});
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/mancom.php';

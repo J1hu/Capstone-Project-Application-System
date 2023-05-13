@@ -17,6 +17,9 @@ Route::middleware(['auth', 'role:admin|program_head|mancom|registrar_staff', 've
     Route::post('/initial_assessments', [EvaluationController::class, 'initialAssessment'])->name('initial_assessments.store');
     Route::post('/final_assessments', [EvaluationController::class, 'finalAssessment'])->name('final_assessments.store');
 
+    Route::get('/notifications', [ApplicantController::class, 'notifications'])->name('notifications');
+
+
     // Route::get('/applicants/create', [ApplicantController::class, 'create'])->name('applicants.create');
     // Route::post('/applicants', [ApplicantController::class, 'store'])->name('applicants.store');
 
