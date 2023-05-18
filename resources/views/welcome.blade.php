@@ -85,7 +85,7 @@
             </h1>
             <ul class="list-disc list-inside my-5 mx-10 font-semibold text-justify sm:mx-15 md:mx-0">
                 <li>Accomplished Online Application Form</li>
-                <li>Printed Application Confirmation Slip <span class="italic">(May be downloaded after <br> accomplishing the Online Application Form)</span></li>
+                <li>Printed Application Confirmation Slip <span class="italic">(May be downloaded after accomplishing the Online Application Form)</span></li>
                 <li>2x2 Recent Formal Picture <span class="italic">(White background with Name Tag)</span></li>
                 <li>Copy of previous year's Report Card (F138) with LRN</li>
                 <li>Certification of Grades/TOR <span class="italic">(For College Transferees)</span></li>
