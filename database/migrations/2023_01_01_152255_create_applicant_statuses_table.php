@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('applicant_statuses', function (Blueprint $table) {
             $table->id();
-            $table->enum('applicant_status_name', ['pending', 'evaluated']);
+            $table->enum('applicant_status_name', ['pending', 'evaluated', 'failed']);
             $table->timestamps();
         });
     }
