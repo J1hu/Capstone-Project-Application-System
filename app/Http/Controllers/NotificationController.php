@@ -15,13 +15,15 @@ class NotificationController extends Controller
     public function showNotification()
     {
         $programs = Program::all();
-        return view('notifications.index', compact('programs'));
+        $batches = Batch::all();
+        return view('notifications.index', compact('programs', 'batches'));
     }
 
     public function sendNotification(Request $request)
     {
         // Retrieve the input values from the form
         $programId = $request->input('programId');
+        $batch_num = $request->input('batch_num');
         $title = $request->input('title');
         $content = $request->input('content');
 
