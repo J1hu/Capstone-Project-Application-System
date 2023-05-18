@@ -17,7 +17,23 @@ class ApplicationStatusFactory extends Factory
     public function definition()
     {
         return [
-            'application_status_name' => fake()->text(10)
+            'application_status_name' => fake()->randomElement([
+                'verified',
+                'filled',
+                'pending',
+                'passed',
+                'file resubmit',
+                'backed out',
+                'for exam',
+                'passed exam',
+                'failed exam',
+                'for interview',
+                'passed interview',
+                'failed interview',
+                'for orientation',
+                'done orientation',
+                'for enrollment'
+            ])
         ];
     }
 }
