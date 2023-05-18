@@ -30,9 +30,10 @@
         <hr class="w-full bg-slate-500 mt-5">
     </div>
     @endif
+    @endforeach
     @empty
     <div class="card bg-white py-5 px-5 border-l-4 border-blue-500 rounded-sm">
         <p>No notifications found.</p>
     </div>
-    @endforeach
+    @endempty
 </x-app-layout>
