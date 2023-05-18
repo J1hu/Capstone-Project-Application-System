@@ -4,6 +4,11 @@
             {{ __('Notifications') }}
         </h2>
     </x-slot>
+    @if ($notifications->isEmpty())
+    <div class="card bg-white py-5 px-5 border-l-4 border-blue-500 rounded-sm">
+        <p>No notifications found.</p>
+    </div>
+    @else
     @foreach ($notifications as $notification)
     @if (is_null($notification->read_at))
     <div class="card bg-white py-5 px-5 rounded-sm">
@@ -31,9 +36,5 @@
     </div>
     @endif
     @endforeach
-    @empty
-    <div class="card bg-white py-5 px-5 border-l-4 border-blue-500 rounded-sm">
-        <p>No notifications found.</p>
-    </div>
-    @endempty
+    @endif
 </x-app-layout>
