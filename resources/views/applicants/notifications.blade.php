@@ -1,6 +1,6 @@
 <x-app-layout>
     <h2>Notifications</h2>
-    @forelse ($notifications as $notification)
+    @foreach ($notifications as $notification)
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Title: {{ $notification->data['title'] }}</h5>
@@ -14,5 +14,5 @@
     </div>
     @empty
     <p>No notifications found.</p>
-    @endforelse
+    @endforeach
 </x-app-layout>
