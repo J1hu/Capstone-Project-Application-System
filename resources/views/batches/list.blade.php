@@ -16,8 +16,6 @@
                     <h1 class="font-bold px-6 pt-6 pb-3">List of Active Batches</h1>
                     <div class="space-y-3 p-5">
                         <div class="grid space-y-3">
-                            <x-primary-button class="px-5 justify-self-end content-center" id="generate-csv">Generate
-                                CSV</x-primary-button>
                             <x-primary-button
                                 class="px-5 justify-self-end content-center hover:bg-red-500 bg-red-700 py-2 border-2 w-fit rounded-md border-slate-300 text-white uppercase text-xs font-bold focus:bg-red-900 focus:ring-red-500 active:bg-red-800"
                                 id="archive-btn">Archive all active batch</x-primary-button>
