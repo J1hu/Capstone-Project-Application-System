@@ -22,6 +22,9 @@ class ApplicantStatusSeeder extends Seeder
             [
                 'applicant_status_name' => 'evaluated',
             ],
+            [
+                'applicant_status_name' => 'failed',
+            ],
         ];
 
         foreach ($statuses as $statuses) {
