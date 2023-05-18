@@ -84,15 +84,13 @@
                 THINGS TO PREPARE
             </h1>
             <ul class="list-disc list-inside my-5 mx-10 font-semibold text-justify sm:mx-15 md:mx-0">
-                <li>Filipino citizen of good moral character</li>
-                <li>At least superior rating in FEU-CAT and has a HS GWA of at least 88</li>
-                <li>Accomplished information sheet with 2×2 colored ID picture</li>
-                <li>Photocopy of form 138 or 4th Year report card</li>
-                <li>Photocopy of certificate of good moral character</li>
-                <li>Must be a regular student</li>
-                <li>GPA of at least B (3.0) / QPA of at least 3.20</li>
-                <li>No grade lower than C+ (2.5)</li>
-                <li>No major offense</li>
+                <li>Accomplished Online Application Form</li>
+                <li>Printed Application Confirmation Slip <span class="italic">(May be downloaded after <br> accomplishing the Online Application Form)</span></li>
+                <li>2x2 Recent Formal Picture <span class="italic">(White background with Name Tag)</span></li>
+                <li>Copy of previous year's Report Card (F138) with LRN</li>
+                <li>Certification of Grades/TOR <span class="italic">(For College Transferees)</span></li>
+                <li>Parent/Legal Guardian's Income Tax Return (ITR) or <br>
+                    Certificate of Non-Tax Payment or  Certificate of Indigency</li>
             </ul>
         </div>
         <div
@@ -101,12 +99,12 @@
         </div>
     </div>
 </div>
-{{-- Perks of FS --}}
+{{-- Benefits of FS --}}
 <div class="h-fit my-10 lg:my-36">
     <div class="grid gap-4 mb-4 md:grid-flow-row md:grid-cols-2 md:gap-0">
         <div
             class="relative mx-auto p-5 flex flex-col content-center bg-indigo-700 rounded title overflow-hidden w-5/6 sm:px-10">
-            <div class="text-3xl text-white font-black z-10 md:my-auto">PERKS OF FULL SCHOLARS</div>
+            <div class="text-3xl text-white font-black z-10 md:my-auto">BENEFITS OF FULL SCHOLARS</div>
             <div class="absolute w-36 h-36 p-0 -right-6 -top-4 bg-blue-300 rounded-full md:h-56 md:w-56 md:-right-24">
             </div>
         </div>
@@ -127,23 +125,58 @@
     </div>
 </div>
 {{-- Programs --}}
-<div class="title text-3xl text-center font-black text-sky-700 w-full my-16 md:text-5xl">PROGRAMS OFFERED</div>
-<div class="relative flex overflow-x-hidden text-white bg-indigo-700">
-    <div class="py-12 animate-marquee whitespace-nowrap">
-        <span class="mx-4 text-lg font-bold p-5 rounded-sm">Associate in Computer Technology</span>
-        <span class="mx-4 text-lg font-bold p-5 rounded-sm">Bachelor of Arts in Broadcasting</span>
-        <span class="mx-4 text-lg font-bold p-5 rounded-sm">Bachelor of Science in Accountancy</span>
-        <span class="mx-4 text-lg font-bold p-5 rounded-sm">Bachelor of Science in Accounting Information Systems</span>
-        <span class="mx-4 text-lg font-bold p-5 rounded-sm">Bachelor of Science in Information Systems</span>
-        <span class="mx-4 text-lg font-bold p-5 rounded-sm">Bachelor of Science in Social Works</span>
-    </div>
-    <div class="absolute top-0 py-12 animate-marquee2 whitespace-nowrap">
-        <span class="mx-4 text-lg font-bold p-5 rounded-sm">Associate in Computer Technology</span>
-        <span class="mx-4 text-lg font-bold p-5 rounded-sm">Bachelor of Arts in Broadcasting</span>
-        <span class="mx-4 text-lg font-bold p-5 rounded-sm">Bachelor of Science in Accountancy</span>
-        <span class="mx-4 text-lg font-bold p-5 rounded-sm">Bachelor of Science in Accounting Information Systems</span>
-        <span class="mx-4 text-lg font-bold p-5 rounded-sm">Bachelor of Science in Information Systems</span>
-        <span class="mx-4 text-lg font-bold p-5 rounded-sm">Bachelor of Science in Social Works</span>
+<div class="h-fit my-10">
+    <h1 class="text-center title text-3xl font-black text-sky-700 my-5 md:mt-0 md:text-4xl lg:text-5xl my-8">
+                    PROGRAMS OFFERED
+                </h1>
+    <div class="grid gap-x-2 gap-y-6 grid-cols-3">
+        <div class="text-center">
+                <img
+                src="{{ asset('assets/ict.png') }}"
+                class="mx-auto mb-4 w-40 rounded-full shadow-lg"
+                alt="Avatar" />
+            <h5 class="mb-2 text-xl font-medium leading-tight">BS Information Systems</h5>
+        </div>
+
+        <div class="text-center">
+                <img
+                src="{{ asset('assets/jpia.png') }}"
+                class="mx-auto mb-4 w-40 rounded-full shadow-lg"
+                alt="Avatar" />
+            <h5 class="mb-2 text-xl font-medium leading-tight">BS Accountancy</h5>
+        </div>
+
+        <div class="text-center">
+                <img
+                src="{{ asset('assets/bssw.png') }}"
+                class="mx-auto mb-4 w-40 rounded-full shadow-lg"
+                alt="Avatar" />
+            <h5 class="mb-2 text-xl font-medium leading-tight">BS Social Work</h5>
+        </div>
+
+        <div class="text-center">
+                <img
+                src="{{ asset('assets/jpia.png') }}"
+                class="mx-auto mb-4 w-40 rounded-full shadow-lg"
+                alt="Avatar" />
+            <h5 class="mb-2 text-xl font-medium leading-tight">BS Accounting Information System</h5>
+        </div>
+
+        <div class="text-center">
+                <img
+                src="{{ asset('assets/bab.png') }}"
+                class="mx-auto mb-4 w-40 rounded-full shadow-lg"
+                alt="Avatar" />
+            <h5 class="mb-2 text-xl font-medium leading-tight">BA Broadcasting</h5>
+        </div>
+
+        <div class="text-center mb-20">
+                <img
+                src="{{ asset('assets/ict.png') }}"
+                class="mx-auto mb-4 w-40 rounded-full shadow-lg"
+                alt="Avatar" />
+            <h5 class="mb-2 text-xl font-medium leading-tight">Assoc. Computer Technology</h5>
+        </div>
     </div>
 </div>
 {{-- Apply now --}}
