@@ -26,12 +26,14 @@ class NotificationController extends Controller
         $batch_num = $request->input('batch_num');
         $title = $request->input('title');
         $content = $request->input('content');
-
         // Retrieve the program
         $program = Program::findOrFail($programId);
 
         // Send the notification to the applicants in the program
-        $applicants = Applicant::where('program_id', $program->id)->get();
+        $applicants = Applicant::where([
+            ['program_id', $program->id],
+            ['batch_id', $batch_num]
+        ])->get();
 
         foreach ($applicants as $applicant) {
             $applicant->notify(new SendNotification($title, $content));
