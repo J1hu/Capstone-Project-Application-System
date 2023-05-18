@@ -9,7 +9,6 @@
         <p>No notifications found.</p>
     </div>
     @else
-    {{ dd($notifications); }}
     @foreach ($notifications as $notification)
     @if (is_null($notification->read_at))
     <div class="card bg-white py-5 px-5 rounded-sm">
