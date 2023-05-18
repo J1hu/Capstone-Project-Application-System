@@ -96,7 +96,6 @@ Route::middleware(['auth', 'role:applicant|admin|program_head|mancom|registrar_s
         Route::get('/pending-applicant-csv', [CsvController::class, 'generatePendingApplicantsCSV'])->name('generate.two');
         Route::get('/all-applicant-csv', [CsvController::class, 'generateAllApplicantsCSV'])->name('generate.three');
         Route::get('/failed-applicant-csv', [CsvController::class, 'generateFailedApplicantsCSV'])->name('generate.four');
-        Route::get('/batch-csv/{id}', [CsvController::class, 'generateBatchCSV'])->name('generate.four');
     });
 });
 
