@@ -13,11 +13,15 @@
         <div class="max-w-7xl mx-auto">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="grid grid-cols-2">
-                    <h1 class="font-bold px-6 pt-6 pb-3">List of Batches</h1>
+                    <h1 class="font-bold px-6 pt-6 pb-3">List of Active Batches</h1>
                     <div class="space-y-3 p-5">
-                        <div class="grid">
+                        <div class="grid space-y-3">
                             <x-primary-button class="px-5 justify-self-end content-center" id="generate-csv">Generate
                                 CSV</x-primary-button>
+                            <x-primary-button
+                                class="px-5 justify-self-end content-center hover:bg-red-500 bg-red-700 py-2 border-2 w-fit rounded-md border-slate-300 text-white uppercase text-xs font-bold focus:bg-red-900 focus:ring-red-500 active:bg-red-800"
+                                id="archive-btn">Archive all active batch</x-primary-button>
+
                         </div>
                     </div>
 
@@ -25,7 +29,7 @@
                 @auth
                     @if ($batches->isEmpty())
                         <div class="font-bold px-6 pt-6 pb-3">
-                            <p>There is currently no Active Batches</p>
+                            <p>There are no Active Batches</p>
                         </div>
                     @elseif ($batches->isNotEmpty())
                         {{-- Tabs --}}
@@ -44,20 +48,11 @@
                             </ul>
                         </div>
                         @foreach ($batches as $batch)
-                            <div class="grid mx-5 mt-3">
-                                <x-primary-button
-                                    class="px-5 justify-self-end content-center hover:bg-red-500 bg-red-700 py-2 border-2 w-fit rounded-md border-slate-300 text-white uppercase text-xs font-bold"
-                                    id="archive-btn">Archive
-                                    this batch</x-primary-button>
-                                @section('scripts')
-                                    document.getElementById('archive-btn').addEventListener('click', function() {
-                                    window.location.href = "{{ route('batches.archive', $batch) }}";
-                                    });
-                                    document.getElementById('generate-csv').addEventListener('click', function() {
-                                    window.location.href = "{{ route('generate.four', $batch) }}";
-                                    });
-                                @endsection
-                            </div>
+                            @section('scripts')
+                                document.getElementById('generate-csv').addEventListener('click', function() {
+                                window.location.href = "{{ route('generate.four', $batch) }}";
+                                });
+                            @endsection
                             <div id="myTabContent">
                                 <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800"
                                     id="batch-{{ $batch->batch_num }}" role="tabpanel"
@@ -95,6 +90,9 @@
             window.location.href = "{{ route('batches.archived-list') }}";
         });
 
+        document.getElementById('archive-btn').addEventListener('click', function() {
+            window.location.href = "{{ route('batches.archive') }}";
+        });
 
         // Get all tab buttons and content divs
         const tabButtons = document.querySelectorAll('[data-tabs-target]');

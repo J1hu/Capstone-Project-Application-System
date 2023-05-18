@@ -85,8 +85,8 @@ Route::middleware(['auth', 'role:applicant|admin|program_head|mancom|registrar_s
 Route::middleware(['auth', 'role:applicant|admin|program_head|mancom|registrar_staff', 'verified'])->group(function () {
     Route::get('/active-batches', [BatchController::class, 'showActiveBatches'])->name('batches.list');
     Route::get('/archived-batches', [BatchController::class, 'showArchivedBatches'])->name('batches.archived-list');
-    Route::get('/batches/archive/{batch}', [BatchController::class, 'archive'])->name('batches.archive');
-    Route::post('/batches/{batch}/unarchive', [BatchController::class, 'unarchive'])->name('batches.unarchive');
+    Route::get('/batches/archive', [BatchController::class, 'archive'])->name('batches.archive');
+    Route::get('/batches/unarchive', [BatchController::class, 'unarchive'])->name('batches.unarchive');
 });
 
 // CSV GENERATION

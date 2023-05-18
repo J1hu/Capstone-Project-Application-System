@@ -8,15 +8,16 @@ use Illuminate\Http\Request;
 class BatchController extends Controller
 {
     public function showActiveBatches()
-{
-    $batches = Batch::where('is_archived', false)
-        ->with('applicants')
-        ->orderBy('batch_num', 'asc')
-        ->get();
-        
+    {
 
-    return view('batches.list', compact('batches'));
-}
+        $batches = Batch::where('is_archived', false)
+            ->with('applicants')
+            ->orderBy('batch_num', 'asc')
+            ->get();
+
+
+        return view('batches.list', compact('batches'));
+    }
 
 
     public function showArchivedBatches()
@@ -29,19 +30,26 @@ class BatchController extends Controller
         return view('batches.archived-list', compact('batches'));
     }
 
-    public function archive(Batch $batch)
+    public function archive()
     {
-        $batch->is_archived = true;
-        $batch->save();
+        $batches = Batch::where('is_archived', false)->get();
+        foreach ($batches as $batch) {
+            $batch->is_archived = true;
+            $batch->save();
+        }
 
-        return redirect()->route('batches.list')->with('success', 'Batch has been archived.');
+        return redirect()->route('batches.list')->with('success', 'All active batches have been archived.');
     }
 
-    public function unarchive(Batch $batch)
-    {
-        $batch->is_archived = false;
-        $batch->save();
 
-        return redirect()->route('batches.archived-list')->with('success', 'Batch has been removed to archives.');
+    public function unarchive()
+    {
+        $batches = Batch::where('is_archived', true)->get();
+        foreach ($batches as $batch) {
+            $batch->is_archived = false;
+            $batch->save();
+        }
+
+        return redirect()->route('batches.archived-list')->with('success', 'All archived batches has been removed to archives.');
     }
 }
