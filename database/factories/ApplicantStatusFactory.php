@@ -17,7 +17,7 @@ class ApplicantStatusFactory extends Factory
     public function definition()
     {
         return [
-            'applicant_status_name' => fake()->randomElement(['pending', 'evaluated'])
+            'applicant_status_name' => fake()->randomElement(['pending', 'evaluated', 'failed'])
         ];
     }
 }

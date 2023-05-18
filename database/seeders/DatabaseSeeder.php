@@ -49,17 +49,17 @@ class DatabaseSeeder extends Seeder
         $this->call(ApplicantStatusSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(ApplicantSeeder::class);
-        $this->call(ApplicantAddressSeeder::class);
-        $this->call(ApplicantMotherSeeder::class);
-        $this->call(ApplicantFatherSeeder::class);
-        $this->call(ApplicantGuardianSeeder::class);
-        $this->call(HouseOwnershipSeeder::class);
-        $this->call(ExamScoreSeeder::class);
-        $this->call(ApplicantSiblingSeeder::class);
-        $this->call(AcadAwardSeeder::class);
-        $this->call(GadgetSeeder::class);
-        $this->call(InternetTypeSeeder::class);
-        $this->call(ElectricBillSeeder::class);
+        // $this->call(ApplicantAddressSeeder::class);
+        // $this->call(ApplicantMotherSeeder::class);
+        // $this->call(ApplicantFatherSeeder::class);
+        // $this->call(ApplicantGuardianSeeder::class);
+        // $this->call(HouseOwnershipSeeder::class);
+        // $this->call(ExamScoreSeeder::class);
+        // $this->call(ApplicantSiblingSeeder::class);
+        // $this->call(AcadAwardSeeder::class);
+        // $this->call(GadgetSeeder::class);
+        // $this->call(InternetTypeSeeder::class);
+        // $this->call(ElectricBillSeeder::class);
         $this->call(EvaluationSeeder::class);
 
         $createAdmin = User::factory()->create([

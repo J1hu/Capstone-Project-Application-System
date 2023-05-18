@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\ApplicationStatus;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class ApplicationStatusSeeder extends Seeder
 {
@@ -15,22 +16,25 @@ class ApplicationStatusSeeder extends Seeder
     public function run()
     {
         $statuses = [
-            [
-                'application_status_name' => 'evaluation',
-            ],
-            [
-                'application_status_name' => 'examination',
-            ],
-            [
-                'application_status_name' => 'interview',
-            ],
-            [
-                'application_status_name' => 'assessment',
-            ],
+            'verified',
+            'filled',
+            'pending',
+            'passed',
+            'file resubmit',
+            'backed out',
+            'for exam',
+            'passed exam',
+            'failed exam',
+            'for interview',
+            'passed interview',
+            'failed interview',
+            'for orientation',
+            'done orientation',
+            'for enrollment'
         ];
 
         foreach ($statuses as $statuses) {
-            \App\Models\ApplicationStatus::create($statuses);
+            ApplicationStatus::create(['application_status_name' => $statuses]);
         }
     }
 }
