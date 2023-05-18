@@ -3,7 +3,21 @@
 namespace Database\Factories;
 
 use App\Models\Batch;
+use App\Models\Gadget;
 use Random\RandomError;
+use App\Models\AcadAward;
+use App\Models\Applicant;
+use App\Models\ExamScore;
+use App\Models\ElectricBill;
+use App\Models\InternetType;
+use App\Models\HouseOwnership;
+use App\Models\ApplicantFather;
+use App\Models\ApplicantMother;
+use App\Models\ScholarshipType;
+use App\Models\ApplicantAddress;
+use App\Models\ApplicantSibling;
+use App\Models\ApplicantGuardian;
+use Spatie\Permission\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -52,5 +66,51 @@ class ApplicantFactory extends Factory
             'application_status_id' => rand(1, 4),
             'applicant_status_id' => rand(1, 2),
         ];
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function (Applicant $applicant) {
+            // Remove any existing roles from the user
+            $applicant->user->roles()->detach();
+
+            // Assign a single role to the user
+            $role = Role::where('name', 'applicant')->first();
+            $applicant->user->assignRole($role);
+            // Create an applicant address and associate it with the applicant
+            ApplicantAddress::factory()->create([
+                'applicant_id' => $applicant->id,
+            ]);
+            AcadAward::factory()->create([
+                'applicant_id' => $applicant->id,
+            ]);
+            ApplicantFather::factory()->create([
+                'applicant_id' => $applicant->id,
+            ]);
+            ApplicantMother::factory()->create([
+                'applicant_id' => $applicant->id,
+            ]);
+            ApplicantGuardian::factory()->create([
+                'applicant_id' => $applicant->id,
+            ]);
+            ApplicantSibling::factory()->create([
+                'applicant_id' => $applicant->id,
+            ]);
+            ApplicantSibling::factory()->create([
+                'applicant_id' => $applicant->id,
+            ]);
+            ElectricBill::factory()->create([
+                'applicant_id' => $applicant->id,
+            ]);
+            Gadget::factory()->create([
+                'applicant_id' => $applicant->id,
+            ]);
+            HouseOwnership::factory()->create([
+                'applicant_id' => $applicant->id,
+            ]);
+            InternetType::factory()->create([
+                'applicant_id' => $applicant->id,
+            ]);
+        });
     }
 }
