@@ -3,10 +3,6 @@
         <div class="mx-auto m-1">
             <x-application-logo container="flex" titlefluid="grid" logo="w-12 mx-2" title="font-bold text-base" subtitle="text-xs leading-tight" />
         </div>
-        <div class="grid content-center m-1 text-center md:text-left">
-            <p class="text-sm font-bold sm:text-base">LA VERDAD CHRISTIAN COLLEGE</p>
-            <p class="text-sm italic leading-4">McArthur Highway, Brgy. Sampaloc, Apalit, Pampanga</p>
-        </div>
     </a>
     <div class="text-center m-2 grid grid-flow-col items-center md:justify-self-end md:grid-flow-row md:col-span-1 md:text-right">
         <a href="{{ route('faqs') }}">
