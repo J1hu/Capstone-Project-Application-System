@@ -1224,12 +1224,6 @@
         "monthly_rental",
     ];
 
-    // Loop through each ID and apply the restrictToNumbers function
-    inputFieldIds.forEach(function(id) {
-        const inputField = document.getElementById(id);
-        restrictToNumbers(inputField);
-    });
-
     function restrictToNumbers(inputField) {
         inputField.addEventListener("keypress", function(event) {
             if (isNaN(event.key)) {
@@ -1237,6 +1231,14 @@
             }
         });
     }
+    
+    // Loop through each ID and apply the restrictToNumbers function
+    inputFieldIds.forEach(function(id) {
+        const inputField = document.getElementById(id);
+        restrictToNumbers(inputField);
+    });
+
+    
 
     // Stepper
     let currentStep = 1;
