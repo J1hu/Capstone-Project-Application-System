@@ -18,6 +18,7 @@ use App\Events\ApplicantCreated;
 use App\Models\ApplicantAddress;
 use App\Models\ApplicantSibling;
 use App\Models\ApplicantGuardian;
+use App\Models\ApplicationStatus;
 use Illuminate\Support\Facades\Auth;
 use Database\Seeders\ApplicantSeeder;
 use Illuminate\Support\Facades\Storage;
@@ -321,7 +322,13 @@ class ApplicantController extends Controller
 
         $applicant->houseOwnership()->save($houseOwnership);
 
+        //assign batch to applicant
         event(new ApplicantCreated($applicant));
+
+        //assign status to applicant
+        $applicationStatus = ApplicationStatus::where('application_status_name', 'filled')->first();
+        $applicant->application_status()->associate($applicationStatus);
+        $applicant->save();
 
         return redirect()->route('applicants.dashboard');
     }
