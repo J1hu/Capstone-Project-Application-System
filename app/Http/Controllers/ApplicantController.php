@@ -333,6 +333,19 @@ class ApplicantController extends Controller
         return view('applicants.profile', compact('user', 'applicant'));
     }
 
+    public function edit()
+    {
+        $user = Auth::user();
+        $applicant = $user->applicant;
+        $programs = Program::all();
+
+        return view('applicants.edit', compact('user', 'applicant', 'programs'));
+    }
+
+    public function update()
+    {
+    }
+
     public function viewProfileById($id)
     {
         $applicant = Applicant::findOrFail($id);
