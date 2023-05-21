@@ -5,7 +5,7 @@
             {{ __('Applicant Profile') }}
         </h2>
     </x-slot>
-
+        @csrf
     {{-- first card --}}
     <div class="bg-white border rounded-md p-5">
         <div class="grid grid-cols-5">
@@ -348,11 +348,16 @@
                     id="others-tab" data-tabs-target="#others" type="button" role="tab" aria-controls="others"
                     aria-selected="false">Other Information</button>
             </li>
+            <li class="mr-2" role="presentation">
+                <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="sign-tab" data-tabs-target="#sign" type="button" role="tab" aria-controls="sign" aria-selected="false">Signed Declaration</button>
             <li role="presentation">
                 <button
                     class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300"
                     id="sign-tab" data-tabs-target="#sign" type="button" role="tab" aria-controls="sign"
                     aria-selected="false">Signed Declaration</button>
+            </li>
+            <li role="presentation">
+                <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="sign-tab" data-tabs-target="#images" type="button" role="tab" aria-controls="images" aria-selected="false">Uploaded Files</button>
             </li>
         </ul>
     </div>
@@ -560,6 +565,27 @@
                 @else
                     <span class="text-red-600">Applicant did not agreed.</span>
                 @endif
+            </div>
+        </div>
+        <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="images" role="tabpanel" aria-labelledby="images-tab">
+            <div>
+                <div id="myModal" class="modal">
+                    <img class="modal-content" id="img" alt="">
+                  </div>
+                  <section data-aos="fade-up" data-aos-duration="2000" data-aos-anchor-placement="center-bottom">
+                    <div class="gallery gap-8 columns-3">
+                        <div>
+                            <img class="myImg" src="{{ asset('storage/certificates/' . $applicant->certificate) }}" alt="Certificate" width="100px">
+                        </div>
+                        <div>
+                            <img class="myImg" src="{{ asset('storage/report-cards/' . $applicant->report_card) }}" alt="Report Card" width="100px">
+                        </div>
+                        <div>
+                            <img class="myImg" src="{{ asset('storage/ebill-proofs/' . $applicant->ebill_proof) }}" alt="Electric Bill" width="100px">
+                        </div>
+                        
+                    </div>
+                  </section>
             </div>
         </div>
     </div>
