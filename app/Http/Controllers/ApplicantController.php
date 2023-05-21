@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Auth;
 use Database\Seeders\ApplicantSeeder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class ApplicantController extends Controller
 {
@@ -183,17 +184,17 @@ class ApplicantController extends Controller
 
         // saving certificates of applicants
         $cert = time() . '.' . request()->certificate->getClientOriginalExtension();
-        $request->certificate->move(storage_path('certificates'), $cert);
+        $request->certificate->move(storage_path('app/public/certificates'), $cert);
         $applicant->certificate = $cert;
 
         //report card
         $reportCard = time() . '.' . request()->report_card->getClientOriginalExtension();
-        $request->report_card->move(storage_path('report-cards'), $reportCard);
+        $request->report_card->move(storage_path('app/public/report-cards'), $reportCard);
         $applicant->report_card = $reportCard;
 
         //ebill proof
         $ebill = time() . '.' . request()->ebill_proof->getClientOriginalExtension();
-        $request->ebill_proof->move(storage_path('ebill-proofs'), $ebill);
+        $request->ebill_proof->move(storage_path('app/public/ebill-proofs'), $ebill);
         $applicant->ebill_proof = $ebill;
 
         $applicant->save();
@@ -474,6 +475,12 @@ class ApplicantController extends Controller
         $initial_assessment = $applicant->initialAssessment;
         $final_assessment = $applicant->finalAssessment;
         // dd($initial_assessment);
+
+        // $filePermissions = Storage::getVisibility('report-cards/' . $applicant->report_card);
+
+        $filePath = 'report-cards/'. $applicant->report_card;
+        Storage::setVisibility($filePath, 'public');
+        $fileUrl = asset('storage/' . $filePath);
 
         return view('admin.applicant-profile', compact('user', 'applicant', 'preassessment', 'exam_score', 'initial_assessment', 'final_assessment'));
     }
