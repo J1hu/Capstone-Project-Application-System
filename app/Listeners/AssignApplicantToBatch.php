@@ -28,26 +28,21 @@ class AssignApplicantToBatch
     public function handle(ApplicantCreated $event)
     {
         $applicant = $event->applicant;
-        $batchNumber = Batch::getNextBatchNumber();
+        $currentDate = date('Y-m-d');
 
-        // check if a batch with the batch number exists and is not archived
-        $batch = Batch::where('batch_num', $batchNumber)->where('is_archived', false)->first();
+        // Check if a batch for the current date exists and is not archived
+        $batch = Batch::where('current_date', $currentDate)->where('is_archived', false)->first();
 
         if (!$batch) {
-            // create a new batch if it does not exist
-            $batch = Batch::create(['batch_num' => $batchNumber]);
-        }
-
-        // retrieve the last batch and check if it has reached its capacity
-        $lastBatch = Batch::latest()->first();
-
-        if ($lastBatch->applicants()->count() >= Batch::FULL_CAPACITY && !$lastBatch->is_archived) {
-            // create a new batch if the last batch has reached its capacity and is not archived
+            // If a batch does not exist, create a new one
             $batchNumber = Batch::getNextBatchNumber();
-            $batch = Batch::create(['batch_num' => $batchNumber]);
+            $batch = Batch::create([
+                'batch_num' => $batchNumber,
+                'current_date' => $currentDate,
+            ]);
         }
 
-        // assign the applicant to the appropriate batch
+        // Assign the applicant to the appropriate batch
         $applicant->batch_id = $batch->id;
         $applicant->save();
     }

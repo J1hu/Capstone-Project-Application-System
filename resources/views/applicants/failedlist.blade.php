@@ -11,7 +11,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="grid grid-cols-2 p-6">
                     <div>
-                        <h1 class="font-bold">List of Pending Applicants</h1>
+                        <h1 class="font-bold">List of Failed Applicants</h1>
                     </div>
                     <div class="grid justify-self-end content-center">
                         <x-primary-button class="px-5" id="generate-csv">Generate CSV</x-primary-button>
@@ -36,7 +36,7 @@
                             <td class="py-2">{{ $applicant->user->email}}</td>
                             <td class="py-2">{{ $applicant->program->program_name}}</td>
                             <td class="py-2">{{ $applicant->phone_num}}</td>
-                            <td class="py-2 capitalize">{{ $applicant->applicant_status->applicant_status_name}}</td>
+                            <td class="py-2">{{ $applicant->applicant_status->applicant_status_name}}</td>
                             <td><a href="{{ route('applicants.admin-view', ['id' => $applicant->id]) }}" class="bg-blue-500 text-white px-2 py-1 rounded-md text-xs">View Profile</a></td>
                         </tr>
                         @endforeach
@@ -66,6 +66,6 @@
     });
 
     document.getElementById('generate-csv').addEventListener('click', function() {
-        window.location.href = "{{ route('generate.two') }}";
+        window.location.href = "{{ route('generate.four') }}";
     });
 </script>

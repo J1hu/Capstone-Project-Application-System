@@ -46,6 +46,13 @@
             </span>
             {{ __('Evaluated Applicants') }}
         </x-nav-link>
+        <x-nav-link :href="route('applicants.failed-list')" :active="request()->routeIs('applicants.failed-list') ||
+                strpos(url()->current(), 'applicants.failed-list') !== false">
+            <span class="material-symbols-outlined mr-5">
+                assignment_late
+            </span>
+            {{ __('Failed Applicants') }}
+        </x-nav-link>
         @endhasanyrole
 
         @role('admin')

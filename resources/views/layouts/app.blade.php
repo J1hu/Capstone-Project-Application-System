@@ -18,9 +18,43 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <x-rich-text-trix-styles />
+
+    <!-- Datatables -->
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 </head>
 
 <body class="antialiased bg-gray-100">
+    <style>
+        /*custom styling */
+        #myTable_wrapper {
+            padding: 10px;
+        }
+
+        #myTable_filter input[type="search"] {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 6px;
+        }
+
+        #myTable_length select {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding-left: 5px;
+            padding-right: 30px;
+        }
+
+        .odd {
+            background-color: #fff;
+        }
+
+        .even {
+            background-color: #f8f8f8;
+        }
+
+        .resident-row:hover {
+            background-color: #e5f7f7;
+        }
+    </style>
     <div class="relative dark:bg-gray-900">
         @include('layouts.navigation')
         @include('layouts.sidenavigation')
@@ -38,6 +72,7 @@
             {{ $slot }}
         </main>
     </div>
+    @yield('scripts')
 </body>
 
 </html>

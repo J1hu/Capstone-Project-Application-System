@@ -3,12 +3,17 @@
 use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\EvaluatedApplicantController;
 use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\FailedApplicantController;
 use App\Http\Controllers\PendingApplicantController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'role:admin|program_head|mancom|registrar_staff', 'verified'])->group(function () {
     Route::get('/applicants/pending-list', [PendingApplicantController::class, 'index'])->name('applicants.pending-list');
     Route::get('/applicants/evaluated-list', [EvaluatedApplicantController::class, 'index'])->name('applicants.evaluated-list');
+    Route::get('/applicants/failed-list', [FailedApplicantController::class, 'index'])->name('applicants.failed-list');
+
+    Route::get('/applicants/{applicant}/edit', [ApplicantController::class, 'edit'])->name('applicants.edit');
+    Route::put('/applicants/{applicant}', [ApplicantController::class, 'update'])->name('applicants.update');
 
     Route::get('/applicants/{id}/profile', [ApplicantController::class, 'viewProfileById'])->name('applicants.admin-view');
 
