@@ -12,8 +12,22 @@ class PendingApplicantController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $applicants = Applicant::with(['user', 'program', 'applicant_status'])
-            ->where('applicant_status_id', 1)
+        $allowedStatuses = [
+            'verified',
+            'filled',
+            'pending',
+            'file resubmit',
+            'for exam',
+            'passed exam',
+            'for interview',
+            'passed interview',
+            'for orientation'
+        ];
+
+        $applicants = Applicant::with(['user', 'program', 'application_status'])
+            ->whereHas('application_status', function ($query) use ($allowedStatuses) {
+                $query->whereIn('application_status_name', $allowedStatuses);
+            })
             ->whereHas('batch', function ($query) {
                 $query->where('is_archived', false);
             });
@@ -28,6 +42,8 @@ class PendingApplicantController extends Controller
 
         return view('applicants.pendinglist', compact('applicants'));
     }
+
+
 
     public function viewProfile($id)
     {

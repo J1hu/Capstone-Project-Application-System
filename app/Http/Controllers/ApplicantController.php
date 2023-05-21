@@ -9,6 +9,7 @@ use App\Models\Applicant;
 use App\Models\ElectricBill;
 use App\Models\InternetType;
 use Illuminate\Http\Request;
+use App\Models\Preassessment;
 use App\Models\HouseOwnership;
 use App\Models\ApplicantFather;
 use App\Models\ApplicantMother;
@@ -17,9 +18,10 @@ use App\Events\ApplicantCreated;
 use App\Models\ApplicantAddress;
 use App\Models\ApplicantSibling;
 use App\Models\ApplicantGuardian;
-use App\Models\Preassessment;
+use App\Models\ApplicationStatus;
 use Illuminate\Support\Facades\Auth;
 use Database\Seeders\ApplicantSeeder;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 
@@ -321,7 +323,13 @@ class ApplicantController extends Controller
 
         $applicant->houseOwnership()->save($houseOwnership);
 
+        //assign batch to applicant
         event(new ApplicantCreated($applicant));
+
+        //assign status to applicant
+        $applicationStatus = ApplicationStatus::where('application_status_name', 'filled')->first();
+        $applicant->application_status()->associate($applicationStatus);
+        $applicant->save();
 
         return redirect()->route('applicants.dashboard');
     }
@@ -332,6 +340,129 @@ class ApplicantController extends Controller
         $applicant = $user->applicant;
 
         return view('applicants.profile', compact('user', 'applicant'));
+    }
+
+    public function edit($id)
+    {
+        $applicant = Applicant::findOrFail($id);
+        $user = $applicant->user;
+        $programs = Program::all();
+
+        return view('applicants.edit', compact('user', 'applicant', 'programs'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $applicant = Applicant::findOrFail($id);
+
+        $applicant->fill($request->only([
+            'fname',
+            'mname',
+            'lname',
+            'applicant_type',
+            'sex',
+            'birthdate',
+            'phone_num',
+            'fb_link',
+            'religion',
+            'total_fam_children',
+            'birth_order',
+            'last_school',
+            'last_school_address',
+            'school_type',
+            'lrn',
+            'esc_grantee',
+            'esc_num',
+            'program_id',
+            'free_ebill_reason',
+            'monthly_rental',
+            'contact_consent',
+            'data_privacy_consent',
+            'batch_id',
+            'exam_score_id',
+            'application_status_id',
+            'applicant_status_id',
+        ]));
+
+        // Update applicant avatar if a new one is provided
+        if ($request->hasFile('avatar')) {
+            // Delete the existing avatar file
+            $previousAvatar = $applicant->avatar;
+
+            $filename = time() . '.' . $request->avatar->getClientOriginalExtension();
+            $request->file('avatar')->move(public_path('avatars'), $filename);
+
+            if ($previousAvatar) {
+                $filepath = public_path('avatars/' . $previousAvatar);
+
+                if (file_exists($filepath)) {
+                    chmod($filepath, 0777);
+                    unlink($filepath);
+                }
+            }
+            $applicant->avatar = $filename;
+        }
+
+        // Update certificates if new ones are provided
+        if ($request->hasFile('certificate')) {
+            // Delete the existing certificate file
+            $previousCertificate = $applicant->certificate;
+
+            $cert = time() . '.' . $request->certificate->getClientOriginalExtension();
+            $request->file('certificate')->move(storage_path('certificates'), $cert);
+
+            if ($previousCertificate) {
+                $filepath = storage_path('certificates/' . $previousCertificate);
+
+                if (file_exists($filepath)) {
+                    chmod($filepath, 0777);
+                    unlink($filepath);
+                }
+            }
+            $applicant->certificate = $cert;
+        }
+
+        // Update report card if a new one is provided
+        if ($request->hasFile('report_card')) {
+            // Delete the existing report card file
+            $previousReportCard = $applicant->report_card;
+
+            $reportCard = time() . '.' . $request->report_card->getClientOriginalExtension();
+            $request->file('report_card')->move(storage_path('report-cards'), $reportCard);
+
+            if ($previousReportCard) {
+                $filepath = storage_path('report-cards/' . $previousReportCard);
+
+                if (file_exists($filepath)) {
+                    chmod($filepath, 0777);
+                    unlink($filepath);
+                }
+            }
+            $applicant->report_card = $reportCard;
+        }
+
+        // Update ebill proof if a new one is provided
+        if ($request->hasFile('ebill_proof')) {
+            // Delete the existing ebill proof file
+            $previousEbillProof = $applicant->ebill_proof;
+
+            $ebill = time() . '.' . $request->ebill_proof->getClientOriginalExtension();
+            $request->file('ebill_proof')->move(storage_path('ebill-proofs'), $ebill);
+
+            if ($previousEbillProof) {
+                $filepath = storage_path('ebill-proofs/' . $previousEbillProof);
+
+                if (file_exists($filepath)) {
+                    chmod($filepath, 0777);
+                    unlink($filepath);
+                }
+            }
+            $applicant->ebill_proof = $ebill;
+        }
+
+        $applicant->save();
+
+        return redirect()->route('applicants.admin-view', $id);
     }
 
     public function viewProfileById($id)

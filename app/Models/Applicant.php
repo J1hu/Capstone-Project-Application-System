@@ -121,11 +121,6 @@ class Applicant extends Model implements Authenticatable
         return $this->hasOne(HouseOwnership::class);
     }
 
-    public function applicationStatus()
-    {
-        return $this->hasOne(ApplicationStatus::class);
-    }
-
     public function examScore()
     {
         return $this->hasOne(ExamScore::class);
@@ -151,7 +146,7 @@ class Applicant extends Model implements Authenticatable
         return $this->belongsTo(Batch::class);
     }
 
-    public function statuses()
+    public function application_status()
     {
         return $this->belongsTo(ApplicationStatus::class);
     }
