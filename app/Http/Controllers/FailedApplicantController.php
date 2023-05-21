@@ -11,8 +11,16 @@ class FailedApplicantController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $applicants = Applicant::with(['user', 'program', 'applicant_status'])
-            ->where('applicant_status_id', 3)
+        $allowedStatuses = [
+            'failed interview',
+            'failed exam',
+            'backed out',
+        ];
+
+        $applicants = Applicant::with(['user', 'program', 'application_status'])
+            ->whereHas('application_status', function ($query) use ($allowedStatuses) {
+                $query->whereIn('application_status_name', $allowedStatuses);
+            })
             ->whereHas('batch', function ($query) {
                 $query->where('is_archived', false);
             });
@@ -25,6 +33,6 @@ class FailedApplicantController extends Controller
 
         $applicants = $applicants->paginate(15);
 
-        return view('applicants.failedlist', compact('applicants'));
+        return view('applicants.pendinglist', compact('applicants'));
     }
 }

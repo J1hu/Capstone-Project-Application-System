@@ -13,8 +13,16 @@ class EvaluatedApplicantController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $applicants = Applicant::with(['user', 'program', 'applicant_status'])
-            ->where('applicant_status_id', 2)
+        $allowedStatuses = [
+            'done orientation',
+            'for enrollment',
+            'passed',
+        ];
+
+        $applicants = Applicant::with(['user', 'program', 'application_status'])
+            ->whereHas('application_status', function ($query) use ($allowedStatuses) {
+                $query->whereIn('application_status_name', $allowedStatuses);
+            })
             ->whereHas('batch', function ($query) {
                 $query->where('is_archived', false);
             });
@@ -27,6 +35,6 @@ class EvaluatedApplicantController extends Controller
 
         $applicants = $applicants->paginate(15);
 
-        return view('applicants.evaluatedlist', compact('applicants'));
+        return view('applicants.pendinglist', compact('applicants'));
     }
 }

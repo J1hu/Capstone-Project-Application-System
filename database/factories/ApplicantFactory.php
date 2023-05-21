@@ -63,7 +63,7 @@ class ApplicantFactory extends Factory
             'document_consent' => fake()->boolean(100),
             'data_privacy_consent' => fake()->boolean(100),
             'batch_id' => 1,
-            'application_status_id' => rand(1, 4),
+            'application_status_id' => rand(1, 15),
             'applicant_status_id' => rand(1, 3),
         ];
     }
