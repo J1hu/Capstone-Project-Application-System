@@ -3,6 +3,10 @@
         @csrf
         @method('PUT')
 
+        <div class="text-right">
+            <button type="submit" class="btn btn-primary justify-self-end bg-blue-500 hover:bg-blue-700 px-10 py-2 border-2 w-fit rounded-md border-slate-300 text-white mt-4">Update</button>
+        </div>
+
         <!-- Personal Information -->
         <div class="grid grid-cols-3">
             <div class="m-3">
@@ -74,8 +78,6 @@
             </div>
         </div>
         <!-- Add other fields -->
-
-        <button type="submit" class="btn btn-primary justify-self-end bg-blue-500 hover:bg-blue-700 px-10 py-2 border-2 w-fit rounded-md border-slate-300 text-white mt-4">Update</button>
     </form>
 
 </x-app-layout>
