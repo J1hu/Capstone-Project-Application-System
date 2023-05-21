@@ -23,7 +23,6 @@ use Illuminate\Support\Facades\Auth;
 use Database\Seeders\ApplicantSeeder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Storage;
 
 class ApplicantController extends Controller
 {
@@ -478,7 +477,7 @@ class ApplicantController extends Controller
 
         // $filePermissions = Storage::getVisibility('report-cards/' . $applicant->report_card);
 
-        $filePath = 'report-cards/'. $applicant->report_card;
+        $filePath = 'report-cards/' . $applicant->report_card;
         Storage::setVisibility($filePath, 'public');
         $fileUrl = asset('storage/' . $filePath);
 
