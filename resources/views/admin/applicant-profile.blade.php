@@ -5,7 +5,7 @@
             {{ __('Applicant Profile') }}
         </h2>
     </x-slot>
-
+        @csrf
     {{-- first card --}}
     <div class="bg-white border rounded-md p-5">
         <div class="grid grid-cols-5">
@@ -305,8 +305,11 @@
             <li class="mr-2" role="presentation">
                 <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="others-tab" data-tabs-target="#others" type="button" role="tab" aria-controls="others" aria-selected="false">Other Information</button>
             </li>
-            <li role="presentation">
+            <li class="mr-2" role="presentation">
                 <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="sign-tab" data-tabs-target="#sign" type="button" role="tab" aria-controls="sign" aria-selected="false">Signed Declaration</button>
+            </li>
+            <li role="presentation">
+                <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="sign-tab" data-tabs-target="#images" type="button" role="tab" aria-controls="images" aria-selected="false">Uploaded Files</button>
             </li>
         </ul>
     </div>
@@ -515,8 +518,56 @@
                 @endif
             </div>
         </div>
+        <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="images" role="tabpanel" aria-labelledby="images-tab">
+            <div>
+                <div id="myModal" class="modal">
+                    <img class="modal-content" id="img" alt="">
+                  </div>
+                  <section data-aos="fade-up" data-aos-duration="2000" data-aos-anchor-placement="center-bottom">
+                    <div class="gallery gap-8 columns-3">
+                        <div>
+                            <img class="myImg" src="{{ asset('storage/certificates/' . $applicant->certificate) }}" alt="Certificate" width="100px">
+                        </div>
+                        <div>
+                            <img class="myImg" src="{{ asset('storage/report-cards/' . $applicant->report_card) }}" alt="Report Card" width="100px">
+                        </div>
+                        <div>
+                            <img class="myImg" src="{{ asset('storage/ebill-proofs/' . $applicant->ebill_proof) }}" alt="Electric Bill" width="100px">
+                        </div>
+                        
+                    </div>
+                  </section>
+            </div>
+        </div>
     </div>
 
+    
+    <script>
+      AOS.init();
+    </script>
+    
+    <!-- Internal Script -->
+    <script type="text/javascript">
+    //Get the modal
+    var modal = document.getElementById('myModal');
+
+    //Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = $('.myImg');
+        var modalImg = $("#img");
+        $('.myImg').click(function(){
+            modal.style.display = "block";
+            var newSrc = this.src;
+            modalImg.attr('src', newSrc);
+        });
+
+    //if you click on anything except the modal itself or the "open modal" link, close the modal
+        $(document).click(function(event) {
+            //if you click on anything except the modal itself or the "open modal" link, close the modal
+            if (!$(event.target).closest(".myImg, .modal-content").length) {
+                modal.style.display = "none";
+            }
+        });
+    </script>
     <script>
         // Get all tab buttons and content divs
         const tabButtons = document.querySelectorAll('[data-tabs-target]');
