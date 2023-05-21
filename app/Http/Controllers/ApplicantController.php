@@ -333,17 +333,79 @@ class ApplicantController extends Controller
         return view('applicants.profile', compact('user', 'applicant'));
     }
 
-    public function edit()
+    public function edit($id)
     {
-        $user = Auth::user();
-        $applicant = $user->applicant;
+        $applicant = Applicant::findOrFail($id);
+        $user = $applicant->user;
         $programs = Program::all();
 
         return view('applicants.edit', compact('user', 'applicant', 'programs'));
     }
 
-    public function update()
+    public function update(Request $request, $id)
     {
+        $applicant = Applicant::findOrFail($id);
+
+        $applicant->fill($request->only([
+            'fname',
+            'mname',
+            'lname',
+            'applicant_type',
+            'sex',
+            'birthdate',
+            'phone_num',
+            'fb_link',
+            'religion',
+            'total_fam_children',
+            'birth_order',
+            'last_school',
+            'last_school_address',
+            'school_type',
+            'lrn',
+            'esc_grantee',
+            'esc_num',
+            'program_id',
+            'free_ebill_reason',
+            'monthly_rental',
+            'contact_consent',
+            'data_privacy_consent',
+            'batch_id',
+            'exam_score_id',
+            'application_status_id',
+            'applicant_status_id',
+        ]));
+
+        // Update applicant avatar if a new one is provided
+        if ($request->hasFile('avatar')) {
+            $filename = time() . '.' . request()->avatar->getClientOriginalExtension();
+            request()->avatar->move(public_path('avatars'), $filename);
+            $applicant->avatar = $filename;
+        }
+
+        // Update certificates if new ones are provided
+        if ($request->hasFile('certificate')) {
+            $cert = time() . '.' . request()->certificate->getClientOriginalExtension();
+            $request->certificate->move(storage_path('certificates'), $cert);
+            $applicant->certificate = $cert;
+        }
+
+        // Update report card if a new one is provided
+        if ($request->hasFile('report_card')) {
+            $reportCard = time() . '.' . request()->report_card->getClientOriginalExtension();
+            $request->report_card->move(storage_path('report-cards'), $reportCard);
+            $applicant->report_card = $reportCard;
+        }
+
+        // Update ebill proof if a new one is provided
+        if ($request->hasFile('ebill_proof')) {
+            $ebill = time() . '.' . request()->ebill_proof->getClientOriginalExtension();
+            $request->ebill_proof->move(storage_path('ebill-proofs'), $ebill);
+            $applicant->ebill_proof = $ebill;
+        }
+
+        $applicant->save();
+
+        return redirect()->route('applicants.admin-view', $id);
     }
 
     public function viewProfileById($id)
