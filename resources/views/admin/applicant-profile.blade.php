@@ -72,7 +72,7 @@
     <div id="assessment">
         {{-- For Evaluation --}}
         @hasanyrole('program_head|registrar_staff|admin')
-            <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="profile_assessment" role="tabpanel"
+            <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800 mb-3" id="profile_assessment" role="tabpanel"
                 aria-labelledby="profile-assessment-tab">
                 <h2 class="font-bold">Profile Preassessment</h2>
                 @if (is_null($preassessment))
@@ -139,7 +139,7 @@
         </div>
 
         {{-- Exam Score --}}
-        <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="exam_score" role="tabpanel"
+        <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800 mb-3" id="exam_score" role="tabpanel"
             aria-labelledby="exam-score-tab">
             <h2 class="font-bold">Exam Score</h2>
             @if (is_null($exam_score))
@@ -201,7 +201,7 @@
         </div>
 
         {{-- Initial Assessment --}}
-        <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="initial_assessment" role="tabpanel"
+        <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800 mb-3" id="initial_assessment" role="tabpanel"
             aria-labelledby="initial-assessment-tab">
             <h2 class="font-bold">Initial Assessment</h2>
             @if (is_null($initial_assessment))
@@ -260,7 +260,7 @@
 
         {{-- Final Assessment --}}
         @hasanyrole('mancom')
-            <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="final_assessment" role="tabpanel"
+            <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800 mb-3" id="final_assessment" role="tabpanel"
                 aria-labelledby="final-assessment-tab">
                 <h2 class="font-bold">Final Assessment</h2>
                 @if (is_null($final_assessment))
@@ -322,7 +322,7 @@
 
 
     {{-- Tabs --}}
-    <div class="my-4 border-b bg-white border-gray-200 dark:border-gray-700">
+    <div class="my-4 border-b bg-white border-gray-200 dark:border-gray-700 ">
         <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab2"
             data-tabs-toggle="#myTabContent" role="tablist">
             <li class="mr-2" role="presentation">
@@ -357,7 +357,7 @@
         </ul>
     </div>
     <div id="myTabContent">
-        <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="profile" role="tabpanel"
+        <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800 mb-3" id="profile" role="tabpanel"
             aria-labelledby="profile-tab">
             <div class="grid grid-cols-4">
                 <div class="grid grid-flow-row">
@@ -461,7 +461,7 @@
                 </div>
             </div>
         </div>
-        <div class="hidden space-y-4" id="educ_bg" role="tabpanel" aria-labelledby="educ_bg-tab">
+        <div class="hidden space-y-4 mb-3" id="educ_bg" role="tabpanel" aria-labelledby="educ_bg-tab">
             <div class="p-4 rounded-lg bg-white dark:bg-gray-800">
                 <div class="grid grid-cols-4">
                     <div class="grid grid-flow-row">
@@ -487,7 +487,7 @@
                 </div>
             </div>
         </div>
-        <div class="hidden space-y-4" id="others" role="tabpanel" aria-labelledby="others-tab">
+        <div class="hidden space-y-4 mb-3" id="others" role="tabpanel" aria-labelledby="others-tab">
             <div class="p-4 rounded-lg bg-white dark:bg-gray-800">
                 <p class="font-bold">Gadgets to be used during blended learning:</p>
                 <div>
@@ -544,7 +544,7 @@
                 </div>
             </div>
         </div>
-        <div class="hidden" id="sign" role="tabpanel" aria-labelledby="sign-tab">
+        <div class="hidden mb-3" id="sign" role="tabpanel" aria-labelledby="sign-tab">
             <div class="p-4 rounded-lg bg-white dark:bg-gray-800">
                 <p class="font-bold">Signed Declaration and Data Privacy Consent</p>
                 <p class="my-2">
@@ -568,40 +568,51 @@
     function initializeTabs(panelSelector) {
         const panel = document.querySelector(panelSelector);
         const tabButtons = panel.querySelectorAll('[data-tabs-target]');
-        const tabContents = panel.querySelectorAll('[role="tabpanel"]');
+        const tabContents = panel.querySelectorAll('[aria-labelledby]');
 
-        // Add event listener to each tab button
         tabButtons.forEach((button, index) => {
-            button.addEventListener('click', () => {
-                const target = button.getAttribute('data-tabs-target');
-                const content = document.querySelector(target);
+            // Hide all tab contents
+    tabContents.forEach(tabContent => {
+      tabContent.classList.add('hidden');
+    });
+  button.addEventListener('click', () => {
+    const target = button.getAttribute('data-tabs-target');
+    const content = document.querySelector(target);
 
-                // Hide all tab contents
-                tabContents.forEach(tabContent => {
-                    if (tabContent == content) {
-                        tabContent.classList.remove('hidden');
-                    } else {
-                        tabContent.classList.add('hidden');
-                    }
-                });
+    // Check if the content is already hidden
+    const isHidden = content.classList.contains('hidden');
 
-                // Toggle the active class on the clicked button
-                tabButtons.forEach(btn => {
-                    btn.classList.remove('border-blue-500', 'text-blue-500');
-                    btn.setAttribute('aria-selected', 'false');
-                });
-                button.classList.add('border-blue-500', 'text-blue-500');
-                button.setAttribute('aria-selected', 'true');
+    // Hide all tab contents
+    // tabContents.forEach(tabContent => {
+    //   tabContent.classList.add('hidden');
+    // });
 
-                    // Show the content associated with the clicked button
-                    content.classList.remove('hidden');
-            });
+    // Remove active class from all buttons
+    tabButtons.forEach(btn => {
+      btn.classList.remove('border-blue-500', 'text-blue-500');
+      btn.setAttribute('aria-selected', 'false');
+    });
 
-            // Trigger click event on the first tab button after the page has loaded
-            if (index === 0) {
-                button.click();
-            }
-        });
+    if (!isHidden) {
+      // If the content is already hidden, no need to show it again
+      // Add the hidden class to the content target
+      content.classList.add('hidden');
+    } else {
+      // Show the content associated with the clicked button
+      content.classList.remove('hidden');
+      button.classList.add('border-blue-500', 'text-blue-500');
+      button.setAttribute('aria-selected', 'true');
+    }
+  });
+
+  // Trigger click event on the first tab button after the page has loaded
+  if (index === 0) {
+    button.click();
+  }
+});
+
+
+
     }
 
     initializeTabs('#myTab1');
