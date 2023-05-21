@@ -7,7 +7,11 @@
         <label for="fname">First Name:</label>
         <input type="text" name="fname" value="{{ $applicant->fname }}" required>
 
-        <!-- Add other personal information fields -->
+        <label for="mname">Middle Name:</label>
+        <input type="text" name="mname" value="{{ $applicant->mname }}" required>
+
+        <label for="lname">Last Name:</label>
+        <input type="text" name="lname" value="{{ $applicant->lname }}" required>
 
         <!-- Avatar -->
         <label for="avatar">Avatar:</label>
