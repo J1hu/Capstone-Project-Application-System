@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-4">
+        <div class="grid grid-cols-3">
             <div class="m-3">
                 <label for="sex">Sex:</label>
                 <select class="form-control inline-flex items-center m-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" name="sex" required>
@@ -34,10 +34,6 @@
             <div class="m-3">
                 <label for="phone_num">Phone Number:</label>
                 <input class="inline-flex items-center m-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" type="text" min=0 name="phone_num" value="{{ $applicant->phone_num }}" required>
-            </div>
-            <div class="m-3">
-                <label for="email">Email:</label>
-                <input class="inline-flex items-center m-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" type="text" name="email" value="{{ $user->email }}" required>
             </div>
         </div>
 
