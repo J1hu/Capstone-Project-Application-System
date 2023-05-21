@@ -8,7 +8,10 @@ use App\Models\ExamScore;
 use Illuminate\Http\Request;
 use App\Models\Preassessment;
 use App\Models\FinalAssessment;
+use App\Models\ApplicationStatus;
 use App\Models\InitialAssessment;
+use App\Events\PreassessmentUpdated;
+
 
 class EvaluationController extends Controller
 {
@@ -29,7 +32,10 @@ class EvaluationController extends Controller
 
         $validatedData['user_id'] = $userId;
 
-        Preassessment::create($validatedData);
+        $preassessment = Preassessment::create($validatedData); // Assign the created Preassessment instance to $preassessment
+
+        // Dispatch the PreassessmentUpdated event with the created Preassessment instance
+        event(new PreassessmentUpdated($preassessment));
 
         return redirect()->back()->with('success', 'Preassessment created successfully.');
     }
@@ -68,6 +74,27 @@ class EvaluationController extends Controller
 
         return redirect()->back()->with('success', 'Initial Assessment created successfully.');
     }
+
+    public function updateApplicationStatus(Request $request)
+    {
+        $validatedData = $request->validate([
+            'applicant_id' => 'required',
+            'application_status' => 'required',
+        ]);
+
+        $applicantId = $validatedData['applicant_id'];
+        $applicant = Applicant::findOrFail($applicantId);
+
+        $applicationStatusName = $validatedData['application_status'];
+        $applicationStatus = ApplicationStatus::where('application_status_name', $applicationStatusName)->firstOrFail();
+
+        $applicant->application_status()->associate($applicationStatus);
+
+        $applicant->save();
+
+        return redirect()->back()->with('success', 'Application status updated successfully.');
+    }
+
 
     public function finalAssessment(Request $request)
     {

@@ -14,9 +14,13 @@
             </div>
             <div class="col-span-4 grid grid-cols-3">
                 <div class="grid-rows-5 col-span-2">
-                    <p class="text-lg font-bold uppercase">{{ $applicant->fname }} {{ $applicant->mname }}
-                        {{ $applicant->lname }}
-                    </p>
+                    <div class="grid grid-cols-2">
+                        <div>
+                            <p class="text-lg font-bold uppercase">{{ $applicant->fname }} {{ $applicant->mname }}
+                                {{ $applicant->lname }}
+                            </p>
+                        </div>
+                    </div>
                     <div class="grid grid-cols-2">
                         <p><em>{{ $applicant->phone_num }}</em></p>
                         <p><em>{{ $user->email }}</em></p>
@@ -31,8 +35,25 @@
                         <p class="">{{ $applicant->program->program_name }}</p>
                     </div>
                 </div>
-                <div class="text-right">
-                    <td class="p-2"><a href="{{ route('applicants.edit', $applicant->id) }}" class="bg-green-500 text-white px-2 py-1 rounded-md">Edit Applicant</a></td>
+                <div class="text-right relative">
+                    <div>
+                        <td class="p-2"><a href="{{ route('applicants.edit', $applicant->id) }}" class="bg-green-500 text-white px-2 py-1 rounded-md">Edit Applicant</a></td>
+                    </div>
+                    <div class=" absolute bottom-0 right-0">
+                        <form action="{{ route('application.update') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="applicant_id" value="{{ $applicant->id }}">
+                            <label for="application_status">Application Status:</label>
+                            <select class="form-control items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500" name="application_status" id="application_status">
+                                @foreach($application_status as $status)
+                                <option value="{{ $status->application_status_name }}" {{ $applicant->application_status->application_status_name === $status->application_status_name ? 'selected' : '' }}>
+                                    {{ $status->application_status_name }}
+                                </option>
+                                @endforeach
+                            </select>
+                            <button class="bg-green-500 text-white px-2 py-1 rounded-md" type="submit">Update Status</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -130,8 +151,8 @@
             </div>
 
             <div class="form-group">
-                <label for="intelligence_score">Intelligence Score:</label>
-                <input type="number" class="form-control" id="intelligence_score" name="intelligence_score" value="{{ old('intelligence_score') }}" required>
+                <label for="intelligence_score">Intelligence Score:</label><br>
+                <input class="form-control items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/4" type="number" class="form-control" id="intelligence_score" name="intelligence_score" value="{{ old('intelligence_score') }}" required>
                 @if ($errors->has('intelligence_score'))
                 <div class="invalid-feedback">
                     {{ $errors->first('intelligence_score') }}
@@ -140,8 +161,8 @@
             </div>
 
             <div class="form-group">
-                <label for="aptitude_score">Aptitude Score:</label>
-                <input type="number" class="form-control" id="aptitude_score" name="aptitude_score" value="{{ old('aptitude_score') }}" required>
+                <label for="aptitude_score">Aptitude Score:</label><br>
+                <input class="form-control items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/4" type="number" class="form-control" id="aptitude_score" name="aptitude_score" value="{{ old('aptitude_score') }}" required>
                 @if ($errors->has('aptitude_score'))
                 <div class="invalid-feedback">
                     {{ $errors->first('aptitude_score') }}
@@ -149,7 +170,7 @@
                 @endif
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button class="bg-green-500 text-white px-2 py-1 rounded-md" type="submit" class="btn btn-primary">Submit</button>
         </form>
         @endhasanyrole
         @elseif ($exam_score)
@@ -172,7 +193,7 @@
 
     {{-- Initial Assessment --}}
     <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="initial_assessment" role="tabpanel" aria-labelledby="initial-assessment-tab">
-        <h2 class="font-bold">Initial Assessment</h2>
+        <h2 class="font-bold">Interview Assessment</h2>
         @if (is_null($initial_assessment))
         <form method="POST" action="{{ route('initial_assessments.store') }}" class="mt-4 space-y-2">
             @csrf
