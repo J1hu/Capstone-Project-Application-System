@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Applicant;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class PendingApplicantController extends Controller
@@ -38,7 +36,7 @@ class PendingApplicantController extends Controller
             $applicants->whereIn('program_id', $programIds);
         }
 
-        $applicants = $applicants->paginate(15);
+        $applicants = $applicants->get();
 
         return view('applicants.pendinglist', compact('applicants'));
     }

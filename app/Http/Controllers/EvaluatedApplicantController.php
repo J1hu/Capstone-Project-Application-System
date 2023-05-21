@@ -33,7 +33,7 @@ class EvaluatedApplicantController extends Controller
             $applicants->whereIn('program_id', $programIds);
         }
 
-        $applicants = $applicants->paginate(15);
+        $applicants = $applicants->get();
 
         return view('applicants.pendinglist', compact('applicants'));
     }
