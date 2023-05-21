@@ -43,9 +43,6 @@
                     </tbody>
                 </table>
                 @endauth
-                <div class="mx-6 my-3">
-                    {{ $applicants->links() }}
-                </div>
             </div>
         </div>
     </div>
