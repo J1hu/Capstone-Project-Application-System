@@ -10,7 +10,7 @@ class ApplicationStatus extends Model
     use HasFactory;
 
     protected $fillable = [
-        'status_name'
+        'application_status_name'
     ];
 
     public function applicants()
