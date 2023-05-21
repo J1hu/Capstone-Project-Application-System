@@ -565,30 +565,36 @@
     </div>
 
     <script>
-      // Get all tab buttons and content divs
-        const tabButtons = document.querySelectorAll('[data-tabs-target]');
-        const tabContents = document.querySelectorAll('[role="tabpanel"]');
+    function initializeTabs(panelSelector) {
+        const panel = document.querySelector(panelSelector);
+        const tabButtons = panel.querySelectorAll('[data-tabs-target]');
+        const tabContents = panel.querySelectorAll('[role="tabpanel"]');
 
         // Add event listener to each tab button
         tabButtons.forEach((button, index) => {
             button.addEventListener('click', () => {
+                const target = button.getAttribute('data-tabs-target');
+                const content = document.querySelector(target);
+
+                // Hide all tab contents
+                tabContents.forEach(tabContent => {
+                    if (tabContent == content) {
+                        tabContent.classList.remove('hidden');
+                    } else {
+                        tabContent.classList.add('hidden');
+                    }
+                });
+
                 // Toggle the active class on the clicked button
-                tabButtons.forEach(button => {
-                    button.classList.remove('border-blue-500', 'text-blue-500');
-                    button.setAttribute('aria-selected', 'false');
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('border-blue-500', 'text-blue-500');
+                    btn.setAttribute('aria-selected', 'false');
                 });
                 button.classList.add('border-blue-500', 'text-blue-500');
                 button.setAttribute('aria-selected', 'true');
 
-                // Hide all tab content
-                tabContents.forEach(content => {
-                    content.classList.add('hidden');
-                });
-
-                // Show the content associated with the clicked button
-                const target = button.getAttribute('data-tabs-target');
-                const content = document.querySelector(target);
-                content.classList.remove('hidden');
+                    // Show the content associated with the clicked button
+                    content.classList.remove('hidden');
             });
 
             // Trigger click event on the first tab button after the page has loaded
@@ -596,7 +602,13 @@
                 button.click();
             }
         });
+    }
 
-    </script>
+    initializeTabs('#myTab1');
+    initializeTabs('#myTab2');
+</script>
+
+    
+    
 
 </x-app-layout>
