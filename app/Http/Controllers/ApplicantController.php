@@ -469,13 +469,15 @@ class ApplicantController extends Controller
         $applicant = Applicant::findOrFail($id);
         $user = $applicant->user;
 
+        $application_status = ApplicationStatus::all();
+
         $preassessment = $applicant->preassessment;
         $exam_score = $applicant->examScore;
         $initial_assessment = $applicant->initialAssessment;
         $final_assessment = $applicant->finalAssessment;
         // dd($initial_assessment);
 
-        return view('admin.applicant-profile', compact('user', 'applicant', 'preassessment', 'exam_score', 'initial_assessment', 'final_assessment'));
+        return view('admin.applicant-profile', compact('user', 'applicant', 'preassessment', 'exam_score', 'initial_assessment', 'final_assessment', 'application_status'));
     }
 
     public function notifications()
