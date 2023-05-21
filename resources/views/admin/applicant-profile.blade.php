@@ -32,8 +32,8 @@
                         <p class="">{{ $applicant->program->program_name }}</p>
                     </div>
                 </div>
-                <div>
-                    {{-- for edit button --}}
+                <div class="text-right">
+                    <td class="p-2"><a href="{{ route('applicants.edit', $applicant->id) }}" class="bg-green-500 text-white px-2 py-1 rounded-md">Edit Applicant</a></td>
                 </div>
             </div>
         </div>

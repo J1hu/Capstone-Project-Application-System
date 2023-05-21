@@ -12,6 +12,9 @@ Route::middleware(['auth', 'role:admin|program_head|mancom|registrar_staff', 've
     Route::get('/applicants/evaluated-list', [EvaluatedApplicantController::class, 'index'])->name('applicants.evaluated-list');
     Route::get('/applicants/failed-list', [FailedApplicantController::class, 'index'])->name('applicants.failed-list');
 
+    Route::get('/applicants/{applicant}/edit', [ApplicantController::class, 'edit'])->name('applicants.edit');
+    Route::put('/applicants/{applicant}', [ApplicantController::class, 'update'])->name('applicants.update');
+
     Route::get('/applicants/{id}/profile', [ApplicantController::class, 'viewProfileById'])->name('applicants.admin-view');
 
     Route::post('/preassessments', [EvaluationController::class, 'preassessment'])->name('preassessments.store');

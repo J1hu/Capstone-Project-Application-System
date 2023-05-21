@@ -16,21 +16,24 @@ return new class extends Migration
         Schema::create('application_statuses', function (Blueprint $table) {
             $table->id();
             $table->enum('application_status_name', [
+                //pending
                 'verified',
                 'filled',
                 'pending',
-                'passed',
                 'file resubmit',
-                'backed out',
                 'for exam',
                 'passed exam',
-                'failed exam',
                 'for interview',
                 'passed interview',
-                'failed interview',
                 'for orientation',
+                //evaluated
                 'done orientation',
-                'for enrollment'
+                'for enrollment',
+                'passed',
+                //failed
+                'failed interview',
+                'failed exam',
+                'backed out',
             ]);
             $table->timestamps();
         });
