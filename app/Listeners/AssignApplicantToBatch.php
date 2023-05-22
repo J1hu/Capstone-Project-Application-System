@@ -34,8 +34,8 @@ class AssignApplicantToBatch
         $schoolYear = SchoolYear::where('is_archived', false)->first();
 
         // Get the current month
-        // $currentDate = date('Y-m-d');
-        $currentDate = '2023-06-22';
+        $currentDate = date('Y-m-d');
+        // $currentDate = '2023-06-22';
 
         if (!$schoolYear) {
             // If no active school year exists, create a new one
