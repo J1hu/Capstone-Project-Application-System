@@ -148,7 +148,7 @@
                                     class="text-red-500"> *</span></label>
                             <select name="applicant_type" id="applicant_type" required
                                 class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
-                                <option value="">-- Select Applicant Type --</option>
+                                <option value="" disabled selected hidden>Select Applicant Type</option>
                                 <option value="Old Student"
                                     {{ old('applicant_type') == 'Old Student' ? 'selected' : '' }}>
                                     Old
@@ -311,8 +311,11 @@
                             <label for="avatar" class="text-lg font-bold">Upload a Formal Picture<span
                                     class="text-red-500"> *</span></label>
                             <p class="text-slate-700 text-sm">White Background with name tag.</p>
-                            <input type="file" name="avatar" id="avatar" required
+                            <input type="file" name="avatar" id="avatar" required accept="image/*"
                                 class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            <div id="avatarSizeError" class="invalid-feedback text-red-500" style="display: none;">
+                                File size exceeds the maximum limit of 2MB.
+                            </div>
                             @if ($errors->has('avatar'))
                                 <div class="invalid-feedback text-red-500">
                                     {{ $errors->first('avatar') }}
@@ -497,10 +500,11 @@
                                 <div>
                                     <label for="mother_annual_income" class="text-sm text-slate-700">Annual
                                         Income<span class="text-red-500">*</span></label>
-                                    <select name="mother_annual_income" id="mother_annual_income"
-                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full"
-                                        required>
-                                        <option value="" disabled>Select Annual Income Range</option>
+                                    <select name="mother_annual_income" id="mother_annual_income" required
+                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                        <option value="" disabled selected hidden>Select Annual Income Range
+                                        </option>
+                                        <option value="no income">No Income</option>
                                         <option value="250,000PHP and less">250,000PHP and less</option>
                                         <option value="250,000PHP to 400,000PHP">250,000PHP to 400,000PHP</option>
                                         <option value="400,000PHP to 800,000PHP">400,000PHP to 800,000PHP</option>
@@ -588,11 +592,11 @@
                                 </div>
                                 <div>
                                     <label for="father_annual_income" class="text-sm text-slate-700">Annual
-                                        Income<span class="text-red-500"> *</span></label>
-                                    <select name="father_annual_income" id="father_annual_income"
-                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full"
-                                        required>
-                                        <option value="" disabled>Select Annual Income Range</option>
+                                        Income<span class="text-red-500">*</span></label>
+                                    <select name="father_annual_income" id="father_annual_income" required
+                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                        <option value="">Select Annual Income Range</option>
+                                        <option value="no income">No Income</option>
                                         <option value="250,000PHP and less">250,000PHP and less</option>
                                         <option value="250,000PHP to 400,000PHP">250,000PHP to 400,000PHP</option>
                                         <option value="400,000PHP to 800,000PHP">400,000PHP to 800,000PHP</option>
@@ -687,10 +691,11 @@
                                     <div>
                                         <label for="guardian_annual_income" class="text-sm text-slate-700">Annual
                                             Income<span class="text-red-500"> *</span></label>
-                                        <select name="guardian_annual_income" id="guardian_annual_income"
-                                            class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full"
-                                            required>
-                                            <option value="" disabled>Select Annual Income Range</option>
+                                        <select required name="guardian_annual_income" id="guardian_annual_income"
+                                            class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                            <option value="" disabled selected hidden>Select Annual Income Range
+                                            </option>
+                                            <option value="no income">No Income</option>
                                             <option value="250,000PHP and less">250,000PHP and less</option>
                                             <option value="250,000PHP to 400,000PHP">250,000PHP to 400,000PHP</option>
                                             <option value="400,000PHP to 800,000PHP">400,000PHP to 800,000PHP</option>
@@ -773,9 +778,9 @@
                         <div>
                             <label for="school_type" class="text-sm text-slate-700">School Type<span
                                     class="text-red-500"> *</span></label>
-                            <select name="school_type" id="school_type" required
+                            <select required name="school_type" id="school_type"
                                 class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
-                                <option value="" disabled>Select School Type</option>
+                                <option value="" disabled selected hidden>Select School Type</option>
                                 <option value="Public" {{ old('school_type') == 'Public' ? 'selected' : '' }}>Public
                                 </option>
                                 <option value="Private" {{ old('school_type') == 'Private' ? 'selected' : '' }}>
@@ -916,9 +921,9 @@
                         <div>
                             <label for="esc_grantee" class="text-sm text-slate-700">Is the student an ESC
                                 Grantee?<span class="text-red-500"> *</span></label>
-                            <select name="esc_grantee" id="esc_grantee" required
+                            <select required name="esc_grantee" id="esc_grantee"
                                 class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
-                                <option value="" disabled>Select</option>
+                                <option value="" disabled selected hidden>Select option</option>
                                 <option value="Yes" {{ old('esc_grantee') == 'Yes' ? 'selected' : '' }}>Yes
                                 </option>
                                 <option value="No" {{ old('esc_grantee') == 'No' ? 'selected' : '' }}>No</option>
@@ -979,7 +984,7 @@
                                 class="text-red-500"> *</span></label>
                         <select name="program_id" id="program_id" required
                             class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
-                            <option value="" disabled>Select Program</option>
+                            <option value="" disabled selected hidden>Select Program</option>
                             @foreach ($programs as $program)
                                 <option value="{{ $program->id }}"
                                     {{ old('program_id') == $program->id ? 'selected' : '' }}>
@@ -1012,33 +1017,93 @@
                     <div class="font-bold text-lg my-3">INTERNET AND GADGETS</div>
                     <div class="grid grid-cols-2 gap-x-6 gap-y-4">
                         <div>
-                            <p>Device/Gadgets to be used during Blended Learning:</p>
-                            <div class="form-group">
-                                <div class="checkbox grid">
-                                    @foreach ($gadgets as $gadget)
-                                        <label>
-                                            <input type="checkbox" name="gadget_name[]" class="capitalize"
-                                                value="{{ $gadget->id }}"
-                                                {{ old('gadget_id') == $gadget->id ? 'selected' : '' }}>
-                                            {{ $gadget->gadget_name }}
-                                        </label>
-                                    @endforeach
-                                </div>
+                            <p>Device/Gadgets to be used during Blended Learning<span class="text-red-500"> *</span>
+                            </p>
+                            <div>
+                                <input type="checkbox" name="gadget_name[]" id="smartphone" value="smartphone"
+                                    {{ in_array('smartphone', old('gadget_name', [])) ? 'checked' : '' }}>
+                                @if ($errors->has('gadget_name'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('gadget_name') }}
+                                    </div>
+                                @endif
+                                <label for="smartphone" class="mx-2">Smartphone</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="gadget_name[]" id="tablet" value="tablet"
+                                    {{ in_array('tablet', old('gadget_name', [])) ? 'checked' : '' }}>
+                                @if ($errors->has('gadget_name'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('gadget_name') }}
+                                    </div>
+                                @endif
+                                <label for="tablet" class="mx-2">Tablet</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="gadget_name[]" id="laptop" value="laptop"
+                                    {{ in_array('laptop', old('gadget_name', [])) ? 'checked' : '' }}>
+                                @if ($errors->has('gadget_name'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('gadget_name') }}
+                                    </div>
+                                @endif
+                                <label for="laptop" class="mx-2">Laptop</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="gadget_name[]" id="desktop" value="desktop"
+                                    {{ in_array('desktop', old('gadget_name', [])) ? 'checked' : '' }}>
+                                @if ($errors->has('gadget_name'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('gadget_name') }}
+                                    </div>
+                                @endif
+                                <label for="desktop" class="mx-2">Desktop/PC</label>
                             </div>
                         </div>
                         <div>
-                            <p>Internet Connection to be used during Blended Learning:</p>
-                            <div class="form-group">
-                                <div class="checkbox grid">
-                                    @foreach ($internets as $internet)
-                                        <label>
-                                            <input type="checkbox" name="internet_name[]" class="capitalize"
-                                                value="{{ $internet->id }}"
-                                                {{ old('internet_id') == $internet->id ? 'selected' : '' }}>
-                                            {{ $internet->internet_name }}
-                                        </label>
-                                    @endforeach
-                                </div>
+                            <p>Internet Connection to be used during Blended Learning<span class="text-red-500">
+                                    *</span></p>
+                            <div>
+                                <input type="checkbox" name="internet_name[]" id="postpaid" value="postpaid"
+                                    {{ in_array('postpaid', old('internet_name', [])) ? 'checked' : '' }}>
+                                @if ($errors->has('internet_name'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('internet_name') }}
+                                    </div>
+                                @endif
+                                <label for="postpaid" class="mx-2">Prepaid Mobile Data</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="internet_name[]" id="prepaid" value="prepaid"
+                                    {{ in_array('prepaid', old('internet_name', [])) ? 'checked' : '' }}>
+                                @if ($errors->has('internet_name'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('internet_name') }}
+                                    </div>
+                                @endif
+                                <label for="prepaid" class="mx-2">Postpaid Mobile Data</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="internet_name[]" id="prepaid_wifi" value="prepaid_wifi"
+                                    {{ in_array('prepaid_wifi', old('internet_name', [])) ? 'checked' : '' }}>
+                                @if ($errors->has('internet_name'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('internet_name') }}
+                                    </div>
+                                @endif
+                                <label for="prepaid_wifi" class="mx-2">Prepaid Wifi (Ex: Globe at Home, PLDT
+                                    Home, etc.)</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="internet_name[]" id="broadband" value="broadband"
+                                    {{ in_array('broadband', old('internet_name', [])) ? 'checked' : '' }}>
+                                @if ($errors->has('internet_name'))
+                                    <div class="invalid-feedback text-red-500">
+                                        {{ $errors->first('internet_name') }}
+                                    </div>
+                                @endif
+                                <label for="broadband" class="mx-2">Broadband Line (Ex: PLDT Fibr,
+                                    Converge, Sky Fibr, etc.)</label>
                             </div>
                         </div>
                     </div>
@@ -1047,10 +1112,9 @@
                         <div>
                             <label for="electric_month_1" class="text-sm text-slate-700">Month 1<span
                                     class="text-red-500"> *</span></label>
-                            <select name="electric_bills[0][electric_month]" id="electric_month_1"
-                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full"
-                                required>
-                                <option value="">Select a month</option>
+                            <select required name="electric_bills[0][electric_month]"
+                                id="electric_month_1"class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                <option value="" disabled selected hidden>Select a month</option>
                                 <option value="january">January</option>
                                 <option value="february">February</option>
                                 <option value="march">March</option>
@@ -1075,10 +1139,9 @@
                         <div>
                             <label for="electric_month_2" class="text-sm text-slate-700">Month 2<span
                                     class="text-red-500"> *</span></label>
-                            <select name="electric_bills[1][electric_month]" id="electric_month_2"
-                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full"
-                                required>
-                                <option value="">Select a month</option>
+                            <select required name="electric_bills[1][electric_month]"
+                                id="electric_month_2"class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                <option value="" disabled selected hidden>Select a month</option>
                                 <option value="january">January</option>
                                 <option value="february">February</option>
                                 <option value="march">March</option>
@@ -1103,10 +1166,9 @@
                         <div>
                             <label for="electric_month_3" class="text-sm text-slate-700">Month 3<span
                                     class="text-red-500"> *</span></label>
-                            <select name="electric_bills[2][electric_month]" id="electric_month_3"
-                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full"
-                                required>
-                                <option value="">Select a month</option>
+                            <select required name="electric_bills[2][electric_month]" id="electric_month_3"
+                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                <option value="" disabled selected hidden>Select a month</option>
                                 <option value="january">January</option>
                                 <option value="february">February</option>
                                 <option value="march">March</option>
@@ -1148,25 +1210,37 @@
                         @endif
                     </div>
                     <div class="my-5 space-y-2">
-                        <div class="font-bold text-lg">OWNERSHIP OF THE HOUSING UNIT</div>
+                        <div class="font-bold text-lg">OWNERSHIP OF THE HOUSING UNIT<span class="text-red-500">
+                                *</span></div>
                         <div>
-                            <div class="form-group">
-                                <div class="checkbox grid">
-                                    @foreach ($ownership_types as $ownership_type)
-                                        <label>
-                                            <input type="radio" name="ownership_type" class="capitalize"
-                                                value="{{ $ownership_type->id }}"
-                                                {{ old('ownership_type_id') == $ownership_type->id ? 'selected' : '' }}>
-                                            {{ $ownership_type->ownership_type }}
-                                        </label>
-                                    @endforeach
-                                    <div>
-                                        <label for="others" class="mx-2">Others: </label>
-                                        <input type="text" id="ownership_type" name="ownership_type"
-                                            value="{{ old('ownership_type') }}"
-                                            class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
-                                    </div>
-                                </div>
+                            <div>
+                                <input type="radio" name="ownership_type" id="owned_fully_paid"
+                                    value="Owned, Fully Paid"
+                                    {{ old('ownership_type') == 'Owned, Fully Paid' ? 'checked' : '' }}>
+                                <label for="owned_fully_paid" class="mx-2">Owned, Fully Paid</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="ownership_type" id="owned_amortized"
+                                    value="Owned, Amortized"
+                                    {{ old('ownership_type') == 'Owned, Amortized' ? 'checked' : '' }}>
+                                <label for="owned_amortized" class="mx-2">Owned, Amortized</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="ownership_type" id="rented" value="Rented"
+                                    {{ old('ownership_type') == 'Rented' ? 'checked' : '' }}>
+                                <label for="rented" class="mx-2">Rented</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="ownership_type" id="free_living"
+                                    value="Free/Living with relatives/Inherited"
+                                    {{ old('ownership_type') == 'Free/Living with relatives/Inherited' ? 'checked' : '' }}>
+                                <label for="free_living" class="mx-2">Free/Living with relatives/Inherited</label>
+                            </div>
+                            <div>
+                                <label for="others" class="mx-2">Others: </label>
+                                <input type="text" id="ownership_type" name="ownership_type"
+                                    value="{{ old('ownership_type') }}"
+                                    class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                             </div>
                         </div>
                         <div>
@@ -1261,16 +1335,24 @@
             updateStepper();
 
             // Check if required input fields and select fields are filled
-            var requiredFields = current.find('input[required], select[required]');
+            var requiredFields_1 = current.find('input[required]');
+            var requiredFields_2 = current.find('select[required]');
             var isValid = true;
-            requiredFields.each(function() {
+
+            requiredFields_1.each(function() {
                 if ($(this).is('input[type="checkbox"]') && !$(this).prop('checked')) {
                     isValid = false;
                     $(this).addClass('error');
-                } else if ($(this).is('select') && $(this).val() === '') {
+                } else if ($(this).is('input') && $(this).val() === '') {
                     isValid = false;
                     $(this).addClass('error');
-                } else if ($(this).is('input') && $(this).val() === '') {
+                } else {
+                    $(this).removeClass('error');
+                }
+            });
+
+            requiredFields_2.each(function() {
+                if ($(this).val() === '') {
                     isValid = false;
                     $(this).addClass('error');
                 } else {
@@ -1299,6 +1381,7 @@
         });
 
 
+
         var span = document.getElementsByClassName("close")[0];
         // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
@@ -1311,6 +1394,23 @@
             var prev = current.prev('.section');
             current.hide();
             prev.show();
+        });
+
+        // Add an event listener to the file input element
+        document.getElementById('avatar').addEventListener('change', function() {
+            var fileInput = this;
+            var maxSize = 2 * 1024 * 1024; // Maximum size in bytes (2MB)
+
+            // Check if the selected file exceeds the maximum size
+            if (fileInput.files[0] && fileInput.files[0].size > maxSize) {
+                // Show the error message
+                document.getElementById('avatarSizeError').style.display = 'block';
+                // Clear the file input value to prevent submitting the oversized file
+                fileInput.value = '';
+            } else {
+                // Hide the error message (if previously shown)
+                document.getElementById('avatarSizeError').style.display = 'none';
+            }
         });
 
     });
@@ -1358,9 +1458,6 @@
         const inputField = document.getElementById(id);
         restrictToNumbers(inputField);
     });
-
-
-
 
     // Stepper
     let currentStep = 1;
