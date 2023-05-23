@@ -641,7 +641,7 @@
                                     <li>or Certificate of Non-Tax Payment</li>
                                     <li>or Certificate of Indigency</li>
                                 </ul>
-                                <input type="file" name="certificate" id="certificate" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/2">
+                                <input type="file" name="certificate" accept="image/*" id="certificate" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/2">
                                 <div id="certSizeError" class="invalid-feedback text-red-500" style="display: none;">
                                     File size exceeds the maximum limit of 2MB.
                                 </div>
@@ -832,7 +832,7 @@
                             <li>Photocopy of Previous year's Report Card (F138)</li>
                             <li>Photocopy of Certification of Grades/TOR (For College Transferees)</li>
                         </ul>
-                        <input type="file" name="report_card" id="report_card" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/2">
+                        <input type="file" name="report_card" id="report_card" accept="image/*" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/2">
                         <div id="cardSizeError" class="invalid-feedback text-red-500" style="display: none;">
                             File size exceeds the maximum limit of 2MB.
                         </div>
@@ -1035,7 +1035,7 @@
                     <div class="my-5">
                         <label for="ebill_proof">Upload a Clear Picture of the Electric Bills for the last three months
                             <span class="text-red-500"> *</span></label>
-                        <input type="file" name="ebill_proof" id="ebill_proof" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/2">
+                        <input type="file" name="ebill_proof" id="ebill_proof" accept="image/*" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/2">
                         <div id="eBillSizeError" class="invalid-feedback text-red-500" style="display: none;">
                             File size exceeds the maximum limit of 2MB.
                         </div>
