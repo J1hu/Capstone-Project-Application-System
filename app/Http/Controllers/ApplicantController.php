@@ -80,7 +80,7 @@ class ApplicantController extends Controller
             'barangay' => 'required',
             'street' => 'required',
             'zip_code' => 'required',
-            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'avatar' => 'required|image|max:2048',
             'total_fam_children' => 'required|integer',
             'birth_order' => 'required',
             //sibling
@@ -111,7 +111,7 @@ class ApplicantController extends Controller
             'guardian_annual_income' => 'required|not_in:0|in:250,000PHP and less,250,000PHP to 400,000PHP,400,000PHP to 800,000PHP,800,000PHP to 2,000,000PHP,2,000,000PHP to 8,000,000PHP',
             'guardian_phone_num' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
             //cert
-            'certificate' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'certificate' => 'required|image|max:2048',
             //last school
             'last_school' => 'required|string|max:255',
             'school_type' => 'required|not_in:0|in:Public,Private,State University',
@@ -123,7 +123,7 @@ class ApplicantController extends Controller
             'esc_grantee' => 'required|not_in:0|string',
             'esc_num' => 'string',
             //report card
-            'report_card' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'report_card' => 'required|image|max:2048',
             //chosen program
             'program_id' => 'required',
             //gadgets
@@ -139,9 +139,8 @@ class ApplicantController extends Controller
             'electric_month_3' => 'required|not_in:0|in:january,february,march,april,may,june,july,august,september,october,november,december',
             'electric_amount_3' => 'required|numeric|min:0|max:999999',
             // ebill proof
-            'ebill_proof' => 'required|mimes:jpeg,jpg,png|max:2048',
+            'ebill_proof' => 'required|image|max:2048',
             'ebill_proof.required' => 'Please upload a picture of the electric bills for the last three months',
-            'ebill_proof.mimes' => 'The picture must be in jpeg, jpg or png format',
             'ebill_proof.max' => 'The picture must not be larger than 2MB',
             'free_ebill_reason' => 'required',
             // ownership
@@ -153,8 +152,8 @@ class ApplicantController extends Controller
 
         if ($validator->fails()) {
             return redirect()->back()
-                ->withErrors($validator) 
-                ->withInput(); 
+                ->withErrors($validator)
+                ->withInput();
         }
 
         $applicant = new Applicant();
