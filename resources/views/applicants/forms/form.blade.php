@@ -1114,12 +1114,11 @@
                 </div>
                 <div class="grid grid-cols-2">
                     <button type="button" class="back-btn justify-self-start bg-slate-100 px-10 py-2 border-2 w-1/2 rounded-md border-slate-300 text-black">Back</button>
-                    <button type="submit" id="submit-btn" class="justify-self-end bg-blue-700 px-10 py-2 border-2 w-fit rounded-md border-slate-300 text-white">Submit
-                        Application</button>
+                    <button type="submit" class="justify-self-end bg-blue-700 px-10 py-2 border-2 w-fit rounded-md border-slate-300 text-white">Submit Application</button>
                 </div>
             </div>
+        </form>
     </div>
-    </form>
     </div>
     <!-- Modal -->
     <div id="modal" class="fixed z-10 inset-0 overflow-hidden hidden">
