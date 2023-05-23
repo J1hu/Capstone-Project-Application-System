@@ -31,7 +31,7 @@ class AssignApplicantToBatch
         $applicant = $event->applicant;
 
         // Get the active school year
-        $schoolYear = SchoolYear::where('is_archived', false)->first();
+        $schoolYear = SchoolYear::where('is_archived', false)->latest()->first();
 
         // Get the current month
         $currentDate = date('Y-m-d');
