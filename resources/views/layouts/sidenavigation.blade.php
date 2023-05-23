@@ -80,12 +80,12 @@
             {{ __('List of Registrar Staff') }}
         </x-nav-link>
 
-        <x-nav-head>BATCH MANAGEMENT</x-nav-head>
-        <x-nav-link :href="route('batches.list')" :active="request()->routeIs('batches') || strpos(url()->current(), 'batches') !== false">
+        <x-nav-head>SCHOOL YEAR MANAGEMENT</x-nav-head>
+        <x-nav-link :href="route('school-years.list')" :active="request()->routeIs('school-years') || strpos(url()->current(), 'school-years') !== false">
             <span class="material-symbols-outlined mr-5">
                 view_agenda
             </span>
-            {{ __('List of Batches') }}
+            {{ __('List of School Year') }}
         </x-nav-link>
 
         <x-nav-head>NOTIFICATION</x-nav-head>

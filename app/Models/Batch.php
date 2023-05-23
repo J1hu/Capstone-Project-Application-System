@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\SchoolYear;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Batch extends Model
 {
@@ -32,10 +33,14 @@ class Batch extends Model
 
     public static function getNextBatchNumber()
     {
-        $lastBatch = Batch::latest('batch_num')->first();
+        $schoolYear = SchoolYear::where('is_archived', 0)->latest()->first();
+        $lastBatch = $schoolYear->batches()->latest('batch_num')->first();
+
         if (!$lastBatch) {
-            return 1;
+            $newBatch = Batch::create(['batch_num' => 1]);
+            return $newBatch->batch_num;
         }
+
         return $lastBatch->batch_num + 1;
     }
 }
