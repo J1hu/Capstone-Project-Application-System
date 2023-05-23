@@ -3,6 +3,10 @@
         @csrf
         @method('PUT')
 
+        <div class="text-right">
+            <button type="submit" class="btn btn-primary justify-self-end bg-blue-500 hover:bg-blue-700 px-10 py-2 border-2 w-fit rounded-md border-slate-300 text-white mt-4">Update</button>
+        </div>
+
         <!-- Personal Information -->
         <div class="grid grid-cols-3">
             <div class="m-3">
@@ -19,7 +23,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-4">
+        <div class="grid grid-cols-3">
             <div class="m-3">
                 <label for="sex">Sex:</label>
                 <select class="form-control inline-flex items-center m-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" name="sex" required>
@@ -34,10 +38,6 @@
             <div class="m-3">
                 <label for="phone_num">Phone Number:</label>
                 <input class="inline-flex items-center m-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" type="text" min=0 name="phone_num" value="{{ $applicant->phone_num }}" required>
-            </div>
-            <div class="m-3">
-                <label for="email">Email:</label>
-                <input class="inline-flex items-center m-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" type="text" name="email" value="{{ $user->email }}" required>
             </div>
         </div>
 
@@ -78,8 +78,6 @@
             </div>
         </div>
         <!-- Add other fields -->
-
-        <button type="submit" class="btn btn-primary justify-self-end bg-blue-500 hover:bg-blue-700 px-10 py-2 border-2 w-fit rounded-md border-slate-300 text-white mt-4">Update</button>
     </form>
 
 </x-app-layout>

@@ -146,6 +146,11 @@ class Applicant extends Model implements Authenticatable
         return $this->belongsTo(Batch::class);
     }
 
+    public function schoolYear()
+    {
+        return $this->belongsTo(SchoolYear::class);
+    }
+
     public function application_status()
     {
         return $this->belongsTo(ApplicationStatus::class);

@@ -24,6 +24,8 @@ Route::middleware(['auth', 'role:admin|program_head|mancom|registrar_staff', 've
 
     Route::get('/notifications', [ApplicantController::class, 'notifications'])->name('notifications');
 
+    //Update Application Status:
+    Route::post('/update-application-status', [EvaluationController::class, 'updateApplicationStatus'])->name('application.update');
 
     // Route::get('/applicants/create', [ApplicantController::class, 'create'])->name('applicants.create');
     // Route::post('/applicants', [ApplicantController::class, 'store'])->name('applicants.store');
