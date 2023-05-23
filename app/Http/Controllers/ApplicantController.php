@@ -238,12 +238,13 @@ class ApplicantController extends Controller
 
         ElectricBill::insert($electricBillData);
 
-        //ownershipType
-        $houseOwnership = new HouseOwnership();
-        $houseOwnership->ownership_type = $request->input('ownership_type');
-        $houseOwnership->applicant_id = $applicantId;
+        $houseOwnership = $applicant->houseOwnership()->create([
+            'ownership_type' => $request->input('ownership_type')
+        ]);
 
-        $applicant->houseOwnership()->save($houseOwnership);
+        $houseOwnership->applicant_id = $applicantId;
+        $houseOwnership->save();
+
 
         //assign batch to applicant
         event(new ApplicantCreated($applicant));
