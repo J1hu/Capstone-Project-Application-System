@@ -19,8 +19,8 @@ class BatchFactory extends Factory
     {
         return [
             'batch_num' => Batch::getNextBatchNumber(),
-            'current_date' => fake()->date(now()),
-            'is_archived' => fake()->boolean(0),
+            'current_date' => \Carbon\Carbon::now()->format('Y-m-d'),
+            'school_year_id' => 1
         ];
     }
 }

@@ -16,10 +16,13 @@ return new class extends Migration
         Schema::create('batches', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('batch_num');
-            $table->date('current_date');
-            $table->boolean('is_archived')->default(false);
+            $table->date('current_date')->default(\Carbon\Carbon::now()->format('Y-m-d'));
+
             $table->unsignedBigInteger('program_id')->nullable();
             $table->foreign('program_id')->references('id')->on('programs');
+
+            $table->unsignedBigInteger('school_year_id')->nullable();
+            $table->foreign('school_year_id')->references('id')->on('school_years');
             $table->timestamps();
         });
     }
