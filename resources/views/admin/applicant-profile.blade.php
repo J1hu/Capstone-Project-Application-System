@@ -287,7 +287,6 @@
         @endif
     </div>
     @endhasanyrole
-    @endhasanyrole
     </div>
 
 
