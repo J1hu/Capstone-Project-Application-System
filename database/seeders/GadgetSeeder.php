@@ -15,6 +15,15 @@ class GadgetSeeder extends Seeder
      */
     public function run()
     {
-        Gadget::factory()->times(50)->create();
+        $gadgets = [
+            'Smartphone',
+            'Tablet',
+            'Laptop',
+            'Desktop/PC',
+        ];
+
+        foreach ($gadgets as $gadgets) {
+            Gadget::create(['internet_name' => $gadgets]);
+        }
     }
 }
