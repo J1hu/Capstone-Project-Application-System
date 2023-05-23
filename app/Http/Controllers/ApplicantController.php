@@ -120,8 +120,7 @@ class ApplicantController extends Controller
             'award_name' => 'required|array|min:1',
             //
             'lrn' => 'required',
-            'esc_grantee' => 'required|not_in:0|string',
-            'esc_num' => 'string',
+            'esc_grantee' => 'required|string',
             //report card
             'report_card' => 'required|image|max:2048',
             //chosen program
