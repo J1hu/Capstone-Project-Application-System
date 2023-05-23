@@ -33,6 +33,8 @@ class ApplicantController extends Controller
         // Check if the user has applicant data
         if ($user->applicant) {
             return view('applicants.dashboard', compact('user'));
+        } else if ($user->hasAnyRole(['admin', 'mancom', 'registrar_staff', 'program_head'])) {
+            return redirect()->route('dashboard');
         }
 
         // Redirect to application form
