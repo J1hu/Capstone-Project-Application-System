@@ -92,7 +92,7 @@ class ApplicantController extends Controller
             'mother_mname' => 'required|max:255',
             'mother_occupation' => 'required|max:255',
             'mother_lname' => 'required|max:255',
-            'mother_annual_income' => 'required|not_in:0|in:250,000PHP and less,250,000PHP to 400,000PHP,400,000PHP to 800,000PHP,800,000PHP to 2,000,000PHP,2,000,000PHP to 8,000,000PHP',
+            'mother_annual_income' => 'required',
             'mother_phone_num' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
             //father
             'father_fname' => 'required|max:255',
@@ -100,7 +100,7 @@ class ApplicantController extends Controller
             'father_mname' => 'required|max:255',
             'father_occupation' => 'required|max:255',
             'father_lname' => 'required|max:255',
-            'father_annual_income' => 'required|not_in:0|in:250,000PHP and less,250,000PHP to 400,000PHP,400,000PHP to 800,000PHP,800,000PHP to 2,000,000PHP,2,000,000PHP to 8,000,000PHP',
+            'father_annual_income' => 'required',
             'father_phone_num' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
             //guardian
             'guardian_fname' => 'required|max:255',
@@ -108,13 +108,13 @@ class ApplicantController extends Controller
             'guardian_mname' => 'required|max:255',
             'guardian_occupation' => 'required|max:255',
             'guardian_lname' => 'required|max:255',
-            'guardian_annual_income' => 'required|not_in:0|in:250,000PHP and less,250,000PHP to 400,000PHP,400,000PHP to 800,000PHP,800,000PHP to 2,000,000PHP,2,000,000PHP to 8,000,000PHP',
+            'guardian_annual_income' => 'required',
             'guardian_phone_num' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
             //cert
             'certificate' => 'required|image|max:2048',
             //last school
             'last_school' => 'required|string|max:255',
-            'school_type' => 'required|not_in:0|in:Public,Private,State University',
+            'school_type' => 'required',
             'last_school_address' => 'required|string|max:255',
             // award
             'award_name' => 'required|array|min:1',
@@ -127,24 +127,23 @@ class ApplicantController extends Controller
             //chosen program
             'program_id' => 'required',
             //gadgets
-            'gadget_name' => ['required', 'array', 'min:1', Rule::in(['smartphone', 'tablet', 'laptop', 'desktop'])],
+            'gadget_name' => 'required|array',
             //internet
             'internet_name' => 'required|array|min:1',
             'internet_name.*' => 'string|in:postpaid,prepaid,prepaid_wifi,broadband',
             //electric
-            'electric_month_1' => 'required|not_in:0|in:january,february,march,april,may,june,july,august,september,october,november,december',
+            'electric_month_1' => 'required',
             'electric_amount_1' => 'required|numeric|min:0|max:999999',
-            'electric_month_2' => 'required|not_in:0|in:january,february,march,april,may,june,july,august,september,october,november,december',
+            'electric_month_2' => 'required',
             'electric_amount_2' => 'required|numeric|min:0|max:999999',
-            'electric_month_3' => 'required|not_in:0|in:january,february,march,april,may,june,july,august,september,october,november,december',
+            'electric_month_3' => 'required',
             'electric_amount_3' => 'required|numeric|min:0|max:999999',
             // ebill proof
             'ebill_proof' => 'required|image|max:2048',
             'ebill_proof.required' => 'Please upload a picture of the electric bills for the last three months',
-            'ebill_proof.max' => 'The picture must not be larger than 2MB',
             'free_ebill_reason' => 'required',
             // ownership
-            'ownership_type' => ['required', 'string', Rule::in(['Owned, Fully Paid', 'Owned, Amortized', 'Rented', 'Free/Living with relatives/Inherited'])],
+            'ownership_type' => ['required', 'string'],
             'monthly_rental' => 'required|numeric|min:0',
             // section 7
             'data_privacy_consent' => 'required',
