@@ -697,17 +697,18 @@
                             @endif
                         </div>
                     </div>
-
-                    <div>
-                        <label for="last_school_address" class="text-sm text-slate-700">Address of Last School
-                            Attended<span class="text-red-500"> *</span></label>
-                        <textarea name="last_school_address" id="last_school_address" class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" required>{{ old('last_school_address') }}</textarea>
-                        @if ($errors->has('last_school_address'))
-                        <div class="invalid-feedback text-red-500">
-                            {{ $errors->first('last_school_address') }}
+                    <form novalidate>
+                        <div>
+                            <label for="last_school_address" class="text-sm text-slate-700">Address of Last School
+                                Attended<span class="text-red-500"> *</span></label>
+                            <textarea name="last_school_address" id="last_school_address" class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" required>{{ old('last_school_address') }}</textarea>
+                            @if ($errors->has('last_school_address'))
+                            <div class="invalid-feedback text-red-500">
+                                {{ $errors->first('last_school_address') }}
+                            </div>
+                            @endif
                         </div>
-                        @endif
-                    </div>
+                    </form>
                     <div class="my-5 space-y-2">
                         <div class="font-bold text-lg">ACADEMIC AWARDS AND ACHIEVEMENTS DURING THE PREVIOUS YEAR</div>
                         <div class="grid grid-cols-2">
@@ -793,7 +794,7 @@
                     <div class="grid grid-cols-2 gap-x-6 gap-y-4">
                         <div>
                             <label for="lrn" class="text-sm text-slate-700">Learner Reference Number (LRN)<span class="text-red-500"> *</span></label>
-                            <input type="number" name="lrn" id="lrn" min="0" value="{{ old('lrn') }}" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" maxlength="12">
+                            <input type="number" name="lrn" id="lrn" min="0" value="{{ old('lrn') }}" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" gth="maxlen12">
                             @if ($errors->has('lrn'))
                             <div class="invalid-feedback text-red-500">
                                 {{ $errors->first('lrn') }}
@@ -1073,7 +1074,7 @@
                         <div>
                             <label for="monthly_rental" class="mx-2">If you're renting, please enter monthly rental
                                 fee:</label>
-                            <input type="number" id="monthly_rental" name="monthly_rental" value="{{ old('monthly_rental') }}" class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            <input type="number" id="monthly_rental" maxlength="12" name="monthly_rental" value="{{ old('monthly_rental') }}" class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                         </div>
                     </div>
                 </div>
