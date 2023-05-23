@@ -312,7 +312,7 @@
                         <div>
                             <label for="total_fam_children" class="text-sm text-slate-700">No. of Children in the
                                 Family<span class="text-red-500"> *</span></label>
-                            <input type="number" name="total_fam_children" id="total_fam_children" value="{{ old('total_fam_children') }}" min="1" max="20" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            <input type="number" name="total_fam_children" id="total_fam_children" value="{{ old('total_fam_children') }}" min="1" max="99" maxlength="2" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                             @if ($errors->has('total_fam_children'))
                             <div class="invalid-feedback text-red-500">
                                 {{ $errors->first('total_fam_children') }}
@@ -322,7 +322,7 @@
 
                         <div>
                             <label for="birth_order" class="text-sm text-slate-700">Birth Order of the Applicant<span class="text-red-500"> *</span></label>
-                            <input type="number" name="birth_order" id="birth_order" value="{{ old('birth_order') }}" min="1" max="20" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            <input type="number" name="birth_order" id="birth_order" value="{{ old('birth_order') }}" min="1" max="99" maxlength="2" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                             @if ($errors->has('birth_order'))
                             <div class="invalid-feedback text-red-500">
                                 {{ $errors->first('birth_order') }}
