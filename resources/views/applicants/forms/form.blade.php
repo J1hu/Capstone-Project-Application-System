@@ -642,6 +642,9 @@
                                     <li>or Certificate of Indigency</li>
                                 </ul>
                                 <input type="file" name="certificate" id="certificate" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/2">
+                                <div id="certSizeError" class="invalid-feedback text-red-500" style="display: none;">
+                                    File size exceeds the maximum limit of 2MB.
+                                </div>
                                 @if ($errors->has('certificate'))
                                 <div class="invalid-feedback text-red-500">
                                     {{ $errors->first('certificate') }}
@@ -834,6 +837,9 @@
                             <li>Photocopy of Certification of Grades/TOR (For College Transferees)</li>
                         </ul>
                         <input type="file" name="report_card" id="report_card" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/2">
+                        <div id="cardSizeError" class="invalid-feedback text-red-500" style="display: none;">
+                            File size exceeds the maximum limit of 2MB.
+                        </div>
                         @if ($errors->has('report_card'))
                         <div class="invalid-feedback text-red-500">
                             {{ $errors->first('report_card') }}
@@ -1034,6 +1040,9 @@
                         <label for="ebill_proof">Upload a Clear Picture of the Electric Bills for the last three months
                             <span class="text-red-500"> *</span></label>
                         <input type="file" name="ebill_proof" id="ebill_proof" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/2">
+                        <div id="eBillSizeError" class="invalid-feedback text-red-500" style="display: none;">
+                            File size exceeds the maximum limit of 2MB.
+                        </div>
                         @if ($errors->has('ebill_proof'))
                         <div class="invalid-feedback text-red-500">
                             {{ $errors->first('ebill_proof') }}
@@ -1356,6 +1365,56 @@
             }
         });
 
+        // Add an event listener to the file input element
+        document.getElementById('certificate').addEventListener('change', function() {
+            var fileInput = this;
+            var maxSize = 2 * 1024 * 1024; // Maximum size in bytes (2MB)
+
+            // Check if the selected file exceeds the maximum size
+            if (fileInput.files[0] && fileInput.files[0].size > maxSize) {
+                // Show the error message
+                document.getElementById('certSizeError').style.display = 'block';
+                // Clear the file input value to prevent submitting the oversized file
+                fileInput.value = '';
+            } else {
+                // Hide the error message (if previously shown)
+                document.getElementById('certSizeError').style.display = 'none';
+            }
+        });
+
+        // Add an event listener to the file input element
+        document.getElementById('report_card').addEventListener('change', function() {
+            var fileInput = this;
+            var maxSize = 2 * 1024 * 1024; // Maximum size in bytes (2MB)
+
+            // Check if the selected file exceeds the maximum size
+            if (fileInput.files[0] && fileInput.files[0].size > maxSize) {
+                // Show the error message
+                document.getElementById('cardSizeError').style.display = 'block';
+                // Clear the file input value to prevent submitting the oversized file
+                fileInput.value = '';
+            } else {
+                // Hide the error message (if previously shown)
+                document.getElementById('cardSizeError').style.display = 'none';
+            }
+        });
+
+        // Add an event listener to the file input element
+        document.getElementById('ebill_proof').addEventListener('change', function() {
+            var fileInput = this;
+            var maxSize = 2 * 1024 * 1024; // Maximum size in bytes (2MB)
+
+            // Check if the selected file exceeds the maximum size
+            if (fileInput.files[0] && fileInput.files[0].size > maxSize) {
+                // Show the error message
+                document.getElementById('eBillSizeError').style.display = 'block';
+                // Clear the file input value to prevent submitting the oversized file
+                fileInput.value = '';
+            } else {
+                // Hide the error message (if previously shown)
+                document.getElementById('eBillSizeError').style.display = 'none';
+            }
+        });
     });
 
     // Array of input field IDs
