@@ -1175,6 +1175,7 @@
             var month3 = document.querySelectorAll('input[name="electric_bills[2][electric_month]"]:checked');
             var program = document.querySelectorAll('input[name="program_id"]:checked');
             var ownership = document.querySelectorAll('input[name="ownership_type"]:checked');
+            var esc_grantee = document.querySelectorAll('input[name="esc_grantee"]:checked');
 
             // Check if at least one checkbox is selected
             if (gadget.length === 0) {
@@ -1245,6 +1246,15 @@
                 event.preventDefault();
                 // Display an error message to the user
                 errorMessage.textContent = 'Please select ownership type.';
+                errorModal.style.display = 'block';
+            }
+
+            // Check if at least one checkbox is selected
+            if (esc_grantee.length === 0) {
+                // Prevent the form from submitting
+                event.preventDefault();
+                // Display an error message to the user
+                errorMessage.textContent = 'Please select esc grantee type.';
                 errorModal.style.display = 'block';
             }
         });
