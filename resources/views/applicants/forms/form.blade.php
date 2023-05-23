@@ -1133,7 +1133,7 @@
                             <label for="electric_amount_1" class="text-sm text-slate-700">Electric Bill for Month
                                 1<span class="text-red-500"> *</span></label>
                             <input type="number" id="electric_amount_1" name="electric_bills[0][electric_amount]"
-                                min="0" max="999999" required
+                                minlength="0" maxlength="999999" required
                                 class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                         </div>
                         <div>
@@ -1160,7 +1160,7 @@
                             <label for="electric_amount_2" class="text-sm text-slate-700">Electric Bill for Month
                                 2<span class="text-red-500"> *</span></label>
                             <input type="number" id="electric_amount_2" name="electric_bills[1][electric_amount]"
-                                min="0" max="999999" required
+                            minlength="0" maxlength="999999" required
                                 class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                         </div>
                         <div>
@@ -1187,7 +1187,7 @@
                             <label for="electric_amount_3" class="text-sm text-slate-700">Electric Bill for Month
                                 3<span class="text-red-500"> *</span></label>
                             <input type="number" id="electric_amount_3" name="electric_bills[2][electric_amount]"
-                                min="0" max="999999" required
+                            minlength="0" maxlength="999999" required
                                 class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                         </div>
                     </div>
