@@ -9,17 +9,20 @@ class Batch extends Model
 {
     use HasFactory;
 
-    const FULL_CAPACITY = 50;
-
     protected $fillable = [
         'batch_num',
-        'is_archived',
-        'program_id'
+        'program_id',
+        'school_year_id'
     ];
 
     public function applicants()
     {
         return $this->hasMany(Applicant::class);
+    }
+
+    public function schoolYear()
+    {
+        return $this->belongsTo(SchoolYear::class);
     }
 
     public function program()
@@ -29,10 +32,10 @@ class Batch extends Model
 
     public static function getNextBatchNumber()
     {
-        $lastBatch = Batch::where('is_archived', false)->latest()->first();
-        if (!$lastBatch || $lastBatch->applicants()->count() >= self::FULL_CAPACITY) {
-            return self::max('batch_num') + 1;
+        $lastBatch = Batch::latest('batch_num')->first();
+        if (!$lastBatch) {
+            return 1;
         }
-        return $lastBatch->batch_num;
+        return $lastBatch->batch_num + 1;
     }
 }

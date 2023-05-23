@@ -15,6 +15,15 @@ class HouseOwnershipSeeder extends Seeder
      */
     public function run()
     {
-        HouseOwnership::factory()->times(50)->create();
+        $types = [
+            'Owned, Fully Paid',
+            'Owned, Amortized',
+            'Rented',
+            'Free/Living with relatives/Inherited'
+        ];
+
+        foreach ($types as $types) {
+            HouseOwnership::create(['internet_name' => $types]);
+        }
     }
 }

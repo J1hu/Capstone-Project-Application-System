@@ -44,6 +44,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ProgramSeeder::class);
         $this->call(ScholarshipTypeSeeder::class);
+        $this->call(SchoolYearSeeder::class);
         $this->call(BatchSeeder::class);
         $this->call(ApplicationStatusSeeder::class);
         $this->call(ApplicantStatusSeeder::class);
