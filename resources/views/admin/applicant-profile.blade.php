@@ -5,7 +5,7 @@
             {{ __('Applicant Profile') }}
         </h2>
     </x-slot>
-        @csrf
+    @csrf
     {{-- first card --}}
     <div class="bg-white border rounded-md p-5">
         <div class="grid grid-cols-5">
@@ -135,6 +135,7 @@
             </div>
         </div>
         @endif
+        @endhasanyrole
     </div>
 
     {{-- Exam Score --}}
@@ -239,7 +240,7 @@
     </div>
 
     {{-- Final Assessment --}}
-    @hasanyrole('mancom')
+    @hasanyrole('mancom|admin|registrar_staff')
     <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="final_assessment" role="tabpanel" aria-labelledby="final-assessment-tab">
         <h2 class="font-bold">Final Assessment</h2>
         @if (is_null($final_assessment))
@@ -522,8 +523,8 @@
             <div>
                 <div id="myModal" class="modal">
                     <img class="modal-content" id="img" alt="">
-                  </div>
-                  <section data-aos="fade-up" data-aos-duration="2000" data-aos-anchor-placement="center-bottom">
+                </div>
+                <section data-aos="fade-up" data-aos-duration="2000" data-aos-anchor-placement="center-bottom">
                     <div class="gallery gap-8 columns-3">
                         <div>
                             <img class="myImg" src="{{ asset('storage/certificates/' . $applicant->certificate) }}" alt="Certificate" width="100px">
@@ -534,33 +535,33 @@
                         <div>
                             <img class="myImg" src="{{ asset('storage/ebill-proofs/' . $applicant->ebill_proof) }}" alt="Electric Bill" width="100px">
                         </div>
-                        
+
                     </div>
-                  </section>
+                </section>
             </div>
         </div>
     </div>
 
-    
+
     <script>
-      AOS.init();
+        AOS.init();
     </script>
-    
+
     <!-- Internal Script -->
     <script type="text/javascript">
-    //Get the modal
-    var modal = document.getElementById('myModal');
+        //Get the modal
+        var modal = document.getElementById('myModal');
 
-    //Get the image and insert it inside the modal - use its "alt" text as a caption
+        //Get the image and insert it inside the modal - use its "alt" text as a caption
         var img = $('.myImg');
         var modalImg = $("#img");
-        $('.myImg').click(function(){
+        $('.myImg').click(function() {
             modal.style.display = "block";
             var newSrc = this.src;
             modalImg.attr('src', newSrc);
         });
 
-    //if you click on anything except the modal itself or the "open modal" link, close the modal
+        //if you click on anything except the modal itself or the "open modal" link, close the modal
         $(document).click(function(event) {
             //if you click on anything except the modal itself or the "open modal" link, close the modal
             if (!$(event.target).closest(".myImg, .modal-content").length) {
