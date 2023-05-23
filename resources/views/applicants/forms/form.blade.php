@@ -701,7 +701,7 @@
                     <div>
                         <label for="last_school_address" class="text-sm text-slate-700">Address of Last School
                             Attended<span class="text-red-500"> *</span></label>
-                        <textarea name="last_school_address" id="last_school_address" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">{{ old('last_school_address') }}</textarea>
+                        <textarea name="last_school_address" id="last_school_address" class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" required>{{ old('last_school_address') }}</textarea>
                         @if ($errors->has('last_school_address'))
                         <div class="invalid-feedback text-red-500">
                             {{ $errors->first('last_school_address') }}
