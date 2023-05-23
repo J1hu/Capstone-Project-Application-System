@@ -133,11 +133,11 @@ class ApplicantController extends Controller
             'internet_name.*' => 'string|in:postpaid,prepaid,prepaid_wifi,broadband',
             //electric
             'electric_month_1' => 'required|not_in:0|in:january,february,march,april,may,june,july,august,september,october,november,december',
-            'electric_amount_1' => 'required|numeric|min:0',
+            'electric_amount_1' => 'required|numeric|min:0|max:999999',
             'electric_month_2' => 'required|not_in:0|in:january,february,march,april,may,june,july,august,september,october,november,december',
-            'electric_amount_2' => 'required|numeric|min:0',
+            'electric_amount_2' => 'required|numeric|min:0|max:999999',
             'electric_month_3' => 'required|not_in:0|in:january,february,march,april,may,june,july,august,september,october,november,december',
-            'electric_amount_3' => 'required|numeric|min:0',
+            'electric_amount_3' => 'required|numeric|min:0|max:999999',
             // ebill proof
             'ebill_proof' => 'required|mimes:jpeg,jpg,png|max:2048',
             'ebill_proof.required' => 'Please upload a picture of the electric bills for the last three months',
