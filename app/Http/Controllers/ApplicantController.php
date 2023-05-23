@@ -68,7 +68,7 @@ class ApplicantController extends Controller
             'document_consent' => 'required',
             'fname' => 'required',
             'lname' => 'required',
-            'applicant_type' => 'required',
+            'applicant_type' => 'required|not_in:0',
             'sex' => 'required',
             'birthdate' => 'required|date',
             'phone_num' => 'required',
@@ -92,7 +92,7 @@ class ApplicantController extends Controller
             'mother_mname' => 'required|max:255',
             'mother_occupation' => 'required|max:255',
             'mother_lname' => 'required|max:255',
-            'mother_annual_income' => 'required|in:250,000PHP and less,250,000PHP to 400,000PHP,400,000PHP to 800,000PHP,800,000PHP to 2,000,000PHP,2,000,000PHP to 8,000,000PHP',
+            'mother_annual_income' => 'required|not_in:0|in:250,000PHP and less,250,000PHP to 400,000PHP,400,000PHP to 800,000PHP,800,000PHP to 2,000,000PHP,2,000,000PHP to 8,000,000PHP',
             'mother_phone_num' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
             //father
             'father_fname' => 'required|max:255',
@@ -100,7 +100,7 @@ class ApplicantController extends Controller
             'father_mname' => 'required|max:255',
             'father_occupation' => 'required|max:255',
             'father_lname' => 'required|max:255',
-            'father_annual_income' => 'required|in:250,000PHP and less,250,000PHP to 400,000PHP,400,000PHP to 800,000PHP,800,000PHP to 2,000,000PHP,2,000,000PHP to 8,000,000PHP',
+            'father_annual_income' => 'required|not_in:0|in:250,000PHP and less,250,000PHP to 400,000PHP,400,000PHP to 800,000PHP,800,000PHP to 2,000,000PHP,2,000,000PHP to 8,000,000PHP',
             'father_phone_num' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
             //guardian
             'guardian_fname' => 'required|max:255',
@@ -108,19 +108,19 @@ class ApplicantController extends Controller
             'guardian_mname' => 'required|max:255',
             'guardian_occupation' => 'required|max:255',
             'guardian_lname' => 'required|max:255',
-            'guardian_annual_income' => 'required|in:250,000PHP and less,250,000PHP to 400,000PHP,400,000PHP to 800,000PHP,800,000PHP to 2,000,000PHP,2,000,000PHP to 8,000,000PHP',
+            'guardian_annual_income' => 'required|not_in:0|in:250,000PHP and less,250,000PHP to 400,000PHP,400,000PHP to 800,000PHP,800,000PHP to 2,000,000PHP,2,000,000PHP to 8,000,000PHP',
             'guardian_phone_num' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
             //cert
             'certificate' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             //last school
             'last_school' => 'required|string|max:255',
-            'school_type' => 'required|in:Public,Private,State University',
+            'school_type' => 'required|not_in:0|in:Public,Private,State University',
             'last_school_address' => 'required|string|max:255',
             // award
             'award_name' => 'required|array|min:1',
             //
             'lrn' => 'required',
-            'esc_grantee' => 'string',
+            'esc_grantee' => 'required|not_in:0|string',
             'esc_num' => 'string',
             //report card
             'report_card' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -132,12 +132,12 @@ class ApplicantController extends Controller
             'internet_name' => 'required|array|min:1',
             'internet_name.*' => 'string|in:postpaid,prepaid,prepaid_wifi,broadband',
             //electric
-            'electric_month_1' => 'required|in:january,february,march,april,may,june,july,august,september,october,november,december',
-            'electric_amount_1' => 'required|numeric|min:0',
-            'electric_month_2' => 'required|in:january,february,march,april,may,june,july,august,september,october,november,december',
-            'electric_amount_2' => 'required|numeric|min:0',
-            'electric_month_3' => 'required|in:january,february,march,april,may,june,july,august,september,october,november,december',
-            'electric_amount_3' => 'required|numeric|min:0',
+            'electric_month_1' => 'required|not_in:0|in:january,february,march,april,may,june,july,august,september,october,november,december',
+            'electric_amount_1' => 'required|numeric|min:0|max:999999',
+            'electric_month_2' => 'required|not_in:0|in:january,february,march,april,may,june,july,august,september,october,november,december',
+            'electric_amount_2' => 'required|numeric|min:0|max:999999',
+            'electric_month_3' => 'required|not_in:0|in:january,february,march,april,may,june,july,august,september,october,november,december',
+            'electric_amount_3' => 'required|numeric|min:0|max:999999',
             // ebill proof
             'ebill_proof' => 'required|mimes:jpeg,jpg,png|max:2048',
             'ebill_proof.required' => 'Please upload a picture of the electric bills for the last three months',
@@ -150,6 +150,12 @@ class ApplicantController extends Controller
             // section 7
             'data_privacy_consent' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator) 
+                ->withInput(); 
+        }
 
         $applicant = new Applicant();
         $applicant->contact_consent = $request->input('contact_consent');
@@ -340,6 +346,8 @@ class ApplicantController extends Controller
         $applicationStatus = ApplicationStatus::where('application_status_name', 'filled')->first();
         $applicant->application_status()->associate($applicationStatus);
         $applicant->save();
+
+
 
         return redirect()->route('applicants.dashboard');
     }
