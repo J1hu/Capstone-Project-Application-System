@@ -49,8 +49,18 @@ Route::view('/privacy', 'privacy')->name('privacy');
 Route::view('/test', 'testing')->name('test');
 
 Route::get('/dashboard', function () {
+    $user = Auth::user();
+
+    // Check if the user has applicant data
+    $hasApplicantData = $user->applicant()->exists();
+
+    if (!$hasApplicantData) {
+        return redirect()->route('applicants.forms.form');
+    }
+
     return view('dashboard');
 })->middleware(['auth', 'role:admin|program_head|mancom|registrar_staff', 'verified'])->name('dashboard');
+
 
 // APPLICANTS
 Route::middleware(['auth', 'role:applicant', 'verified'])->group(function () {
