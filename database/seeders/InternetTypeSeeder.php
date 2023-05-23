@@ -15,6 +15,15 @@ class InternetTypeSeeder extends Seeder
      */
     public function run()
     {
-        InternetType::factory()->times(50)->create();
+        $types = [
+            'Prepaid Mobile Data',
+            'Postpaid Mobile Data',
+            'Prepaid Wifi (Ex: Globe at Home, PLDT Home, etc.)',
+            'Broadband Line (Ex: PLDT Fibr, Converge, Sky Fibr, etc.)'
+        ];
+
+        foreach ($types as $types) {
+            InternetType::create(['internet_name' => $types]);
+        }
     }
 }

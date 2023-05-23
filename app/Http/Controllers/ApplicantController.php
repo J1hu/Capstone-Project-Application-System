@@ -46,8 +46,17 @@ class ApplicantController extends Controller
             return redirect()->route('applicants.dashboard');
         }
 
+        $gadgets = Gadget::all();
+        $internets = InternetType::all();
+        $ownership_types = HouseOwnership::all();
         $programs = Program::all();
-        return view('applicants.forms.form', ['programs' => $programs]);
+
+        return view('applicants.forms.form', [
+            'programs' => $programs,
+            'gadgets' => $gadgets,
+            'internets' => $internets,
+            'ownership_types' => $ownership_types,
+        ]);
     }
 
     public function store(Request $request)
