@@ -699,7 +699,7 @@
                     </div>
                     <div>
                         <label for="last_school_address" class="text-sm text-slate-700">Address of Last School Attended<span class="text-red-500"> *</span></label>
-                        <textarea name="last_school_address" id="last_school_address" class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">{{ old('last_school_address') }}</textarea>
+                        <input type="text" name="last_school_address" id="last_school_address" class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" value="{{ old('last_school_address') }}" required>
                         @if ($errors->has('last_school_address'))
                         <div class="invalid-feedback text-red-500">
                             {{ $errors->first('last_school_address') }}
@@ -1172,13 +1172,8 @@
             var selectedMonth1 = document.getElementById('electric_month_1').value;
             var selectedMonth2 = document.getElementById('electric_month_2').value;
             var selectedMonth3 = document.getElementById('electric_month_3').value;
-
             var selectedProgram = document.getElementById('program_id').value;
-
-            var schoolAddress = document.getElementById('last_school_address').value.trim();
-
             var ownership = document.querySelector('input[name="ownership_type"]:checked');
-
             var escGranteeSelect = document.getElementById('esc_grantee');
             var selectedOption = escGranteeSelect.value;
 
@@ -1265,15 +1260,6 @@
                 event.preventDefault();
                 // Display an error message to the user
                 errorMessage.textContent = 'Please select esc grantee type.';
-                errorModal.style.display = 'block';
-            }
-
-            // Check if a school address has input
-            if (schoolAddress === '') {
-                // Prevent the form from submitting
-                event.preventDefault();
-                // Display an error message to the user
-                errorMessage.textContent = 'Please input the last school address.';
                 errorModal.style.display = 'block';
             }
         });
