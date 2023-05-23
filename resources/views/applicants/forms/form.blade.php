@@ -792,9 +792,8 @@
                     </div>
                     <div class="grid grid-cols-2 gap-x-6 gap-y-4">
                         <div>
-                            <label for="lrn" class="text-sm text-slate-700">Learner Reference Number
-                                (LRN)<span class="text-red-500"> *</span></label>
-                            <input type="number" name="lrn" id="lrn" min="0" value="{{ old('lrn') }}" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            <label for="lrn" class="text-sm text-slate-700">Learner Reference Number (LRN)<span class="text-red-500"> *</span></label>
+                            <input type="number" name="lrn" id="lrn" min="0" value="{{ old('lrn') }}" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" maxlength="12">
                             @if ($errors->has('lrn'))
                             <div class="invalid-feedback text-red-500">
                                 {{ $errors->first('lrn') }}
@@ -1337,7 +1336,17 @@
             }
         });
 
+        const lrnInput = document.getElementById('lrn');
 
+        lrnInput.addEventListener('input', function(event) {
+            const value = event.target.value;
+
+            // Remove any occurrence of 'e' from the input value
+            const sanitizedValue = value.replace(/e/gi, '');
+
+            // Update the input value with the sanitized value
+            event.target.value = sanitizedValue;
+        });
 
         var span = document.getElementsByClassName("close")[0];
         // When the user clicks on <span> (x), close the modal
