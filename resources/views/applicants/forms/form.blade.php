@@ -806,12 +806,9 @@
                                 Grantee?<span class="text-red-500"> *</span></label>
                             <select required="required" name="esc_grantee" id="esc_grantee" class="form-control inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                                 <option value="" disabled selected hidden>Select option</option>
-                                <option value="Yes" {{ old('esc_grantee') == 'Yes' ? 'selected' : '' }}>Yes
-                                </option>
+                                <option value="Yes" {{ old('esc_grantee') == 'Yes' ? 'selected' : '' }}>Yes</option>
                                 <option value="No" {{ old('esc_grantee') == 'No' ? 'selected' : '' }}>No</option>
-                                <option value="N/A" {{ old('esc_grantee') == 'N/A' ? 'selected' : '' }}>Not
-                                    Applicable
-                                </option>
+                                <option value="N/A" {{ old('esc_grantee') == 'N/A' ? 'selected' : '' }}>Not Applicable</option>
                             </select>
                             @if ($errors->has('esc_grantee'))
                             <div class="invalid-feedback text-red-500">
@@ -1178,12 +1175,16 @@
             var gadget = document.querySelectorAll('input[name="gadget_name[]"]:checked');
             var internet = document.querySelectorAll('input[name="internet_name[]"]:checked');
             var award = document.querySelectorAll('input[name="award_name[]"]:checked');
-            var month1 = document.querySelectorAll('input[name="electric_bills[0][electric_month]"]:checked');
-            var month2 = document.querySelectorAll('input[name="electric_bills[1][electric_month]"]:checked');
-            var month3 = document.querySelectorAll('input[name="electric_bills[2][electric_month]"]:checked');
-            var program = document.querySelectorAll('input[name="program_id"]:checked');
-            var ownership = document.querySelectorAll('input[name="ownership_type"]:checked');
-            var esc_grantee = document.querySelectorAll('input[name="esc_grantee"]:checked');
+            var selectedMonth1 = document.getElementById('electric_month_1').value;
+            var selectedMonth2 = document.getElementById('electric_month_2').value;
+            var selectedMonth3 = document.getElementById('electric_month_3').value;
+
+            var selectedProgram = document.getElementById('program_id').value;
+
+            var ownership = document.querySelector('input[name="ownership_type"]:checked');
+
+            var escGranteeSelect = document.getElementById('esc_grantee');
+            var selectedOption = escGranteeSelect.value;
 
             // Check if at least one checkbox is selected
             if (gadget.length === 0) {
@@ -1212,53 +1213,58 @@
                 errorModal.style.display = 'block';
             }
 
-            // Check if at least one checkbox is selected
-            if (month1.length === 0) {
+            // Check if a month is selected
+            if (selectedMonth1 === '') {
                 // Prevent the form from submitting
                 event.preventDefault();
                 // Display an error message to the user
-                errorMessage.textContent = 'Please select 1st month on electric bills.';
+                errorMessage.textContent = 'Please select the 1st month for electric bills.';
                 errorModal.style.display = 'block';
             }
 
-            // Check if at least one checkbox is selected
-            if (month2.length === 0) {
+            // Check if a month is selected
+            if (selectedMonth2 === '') {
                 // Prevent the form from submitting
                 event.preventDefault();
                 // Display an error message to the user
-                errorMessage.textContent = 'Please select 2nd month on electric bills.';
+                errorMessage.textContent = 'Please select the 1st month for electric bills.';
                 errorModal.style.display = 'block';
             }
 
-            // Check if at least one checkbox is selected
-            if (month3.length === 0) {
+            // Check if a month is selected
+            if (selectedMonth3 === '') {
                 // Prevent the form from submitting
                 event.preventDefault();
                 // Display an error message to the user
-                errorMessage.textContent = 'Please select 3rd month on electric bills.';
+                errorMessage.textContent = 'Please select the 1st month for electric bills.';
                 errorModal.style.display = 'block';
             }
 
-            // Check if at least one checkbox is selected
-            if (program.length === 0) {
+            // Check if a program is selected
+            if (selectedProgram === '') {
                 // Prevent the form from submitting
                 event.preventDefault();
                 // Display an error message to the user
-                errorMessage.textContent = 'Please select program of your choice.';
+                errorMessage.textContent = 'Please select a program of your choice.';
                 errorModal.style.display = 'block';
             }
 
-            // Check if at least one checkbox is selected
-            if (ownership.length === 0) {
+            // Check if an option is selected
+            if (!ownership) {
                 // Prevent the form from submitting
                 event.preventDefault();
                 // Display an error message to the user
                 errorMessage.textContent = 'Please select ownership type.';
                 errorModal.style.display = 'block';
+            } else if (ownership.value === 'Others' && document.getElementById('ownership_type').value === '') {
+                // Check if the "Others" option is selected but the text input is empty
+                event.preventDefault();
+                errorMessage.textContent = 'Please provide an ownership type in the "Others" field.';
+                errorModal.style.display = 'block';
             }
 
-            // Check if at least one checkbox is selected
-            if (esc_grantee.length === 0) {
+            // Check if an option is selected
+            if (selectedOption === '') {
                 // Prevent the form from submitting
                 event.preventDefault();
                 // Display an error message to the user
