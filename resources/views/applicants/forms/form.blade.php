@@ -146,8 +146,8 @@
                         <div>
                             <label for="applicant_type" class="text-sm text-slate-700">Applicant Type<span
                                     class="text-red-500"> *</span></label>
-                            <select name="applicant_type" id="applicant_type" required
-                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            <select name="applicant_type" id="applicant_type" required="required"
+                                class="form-control inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                                 <option value="" disabled selected hidden>Select Applicant Type</option>
                                 <option value="Old Student"
                                     {{ old('applicant_type') == 'Old Student' ? 'selected' : '' }}>
@@ -500,8 +500,8 @@
                                 <div>
                                     <label for="mother_annual_income" class="text-sm text-slate-700">Annual
                                         Income<span class="text-red-500">*</span></label>
-                                    <select name="mother_annual_income" id="mother_annual_income" required
-                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                    <select name="mother_annual_income" id="mother_annual_income" required="required"
+                                        class="form-control inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                                         <option value="" disabled selected hidden>Select Annual Income Range
                                         </option>
                                         <option value="no income">No Income</option>
@@ -593,8 +593,8 @@
                                 <div>
                                     <label for="father_annual_income" class="text-sm text-slate-700">Annual
                                         Income<span class="text-red-500">*</span></label>
-                                    <select name="father_annual_income" id="father_annual_income" required
-                                        class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                    <select name="father_annual_income" id="father_annual_income" required="required"
+                                        class="form-control inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                                         <option value="">Select Annual Income Range</option>
                                         <option value="no income">No Income</option>
                                         <option value="250,000PHP and less">250,000PHP and less</option>
@@ -691,8 +691,8 @@
                                     <div>
                                         <label for="guardian_annual_income" class="text-sm text-slate-700">Annual
                                             Income<span class="text-red-500"> *</span></label>
-                                        <select required name="guardian_annual_income" id="guardian_annual_income"
-                                            class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                        <select required="required" name="guardian_annual_income" id="guardian_annual_income"
+                                            class="form-control inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                                             <option value="" disabled selected hidden>Select Annual Income Range
                                             </option>
                                             <option value="no income">No Income</option>
@@ -778,8 +778,8 @@
                         <div>
                             <label for="school_type" class="text-sm text-slate-700">School Type<span
                                     class="text-red-500"> *</span></label>
-                            <select required name="school_type" id="school_type"
-                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            <select required="required" name="school_type" id="school_type"
+                                class="form-control inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                                 <option value="" disabled selected hidden>Select School Type</option>
                                 <option value="Public" {{ old('school_type') == 'Public' ? 'selected' : '' }}>Public
                                 </option>
@@ -921,8 +921,8 @@
                         <div>
                             <label for="esc_grantee" class="text-sm text-slate-700">Is the student an ESC
                                 Grantee?<span class="text-red-500"> *</span></label>
-                            <select required name="esc_grantee" id="esc_grantee"
-                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            <select required="required" name="esc_grantee" id="esc_grantee"
+                                class="form-control inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                                 <option value="" disabled selected hidden>Select option</option>
                                 <option value="Yes" {{ old('esc_grantee') == 'Yes' ? 'selected' : '' }}>Yes
                                 </option>
@@ -982,8 +982,8 @@
                     <div>
                         <label for="program_id" class="text-sm text-slate-700">Program Choice<span
                                 class="text-red-500"> *</span></label>
-                        <select name="program_id" id="program_id" required
-                            class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                        <select name="program_id" id="program_id" required="required"
+                            class="form-control inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                             <option value="" disabled selected hidden>Select Program</option>
                             @foreach ($programs as $program)
                                 <option value="{{ $program->id }}"
@@ -1112,8 +1112,8 @@
                         <div>
                             <label for="electric_month_1" class="text-sm text-slate-700">Month 1<span
                                     class="text-red-500"> *</span></label>
-                            <select required name="electric_bills[0][electric_month]"
-                                id="electric_month_1"class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            <select required="required" name="electric_bills[0][electric_month]"
+                                id="electric_month_1"class="form-control inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                                 <option value="" disabled selected hidden>Select a month</option>
                                 <option value="january">January</option>
                                 <option value="february">February</option>
@@ -1139,8 +1139,8 @@
                         <div>
                             <label for="electric_month_2" class="text-sm text-slate-700">Month 2<span
                                     class="text-red-500"> *</span></label>
-                            <select required name="electric_bills[1][electric_month]"
-                                id="electric_month_2"class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            <select required="required" name="electric_bills[1][electric_month]"
+                                id="electric_month_2"class="form-control inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                                 <option value="" disabled selected hidden>Select a month</option>
                                 <option value="january">January</option>
                                 <option value="february">February</option>
@@ -1166,8 +1166,8 @@
                         <div>
                             <label for="electric_month_3" class="text-sm text-slate-700">Month 3<span
                                     class="text-red-500"> *</span></label>
-                            <select required name="electric_bills[2][electric_month]" id="electric_month_3"
-                                class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            <select required="required" name="electric_bills[2][electric_month]" id="electric_month_3"
+                                class="form-control inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                                 <option value="" disabled selected hidden>Select a month</option>
                                 <option value="january">January</option>
                                 <option value="february">February</option>
@@ -1336,7 +1336,7 @@
 
             // Check if required input fields and select fields are filled
             var requiredFields_1 = current.find('input[required]');
-            var requiredFields_2 = current.find('select[required]');
+            var requiredFields_2 = current.find('select');
             var isValid = true;
 
             requiredFields_1.each(function() {
@@ -1353,6 +1353,9 @@
 
             requiredFields_2.each(function() {
                 if ($(this).val() === '') {
+                    isValid = false;
+                    $(this).addClass('error');
+                } else if ($(this).is('select') && $(this).val() === '') {
                     isValid = false;
                     $(this).addClass('error');
                 } else {
