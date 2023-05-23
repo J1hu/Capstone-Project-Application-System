@@ -697,18 +697,16 @@
                             @endif
                         </div>
                     </div>
-                    <form novalidate>
-                        <div>
-                            <label for="last_school_address" class="text-sm text-slate-700">Address of Last School
-                                Attended<span class="text-red-500"> *</span></label>
-                            <textarea name="last_school_address" id="last_school_address" class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" required>{{ old('last_school_address') }}</textarea>
-                            @if ($errors->has('last_school_address'))
-                            <div class="invalid-feedback text-red-500">
-                                {{ $errors->first('last_school_address') }}
-                            </div>
-                            @endif
+                    <div>
+                        <label for="last_school_address" class="text-sm text-slate-700">Address of Last School Attended<span class="text-red-500"> *</span></label>
+                        <textarea name="last_school_address" id="last_school_address" class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">{{ old('last_school_address') }}</textarea>
+                        @if ($errors->has('last_school_address'))
+                        <div class="invalid-feedback text-red-500">
+                            {{ $errors->first('last_school_address') }}
                         </div>
-                    </form>
+                        @endif
+                    </div>
+
                     <div class="my-5 space-y-2">
                         <div class="font-bold text-lg">ACADEMIC AWARDS AND ACHIEVEMENTS DURING THE PREVIOUS YEAR</div>
                         <div class="grid grid-cols-2">
@@ -794,7 +792,7 @@
                     <div class="grid grid-cols-2 gap-x-6 gap-y-4">
                         <div>
                             <label for="lrn" class="text-sm text-slate-700">Learner Reference Number (LRN)<span class="text-red-500"> *</span></label>
-                            <input type="number" name="lrn" id="lrn" min="0" value="{{ old('lrn') }}" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" gth="maxlen12">
+                            <input type="number" name="lrn" id="lrn" min="0" value="{{ old('lrn') }}" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" maxlength="12">
                             @if ($errors->has('lrn'))
                             <div class="invalid-feedback text-red-500">
                                 {{ $errors->first('lrn') }}
@@ -818,7 +816,7 @@
                         </div>
                         <div>
                             <label for="esc_num" class="text-sm text-slate-700">ESC Number (if applicable)</label>
-                            <input type="number" name="esc_num" id="esc_num" value="{{ old('esc_num') }}" class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            <input type="number" name="esc_num" id="esc_num" maxlength="20" value="{{ old('esc_num') }}" class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                             @if ($errors->has('esc_num'))
                             <div class="invalid-feedback text-red-500">
                                 {{ $errors->first('esc_num') }}
@@ -1066,15 +1064,11 @@
                                 <input type="radio" name="ownership_type" id="free_living" value="Free/Living with relatives/Inherited" {{ old('ownership_type') == 'Free/Living with relatives/Inherited' ? 'checked' : '' }}>
                                 <label for="free_living" class="mx-2">Free/Living with relatives/Inherited</label>
                             </div>
-                            <div>
-                                <label for="others" class="mx-2">Others: </label>
-                                <input type="text" id="ownership_type" name="ownership_type" value="{{ old('ownership_type') }}" class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
-                            </div>
                         </div>
                         <div>
                             <label for="monthly_rental" class="mx-2">If you're renting, please enter monthly rental
                                 fee:</label>
-                            <input type="number" id="monthly_rental" maxlength="12" name="monthly_rental" value="{{ old('monthly_rental') }}" class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            <input type="number" id="monthly_rental" maxlength="6" name="monthly_rental" value="{{ old('monthly_rental') }}" class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                         </div>
                     </div>
                 </div>
@@ -1181,7 +1175,7 @@
 
             var selectedProgram = document.getElementById('program_id').value;
 
-            var schoolAddress = document.getElementById('last_school_address').value;
+            var schoolAddress = document.getElementById('last_school_address').value.trim();
 
             var ownership = document.querySelector('input[name="ownership_type"]:checked');
 
@@ -1282,7 +1276,6 @@
                 errorMessage.textContent = 'Please input the last school address.';
                 errorModal.style.display = 'block';
             }
-
         });
 
         // Get the close button element
