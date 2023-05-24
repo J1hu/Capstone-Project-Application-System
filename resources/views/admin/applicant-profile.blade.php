@@ -72,9 +72,11 @@
                 <li class="mr-2" role="presentation">
                     <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="initial-assessment-tab" data-tabs-target="#initial_assessment" type="button" role="tab" aria-controls="initial_assessment" aria-selected="false">Initial Assessment</button>
                 </li>
+                @hasanyrole('admin|mancom')
                 <li class="mr-2" role="presentation">
                     <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="final-assessment-tab" data-tabs-target="#final_assessment" type="button" role="tab" aria-controls="final_assessment" aria-selected="false">Final Assessment</button>
                 </li>
+                @endhasanyrole
             </ul>
         </div>
 
