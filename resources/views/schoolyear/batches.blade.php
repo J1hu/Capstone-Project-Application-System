@@ -5,7 +5,9 @@
             {{ __('School Year: ') }}{{ $schoolYear->year }}
         </h2>
     </x-slot>
-
+    <div class="text-right">
+        <x-primary-button class="px-5" id="go-back-btn">Go Back</x-primary-button>
+    </div>
     <div class="my-5">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="grid grid-cols-2">
@@ -112,6 +114,10 @@
             if (index === 0) {
                 button.click();
             }
+        });
+
+        document.getElementById('go-back-btn').addEventListener('click', function() {
+            window.location.href = "{{ route('school-years.list') }}";
         });
     </script>
 </x-app-layout>
