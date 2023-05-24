@@ -30,11 +30,11 @@
                                     <td class="px-6">{{ $year->year }}</td>
                                     @if ($year->is_archived == true)
                                         <td class="p-2">
-                                            <span class="bg-red-300 py-1 px-3 rounded-full text-red-900 font-semibold">Archived</span>
+                                            <span class="bg-red-200 py-1 px-3 rounded-full text-red-900 font-semibold">Archived</span>
                                             </td>
                                     @else
                                         <td class="p-2">
-                                            <span class="bg-green-300 py-1 px-3 rounded-full text-green-900 font-semibold">Active</span>
+                                            <span class="bg-green-200 py-1 px-3 rounded-full text-green-900 font-semibold">Active</span>
                                         </td>
                                     @endif
                                     <td class="py-2 mr-10 grid"><a href="{{ route('school-years.batches', $year->id) }}"
