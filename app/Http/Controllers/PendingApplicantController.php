@@ -41,11 +41,12 @@ class PendingApplicantController extends Controller
         // Check if the authenticated user has the role 'program_head'
         if ($user->hasRole('program_head')) {
             $programIds = $user->programs->pluck('id')->toArray();
-            $applicants->whereIn('program_id', $programIds);
+            $applicants = $applicants->whereIn('program_id', $programIds);
         }
 
         return view('applicants.pendinglist', compact('applicants'));
     }
+
 
 
 

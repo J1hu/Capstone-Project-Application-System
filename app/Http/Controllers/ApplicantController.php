@@ -101,7 +101,7 @@ class ApplicantController extends Controller
 
         // saving applicant avatar
         $filename = time() . '.' . request()->avatar->getClientOriginalExtension();
-        request()->avatar->move(public_path('avatars'), $filename);
+        request()->avatar->move(storage_path('app/public/avatars'), $filename);
         $applicant->avatar = $filename;
 
         // saving certificates of applicants
