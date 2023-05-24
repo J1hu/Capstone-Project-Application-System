@@ -27,7 +27,11 @@
                         <tbody>
                             @foreach ($schoolYears as $year)
                                 <tr class="odd:bg-white even:bg-slate-50 hover:bg-blue-100">
+                                    @if ($year)
                                     <td class="px-6">{{ $year->year }}</td>
+                                    @else
+                                    <td class="px-6">No School Year Available</td>
+                                    @endif
                                     @if ($year->is_archived == true)
                                         <td class="p-2">
                                             <span class="bg-red-200 py-1 px-3 rounded-full text-red-900 font-semibold">Archived</span>
