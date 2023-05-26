@@ -520,7 +520,8 @@
                                     <label for="father_annual_income" class="text-sm text-slate-700">Annual
                                         Income<span class="text-red-500">*</span></label>
                                     <select name="father_annual_income" id="father_annual_income" required="required" class="form-control inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
-                                        <option value="">Select Annual Income Range</option>
+                                        <option value="" disabled selected hidden>Select Annual Income Range
+                                        </option>
                                         <option value="no income">No Income</option>
                                         <option value="250,000PHP and less">250,000PHP and less</option>
                                         <option value="250,000PHP to 400,000PHP">250,000PHP to 400,000PHP</option>

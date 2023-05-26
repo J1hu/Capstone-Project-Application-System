@@ -122,12 +122,13 @@ Route::middleware(['auth', 'role:applicant|admin|program_head|mancom|registrar_s
 Route::middleware(['auth', 'role:applicant|admin|program_head|mancom|registrar_staff', 'verified'])->group(function () {
     Route::prefix('notifications')->group(function () {
         Route::get('/view', [NotificationController::class, 'showNotification'])->name('notifications.view');
-
         // posts
         Route::post('/send-notification', [NotificationController::class, 'sendNotification'])->name('notifications.notification');
         Route::put('/notifications/{notification}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.mark-as-read');
     });
 });
+
+Route::get('/notifications/check-unread', [NotificationController::class, 'checkUnread'])->name('notifications.checkUnread');
 
 //SCHOOL YEAR MANAGEMENT
 Route::middleware(['auth', 'role:admin', 'verified'])->group(function () {
