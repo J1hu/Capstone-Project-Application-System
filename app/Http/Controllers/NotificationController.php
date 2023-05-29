@@ -61,4 +61,13 @@ class NotificationController extends Controller
 
         return redirect()->back();
     }
+
+    public function checkUnread()
+{
+    $applicant = Auth::user()->applicant;
+    $unreadCount = $applicant->unreadNotifications()->count();
+
+    return response()->json(['hasUnreadNotifications' => $unreadCount > 0]);
+}
+
 }

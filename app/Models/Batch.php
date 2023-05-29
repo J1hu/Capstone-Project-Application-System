@@ -31,14 +31,26 @@ class Batch extends Model
         return $this->belongsTo(Program::class, 'program_id');
     }
 
+    // public static function getNextBatchNumber()
+    // {
+    //     $schoolYear = SchoolYear::where('is_archived', 0)->latest()->first();
+    //     $lastBatch = $schoolYear->batches()->latest('batch_num')->first();
+
+    //     if (!$lastBatch) {
+    //         $newBatch = Batch::create(['batch_num' => 1]);
+    //         return $newBatch->batch_num;
+    //     }
+
+    //     return $lastBatch->batch_num + 1;
+    // }
+
     public static function getNextBatchNumber()
     {
         $schoolYear = SchoolYear::where('is_archived', 0)->latest()->first();
         $lastBatch = $schoolYear->batches()->latest('batch_num')->first();
 
         if (!$lastBatch) {
-            $newBatch = Batch::create(['batch_num' => 1]);
-            return $newBatch->batch_num;
+            return 1;
         }
 
         return $lastBatch->batch_num + 1;
