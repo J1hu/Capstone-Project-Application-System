@@ -123,3 +123,22 @@ body { color: #000000;}
 .highcharts-data-table tr:hover {
     background: #f1f7ff;
 }
+
+
+  ::-webkit-scrollbar {
+    width: 0.4rem;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #d7e1ee;
+    border-radius: 0.25rem;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #c5d4e7;
+  }
+
