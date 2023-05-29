@@ -35,9 +35,6 @@
                     </tbody>
                 </table>
                 @endauth
-                <div class="mx-6 my-3">
-                    {{ $staffs->links() }}
-                </div>
             </div>
         </div>
     </div>

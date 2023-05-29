@@ -12,7 +12,7 @@ class RegistrarStaffController extends Controller
 {
     public function index()
     {
-        $staffs = User::role('registrar_staff')->paginate(15);
+        $staffs = User::role('registrar_staff')->get();
         return view('staffs.list', compact('staffs'));
     }
 

@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $evaluators = User::role('program_head')->paginate(15);
+        $evaluators = User::role('program_head')->get();
         return view('evaluators.list', compact('evaluators'));
     }
 

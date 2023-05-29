@@ -72,9 +72,9 @@
                     <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="exam-score-tab" data-tabs-target="#exam_score" type="button" role="tab" aria-controls="exam_score" aria-selected="false">Exam Score</button>
                 </li>
                 <li class="mr-2" role="presentation">
-                    <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="initial-assessment-tab" data-tabs-target="#initial_assessment" type="button" role="tab" aria-controls="initial_assessment" aria-selected="false">Initial Assessment</button>
+                    <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="initial-assessment-tab" data-tabs-target="#initial_assessment" type="button" role="tab" aria-controls="initial_assessment" aria-selected="false">Interview Assessment</button>
                 </li>
-                @hasanyrole('admin|mancom')
+                @hasanyrole('admin|mancom|registrar_staff')
                 <li class="mr-2" role="presentation">
                     <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="final-assessment-tab" data-tabs-target="#final_assessment" type="button" role="tab" aria-controls="final_assessment" aria-selected="false">Final Assessment</button>
                 </li>
@@ -96,7 +96,7 @@
                     </div>
 
                     <div class="form-group flex flex-col">
-                        <label for="is_approved" class="text-sm text-slate-700">Is Approved:</label>
+                        <label for="is_approved" class="text-sm text-slate-700">Exam Approval:</label>
                         <select class="form-control items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/4" id="is_approved" name="is_approved" required>
                             <option value="1">Yes</option>
                             <option value="0">No</option>
