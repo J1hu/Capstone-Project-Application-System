@@ -139,7 +139,8 @@ Route::middleware(['auth', 'role:admin', 'verified'])->group(function () {
         Route::get('/create', [SchoolYearController::class, 'create'])->name('school-years.create');
         Route::post('/store', [SchoolYearController::class, 'store'])->name('school-years.store');
     });
-  
+});
+
 //VISUALIZATION
 Route::middleware(['auth', 'role:admin', 'verified'])->group(function () {
     Route::get('/visualizations', [VisualizationController::class, 'index'])->name('visualiation.view');

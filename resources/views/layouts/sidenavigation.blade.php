@@ -40,8 +40,8 @@
         </x-nav-link>
         @hasrole('admin')
         <x-nav-head>REPORTS</x-nav-head>
-        <x-nav-link :href="route('visualiation.view')" :active="request()->routeIs('visualiation') ||
-                strpos(url()->current(), 'visualiation') !== false">
+        <x-nav-link :href="route('visualiation.view')" :active="request()->routeIs('visualiation.view') ||
+                strpos(url()->current(), 'visualiation.view') !== false">
             <span class="material-symbols-outlined mr-5">
                 pending_actions
             </span>
