@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class MancomController extends Controller
 {
@@ -15,7 +17,7 @@ class MancomController extends Controller
      */
     public function index()
     {
-        $mancoms = User::role('mancom')->paginate(15);
+        $mancoms = User::role('mancom')->get();
         return view('mancoms.list', compact('mancoms'));
     }
 
@@ -48,6 +50,8 @@ class MancomController extends Controller
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
+            'email_verified_at' => Carbon::now(),
+            'remember_token' => Str::random(60), // Generate a random remember token
         ]);
 
         $user->assignRole('mancom');

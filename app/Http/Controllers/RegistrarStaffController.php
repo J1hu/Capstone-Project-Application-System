@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class RegistrarStaffController extends Controller
 {
     public function index()
     {
-        $staffs = User::role('registrar_staff')->paginate(15);
+        $staffs = User::role('registrar_staff')->get();
         return view('staffs.list', compact('staffs'));
     }
 
@@ -32,6 +34,8 @@ class RegistrarStaffController extends Controller
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
+            'email_verified_at' => Carbon::now(),
+            'remember_token' => Str::random(60), // Generate a random remember token
         ]);
 
         $user->assignRole('registrar_staff');

@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
+
 use App\Models\User;
 use App\Models\Program;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -19,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $evaluators = User::role('program_head')->paginate(15);
+        $evaluators = User::role('program_head')->get();
         return view('evaluators.list', compact('evaluators'));
     }
 
@@ -56,6 +58,7 @@ class UserController extends Controller
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
             'email_verified_at' => Carbon::now(),
+            'remember_token' => Str::random(60), // Generate a random remember token
         ]);
 
         $programIds = $validatedData['program_id'];
@@ -69,6 +72,7 @@ class UserController extends Controller
             ->withInput($request->except('password', 'password_confirmation'))
             ->withErrors(['program_id' => 'Please select at least one program.']);
     }
+
 
     /**
      * Display the specified resource.

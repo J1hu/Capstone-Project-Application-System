@@ -9,7 +9,8 @@
             {{ __('Dashboard') }}
         </x-nav-link>
         <x-nav-head>USER</x-nav-head>
-        <x-nav-link :href="route('applicants.profile')" :active="request()->routeIs('applicants.profile') || strpos(url()->current(), 'applicants.profile') !== false">
+        <x-nav-link :href="route('applicants.profile')" :active="request()->routeIs('applicants.profile') ||
+                strpos(url()->current(), 'applicants.profile') !== false">
             <span class="material-symbols-outlined mr-5">
                 face
             </span>
@@ -17,6 +18,12 @@
         </x-nav-link>
         <x-nav-head>NOTIFICATIONS</x-nav-head>
         <x-nav-link :href="route('notifications')" :active="request()->routeIs('notifications') || strpos(url()->current(), 'notifications') !== false">
+            <div class="hidden" id="ping">
+                <span class="relative h-3 w-3 flex">
+                    <span class="animate-ping absolute h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                    <span class="relative rounded-full h-3 w-3 bg-red-700"></span>
+                </span>
+            </div>
             <span class="material-symbols-outlined mr-5">
                 notifications
             </span>
@@ -89,13 +96,14 @@
             </span>
             {{ __('List of Registrar Staff') }}
         </x-nav-link>
-
-        <x-nav-head>BATCH MANAGEMENT</x-nav-head>
-        <x-nav-link :href="route('batches.list')" :active="request()->routeIs('batches') || strpos(url()->current(), 'batches') !== false">
+        @endrole
+        @role('registrar_staff|admin')
+        <x-nav-head>SCHOOL YEAR MANAGEMENT</x-nav-head>
+        <x-nav-link :href="route('school-years.list')" :active="request()->routeIs('school-years') || strpos(url()->current(), 'school-years') !== false">
             <span class="material-symbols-outlined mr-5">
                 view_agenda
             </span>
-            {{ __('List of Batches') }}
+            {{ __('List of School Year') }}
         </x-nav-link>
 
         <x-nav-head>NOTIFICATION</x-nav-head>
@@ -107,5 +115,28 @@
         </x-nav-link>
         @endrole
     </div>
-
 </nav>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Perform an AJAX request to check if there are unread notifications
+        $.ajax({
+            url: '/notifications/check-unread',
+            method: 'GET',
+            success: function(response) {
+                var hasUnreadNotifications = response.hasUnreadNotifications;
+
+                if (hasUnreadNotifications) {
+                    $('#ping').removeClass('hidden');
+                } else {
+                    $('#ping').addClass('hidden');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.log(xhr.responseText);
+                // Handle the error case, if any
+            }
+        });
+    });
+</script>

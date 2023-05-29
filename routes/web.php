@@ -9,6 +9,7 @@ use App\Http\Controllers\BatchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\VisualizationController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -122,13 +123,23 @@ Route::middleware(['auth', 'role:applicant|admin|program_head|mancom|registrar_s
 Route::middleware(['auth', 'role:applicant|admin|program_head|mancom|registrar_staff', 'verified'])->group(function () {
     Route::prefix('notifications')->group(function () {
         Route::get('/view', [NotificationController::class, 'showNotification'])->name('notifications.view');
-
         // posts
         Route::post('/send-notification', [NotificationController::class, 'sendNotification'])->name('notifications.notification');
         Route::put('/notifications/{notification}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.mark-as-read');
+        Route::get('/notifications/check-unread', [NotificationController::class, 'checkUnread'])->name('notifications.checkUnread');
     });
 });
 
+//SCHOOL YEAR MANAGEMENT
+Route::middleware(['auth', 'role:admin', 'verified'])->group(function () {
+    Route::prefix('school-years')->group(function () {
+        Route::get('/list', [SchoolYearController::class, 'index'])->name('school-years.list');
+        Route::get('/batches/{schoolYear}', [SchoolYearController::class, 'listBatches'])->name('school-years.batches');
+        Route::get('/{id}/archive', [SchoolYearController::class, 'archive'])->name('school-years.archive');
+        Route::get('/create', [SchoolYearController::class, 'create'])->name('school-years.create');
+        Route::post('/store', [SchoolYearController::class, 'store'])->name('school-years.store');
+    });
+  
 //VISUALIZATION
 Route::middleware(['auth', 'role:admin', 'verified'])->group(function () {
     Route::get('/visualizations', [VisualizationController::class, 'index'])->name('visualiation.view');

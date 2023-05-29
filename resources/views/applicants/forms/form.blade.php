@@ -312,7 +312,7 @@
                         <div>
                             <label for="total_fam_children" class="text-sm text-slate-700">No. of Children in the
                                 Family<span class="text-red-500"> *</span></label>
-                            <input type="number" name="total_fam_children" id="total_fam_children" value="{{ old('total_fam_children') }}" min="1" max="20" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            <input type="number" name="total_fam_children" id="total_fam_children" value="{{ old('total_fam_children') }}" min="1" max="99" maxlength="2" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                             @if ($errors->has('total_fam_children'))
                             <div class="invalid-feedback text-red-500">
                                 {{ $errors->first('total_fam_children') }}
@@ -322,7 +322,7 @@
 
                         <div>
                             <label for="birth_order" class="text-sm text-slate-700">Birth Order of the Applicant<span class="text-red-500"> *</span></label>
-                            <input type="number" name="birth_order" id="birth_order" value="{{ old('birth_order') }}" min="1" max="20" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            <input type="number" name="birth_order" id="birth_order" value="{{ old('birth_order') }}" min="1" max="99" maxlength="2" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                             @if ($errors->has('birth_order'))
                             <div class="invalid-feedback text-red-500">
                                 {{ $errors->first('birth_order') }}
@@ -520,7 +520,8 @@
                                     <label for="father_annual_income" class="text-sm text-slate-700">Annual
                                         Income<span class="text-red-500">*</span></label>
                                     <select name="father_annual_income" id="father_annual_income" required="required" class="form-control inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
-                                        <option value="">Select Annual Income Range</option>
+                                        <option value="" disabled selected hidden>Select Annual Income Range
+                                        </option>
                                         <option value="no income">No Income</option>
                                         <option value="250,000PHP and less">250,000PHP and less</option>
                                         <option value="250,000PHP to 400,000PHP">250,000PHP to 400,000PHP</option>
@@ -641,7 +642,7 @@
                                     <li>or Certificate of Non-Tax Payment</li>
                                     <li>or Certificate of Indigency</li>
                                 </ul>
-                                <input type="file" name="certificate" id="certificate" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/2">
+                                <input type="file" name="certificate" accept="image/*" id="certificate" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/2">
                                 <div id="certSizeError" class="invalid-feedback text-red-500" style="display: none;">
                                     File size exceeds the maximum limit of 2MB.
                                 </div>
@@ -697,17 +698,16 @@
                             @endif
                         </div>
                     </div>
-
                     <div>
-                        <label for="last_school_address" class="text-sm text-slate-700">Address of Last School
-                            Attended<span class="text-red-500"> *</span></label>
-                        <textarea name="last_school_address" id="last_school_address" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">{{ old('last_school_address') }}</textarea>
+                        <label for="last_school_address" class="text-sm text-slate-700">Address of Last School Attended<span class="text-red-500"> *</span></label>
+                        <input type="text" name="last_school_address" id="last_school_address" class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" value="{{ old('last_school_address') }}" required>
                         @if ($errors->has('last_school_address'))
                         <div class="invalid-feedback text-red-500">
                             {{ $errors->first('last_school_address') }}
                         </div>
                         @endif
                     </div>
+
                     <div class="my-5 space-y-2">
                         <div class="font-bold text-lg">ACADEMIC AWARDS AND ACHIEVEMENTS DURING THE PREVIOUS YEAR</div>
                         <div class="grid grid-cols-2">
@@ -792,9 +792,8 @@
                     </div>
                     <div class="grid grid-cols-2 gap-x-6 gap-y-4">
                         <div>
-                            <label for="lrn" class="text-sm text-slate-700">Learner Reference Number
-                                (LRN)<span class="text-red-500"> *</span></label>
-                            <input type="number" name="lrn" id="lrn" min="0" value="{{ old('lrn') }}" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            <label for="lrn" class="text-sm text-slate-700">Learner Reference Number (LRN)<span class="text-red-500"> *</span></label>
+                            <input type="number" name="lrn" id="lrn" min="0" value="{{ old('lrn') }}" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" maxlength="12">
                             @if ($errors->has('lrn'))
                             <div class="invalid-feedback text-red-500">
                                 {{ $errors->first('lrn') }}
@@ -806,12 +805,9 @@
                                 Grantee?<span class="text-red-500"> *</span></label>
                             <select required="required" name="esc_grantee" id="esc_grantee" class="form-control inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                                 <option value="" disabled selected hidden>Select option</option>
-                                <option value="Yes" {{ old('esc_grantee') == 'Yes' ? 'selected' : '' }}>Yes
-                                </option>
+                                <option value="Yes" {{ old('esc_grantee') == 'Yes' ? 'selected' : '' }}>Yes</option>
                                 <option value="No" {{ old('esc_grantee') == 'No' ? 'selected' : '' }}>No</option>
-                                <option value="N/A" {{ old('esc_grantee') == 'N/A' ? 'selected' : '' }}>Not
-                                    Applicable
-                                </option>
+                                <option value="N/A" {{ old('esc_grantee') == 'N/A' ? 'selected' : '' }}>Not Applicable</option>
                             </select>
                             @if ($errors->has('esc_grantee'))
                             <div class="invalid-feedback text-red-500">
@@ -821,7 +817,7 @@
                         </div>
                         <div>
                             <label for="esc_num" class="text-sm text-slate-700">ESC Number (if applicable)</label>
-                            <input type="number" name="esc_num" id="esc_num" value="{{ old('esc_num') }}" class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            <input type="number" name="esc_num" id="esc_num" maxlength="20" value="{{ old('esc_num') }}" class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                             @if ($errors->has('esc_num'))
                             <div class="invalid-feedback text-red-500">
                                 {{ $errors->first('esc_num') }}
@@ -836,7 +832,7 @@
                             <li>Photocopy of Previous year's Report Card (F138)</li>
                             <li>Photocopy of Certification of Grades/TOR (For College Transferees)</li>
                         </ul>
-                        <input type="file" name="report_card" id="report_card" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/2">
+                        <input type="file" name="report_card" id="report_card" accept="image/*" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/2">
                         <div id="cardSizeError" class="invalid-feedback text-red-500" style="display: none;">
                             File size exceeds the maximum limit of 2MB.
                         </div>
@@ -981,7 +977,7 @@
                         <div>
                             <label for="electric_amount_1" class="text-sm text-slate-700">Electric Bill for Month
                                 1<span class="text-red-500"> *</span></label>
-                            <input type="number" id="electric_amount_1" name="electric_bills[0][electric_amount]" minlength="0" maxlength="999999" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            <input type="number" id="electric_amount_1" name="electric_bills[0][electric_amount]" minlength="0" maxlength="6" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                         </div>
                         <div>
                             <label for="electric_month_2" class="text-sm text-slate-700">Month 2<span class="text-red-500"> *</span></label>
@@ -1004,7 +1000,7 @@
                         <div>
                             <label for="electric_amount_2" class="text-sm text-slate-700">Electric Bill for Month
                                 2<span class="text-red-500"> *</span></label>
-                            <input type="number" id="electric_amount_2" name="electric_bills[1][electric_amount]" minlength="0" maxlength="999999" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            <input type="number" id="electric_amount_2" name="electric_bills[1][electric_amount]" minlength="0" maxlength="6" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                         </div>
                         <div>
                             <label for="electric_month_3" class="text-sm text-slate-700">Month 3<span class="text-red-500"> *</span></label>
@@ -1027,7 +1023,7 @@
                         <div>
                             <label for="electric_amount_3" class="text-sm text-slate-700">Electric Bill for Month
                                 3<span class="text-red-500"> *</span></label>
-                            <input type="number" id="electric_amount_3" name="electric_bills[2][electric_amount]" minlength="0" maxlength="999999" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            <input type="number" id="electric_amount_3" name="electric_bills[2][electric_amount]" minlength="0" maxlength="6" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                         </div>
                     </div>
                     <div class="mt-5">
@@ -1039,7 +1035,7 @@
                     <div class="my-5">
                         <label for="ebill_proof">Upload a Clear Picture of the Electric Bills for the last three months
                             <span class="text-red-500"> *</span></label>
-                        <input type="file" name="ebill_proof" id="ebill_proof" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/2">
+                        <input type="file" name="ebill_proof" id="ebill_proof" accept="image/*" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/2">
                         <div id="eBillSizeError" class="invalid-feedback text-red-500" style="display: none;">
                             File size exceeds the maximum limit of 2MB.
                         </div>
@@ -1069,15 +1065,11 @@
                                 <input type="radio" name="ownership_type" id="free_living" value="Free/Living with relatives/Inherited" {{ old('ownership_type') == 'Free/Living with relatives/Inherited' ? 'checked' : '' }}>
                                 <label for="free_living" class="mx-2">Free/Living with relatives/Inherited</label>
                             </div>
-                            <div>
-                                <label for="others" class="mx-2">Others: </label>
-                                <input type="text" id="ownership_type" name="ownership_type" value="{{ old('ownership_type') }}" class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
-                            </div>
                         </div>
                         <div>
                             <label for="monthly_rental" class="mx-2">If you're renting, please enter monthly rental
                                 fee:</label>
-                            <input type="number" id="monthly_rental" name="monthly_rental" value="{{ old('monthly_rental') }}" class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                            <input type="number" id="monthly_rental" maxlength="6" name="monthly_rental" value="{{ old('monthly_rental') }}" class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
                         </div>
                     </div>
                 </div>
@@ -1178,12 +1170,13 @@
             var gadget = document.querySelectorAll('input[name="gadget_name[]"]:checked');
             var internet = document.querySelectorAll('input[name="internet_name[]"]:checked');
             var award = document.querySelectorAll('input[name="award_name[]"]:checked');
-            var month1 = document.querySelectorAll('input[name="electric_bills[0][electric_month]"]:checked');
-            var month2 = document.querySelectorAll('input[name="electric_bills[1][electric_month]"]:checked');
-            var month3 = document.querySelectorAll('input[name="electric_bills[2][electric_month]"]:checked');
-            var program = document.querySelectorAll('input[name="program_id"]:checked');
-            var ownership = document.querySelectorAll('input[name="ownership_type"]:checked');
-            var esc_grantee = document.querySelectorAll('input[name="esc_grantee"]:checked');
+            var selectedMonth1 = document.getElementById('electric_month_1').value;
+            var selectedMonth2 = document.getElementById('electric_month_2').value;
+            var selectedMonth3 = document.getElementById('electric_month_3').value;
+            var selectedProgram = document.getElementById('program_id').value;
+            var ownership = document.querySelector('input[name="ownership_type"]:checked');
+            var escGranteeSelect = document.getElementById('esc_grantee');
+            var selectedOption = escGranteeSelect.value;
 
             // Check if at least one checkbox is selected
             if (gadget.length === 0) {
@@ -1212,53 +1205,58 @@
                 errorModal.style.display = 'block';
             }
 
-            // Check if at least one checkbox is selected
-            if (month1.length === 0) {
+            // Check if a month is selected
+            if (selectedMonth1 === '') {
                 // Prevent the form from submitting
                 event.preventDefault();
                 // Display an error message to the user
-                errorMessage.textContent = 'Please select 1st month on electric bills.';
+                errorMessage.textContent = 'Please select the 1st month for electric bills.';
                 errorModal.style.display = 'block';
             }
 
-            // Check if at least one checkbox is selected
-            if (month2.length === 0) {
+            // Check if a month is selected
+            if (selectedMonth2 === '') {
                 // Prevent the form from submitting
                 event.preventDefault();
                 // Display an error message to the user
-                errorMessage.textContent = 'Please select 2nd month on electric bills.';
+                errorMessage.textContent = 'Please select the 1st month for electric bills.';
                 errorModal.style.display = 'block';
             }
 
-            // Check if at least one checkbox is selected
-            if (month3.length === 0) {
+            // Check if a month is selected
+            if (selectedMonth3 === '') {
                 // Prevent the form from submitting
                 event.preventDefault();
                 // Display an error message to the user
-                errorMessage.textContent = 'Please select 3rd month on electric bills.';
+                errorMessage.textContent = 'Please select the 1st month for electric bills.';
                 errorModal.style.display = 'block';
             }
 
-            // Check if at least one checkbox is selected
-            if (program.length === 0) {
+            // Check if a program is selected
+            if (selectedProgram === '') {
                 // Prevent the form from submitting
                 event.preventDefault();
                 // Display an error message to the user
-                errorMessage.textContent = 'Please select program of your choice.';
+                errorMessage.textContent = 'Please select a program of your choice.';
                 errorModal.style.display = 'block';
             }
 
-            // Check if at least one checkbox is selected
-            if (ownership.length === 0) {
+            // Check if an option is selected
+            if (!ownership) {
                 // Prevent the form from submitting
                 event.preventDefault();
                 // Display an error message to the user
                 errorMessage.textContent = 'Please select ownership type.';
                 errorModal.style.display = 'block';
+            } else if (ownership.value === 'Others' && document.getElementById('ownership_type').value === '') {
+                // Check if the "Others" option is selected but the text input is empty
+                event.preventDefault();
+                errorMessage.textContent = 'Please provide an ownership type in the "Others" field.';
+                errorModal.style.display = 'block';
             }
 
-            // Check if at least one checkbox is selected
-            if (esc_grantee.length === 0) {
+            // Check if an option is selected
+            if (selectedOption === '') {
                 // Prevent the form from submitting
                 event.preventDefault();
                 // Display an error message to the user
@@ -1331,7 +1329,17 @@
             }
         });
 
+        const lrnInput = document.getElementById('lrn');
 
+        lrnInput.addEventListener('input', function(event) {
+            const value = event.target.value;
+
+            // Remove any occurrence of 'e' from the input value
+            const sanitizedValue = value.replace(/e/gi, '');
+
+            // Update the input value with the sanitized value
+            event.target.value = sanitizedValue;
+        });
 
         var span = document.getElementsByClassName("close")[0];
         // When the user clicks on <span> (x), close the modal

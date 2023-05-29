@@ -63,100 +63,6 @@ class ApplicantController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'contact_consent' => 'required',
-            'document_consent' => 'required',
-            'fname' => 'required',
-            'lname' => 'required',
-            'applicant_type' => 'required|not_in:0',
-            'sex' => 'required',
-            'birthdate' => 'required|date',
-            'phone_num' => 'required',
-            'fb_link' => 'required',
-            'religion' => 'required',
-            //home address
-            'province' => 'required',
-            'city_municipality' => 'required',
-            'barangay' => 'required',
-            'street' => 'required',
-            'zip_code' => 'required',
-            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'total_fam_children' => 'required|integer',
-            'birth_order' => 'required',
-            //sibling
-            'full_name.*' => 'required|string|max:255',
-            'education_level.*' => 'required|string|max:255',
-            //mother
-            'mother_fname' => 'required|max:255',
-            'mother_religion' => 'required|max:255',
-            'mother_mname' => 'required|max:255',
-            'mother_occupation' => 'required|max:255',
-            'mother_lname' => 'required|max:255',
-            'mother_annual_income' => 'required|not_in:0|in:250,000PHP and less,250,000PHP to 400,000PHP,400,000PHP to 800,000PHP,800,000PHP to 2,000,000PHP,2,000,000PHP to 8,000,000PHP',
-            'mother_phone_num' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
-            //father
-            'father_fname' => 'required|max:255',
-            'father_religion' => 'required|max:255',
-            'father_mname' => 'required|max:255',
-            'father_occupation' => 'required|max:255',
-            'father_lname' => 'required|max:255',
-            'father_annual_income' => 'required|not_in:0|in:250,000PHP and less,250,000PHP to 400,000PHP,400,000PHP to 800,000PHP,800,000PHP to 2,000,000PHP,2,000,000PHP to 8,000,000PHP',
-            'father_phone_num' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
-            //guardian
-            'guardian_fname' => 'required|max:255',
-            'guardian_religion' => 'required|max:255',
-            'guardian_mname' => 'required|max:255',
-            'guardian_occupation' => 'required|max:255',
-            'guardian_lname' => 'required|max:255',
-            'guardian_annual_income' => 'required|not_in:0|in:250,000PHP and less,250,000PHP to 400,000PHP,400,000PHP to 800,000PHP,800,000PHP to 2,000,000PHP,2,000,000PHP to 8,000,000PHP',
-            'guardian_phone_num' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
-            //cert
-            'certificate' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            //last school
-            'last_school' => 'required|string|max:255',
-            'school_type' => 'required|not_in:0|in:Public,Private,State University',
-            'last_school_address' => 'required|string|max:255',
-            // award
-            'award_name' => 'required|array|min:1',
-            //
-            'lrn' => 'required',
-            'esc_grantee' => 'required|not_in:0|string',
-            'esc_num' => 'string',
-            //report card
-            'report_card' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            //chosen program
-            'program_id' => 'required',
-            //gadgets
-            'gadget_name' => ['required', 'array', 'min:1', Rule::in(['smartphone', 'tablet', 'laptop', 'desktop'])],
-            //internet
-            'internet_name' => 'required|array|min:1',
-            'internet_name.*' => 'string|in:postpaid,prepaid,prepaid_wifi,broadband',
-            //electric
-            'electric_month_1' => 'required|not_in:0|in:january,february,march,april,may,june,july,august,september,october,november,december',
-            'electric_amount_1' => 'required|numeric|min:0|max:999999',
-            'electric_month_2' => 'required|not_in:0|in:january,february,march,april,may,june,july,august,september,october,november,december',
-            'electric_amount_2' => 'required|numeric|min:0|max:999999',
-            'electric_month_3' => 'required|not_in:0|in:january,february,march,april,may,june,july,august,september,october,november,december',
-            'electric_amount_3' => 'required|numeric|min:0|max:999999',
-            // ebill proof
-            'ebill_proof' => 'required|mimes:jpeg,jpg,png|max:2048',
-            'ebill_proof.required' => 'Please upload a picture of the electric bills for the last three months',
-            'ebill_proof.mimes' => 'The picture must be in jpeg, jpg or png format',
-            'ebill_proof.max' => 'The picture must not be larger than 2MB',
-            'free_ebill_reason' => 'required',
-            // ownership
-            'ownership_type' => ['required', 'string', Rule::in(['Owned, Fully Paid', 'Owned, Amortized', 'Rented', 'Free/Living with relatives/Inherited'])],
-            'monthly_rental' => 'required|numeric|min:0',
-            // section 7
-            'data_privacy_consent' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator) 
-                ->withInput(); 
-        }
-
         $applicant = new Applicant();
         $applicant->contact_consent = $request->input('contact_consent');
         $applicant->document_consent = $request->input('document_consent');
@@ -195,7 +101,7 @@ class ApplicantController extends Controller
 
         // saving applicant avatar
         $filename = time() . '.' . request()->avatar->getClientOriginalExtension();
-        request()->avatar->move(public_path('avatars'), $filename);
+        request()->avatar->move(storage_path('app/public/avatars'), $filename);
         $applicant->avatar = $filename;
 
         // saving certificates of applicants
@@ -332,12 +238,13 @@ class ApplicantController extends Controller
 
         ElectricBill::insert($electricBillData);
 
-        //ownershipType
-        $houseOwnership = new HouseOwnership();
-        $houseOwnership->ownership_type = $request->input('ownership_type');
-        $houseOwnership->applicant_id = $applicantId;
+        $houseOwnership = $applicant->houseOwnership()->create([
+            'ownership_type' => $request->input('ownership_type')
+        ]);
 
-        $applicant->houseOwnership()->save($houseOwnership);
+        $houseOwnership->applicant_id = $applicantId;
+        $houseOwnership->save();
+
 
         //assign batch to applicant
         event(new ApplicantCreated($applicant));

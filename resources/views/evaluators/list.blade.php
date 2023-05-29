@@ -40,9 +40,6 @@
                     </tbody>
                 </table>
                 @endauth
-                <div class="mx-6 my-3">
-                    {{ $evaluators->links() }}
-                </div>
             </div>
         </div>
     </div>

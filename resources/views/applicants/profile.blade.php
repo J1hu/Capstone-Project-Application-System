@@ -10,7 +10,7 @@
     <div class="bg-white border rounded-md p-5">
         <div class="grid grid-cols-3">
             <div>
-                <img src="{{ asset('avatars/' . $applicant->avatar) }}" width="100px" height="100px" alt="Applicant Avatar">
+                <img src="{{ asset('storage/avatars/' . $applicant->avatar) }}" width="150px" height="150px" alt="Applicant Avatar">
             </div>
             <div class="col-span-2 grid grid-cols-3">
                 <div class="grid-rows-5 col-span-2">
