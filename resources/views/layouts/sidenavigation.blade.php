@@ -1,4 +1,4 @@
-<nav x-data="open" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 w-1/5 h-screen fixed top-20">
+<nav x-data="open" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 w-1/5 h-screen fixed top-20 overflow-y-auto pb-40">
     <div class="grid mx-7 py-10">
 
         @hasrole('applicant')
