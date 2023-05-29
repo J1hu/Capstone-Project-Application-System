@@ -17,7 +17,7 @@ class MancomController extends Controller
      */
     public function index()
     {
-        $mancoms = User::role('mancom')->paginate(15);
+        $mancoms = User::role('mancom')->get();
         return view('mancoms.list', compact('mancoms'));
     }
 
