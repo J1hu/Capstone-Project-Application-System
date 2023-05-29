@@ -18,10 +18,12 @@
         </x-nav-link>
         <x-nav-head>NOTIFICATIONS</x-nav-head>
         <x-nav-link :href="route('notifications')" :active="request()->routeIs('notifications') || strpos(url()->current(), 'notifications') !== false">
-            <span class="relative flex h-3 w-3 hidden" id="ping">
-                <span class="animate-ping absolute h-full w-full rounded-full bg-red-500 opacity-75"></span>
-                <span class="relative rounded-full h-3 w-3 bg-red-700"></span>
-            </span>
+            <div class="hidden" id="ping">
+                <span class="relative h-3 w-3 flex">
+                    <span class="animate-ping absolute h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                    <span class="relative rounded-full h-3 w-3 bg-red-700"></span>
+                </span>
+            </div>
             <span class="material-symbols-outlined mr-5">
                 notifications
             </span>
