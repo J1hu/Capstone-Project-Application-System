@@ -38,6 +38,16 @@
             </span>
             {{ __('Dashboard') }}
         </x-nav-link>
+        @hasrole('admin')
+        <x-nav-head>REPORTS</x-nav-head>
+        <x-nav-link :href="route('visualiation.view')" :active="request()->routeIs('visualiation') ||
+                strpos(url()->current(), 'visualiation') !== false">
+            <span class="material-symbols-outlined mr-5">
+                pending_actions
+            </span>
+            {{ __('Visualizations') }}
+        </x-nav-link>
+        @endhasrole
         <x-nav-head>APPLICANTS</x-nav-head>
         <x-nav-link :href="route('applicants.pending-list')" :active="request()->routeIs('applicants.pending-list') ||
                 strpos(url()->current(), 'applicants.pending-list') !== false">
