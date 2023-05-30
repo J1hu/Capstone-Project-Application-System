@@ -126,7 +126,7 @@ Route::middleware(['auth', 'role:applicant|admin|program_head|mancom|registrar_s
         // posts
         Route::post('/send-notification', [NotificationController::class, 'sendNotification'])->name('notifications.notification');
         Route::put('/notifications/{notification}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.mark-as-read');
-        Route::get('/notifications/check-unread', [NotificationController::class, 'checkUnread'])->name('notifications.checkUnread');
+        Route::get('/check-unread', [NotificationController::class, 'checkUnread'])->name('notifications.checkUnread');
     });
 });
 

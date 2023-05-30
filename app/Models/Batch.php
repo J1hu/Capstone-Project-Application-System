@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\SchoolYear;
+use App\Models\Program;
+use App\Models\Applicant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -26,9 +28,9 @@ class Batch extends Model
         return $this->belongsTo(SchoolYear::class);
     }
 
-    public function program()
+    public function programs()
     {
-        return $this->belongsTo(Program::class, 'program_id');
+        return $this->belongsTo(Program::class);
     }
 
     // public static function getNextBatchNumber()

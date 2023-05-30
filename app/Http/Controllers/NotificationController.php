@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Batch;
 use App\Models\Program;
 use App\Models\Applicant;
+use App\Models\SchoolYear;
 use Illuminate\Http\Request;
 use App\Notifications\SendNotification;
 use Illuminate\Notifications\Notification;
@@ -14,9 +15,10 @@ class NotificationController extends Controller
 {
     public function showNotification()
     {
+        $schoolYears = SchoolYear::all();
         $programs = Program::all();
-        $batches = Batch::all();
-        return view('notifications.index', compact('programs', 'batches'));
+
+        return view('notifications.index', compact('schoolYears', 'programs'));
     }
 
     public function sendNotification(Request $request)
