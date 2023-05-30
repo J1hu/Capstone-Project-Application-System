@@ -38,7 +38,7 @@
             </span>
             {{ __('Dashboard') }}
         </x-nav-link>
-        @hasrole('admin')
+        @hasrole('admin|registrar_staff|program_head|mancom')
         <x-nav-head>REPORTS</x-nav-head>
         <x-nav-link :href="route('visualiation.view')" :active="request()->routeIs('visualiation.view') ||
                 strpos(url()->current(), 'visualiation.view') !== false">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CsvController;
@@ -145,6 +146,11 @@ Route::middleware(['auth', 'role:admin', 'verified'])->group(function () {
 Route::middleware(['auth', 'role:admin', 'verified'])->group(function () {
     Route::get('/visualizations', [VisualizationController::class, 'index'])->name('visualiation.view');
 });
+
+Route::get('/regions', [AddressController::class, 'region']);
+Route::get('/provinces/{region}', [AddressController::class, 'province']);
+Route::get('/municipalities/{province}', [AddressController::class, 'municipality']);
+Route::get('/barangays/{municipality}', [AddressController::class, 'barangay']);
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/mancom.php';

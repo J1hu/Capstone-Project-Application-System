@@ -58,7 +58,6 @@ class VisualizationController extends Controller
         $bsswmale = Applicant::where('program_id', 6)->where('sex', 'Male')->count();
         $bsswfemale = Applicant::where('program_id', 6)->where('sex', 'Female')->count();
 
-
         return view('admin.visualization', compact(
             'female',
             'male',

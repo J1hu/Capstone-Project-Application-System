@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('applicant_addresses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('applicant_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->string('region');
             $table->string('province');
             $table->string('city_municipality');
             $table->string('barangay');
