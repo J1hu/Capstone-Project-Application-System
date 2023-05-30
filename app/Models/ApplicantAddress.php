@@ -10,6 +10,7 @@ class ApplicantAddress extends Model
     use HasFactory;
 
     protected $fillable = [
+        'region',
         'province',
         'city_municipality',
         'barangay',
