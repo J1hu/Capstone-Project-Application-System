@@ -91,13 +91,24 @@
 
     <div>
         <label for="religion">Religion</label>
-        <input type="text" name="religion" id="religion" value="{{ old('religion') }}" required>
+        <input list="religion" name="religion" value="{{ old('religion') }}" required>
+        <datalist id="religion">
+            <option value="MCGI">
+            <option value="Roman Catholic">
+            <option value="Jehovah's Witnesses">
+            <option value="Iglesia ni Cristo">
+            <option value="Seventh-day Adventist">
+            <option value="Bible Baptist Church">
+            <option value="Born Again Christian">
+            <option value="Islam">
+        </datalist>
         @if ($errors->has('religion'))
         <div class="invalid-feedback text-red-500">
             {{ $errors->first('religion') }}
         </div>
         @endif
     </div>
+
 
     <div>
         <label for="avatar">Avatar</label>

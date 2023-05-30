@@ -1,7 +1,11 @@
 <x-app-layout>
-    <div class="grid grid-cols-2 gap-10">
+    <div class="grid grid-cols-2 gap-10 mb-10">
         <div id="container" class="chart-container"></div>
         <div id="pie-chart" class="chart-container"></div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-10">
+        <div id="bar-chart" class="chart-container"></div>
     </div>
 
     {{-- Highcharts --}}
@@ -16,7 +20,6 @@
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
 
-
     <script type="text/javascript">
         var females = @json($female);
         var males = @json($male);
@@ -27,6 +30,17 @@
         var bab = @json($bab);
         var bssw = @json($bssw);
         var all = @json($all);
+        // Religion
+        var mcgi = @json($mcgi);
+        var catholic = @json($catholic);
+        var jw = @json($jw);
+        var inc = @json($inc);
+        var sda = @json($sda);
+        var baptist = @json($baptist);
+        var bornagain = @json($bornagain);
+        var islam = @json($islam);
+        var others = @json($others);
+
 
         Highcharts.chart('container', {
             chart: {
@@ -134,6 +148,67 @@
                     }
                 ]
             }],
+        });
+
+        Highcharts.chart('bar-chart', {
+            chart: {
+                type: 'column',
+                zoomType: 'y'
+            },
+            title: {
+                text: 'Average Religions per Applicant'
+            },
+            xAxis: {
+                categories: [
+                    'MCGI',
+                    'Roman Catholic',
+                    'Jehovah\'s Witnesses',
+                    'Iglesia ni Cristo',
+                    'Seventh-day Adventist',
+                    'Bible Baptist Church',
+                    'Born Again Christian',
+                    'Islam',
+                    'Others',
+                ],
+                title: {
+                    text: null
+                },
+                accessibility: {
+                    description: 'Religions'
+                }
+            },
+            yAxis: {
+                min: 0,
+                tickInterval: 10,
+                title: {
+                    text: 'Applicants'
+                },
+                labels: {
+                    overflow: 'justify',
+                    format: '{value}'
+                }
+            },
+            plotOptions: {
+                column: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{y} Applicants'
+                    }
+                }
+            },
+            tooltip: {
+                valueSuffix: ' total',
+                stickOnContact: true,
+                backgroundColor: 'rgba(255, 255, 255, 0.93)'
+            },
+            legend: {
+                enabled: false
+            },
+            series: [{
+                name: 'Wheat exportation in 2019',
+                data: [mcgi, catholic, jw, inc, sda, baptist, bornagain, islam, others],
+                borderColor: '#5997DE'
+            }]
         });
     </script>
 </x-app-layout>

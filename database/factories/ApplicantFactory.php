@@ -43,7 +43,7 @@ class ApplicantFactory extends Factory
             'birthdate' => fake()->date(),
             'phone_num' => fake()->phoneNumber(),
             'fb_link' => fake()->text(10),
-            'religion' => fake()->text(10),
+            'religion' => fake()->randomElement(['MCGI', 'Roman Catholic', 'Jehovah\'s Witnesses', 'Iglesia ni Cristo', 'Seventh-day Adventist', 'Bible Baptist Church', 'Born Again Christian', 'Islam', 'Others']),
             'avatar' => fake()->text(5),
             'certificate' => fake()->text(5),
             'total_fam_children' => fake()->randomNumber(),
