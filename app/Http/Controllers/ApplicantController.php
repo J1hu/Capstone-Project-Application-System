@@ -16,6 +16,10 @@ use App\Events\ApplicantCreated;
 use App\Models\ApplicantAddress;
 use App\Models\ApplicantGuardian;
 use App\Models\ApplicationStatus;
+use App\Models\Barangay;
+use App\Models\Municipality;
+use App\Models\Province;
+use App\Models\Region;
 use Illuminate\Support\Facades\Auth;
 
 class ApplicantController extends Controller
@@ -118,6 +122,7 @@ class ApplicantController extends Controller
         $applicantId = $applicant->id;
 
         $address = new ApplicantAddress();
+        $address->region = $request->input('region');
         $address->province = $request->input('province');
         $address->city_municipality = $request->input('city_municipality');
         $address->barangay = $request->input('barangay');
@@ -404,5 +409,18 @@ class ApplicantController extends Controller
         $notifications = Auth::user()->applicant->notifications;
 
         return view('applicants.notifications', compact('notifications'));
+    }
+
+    public function address()
+    {
+        $regions = Region::all();
+
+        // dd($regions);
+
+        $provinces = Province::all();
+        $municipality = Municipality::all();
+        $barangay = Barangay::all();
+
+        return view('applicants.forms.address', compact('regions', 'provinces', 'municipality', 'barangay'));
     }
 }

@@ -18,6 +18,7 @@ class ApplicantAddressFactory extends Factory
     {
         return [
             'applicant_id' => rand(1, 50),
+            'region' => fake()->text(10),
             'province' => fake()->text(10),
             'city_municipality' => fake()->text(10),
             'barangay' => fake()->text(10),
