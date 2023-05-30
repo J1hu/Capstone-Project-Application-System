@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Applicant;
-use DB;
+use Illuminate\Http\Request;
+use App\Models\ApplicantAddress;
 
 class VisualizationController extends Controller
 {
@@ -58,6 +58,75 @@ class VisualizationController extends Controller
         $bsswmale = Applicant::where('program_id', 6)->where('sex', 'Male')->count();
         $bsswfemale = Applicant::where('program_id', 6)->where('sex', 'Female')->count();
 
+        //get applicants per region
+        $region1 = Applicant::whereHas('address', function ($query) {
+            $query->where('region', 'REGION I');
+        })->count();
+
+        $region2 = Applicant::whereHas('address', function ($query) {
+            $query->where('region', 'REGION II');
+        })->count();
+
+        $region3 = Applicant::whereHas('address', function ($query) {
+            $query->where('region', 'REGION III');
+        })->count();
+
+        $region4a = Applicant::whereHas('address', function ($query) {
+            $query->where('region', 'REGION IV-A');
+        })->count();
+
+        $region4b = Applicant::whereHas('address', function ($query) {
+            $query->where('region', 'REGION IV-B');
+        })->count();
+
+        $region5 = Applicant::whereHas('address', function ($query) {
+            $query->where('region', 'REGION V');
+        })->count();
+
+        $region6 = Applicant::whereHas('address', function ($query) {
+            $query->where('region', 'REGION VI');
+        })->count();
+
+        $region7 = Applicant::whereHas('address', function ($query) {
+            $query->where('region', 'REGION VII');
+        })->count();
+
+        $region8 = Applicant::whereHas('address', function ($query) {
+            $query->where('region', 'REGION VIII');
+        })->count();
+
+        $region9 = Applicant::whereHas('address', function ($query) {
+            $query->where('region', 'REGION IX');
+        })->count();
+
+        $region10 = Applicant::whereHas('address', function ($query) {
+            $query->where('region', 'REGION X');
+        })->count();
+
+        $region11 = Applicant::whereHas('address', function ($query) {
+            $query->where('region', 'REGION XI');
+        })->count();
+
+        $region12 = Applicant::whereHas('address', function ($query) {
+            $query->where('region', 'REGION XII');
+        })->count();
+
+        $region13 = Applicant::whereHas('address', function ($query) {
+            $query->where('region', 'REGION XIII');
+        })->count();
+
+        $barmm = Applicant::whereHas('address', function ($query) {
+            $query->where('region', 'BARMM');
+        })->count();
+
+        $car = Applicant::whereHas('address', function ($query) {
+            $query->where('region', 'CAR');
+        })->count();
+
+        $ncr = Applicant::whereHas('address', function ($query) {
+            $query->where('region', 'NCR');
+        })->count();
+
         return view('admin.visualization', compact(
             'female',
             'male',
@@ -97,6 +166,25 @@ class VisualizationController extends Controller
             'babfemale',
             'bsswmale',
             'bsswfemale',
+
+            //region
+            'region1',
+            'region2',
+            'region3',
+            'region4a',
+            'region4b',
+            'region5',
+            'region6',
+            'region7',
+            'region8',
+            'region9',
+            'region10',
+            'region11',
+            'region12',
+            'region13',
+            'barmm',
+            'car',
+            'ncr',
         ));
     }
 }
