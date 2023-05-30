@@ -1,11 +1,13 @@
 <x-app-layout>
     <div class="grid grid-cols-2 gap-10 mb-10">
-        <div id="container" class="chart-container"></div>
-        <div id="pie-chart" class="chart-container"></div>
+        <div id="container"></div>
+        <div id="pie-chart"></div>
     </div>
 
     <div class="grid grid-cols-1 gap-10">
-        <div id="bar-chart" class="chart-container"></div>
+        <div id="bar-chart"></div>
+        <div id="school_type"></div>
+        <div id="gender_program"></div>
     </div>
 
     {{-- Highcharts --}}
@@ -40,6 +42,27 @@
         var bornagain = @json($bornagain);
         var islam = @json($islam);
         var others = @json($others);
+        var public = @json($public);
+        var private = @json($private);
+        var s_university = @json($s_university);
+        // Gender per program
+        var bsismale = @json($bsismale);
+        var bsisfemale = @json($bsisfemale);
+
+        var actmale = @json($actmale);
+        var actfemale = @json($actfemale);
+
+        var bsaismale = @json($bsaismale);
+        var bsaisfemale = @json($bsaisfemale);
+
+        var bsamale = @json($bsamale);
+        var bsafemale = @json($bsafemale);
+
+        var babmale = @json($babmale);
+        var babfemale = @json($babfemale);
+
+        var bsswmale = @json($bsswmale);
+        var bsswfemale = @json($bsswfemale);
 
 
         Highcharts.chart('container', {
@@ -205,9 +228,113 @@
                 enabled: false
             },
             series: [{
-                name: 'Wheat exportation in 2019',
+                name: 'Religion',
                 data: [mcgi, catholic, jw, inc, sda, baptist, bornagain, islam, others],
                 borderColor: '#5997DE'
+            }]
+        });
+
+        Highcharts.chart('school_type', {
+            chart: {
+                type: 'pie'
+            },
+
+            title: {
+                text: 'Applicants School type',
+                align: 'left'
+            },
+
+            accessibility: {
+                announceNewData: {
+                    enabled: true
+                },
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+
+            plotOptions: {
+                series: {
+                    borderRadius: 5,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}: {point.percentage:.1f}%'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of ' +
+                    @json($all) + '<br/>'
+            },
+
+
+            series: [{
+                name: 'Programs',
+                colorByPoint: true,
+                data: [{
+                        name: 'Public',
+                        y: public
+                    },
+                    {
+                        name: 'Private',
+                        y: private,
+                    },
+                    {
+                        name: 'State University',
+                        y: s_university,
+                    }
+                ]
+            }],
+        });
+
+        Highcharts.chart('gender_program', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Gender per Program'
+            },
+            xAxis: {
+                categories: [
+                    'BSIS',
+                    'ACT',
+                    'BSAIS',
+                    'BSA',
+                    'BAB',
+                    'BSSW',
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Total Count'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y} total</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Male',
+                data: [bsismale, actmale, bsaismale, bsamale, babmale, bsswmale]
+
+            }, {
+                name: 'Female',
+                data: [bsisfemale, actfemale, bsaisfemale, bsafemale, babfemale, bsswfemale]
+
             }]
         });
     </script>

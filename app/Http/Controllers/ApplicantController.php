@@ -9,20 +9,14 @@ use App\Models\Applicant;
 use App\Models\ElectricBill;
 use App\Models\InternetType;
 use Illuminate\Http\Request;
-use App\Models\Preassessment;
 use App\Models\HouseOwnership;
 use App\Models\ApplicantFather;
 use App\Models\ApplicantMother;
-use Illuminate\Validation\Rule;
 use App\Events\ApplicantCreated;
 use App\Models\ApplicantAddress;
-use App\Models\ApplicantSibling;
 use App\Models\ApplicantGuardian;
 use App\Models\ApplicationStatus;
 use Illuminate\Support\Facades\Auth;
-use Database\Seeders\ApplicantSeeder;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 
 class ApplicantController extends Controller
 {

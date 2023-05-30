@@ -34,6 +34,31 @@ class VisualizationController extends Controller
         $islam = Applicant::where('religion', 'Islam')->count();
         $others = Applicant::where('religion', 'Others')->count();
 
+        //last school
+        $public = Applicant::where('school_type', 'Public')->count();
+        $private = Applicant::where('school_type', 'Private')->count();
+        $s_university = Applicant::where('school_type', 'State University')->count();
+
+        //get gender per program
+        $bsismale = Applicant::where('program_id', 1)->where('sex', 'Male')->count();
+        $bsisfemale = Applicant::where('program_id', 1)->where('sex', 'Female')->count();
+
+        $actmale = Applicant::where('program_id', 2)->where('sex', 'Male')->count();
+        $actfemale = Applicant::where('program_id', 2)->where('sex', 'Female')->count();
+
+        $bsaismale = Applicant::where('program_id', 3)->where('sex', 'Male')->count();
+        $bsaisfemale = Applicant::where('program_id', 3)->where('sex', 'Female')->count();
+
+        $bsamale = Applicant::where('program_id', 4)->where('sex', 'Male')->count();
+        $bsafemale = Applicant::where('program_id', 4)->where('sex', 'Female')->count();
+
+        $babmale = Applicant::where('program_id', 5)->where('sex', 'Male')->count();
+        $babfemale = Applicant::where('program_id', 5)->where('sex', 'Female')->count();
+
+        $bsswmale = Applicant::where('program_id', 6)->where('sex', 'Male')->count();
+        $bsswfemale = Applicant::where('program_id', 6)->where('sex', 'Female')->count();
+
+
         return view('admin.visualization', compact(
             'female',
             'male',
@@ -54,6 +79,25 @@ class VisualizationController extends Controller
             'bornagain',
             'islam',
             'others',
+
+            //school type
+            'public',
+            'private',
+            's_university',
+
+            //gender per program
+            'bsismale',
+            'bsisfemale',
+            'actmale',
+            'actfemale',
+            'bsaismale',
+            'bsaisfemale',
+            'bsamale',
+            'bsafemale',
+            'babmale',
+            'babfemale',
+            'bsswmale',
+            'bsswfemale',
         ));
     }
 }
