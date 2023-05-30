@@ -152,8 +152,6 @@ Route::get('/provinces/{region}', [AddressController::class, 'province']);
 Route::get('/municipalities/{province}', [AddressController::class, 'municipality']);
 Route::get('/barangays/{municipality}', [AddressController::class, 'barangay']);
 
-Route::get('/address', [ApplicantController::class, 'address'])->name('address');
-
 require __DIR__ . '/auth.php';
 require __DIR__ . '/mancom.php';
 require __DIR__ . '/evaluator.php';
