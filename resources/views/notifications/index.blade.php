@@ -46,7 +46,7 @@
             <div class="form-group mt-5">
                 <label for="content">Content:</label>
                 <x-rich-text-trix-styles />
-                <x-trix-field name="content" id="content" class="form-control inline-flex m-1 p-3 leading-5 w-full text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500" required :initial-value="''" />
+                <x-trix-field name="content" id="content" required :initial-value="''" />
             </div>
         </div>
 
