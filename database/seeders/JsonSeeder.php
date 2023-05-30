@@ -20,7 +20,7 @@ class JsonSeeder extends Seeder
 
     public function run()
     {
-        $jsonData = File::get('public\json\regions.json');
+        $jsonData = File::get('public/json/regions.json');
         $data = json_decode($jsonData, true);
 
         foreach ($data as $regionData) {
