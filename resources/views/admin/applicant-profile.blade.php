@@ -36,9 +36,11 @@
                     </div>
                 </div>
                 <div class="text-right relative">
+                    @hasanyrole('admin|registrar_staff')
                     <div>
                         <td class="p-2"><a href="{{ route('applicants.edit', $applicant->id) }}" class="bg-green-500 text-white px-2 py-1 rounded-md">Edit Applicant</a></td>
                     </div>
+                    @endhasanyrole
                     @hasanyrole('admin|registrar_staff')
                     <div class=" absolute bottom-0 right-0">
                         <form action="{{ route('application.update') }}" method="POST">

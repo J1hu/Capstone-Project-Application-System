@@ -3,6 +3,11 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Region;
+use App\Models\Province;
+use App\Models\Municipality;
+use App\Models\Barangay;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ApplicantAddress>
@@ -16,13 +21,19 @@ class ApplicantAddressFactory extends Factory
      */
     public function definition()
     {
+        $region = Region::inRandomOrder()->first();
+        $province = Province::where('region_id', $region->id)->inRandomOrder()->first();
+        $municipality = Municipality::where('province_id', $province->id)->inRandomOrder()->first();
+        $barangay = Barangay::where('municipality_id', $municipality->id)->inRandomOrder()->first();
+
         return [
             'applicant_id' => rand(1, 50),
-            'province' => fake()->text(10),
-            'city_municipality' => fake()->text(10),
-            'barangay' => fake()->text(10),
-            'street' => fake()->text(10),
-            'zip_code' => fake()->randomNumber(),
+            'region' => $region->name,
+            'province' => $province->name,
+            'city_municipality' => $municipality->name,
+            'barangay' => $barangay->name,
+            'street' => $this->faker->text(10),
+            'zip_code' => $this->faker->randomElement(['1232', '3213', '3002', '3003']),
         ];
     }
 }

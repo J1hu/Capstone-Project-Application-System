@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CsvController;
@@ -126,7 +127,7 @@ Route::middleware(['auth', 'role:applicant|admin|program_head|mancom|registrar_s
         // posts
         Route::post('/send-notification', [NotificationController::class, 'sendNotification'])->name('notifications.notification');
         Route::put('/notifications/{notification}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.mark-as-read');
-        Route::get('/notifications/check-unread', [NotificationController::class, 'checkUnread'])->name('notifications.checkUnread');
+        Route::get('/check-unread', [NotificationController::class, 'checkUnread'])->name('notifications.checkUnread');
     });
 });
 
@@ -145,6 +146,11 @@ Route::middleware(['auth', 'role:admin', 'verified'])->group(function () {
 Route::middleware(['auth', 'role:admin', 'verified'])->group(function () {
     Route::get('/visualizations', [VisualizationController::class, 'index'])->name('visualiation.view');
 });
+
+Route::get('/regions', [AddressController::class, 'region']);
+Route::get('/provinces/{region}', [AddressController::class, 'province']);
+Route::get('/municipalities/{province}', [AddressController::class, 'municipality']);
+Route::get('/barangays/{municipality}', [AddressController::class, 'barangay']);
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/mancom.php';

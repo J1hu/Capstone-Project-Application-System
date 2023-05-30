@@ -17,9 +17,12 @@
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
 
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                autocomplete="current-password" />
-
+            <div class="flex items-center mt-1 w-full border border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 rounded-md shadow-sm">
+                <input id="password" class="flex-1 w-full p-2 border-0 rounded-l-md focus:outline-none" type="password" name="password" required autocomplete="current-password">
+                <span class="material-symbols-outlined p-2 bg-blue-500 rounded-r-md border-blue-500 text-white" id="togglePassword">
+                  visibility
+                </span>
+              </div>
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
@@ -53,4 +56,23 @@
             </x-primary-button>
         </div>
     </form>
+
+    <script>
+        window.addEventListener("DOMContentLoaded", function() {
+            const togglePassword = document.querySelector("#togglePassword");
+            const password = document.querySelector("#password");
+    
+            togglePassword.addEventListener("click", function() {
+                // Toggle the password visibility
+                const type = password.getAttribute("type") === "password" ? "text" : "password";
+                password.setAttribute("type", type);
+    
+                if (togglePassword.innerHTML === "visibility") {
+                    togglePassword.innerHTML = "visibility_off";
+                } else {
+                    togglePassword.innerHTML = "visibility";
+                }
+            });
+        });
+    </script>
 </x-guest-layout>
