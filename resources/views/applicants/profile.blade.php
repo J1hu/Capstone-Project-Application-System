@@ -9,9 +9,15 @@
     {{-- first card --}}
     <div class="bg-white border rounded-md p-5">
         <div class="grid grid-cols-3">
+            @if (file_exists(public_path('storage/avatars/' . $applicant->avatar)))
             <div>
                 <img src="{{ asset('storage/avatars/' . $applicant->avatar) }}" width="150px" height="150px" alt="Applicant Avatar">
             </div>
+            @else
+            <div>
+                <img src="{{ asset('assets/sample-avatar.jpg') }}" width="150px" height="150px" alt="Applicant Avatar">
+            </div>
+            @endif
             <div class="col-span-2 grid grid-cols-3">
                 <div class="grid-rows-5 col-span-2">
                     <p class="text-lg font-bold uppercase">{{ $applicant->fname }} {{ $applicant->mname }}
