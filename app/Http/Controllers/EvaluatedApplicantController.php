@@ -17,6 +17,7 @@ class EvaluatedApplicantController extends Controller
         $latestSchoolYear = SchoolYear::where('is_archived', false)->latest()->first();
 
         $allowedStatuses = [
+            'for orientation',
             'done orientation',
             'for enrollment',
             'passed',
