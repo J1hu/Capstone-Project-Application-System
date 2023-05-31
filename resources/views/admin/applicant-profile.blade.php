@@ -9,9 +9,17 @@
     {{-- first card --}}
     <div class="bg-white border rounded-md p-5">
         <div class="grid grid-cols-5">
+            @if (file_exists(public_path('storage/avatars/' . $applicant->avatar)))
             <div>
                 <img src="{{ asset('storage/avatars/' . $applicant->avatar) }}" width="150px" height="150px" alt="Applicant Avatar">
             </div>
+            @else
+            <div>
+                <img src="{{ asset('assets/sample-avatar.jpg') }}" width="150px" height="150px" alt="Applicant Avatar">
+            </div>
+            @endif
+
+
             <div class="col-span-4 grid grid-cols-3">
                 <div class="grid-rows-5 col-span-2">
                     <div class="grid grid-cols-2">
@@ -533,13 +541,27 @@
                     <section data-aos="fade-up" data-aos-duration="2000" data-aos-anchor-placement="center-bottom">
                         <div class="gallery gap-8 columns-3">
                             <div>
+                                @if (file_exists(public_path('storage/certificates/' . $applicant->certificate)))
                                 <img class="myImg" src="{{ asset('storage/certificates/' . $applicant->certificate) }}" alt="Certificate" width="100px">
+                                @else
+                                <img class="myImg" src="{{ asset('assets/sample-itr.webp') }}" alt="Fallback Certificate" width="100px">
+                                @endif
                             </div>
+
                             <div>
+                                @if (file_exists(public_path('storage/report-cards/' . $applicant->report_card)))
                                 <img class="myImg" src="{{ asset('storage/report-cards/' . $applicant->report_card) }}" alt="Report Card" width="100px">
+                                @else
+                                <img class="myImg" src="{{ asset('assets/sample-reportcard.jpg') }}" alt="Fallback Report Card" width="100px">
+                                @endif
                             </div>
+
                             <div>
+                                @if (file_exists(public_path('storage/ebill-proofs/' . $applicant->ebill_proof)))
                                 <img class="myImg" src="{{ asset('storage/ebill-proofs/' . $applicant->ebill_proof) }}" alt="Electric Bill" width="100px">
+                                @else
+                                <img class="myImg" src="{{ asset('assets/sample-ebill.png') }}" alt="Fallback Electric Bill" width="100px">
+                                @endif
                             </div>
 
                         </div>

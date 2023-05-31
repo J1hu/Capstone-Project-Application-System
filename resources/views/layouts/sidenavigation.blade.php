@@ -61,7 +61,7 @@
             <span class="material-symbols-outlined mr-5">
                 task
             </span>
-            {{ __('Evaluated Applicants') }}
+            {{ __('Newly Qualified Applicants') }}
         </x-nav-link>
         <x-nav-link :href="route('applicants.failed-list')" :active="request()->routeIs('applicants.failed-list') ||
                 strpos(url()->current(), 'applicants.failed-list') !== false">
