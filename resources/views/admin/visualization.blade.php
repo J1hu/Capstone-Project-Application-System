@@ -204,7 +204,7 @@
                 zoomType: 'y'
             },
             title: {
-                text: 'Average Religions per Applicant'
+                text: 'Religious Affiliation of Applicants'
             },
             xAxis: {
                 categories: [
@@ -319,7 +319,7 @@
                 type: 'column'
             },
             title: {
-                text: 'Gender per Program'
+                text: 'Gender of Applicants per Program'
             },
             xAxis: {
                 categories: [

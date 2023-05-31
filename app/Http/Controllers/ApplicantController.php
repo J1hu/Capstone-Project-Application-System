@@ -51,12 +51,17 @@ class ApplicantController extends Controller
         $ownership_types = HouseOwnership::all();
         $programs = Program::all();
 
-        return view('applicants.forms.form', [
-            'programs' => $programs,
-            'gadgets' => $gadgets,
-            'internets' => $internets,
-            'ownership_types' => $ownership_types,
-        ]);
+        return view(
+            'applicants.forms.form',
+            [
+                'programs' => $programs,
+                'gadgets' => $gadgets,
+                'internets' => $internets,
+                'ownership_types' => $ownership_types,
+
+            ],
+            compact('user')
+        );
     }
 
     public function store(Request $request)
