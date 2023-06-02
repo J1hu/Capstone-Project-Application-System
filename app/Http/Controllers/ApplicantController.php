@@ -411,10 +411,16 @@ class ApplicantController extends Controller
 
     public function notifications()
     {
-        $notifications = Auth::user()->applicant->notifications;
+        // Get the authenticated user's applicant model
+        $applicant = Auth::user()->applicant;
 
+        // Retrieve the notifications associated with the applicant
+        $notifications = $applicant->notifications;
+
+        // Return the notifications to the view
         return view('applicants.notifications', compact('notifications'));
     }
+
 
     public function address()
     {

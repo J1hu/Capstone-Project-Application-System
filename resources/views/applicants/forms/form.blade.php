@@ -425,11 +425,22 @@
                                     @endif
                                 </div>
                                 <div>
-                                    <label for="mother_religion" class="text-sm text-slate-700">Religion<span class="text-red-500"> *</span></label>
-                                    <input type="text" id="mother_religion" name="mother_religion" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
-                                    @if ($errors->has('mother_religion'))
+                                    <label for="religion" class="text-sm text-slate-700">Religion<span class="text-red-500">*</span></label>
+                                    <select name="religion" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                        <option value="">Select Religion</option>
+                                        <option value="MCGI" {{ old('religion') === 'MCGI' ? 'selected' : '' }}>MCGI</option>
+                                        <option value="Roman Catholic" {{ old('religion') === 'Roman Catholic' ? 'selected' : '' }}>Roman Catholic</option>
+                                        <option value="Jehovah's Witnesses" {{ old('religion') === "Jehovah's Witnesses" ? 'selected' : '' }}>Jehovah's Witnesses</option>
+                                        <option value="Iglesia ni Cristo" {{ old('religion') === 'Iglesia ni Cristo' ? 'selected' : '' }}>Iglesia ni Cristo</option>
+                                        <option value="Seventh-day Adventist" {{ old('religion') === 'Seventh-day Adventist' ? 'selected' : '' }}>Seventh-day Adventist</option>
+                                        <option value="Bible Baptist Church" {{ old('religion') === 'Bible Baptist Church' ? 'selected' : '' }}>Bible Baptist Church</option>
+                                        <option value="Born Again Christian" {{ old('religion') === 'Born Again Christian' ? 'selected' : '' }}>Born Again Christian</option>
+                                        <option value="Islam" {{ old('religion') === 'Islam' ? 'selected' : '' }}>Islam</option>
+                                        <option value="Others" {{ old('religion') === 'Others' ? 'selected' : '' }}>Others</option>
+                                    </select>
+                                    @if ($errors->has('religion'))
                                     <div class="invalid-feedback text-red-500">
-                                        {{ $errors->first('mother_religion') }}
+                                        {{ $errors->first('religion') }}
                                     </div>
                                     @endif
                                 </div>
@@ -506,11 +517,22 @@
                                     @endif
                                 </div>
                                 <div>
-                                    <label for="father_religion" class="text-sm text-slate-700">Religion<span class="text-red-500"> *</span></label>
-                                    <input type="text" id="father_religion" name="father_religion" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
-                                    @if ($errors->has('father_religion'))
+                                    <label for="religion" class="text-sm text-slate-700">Religion<span class="text-red-500">*</span></label>
+                                    <select name="religion" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                        <option value="">Select Religion</option>
+                                        <option value="MCGI" {{ old('religion') === 'MCGI' ? 'selected' : '' }}>MCGI</option>
+                                        <option value="Roman Catholic" {{ old('religion') === 'Roman Catholic' ? 'selected' : '' }}>Roman Catholic</option>
+                                        <option value="Jehovah's Witnesses" {{ old('religion') === "Jehovah's Witnesses" ? 'selected' : '' }}>Jehovah's Witnesses</option>
+                                        <option value="Iglesia ni Cristo" {{ old('religion') === 'Iglesia ni Cristo' ? 'selected' : '' }}>Iglesia ni Cristo</option>
+                                        <option value="Seventh-day Adventist" {{ old('religion') === 'Seventh-day Adventist' ? 'selected' : '' }}>Seventh-day Adventist</option>
+                                        <option value="Bible Baptist Church" {{ old('religion') === 'Bible Baptist Church' ? 'selected' : '' }}>Bible Baptist Church</option>
+                                        <option value="Born Again Christian" {{ old('religion') === 'Born Again Christian' ? 'selected' : '' }}>Born Again Christian</option>
+                                        <option value="Islam" {{ old('religion') === 'Islam' ? 'selected' : '' }}>Islam</option>
+                                        <option value="Others" {{ old('religion') === 'Others' ? 'selected' : '' }}>Others</option>
+                                    </select>
+                                    @if ($errors->has('religion'))
                                     <div class="invalid-feedback text-red-500">
-                                        {{ $errors->first('father_religion') }}
+                                        {{ $errors->first('religion') }}
                                     </div>
                                     @endif
                                 </div>
@@ -587,11 +609,22 @@
                                         @endif
                                     </div>
                                     <div>
-                                        <label for="guardian_religion" class="text-sm text-slate-700">Religion<span class="text-red-500"> *</span></label>
-                                        <input type="text" id="guardian_religion" name="guardian_religion" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
-                                        @if ($errors->has('guardian_religion'))
+                                        <label for="religion" class="text-sm text-slate-700">Religion<span class="text-red-500">*</span></label>
+                                        <select name="religion" required class="inline-flex items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full">
+                                            <option value="">Select Religion</option>
+                                            <option value="MCGI" {{ old('religion') === 'MCGI' ? 'selected' : '' }}>MCGI</option>
+                                            <option value="Roman Catholic" {{ old('religion') === 'Roman Catholic' ? 'selected' : '' }}>Roman Catholic</option>
+                                            <option value="Jehovah's Witnesses" {{ old('religion') === "Jehovah's Witnesses" ? 'selected' : '' }}>Jehovah's Witnesses</option>
+                                            <option value="Iglesia ni Cristo" {{ old('religion') === 'Iglesia ni Cristo' ? 'selected' : '' }}>Iglesia ni Cristo</option>
+                                            <option value="Seventh-day Adventist" {{ old('religion') === 'Seventh-day Adventist' ? 'selected' : '' }}>Seventh-day Adventist</option>
+                                            <option value="Bible Baptist Church" {{ old('religion') === 'Bible Baptist Church' ? 'selected' : '' }}>Bible Baptist Church</option>
+                                            <option value="Born Again Christian" {{ old('religion') === 'Born Again Christian' ? 'selected' : '' }}>Born Again Christian</option>
+                                            <option value="Islam" {{ old('religion') === 'Islam' ? 'selected' : '' }}>Islam</option>
+                                            <option value="Others" {{ old('religion') === 'Others' ? 'selected' : '' }}>Others</option>
+                                        </select>
+                                        @if ($errors->has('religion'))
                                         <div class="invalid-feedback text-red-500">
-                                            {{ $errors->first('guardian_religion') }}
+                                            {{ $errors->first('religion') }}
                                         </div>
                                         @endif
                                     </div>

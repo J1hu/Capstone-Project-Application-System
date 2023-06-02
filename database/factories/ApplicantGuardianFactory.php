@@ -14,10 +14,12 @@ class ApplicantGuardianFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+    private static $userCounter = 1;
     public function definition()
     {
         return [
-            'applicant_id' => rand(1, 50),
+            'applicant_id' => self::$userCounter++,
             'guardian_fname' => fake()->firstName(),
             'guardian_mname' => fake()->text(5),
             'guardian_lname' => fake()->lastName(),
