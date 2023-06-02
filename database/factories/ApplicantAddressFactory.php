@@ -30,10 +30,10 @@ class ApplicantAddressFactory extends Factory
 
         return [
             'applicant_id' => self::$userCounter++,
-            'region' => $region->name,
-            'province' => $province->name,
-            'city_municipality' => $municipality->name,
-            'barangay' => $barangay->name,
+            'region' => $region->id,
+            'province' => $province->id,
+            'city_municipality' => $municipality->id,
+            'barangay' => $barangay->id,
             'street' => $this->faker->text(10),
             'zip_code' => $this->faker->randomElement(['1232', '3213', '3002', '3003']),
         ];
