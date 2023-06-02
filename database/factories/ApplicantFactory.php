@@ -30,11 +30,15 @@ class ApplicantFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+    private static $userCounter = 1;
+
     public function definition()
     {
 
+
         return [
-            'user_id' => rand(1, 50),
+            'user_id' => self::$userCounter++,
             'fname' => fake()->firstName(),
             'mname' => fake()->text(5),
             'lname' => fake()->lastName(),

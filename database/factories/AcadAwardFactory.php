@@ -14,10 +14,12 @@ class AcadAwardFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    private static $userCounter = 1;
+
     public function definition()
     {
         return [
-            'applicant_id' => rand(1, 50),
+            'applicant_id' => self::$userCounter++,
             'award_name' => fake()->text(10)
         ];
     }

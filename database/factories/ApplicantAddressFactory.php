@@ -19,6 +19,8 @@ class ApplicantAddressFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    private static $userCounter = 1;
+
     public function definition()
     {
         $region = Region::inRandomOrder()->first();
@@ -27,7 +29,7 @@ class ApplicantAddressFactory extends Factory
         $barangay = Barangay::where('municipality_id', $municipality->id)->inRandomOrder()->first();
 
         return [
-            'applicant_id' => rand(1, 50),
+            'applicant_id' => self::$userCounter++,
             'region' => $region->name,
             'province' => $province->name,
             'city_municipality' => $municipality->name,
