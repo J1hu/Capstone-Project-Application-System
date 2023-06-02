@@ -269,10 +269,11 @@ class ApplicantController extends Controller
         $applicant = $user->applicant;
 
         $address = $applicant->address;
-        $regionName = Region::find($address->region)->name;
-        $provinceName = Province::find($address->province)->name;
-        $cityName = Municipality::find($address->city_municipality)->name;
-        $barangayName = Barangay::find($address->barangay)->name;
+
+        $regionName = $address ? Region::find($address->region)->name : '';
+        $provinceName = $address ? Province::find($address->province)->name : '';
+        $cityName = $address ? Municipality::find($address->city_municipality)->name : '';
+        $barangayName = $address ? Barangay::find($address->barangay)->name : '';
 
         return view('applicants.profile', compact(
             'user',
