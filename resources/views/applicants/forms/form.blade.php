@@ -767,7 +767,7 @@
                     </div>
 
                     <div class="my-5 space-y-2">
-                        <div class="font-bold text-lg">ACADEMIC AWARDS AND ACHIEVEMENTS DURING THE PREVIOUS YEAR</div>
+                        <div class="font-bold text-lg">ACADEMIC AWARDS AND ACHIEVEMENTS DURING THE PREVIOUS YEAR <span class="text-red-500"> *</span></div>
                         <div class="grid grid-cols-2">
                             <div>
                                 <input type="checkbox" name="award_name[]" id="highest_honors" value="highest_honors" {{ in_array('highest_honors', old('award_name', [])) ? 'checked' : '' }}>

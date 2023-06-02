@@ -5,7 +5,7 @@
             {{ __('School Year: ') }}{{ $schoolYear->year }}
         </h2>
     </x-slot>
-    <div class="text-right">
+    <div class="text-left m-5">
         <x-primary-button class="px-5" id="go-back-btn">Go Back</x-primary-button>
     </div>
     <div class="my-5">
@@ -50,6 +50,7 @@
                                 <th class="py-2 px-6">Name</th>
                                 <th class="py-2">Email</th>
                                 <th class="py-2">Program</th>
+                                <th class="py-2"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -58,6 +59,7 @@
                                 <td class="px-6">{{ $applicant->user->name }}</td>
                                 <td class="p-2">{{ $applicant->user->email }}</td>
                                 <td class="p-2">{{ $applicant->program->program_name }}</td>
+                                <td><a href="{{ route('applicants.admin-view', ['id' => $applicant->id]) }}" class="bg-blue-500 text-white px-2 py-1 rounded-md text-xs">View Profile</a></td>
                             </tr>
                             @endforeach
                         </tbody>
