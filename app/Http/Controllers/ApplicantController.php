@@ -268,7 +268,20 @@ class ApplicantController extends Controller
         $user = Auth::user();
         $applicant = $user->applicant;
 
-        return view('applicants.profile', compact('user', 'applicant'));
+        $address = $applicant->address;
+        $regionName = Region::find($address->region)->name;
+        $provinceName = Province::find($address->province)->name;
+        $cityName = Municipality::find($address->city_municipality)->name;
+        $barangayName = Barangay::find($address->barangay)->name;
+
+        return view('applicants.profile', compact(
+            'user',
+            'applicant',
+            'regionName',
+            'provinceName',
+            'cityName',
+            'barangayName'
+        ));
     }
 
     public function edit($id)
@@ -406,7 +419,26 @@ class ApplicantController extends Controller
         $initial_assessment = $applicant->initialAssessment;
         $final_assessment = $applicant->finalAssessment;
 
-        return view('admin.applicant-profile', compact('user', 'applicant', 'preassessment', 'exam_score', 'initial_assessment', 'final_assessment', 'application_status'));
+        $address = $applicant->address;
+        $regionName = Region::find($address->region)->name;
+        $provinceName = Province::find($address->province)->name;
+        $cityName = Municipality::find($address->city_municipality)->name;
+        $barangayName = Barangay::find($address->barangay)->name;
+
+
+        return view('admin.applicant-profile', compact(
+            'user',
+            'applicant',
+            'preassessment',
+            'exam_score',
+            'initial_assessment',
+            'final_assessment',
+            'application_status',
+            'regionName',
+            'provinceName',
+            'cityName',
+            'barangayName'
+        ));
     }
 
     public function notifications()

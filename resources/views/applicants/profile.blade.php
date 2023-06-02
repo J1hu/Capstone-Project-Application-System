@@ -79,8 +79,8 @@
                     <p class="capitalize">{{ $user->applicant->sex }}</p>
                     <p class="capitalize">{{ $user->applicant->religion }}</p>
                     <a href="https://{{ $user->applicant->fb_link }}" class="text-blue-500">{{ $user->applicant->fb_link }}</a>
-                    <p class="capitalize">{{ $applicant->address->street }}, {{ $applicant->address->barangay }},
-                        {{ $applicant->address->city_municipality }}, {{ $applicant->address->province }}
+                    <p class="capitalize">{{ $applicant->address->street }}, {{ $barangayName }},
+                        {{ $cityName }}, {{ $provinceName }}, {{ $regionName }}
                     </p>
                 </div>
             </div>
