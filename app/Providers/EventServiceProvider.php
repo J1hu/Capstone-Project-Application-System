@@ -26,6 +26,9 @@ class EventServiceProvider extends ServiceProvider
         PreassessmentUpdated::class => [
             PreassessmentUpdatedListener::class,
         ],
+        ApplicantRegistered::class => [
+            SendApplicantRegistrationNotification::class,
+        ],
     ];
 
     /**
