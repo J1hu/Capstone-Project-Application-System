@@ -23,7 +23,6 @@ class PendingApplicantController extends Controller
             'passed exam',
             'for interview',
             'passed interview',
-            'for orientation'
         ];
 
         $applicants = collect();

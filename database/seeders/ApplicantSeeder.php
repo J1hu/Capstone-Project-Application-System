@@ -15,6 +15,6 @@ class ApplicantSeeder extends Seeder
      */
     public function run()
     {
-        Applicant::factory()->times(500)->create();
+        Applicant::factory()->times(250)->create();
     }
 }

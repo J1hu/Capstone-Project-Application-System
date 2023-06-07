@@ -17,7 +17,7 @@ class SchoolYearFactory extends Factory
     public function definition()
     {
         return [
-            'year' => '2022-2023',
+            'year' => '2023-2024',
             'is_archived' => fake()->boolean(false)
         ];
     }

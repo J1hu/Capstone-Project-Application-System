@@ -16,6 +16,10 @@ use App\Events\ApplicantCreated;
 use App\Models\ApplicantAddress;
 use App\Models\ApplicantGuardian;
 use App\Models\ApplicationStatus;
+use App\Models\Barangay;
+use App\Models\Municipality;
+use App\Models\Province;
+use App\Models\Region;
 use Illuminate\Support\Facades\Auth;
 
 class ApplicantController extends Controller
@@ -47,12 +51,17 @@ class ApplicantController extends Controller
         $ownership_types = HouseOwnership::all();
         $programs = Program::all();
 
-        return view('applicants.forms.form', [
-            'programs' => $programs,
-            'gadgets' => $gadgets,
-            'internets' => $internets,
-            'ownership_types' => $ownership_types,
-        ]);
+        return view(
+            'applicants.forms.form',
+            [
+                'programs' => $programs,
+                'gadgets' => $gadgets,
+                'internets' => $internets,
+                'ownership_types' => $ownership_types,
+
+            ],
+            compact('user')
+        );
     }
 
     public function store(Request $request)
@@ -118,6 +127,7 @@ class ApplicantController extends Controller
         $applicantId = $applicant->id;
 
         $address = new ApplicantAddress();
+        $address->region = $request->input('region');
         $address->province = $request->input('province');
         $address->city_municipality = $request->input('city_municipality');
         $address->barangay = $request->input('barangay');
@@ -258,7 +268,21 @@ class ApplicantController extends Controller
         $user = Auth::user();
         $applicant = $user->applicant;
 
-        return view('applicants.profile', compact('user', 'applicant'));
+        $address = $applicant->address;
+
+        $regionName = $address ? Region::find($address->region)->name : '';
+        $provinceName = $address ? Province::find($address->province)->name : '';
+        $cityName = $address ? Municipality::find($address->city_municipality)->name : '';
+        $barangayName = $address ? Barangay::find($address->barangay)->name : '';
+
+        return view('applicants.profile', compact(
+            'user',
+            'applicant',
+            'regionName',
+            'provinceName',
+            'cityName',
+            'barangayName'
+        ));
     }
 
     public function edit($id)
@@ -396,13 +420,51 @@ class ApplicantController extends Controller
         $initial_assessment = $applicant->initialAssessment;
         $final_assessment = $applicant->finalAssessment;
 
-        return view('admin.applicant-profile', compact('user', 'applicant', 'preassessment', 'exam_score', 'initial_assessment', 'final_assessment', 'application_status'));
+        $address = $applicant->address;
+        $regionName = Region::find($address->region)->name;
+        $provinceName = Province::find($address->province)->name;
+        $cityName = Municipality::find($address->city_municipality)->name;
+        $barangayName = Barangay::find($address->barangay)->name;
+
+
+        return view('admin.applicant-profile', compact(
+            'user',
+            'applicant',
+            'preassessment',
+            'exam_score',
+            'initial_assessment',
+            'final_assessment',
+            'application_status',
+            'regionName',
+            'provinceName',
+            'cityName',
+            'barangayName'
+        ));
     }
 
     public function notifications()
     {
-        $notifications = Auth::user()->applicant->notifications;
+        // Get the authenticated user's applicant model
+        $applicant = Auth::user()->applicant;
 
+        // Retrieve the notifications associated with the applicant
+        $notifications = $applicant->notifications;
+
+        // Return the notifications to the view
         return view('applicants.notifications', compact('notifications'));
+    }
+
+
+    public function address()
+    {
+        $regions = Region::all();
+
+        // dd($regions);
+
+        $provinces = Province::all();
+        $municipality = Municipality::all();
+        $barangay = Barangay::all();
+
+        return view('applicants.forms.address', compact('regions', 'provinces', 'municipality', 'barangay'));
     }
 }

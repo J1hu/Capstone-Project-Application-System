@@ -56,6 +56,11 @@ class Applicant extends Model implements Authenticatable
         'applicant_status_id',
     ];
 
+    public function notifications()
+    {
+        return $this->morphMany(\Illuminate\Notifications\DatabaseNotification::class, 'notifiable')->orderBy('created_at', 'desc');
+    }
+
     public function getFullNameAttribute()
     {
         return "{$this->fname} {$this->mname} {$this->lname}";

@@ -14,10 +14,11 @@ class ElectricBillFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    private static $userCounter = 1;
     public function definition()
     {
         return [
-            'applicant_id' => rand(1, 50),
+            'applicant_id' => self::$userCounter++,
             'electric_month' => fake()->text(10),
             'electric_amount' => 1000.23
         ];

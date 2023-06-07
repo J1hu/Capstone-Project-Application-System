@@ -4,9 +4,16 @@
         <div id="pie-chart"></div>
     </div>
 
-    <div class="grid grid-cols-1 gap-10">
+    <div class="grid grid-cols-1 gap-10 mb-10">
         <div id="bar-chart"></div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-10 mb-10">
+        <div id="regions"></div>
         <div id="school_type"></div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-10 mb-10">
         <div id="gender_program"></div>
     </div>
 
@@ -64,6 +71,24 @@
         var bsswmale = @json($bsswmale);
         var bsswfemale = @json($bsswfemale);
 
+        //regions
+        var region1 = @json($region1);
+        var region2 = @json($region2);
+        var region3 = @json($region3);
+        var region4a = @json($region4a);
+        var region4b = @json($region4b);
+        var region5 = @json($region5);
+        var region6 = @json($region6);
+        var region7 = @json($region7);
+        var region8 = @json($region8);
+        var region9 = @json($region9);
+        var region10 = @json($region10);
+        var region11 = @json($region11);
+        var region12 = @json($region12);
+        var region13 = @json($region13);
+        var barmm = @json($barmm);
+        var car = @json($car);
+        var ncr = @json($ncr);
 
         Highcharts.chart('container', {
             chart: {
@@ -179,7 +204,7 @@
                 zoomType: 'y'
             },
             title: {
-                text: 'Average Religions per Applicant'
+                text: 'Religious Affiliation of Applicants'
             },
             xAxis: {
                 categories: [
@@ -294,7 +319,7 @@
                 type: 'column'
             },
             title: {
-                text: 'Gender per Program'
+                text: 'Gender of Applicants per Program'
             },
             xAxis: {
                 categories: [
@@ -335,6 +360,68 @@
                 name: 'Female',
                 data: [bsisfemale, actfemale, bsaisfemale, bsafemale, babfemale, bsswfemale]
 
+            }]
+        });
+
+        Highcharts.chart('regions', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: 0,
+                plotShadow: false
+            },
+            title: {
+                text: 'Total<br>applicants<br>per Region',
+                align: 'center',
+                verticalAlign: 'middle',
+                y: 60
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    dataLabels: {
+                        enabled: true,
+                        distance: -50,
+                        style: {
+                            fontWeight: 'bold',
+                            color: 'white'
+                        }
+                    },
+                    startAngle: -90,
+                    endAngle: 90,
+                    center: ['50%', '75%'],
+                    size: '110%'
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Total applicant percentage',
+                innerSize: '40%',
+                data: [
+                    ['REGION I', region1],
+                    ['REGION II', region2],
+                    ['REGION III', region3],
+                    ['REGION IV-A', region4a],
+                    ['REGION IV-B', region4b],
+                    ['REGION V', region5],
+                    ['REGION VI', region6],
+                    ['REGION VII', region7],
+                    ['REGION VIII', region8],
+                    ['REGION IX', region9],
+                    ['REGION X', region10],
+                    ['REGION XI', region11],
+                    ['REGION XII', region12],
+                    ['REGION XIII', region13],
+                    ['BARMM', barmm],
+                    ['CAR', car],
+                    ['NCR', ncr]
+                ]
             }]
         });
     </script>

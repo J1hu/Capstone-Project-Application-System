@@ -14,10 +14,12 @@ class ExamScoreFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+    private static $userCounter = 1;
     public function definition()
     {
         return [
-            'applicant_id' => rand(1, 50),
+            'applicant_id' => self::$userCounter++,
             'intelligence_score' => rand(70, 100),
             'aptitude_score' => rand(70, 100),
             'average_score' => rand(70, 100),

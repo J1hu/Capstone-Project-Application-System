@@ -43,6 +43,7 @@ class DatabaseSeeder extends Seeder
         Role::create(['name' => 'mancom']);
 
         $this->call(ProgramSeeder::class);
+        $this->call(JsonSeeder::class);
         $this->call(ScholarshipTypeSeeder::class);
         $this->call(SchoolYearSeeder::class);
         $this->call(BatchSeeder::class);

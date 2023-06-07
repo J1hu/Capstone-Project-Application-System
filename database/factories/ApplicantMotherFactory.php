@@ -14,10 +14,11 @@ class ApplicantMotherFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    private static $userCounter = 1;
     public function definition()
     {
         return [
-            'applicant_id' => rand(1, 50),
+            'applicant_id' => self::$userCounter++,
             'mother_fname' => fake()->firstNameFemale(),
             'mother_mname' => fake()->text(5),
             'mother_lname' => fake()->lastName(),
