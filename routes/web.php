@@ -122,9 +122,12 @@ Route::middleware(['auth', 'role:applicant|admin|program_head|mancom|registrar_s
 // NOTIFICATIONS
 Route::middleware(['auth', 'role:applicant|admin|program_head|mancom|registrar_staff', 'verified'])->group(function () {
     Route::prefix('notifications')->group(function () {
-        Route::get('/view', [NotificationController::class, 'showNotification'])->name('notifications.view');
+        Route::get('/view', [NotificationController::class, 'index'])->name('notifications.index');
+        Route::get('/view-sy', [NotificationController::class, 'showNotificationSY'])->name('notifications.view-sy');
+        Route::get('/view-applicant', [NotificationController::class, 'showNotificationApplicant'])->name('notifications.view-applicant');
         // posts
-        Route::post('/send-notification', [NotificationController::class, 'sendNotification'])->name('notifications.notification');
+        Route::post('/send-notification-sy', [NotificationController::class, 'sendNotificationSY'])->name('notifications.notification-sy');
+        Route::post('/send-notification-applicant', [NotificationController::class, 'sendNotificationApplicant'])->name('notifications.notification-applicant');
         Route::put('/notifications/{notification}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.mark-as-read');
         Route::get('/check-unread', [NotificationController::class, 'checkUnread'])->name('notifications.checkUnread');
     });

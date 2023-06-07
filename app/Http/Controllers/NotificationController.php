@@ -13,15 +13,27 @@ use Illuminate\Support\Facades\Auth;
 
 class NotificationController extends Controller
 {
-    public function showNotification()
+    public function index(){
+        return view('notifications.index');
+    }
+
+    public function showNotificationSY()
     {
         $schoolYears = SchoolYear::all();
         $programs = Program::all();
 
-        return view('notifications.index', compact('schoolYears', 'programs'));
+        return view('notifications.send-sy', compact('schoolYears', 'programs'));
     }
 
-    public function sendNotification(Request $request)
+    public function showNotificationApplicant()
+    {
+        $schoolYears = SchoolYear::all();
+        $programs = Program::all();
+
+        return view('notifications.send-applicant', compact('schoolYears', 'programs'));
+    }
+
+    public function sendNotificationSY(Request $request)
     {
         // Retrieve the input values from the form
         $programId = $request->input('programId');
@@ -41,7 +53,31 @@ class NotificationController extends Controller
             $applicant->notify(new SendNotification($title, $content));
         }
 
-        return redirect()->route('notifications.view');
+        return redirect()->route('notifications.view-sy');
+    }
+
+    public function sendNotificationApplicant(Request $request)
+    {
+        // Retrieve the input values from the form
+        $applicantId = $request->input('applicantId');
+        $programId = $request->input('programId');
+        $batch_num = $request->input('batch_num');
+        $title = $request->input('title');
+        $content = $request->input('content');
+        // Retrieve the program
+        $program = Program::findOrFail($programId);
+
+        // Send the notification to the applicants in the program
+        $applicant = Applicant::where([
+            ['id', $applicantId],
+            ['program_id', $program->id],
+            ['batch_id', $batch_num]
+        ])->get();
+
+        $applicant->notify(new SendNotification($title, $content));
+        
+
+        return redirect()->route('notifications.view-sy');
     }
 
     public function showInterviewForm()
@@ -65,11 +101,11 @@ class NotificationController extends Controller
     }
 
     public function checkUnread()
-{
-    $applicant = Auth::user()->applicant;
-    $unreadCount = $applicant->unreadNotifications()->count();
+    {
+        $applicant = Auth::user()->applicant;
+        $unreadCount = $applicant->unreadNotifications()->count();
 
-    return response()->json(['hasUnreadNotifications' => $unreadCount > 0]);
-}
+        return response()->json(['hasUnreadNotifications' => $unreadCount > 0]);
+    }
 
 }

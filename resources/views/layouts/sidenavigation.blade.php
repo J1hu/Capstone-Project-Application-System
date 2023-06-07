@@ -107,7 +107,7 @@
         </x-nav-link>
 
         <x-nav-head>NOTIFICATION</x-nav-head>
-        <x-nav-link :href="route('notifications.view')" :active="request()->routeIs('notifications') || strpos(url()->current(), 'notifications') !== false">
+        <x-nav-link :href="route('notifications.index')" :active="request()->routeIs('notifications') || strpos(url()->current(), 'notifications') !== false">
             <span class="material-symbols-outlined mr-5">
                 notifications
             </span>
