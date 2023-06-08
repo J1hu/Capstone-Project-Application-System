@@ -40,6 +40,6 @@ class FailedApplicantController extends Controller
             $applicants = $applicants->whereIn('program_id', $programIds);
         }
 
-        return view('applicants.pendinglist', compact('applicants'));
+        return view('applicants.failedlist', compact('applicants'));
     }
 }

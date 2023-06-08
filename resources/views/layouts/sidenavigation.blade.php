@@ -38,7 +38,7 @@
             </span>
             {{ __('Dashboard') }}
         </x-nav-link>
-        @hasrole('admin|registrar_staff|program_head|mancom')
+        @hasanyrole('admin|registrar_staff|program_head|mancom')
         <x-nav-head>REPORTS</x-nav-head>
         <x-nav-link :href="route('visualiation.view')" :active="request()->routeIs('visualiation.view') ||
                 strpos(url()->current(), 'visualiation.view') !== false">
@@ -69,6 +69,44 @@
                 assignment_late
             </span>
             {{ __('Failed Applicants') }}
+        </x-nav-link>
+        @endhasanyrole
+
+        <x-nav-head>STATUSES</x-nav-head>
+        @hasanyrole('admin|program_head')
+        <x-nav-link :href="route('preassessment.list')" :active="request()->routeIs('preassessment.list') ||
+                strpos(url()->current(), 'preassessment.list') !== false">
+            <span class="material-symbols-outlined mr-5">
+                person_search
+            </span>
+            {{ __('Ready For Preassessment') }}
+        </x-nav-link>
+        @endhasanyrole
+        @hasanyrole('admin|registrar_staff')
+        <x-nav-link :href="route('exam.list')" :active="request()->routeIs('exam.list') ||
+                strpos(url()->current(), 'exam.list') !== false">
+            <span class="material-symbols-outlined mr-5">
+                text_snippet
+            </span>
+            {{ __('Ready For Exam Score Inputs') }}
+        </x-nav-link>
+        @endhasrole
+        @hasanyrole('admin|program_head')
+        <x-nav-link :href="route('interview.list')" :active="request()->routeIs('interview.list') ||
+                strpos(url()->current(), 'interview.list') !== false">
+            <span class="material-symbols-outlined mr-5">
+                record_voice_over
+            </span>
+            {{ __('Ready For Interview Assessment') }}
+        </x-nav-link>
+        @endhasanyrole
+        @hasanyrole('admin|mancom')
+        <x-nav-link :href="route('final-assessment.list')" :active="request()->routeIs('final-assessment.list') ||
+                strpos(url()->current(), 'final-assessment.list') !== false">
+            <span class="material-symbols-outlined mr-5">
+                note_alt
+            </span>
+            {{ __('Ready For Final Assessment') }}
         </x-nav-link>
         @endhasanyrole
 
