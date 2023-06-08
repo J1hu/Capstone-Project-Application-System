@@ -94,10 +94,11 @@
 
         <div id="assessment">
             {{-- For Evaluation --}}
-            @hasanyrole('program_head|registrar_staff|admin')
+            @hasanyrole('program_head|registrar_staff|admin|mancom')
             <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="profile_assessment" role="tabpanel" aria-labelledby="profile-assessment-tab">
                 <h2 class="font-bold">Profile Preassessment</h2>
                 @if (is_null($preassessment))
+                @hasanyrole('program_head|registrar_staff|admin')
                 <form method="POST" action="{{ route('preassessments.store') }}" class="mt-4">
                     @csrf
 
@@ -132,6 +133,12 @@
                         <button type="submit" class="btn btn-primary justify-self-end bg-blue-500 hover:bg-blue-700 px-10 py-2 border-2 w-fit rounded-md border-slate-300 text-white mt-4">Submit</button>
                     </div>
                 </form>
+                @endhasanyrole
+                @hasrole('mancom')
+                <div>
+                    <p>The applicant has not yet been preassessed.</p>
+                </div>
+                @endhasrole
             </div>
             @elseif ($preassessment)
             <div class="mt-4 space-y-3">
@@ -211,6 +218,7 @@
         <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="initial_assessment" role="tabpanel" aria-labelledby="initial-assessment-tab">
             <h2 class="font-bold">Interview Assessment</h2>
             @if (is_null($initial_assessment))
+            @hasanyrole('admin|registrar_staff|program_head')
             <form method="POST" action="{{ route('initial_assessments.store') }}" class="mt-4 space-y-2">
                 @csrf
                 <input type="hidden" name="applicant_id" value="{{ $applicant->id }}">
@@ -240,6 +248,12 @@
                     <button type="submit" class="btn btn-primary justify-self-end bg-blue-500 hover:bg-blue-700 px-10 py-2 border-2 w-fit rounded-md border-slate-300 text-white mt-4">Submit</button>
                 </div>
             </form>
+            @endhasanyrole
+            @hasrole('mancom')
+            <div>
+                <p>The applicant has not yet been interviewed.</p>
+            </div>
+            @endhasrole
             @elseif ($initial_assessment)
             <div class="space-y-2">
                 <div class="flex flex-col">
