@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gadget;
+use App\Models\Region;
 use App\Models\Program;
+use App\Models\Barangay;
+use App\Models\Province;
 use App\Models\AcadAward;
 use App\Models\Applicant;
 use App\Models\ElectricBill;
 use App\Models\InternetType;
+use App\Models\Municipality;
 use Illuminate\Http\Request;
 use App\Models\HouseOwnership;
 use App\Models\ApplicantFather;
@@ -16,11 +20,8 @@ use App\Events\ApplicantCreated;
 use App\Models\ApplicantAddress;
 use App\Models\ApplicantGuardian;
 use App\Models\ApplicationStatus;
-use App\Models\Barangay;
-use App\Models\Municipality;
-use App\Models\Province;
-use App\Models\Region;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\ApplicantRegistrationNotification;
 
 class ApplicantController extends Controller
 {
@@ -252,6 +253,7 @@ class ApplicantController extends Controller
 
         //assign batch to applicant
         event(new ApplicantCreated($applicant));
+        $applicant->notify(new ApplicantRegistrationNotification());
 
         //assign status to applicant
         $applicationStatus = ApplicationStatus::where('application_status_name', 'filled')->first();

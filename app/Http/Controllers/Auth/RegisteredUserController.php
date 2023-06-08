@@ -46,7 +46,6 @@ class RegisteredUserController extends Controller
         $user->assignRole('applicant');
 
         event(new Registered($user));
-        event(new ApplicantRegistered($user));
 
         Auth::login($user);
         Auth::viaRemember();

@@ -40,10 +40,7 @@ class ApplicantRegistrationNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+        //
     }
 
     /**
@@ -56,7 +53,7 @@ class ApplicantRegistrationNotification extends Notification
     {
         return [
             'title' => "Congratulations! You are now verified!",
-            'content' => "You email address has been verified, thank you for applying for the scholarship in LVCC",
+            'content' => "Your email address has been verified, thank you for applying for the scholarship in LVCC",
         ];
     }
 }
