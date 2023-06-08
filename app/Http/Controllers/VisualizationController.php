@@ -60,71 +60,71 @@ class VisualizationController extends Controller
 
         //get applicants per region
         $region1 = Applicant::whereHas('address', function ($query) {
-            $query->where('region', 'REGION I');
+            $query->where('region', 1);
         })->count();
 
         $region2 = Applicant::whereHas('address', function ($query) {
-            $query->where('region', 'REGION II');
+            $query->where('region', 2);
         })->count();
 
         $region3 = Applicant::whereHas('address', function ($query) {
-            $query->where('region', 'REGION III');
+            $query->where('region', 3);
         })->count();
 
         $region4a = Applicant::whereHas('address', function ($query) {
-            $query->where('region', 'REGION IV-A');
+            $query->where('region', 4);
         })->count();
 
         $region4b = Applicant::whereHas('address', function ($query) {
-            $query->where('region', 'REGION IV-B');
+            $query->where('region', 5);
         })->count();
 
         $region5 = Applicant::whereHas('address', function ($query) {
-            $query->where('region', 'REGION V');
+            $query->where('region', 6);
         })->count();
 
         $region6 = Applicant::whereHas('address', function ($query) {
-            $query->where('region', 'REGION VI');
+            $query->where('region', 7);
         })->count();
 
         $region7 = Applicant::whereHas('address', function ($query) {
-            $query->where('region', 'REGION VII');
+            $query->where('region', 8);
         })->count();
 
         $region8 = Applicant::whereHas('address', function ($query) {
-            $query->where('region', 'REGION VIII');
+            $query->where('region', 9);
         })->count();
 
         $region9 = Applicant::whereHas('address', function ($query) {
-            $query->where('region', 'REGION IX');
+            $query->where('region', 10);
         })->count();
 
         $region10 = Applicant::whereHas('address', function ($query) {
-            $query->where('region', 'REGION X');
+            $query->where('region', 11);
         })->count();
 
         $region11 = Applicant::whereHas('address', function ($query) {
-            $query->where('region', 'REGION XI');
+            $query->where('region', 12);
         })->count();
 
         $region12 = Applicant::whereHas('address', function ($query) {
-            $query->where('region', 'REGION XII');
+            $query->where('region', 13);
         })->count();
 
         $region13 = Applicant::whereHas('address', function ($query) {
-            $query->where('region', 'REGION XIII');
+            $query->where('region', 14);
         })->count();
 
         $barmm = Applicant::whereHas('address', function ($query) {
-            $query->where('region', 'BARMM');
+            $query->where('region', 15);
         })->count();
 
         $car = Applicant::whereHas('address', function ($query) {
-            $query->where('region', 'CAR');
+            $query->where('region', 16);
         })->count();
 
         $ncr = Applicant::whereHas('address', function ($query) {
-            $query->where('region', 'NCR');
+            $query->where('region', 17);
         })->count();
 
         return view('admin.visualization', compact(
