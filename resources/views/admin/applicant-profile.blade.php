@@ -452,7 +452,9 @@
                     <div>
                         <ul class="list-inside list-disc">
                             @foreach ($applicant->acadAwards as $award)
+                            @if (!empty(trim($award->award_name)))
                             <li class="capitalize">{{ $award->award_name }}</li>
+                            @endif
                             @endforeach
                         </ul>
                     </div>
