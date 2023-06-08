@@ -452,7 +452,9 @@
                     <div>
                         <ul class="list-inside list-disc">
                             @foreach ($applicant->acadAwards as $award)
+                            @if (!empty(trim($award->award_name)))
                             <li class="capitalize">{{ $award->award_name }}</li>
+                            @endif
                             @endforeach
                         </ul>
                     </div>
@@ -497,10 +499,12 @@
                 <div class="p-4 rounded-lg bg-white dark:bg-gray-800">
                     <div class="grid grid-cols-4">
                         <div class="grid grid-flow-row">
+                            @if (!empty($applicant->free_ebill_reason))
                             <div>
                                 <label class="font-semibold">Reason electric consumption is free:</label>
                                 <p class="capitalize">{{ $applicant->free_ebill_reason }}</p>
                             </div>
+                            @endif
                             <div>
                                 <label class="font-semibold">House Ownership Type:</label>
                                 <p class="capitalize">{{ $applicant->houseOwnership->ownership_type }}</p>
