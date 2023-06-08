@@ -84,11 +84,9 @@
                 <li class="mr-2" role="presentation">
                     <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="initial-assessment-tab" data-tabs-target="#initial_assessment" type="button" role="tab" aria-controls="initial_assessment" aria-selected="false">Interview Assessment</button>
                 </li>
-                @hasanyrole('admin|mancom|registrar_staff')
                 <li class="mr-2" role="presentation">
                     <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="final-assessment-tab" data-tabs-target="#final_assessment" type="button" role="tab" aria-controls="final_assessment" aria-selected="false">Final Assessment</button>
                 </li>
-                @endhasanyrole
             </ul>
         </div>
 
@@ -162,7 +160,7 @@
 
         {{-- Exam Score --}}
         <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="exam_score" role="tabpanel" aria-labelledby="exam-score-tab">
-            <h2>Exam Score</h2>
+            <h2 class="font-bold">Exam Score</h2>
             @if (is_null($exam_score))
             <p>Applicant has not yet taken the exam</p>
             @hasanyrole('registrar_staff|admin')
@@ -269,10 +267,10 @@
         </div>
 
         {{-- Final Assessment --}}
-        @hasanyrole('mancom|admin|registrar_staff')
         <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="final_assessment" role="tabpanel" aria-labelledby="final-assessment-tab">
             <h2 class="font-bold">Final Assessment</h2>
             @if (is_null($final_assessment))
+            @hasanyrole('admin|registrar_staff|mancom')
             <form method="POST" action="{{ route('final_assessments.store') }}" class="mt-4 space-y-2">
                 @csrf
                 <input type="hidden" name="applicant_id" value="{{ $applicant->id }}">
@@ -302,6 +300,12 @@
                     <button type="submit" class="btn btn-primary justify-self-end bg-blue-500 hover:bg-blue-700 px-10 py-2 border-2 w-fit rounded-md border-slate-300 text-white mt-4">Submit</button>
                 </div>
             </form>
+            @endhasanyrole
+            @hasrole('program_head')
+            <div>
+                <p>The applicant has not yet been final assessed.</p>
+            </div>
+            @endhasrole
             @elseif ($final_assessment)
             <div>
                 <div>
@@ -315,7 +319,6 @@
             </div>
             @endif
         </div>
-        @endhasanyrole
     </div>
 
     {{-- Tabs --}}
