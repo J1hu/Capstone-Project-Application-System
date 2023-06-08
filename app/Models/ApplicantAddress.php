@@ -23,4 +23,9 @@ class ApplicantAddress extends Model
     {
         return $this->belongsTo(Applicant::class);
     }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class);
+    }
 }
