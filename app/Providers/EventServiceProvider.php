@@ -25,7 +25,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         PreassessmentUpdated::class => [
             PreassessmentUpdatedListener::class,
-        ],
+        ]
     ];
 
     /**
