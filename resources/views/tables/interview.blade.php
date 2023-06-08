@@ -11,10 +11,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="grid grid-cols-2 p-6">
                     <div>
-                        <h1 class="font-bold">List of Newly Qualified Applicants</h1>
-                    </div>
-                    <div class="grid justify-self-end content-center">
-                        <x-primary-button class="px-5" id="generate-csv">Generate CSV</x-primary-button>
+                        <h1 class="font-bold">List of Applicants ready for Interview Remarks</h1>
                     </div>
                 </div>
                 @auth
@@ -63,6 +60,6 @@
     });
 
     document.getElementById('generate-csv').addEventListener('click', function() {
-        window.location.href = "{{ route('generate.one') }}";
+        window.location.href = "{{ route('generate.two') }}";
     });
 </script>

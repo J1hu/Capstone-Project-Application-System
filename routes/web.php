@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\AddressController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CsvController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BatchController;
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApplicantController;
-use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SchoolYearController;
+use App\Http\Controllers\StatusTableController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\VisualizationController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -147,10 +148,18 @@ Route::middleware(['auth', 'role:admin', 'verified'])->group(function () {
     Route::get('/visualizations', [VisualizationController::class, 'index'])->name('visualiation.view');
 });
 
+
+//ADDRESS
 Route::get('/regions', [AddressController::class, 'region']);
 Route::get('/provinces/{region}', [AddressController::class, 'province']);
 Route::get('/municipalities/{province}', [AddressController::class, 'municipality']);
 Route::get('/barangays/{municipality}', [AddressController::class, 'barangay']);
+
+//STATUS TABLES
+Route::get('/preassessment-list', [StatusTableController::class, 'preassessmentList'])->name('preassessment.list');
+Route::get('/examination-list', [StatusTableController::class, 'forExamList'])->name('exam.list');
+Route::get('/interview-list', [StatusTableController::class, 'forInterviewList'])->name('interview.list');
+Route::get('/final-list', [StatusTableController::class, 'forFinalAssessmentList'])->name('final-assessment.list');
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/mancom.php';

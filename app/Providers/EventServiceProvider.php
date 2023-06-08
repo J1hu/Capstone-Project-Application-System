@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\InterviewAssessmentUpdated;
 use App\Events\PreassessmentUpdated;
+use App\Listeners\InterviewAssessmentUpdatedListener;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use App\Listeners\PreassessmentUpdatedListener;
@@ -25,6 +27,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         PreassessmentUpdated::class => [
             PreassessmentUpdatedListener::class,
+        ],
+        InterviewAssessmentUpdated::class => [
+            InterviewAssessmentUpdatedListener::class,
         ]
     ];
 

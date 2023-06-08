@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\InterviewAssessmentUpdated;
 use Auth;
 use App\Models\Applicant;
 use App\Models\ExamScore;
@@ -70,7 +71,9 @@ class EvaluationController extends Controller
             'scholarship_type' => 'required',
         ]);
 
-        InitialAssessment::create($validatedData);
+        $initialAssessment = InitialAssessment::create($validatedData);
+
+        // event(new InterviewAssessmentUpdated($initialAssessment));
 
         return redirect()->back()->with('success', 'Initial Assessment created successfully.');
     }
