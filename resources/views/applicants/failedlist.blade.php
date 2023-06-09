@@ -36,7 +36,7 @@
                             <td class="py-2">{{ $applicant->user->email}}</td>
                             <td class="py-2">{{ $applicant->program->program_name}}</td>
                             <td class="py-2">{{ $applicant->phone_num}}</td>
-                            <td class="py-2">{{ $applicant->applicant_status->applicant_status_name}}</td>
+                            <td class="py-2">{{ $applicant->application_status->application_status_name }}</td>
                             <td><a href="{{ route('applicants.admin-view', ['id' => $applicant->id]) }}" class="bg-blue-500 text-white px-2 py-1 rounded-md text-xs">View Profile</a></td>
                         </tr>
                         @endforeach
