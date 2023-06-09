@@ -76,7 +76,7 @@
         <div class="my-4 border-b bg-white border-gray-200 dark:border-gray-700">
             <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTabs" data-tabs-toggle="#assessment" role="tablist">
                 <li class="mr-2" role="presentation">
-                    <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-assessment-tab" data-tabs-target="#profile_assessment" type="button" role="tab" aria-controls="profile_assessment" aria-selected="false">Profile Assessment</button>
+                    <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="profile-assessment-tab" data-tabs-target="#profile_assessment" type="button" role="tab" aria-controls="profile_assessment" aria-selected="false">Profile Assessment</button>
                 </li>
                 <li class="mr-2" role="presentation">
                     <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="exam-score-tab" data-tabs-target="#exam_score" type="button" role="tab" aria-controls="exam_score" aria-selected="false">Exam Score</button>
@@ -326,7 +326,7 @@
         <div class="my-4 border-b bg-white border-gray-200 dark:border-gray-700">
             <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
                 <li class="mr-2" role="presentation">
-                    <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Personal Info</button>
+                    <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Personal Info</button>
                 </li>
                 <li class="mr-2" role="presentation">
                     <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-500 hover:border-blue-300 dark:hover:text-blue-300" id="family_data-tab" data-tabs-target="#family_data" type="button" role="tab" aria-controls="family_data" aria-selected="false">Family Data</button>
