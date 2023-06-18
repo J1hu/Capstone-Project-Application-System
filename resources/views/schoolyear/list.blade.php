@@ -16,38 +16,37 @@
                     <h1 class="font-bold p-6">List of School Years</h1>
                 </div>
                 @auth
-                    <table class="w-full py-3 table-auto" id="myTable">
-                        <thead class="bg-slate-100 text-left">
-                            <tr>
-                                <th class="py-2 px-6">School Year</th>
-                                <th class="py-2 pl-3">Status</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($schoolYears as $year)
-                                <tr class="odd:bg-white even:bg-slate-50 hover:bg-blue-100">
-                                    @if ($year)
-                                    <td class="px-6">{{ $year->year }}</td>
-                                    @else
-                                    <td class="px-6">No School Year Available</td>
-                                    @endif
-                                    @if ($year->is_archived == true)
-                                        <td class="p-2">
-                                            <span class="bg-red-200 py-1 px-3 rounded-full text-red-900 font-semibold">Archived</span>
-                                            </td>
-                                    @else
-                                        <td class="p-2">
-                                            <span class="bg-green-200 py-1 px-3 rounded-full text-green-900 font-semibold">Active</span>
-                                        </td>
-                                    @endif
-                                    <td class="py-2 mr-10 grid"><a href="{{ route('school-years.batches', $year->id) }}"
-                                            class="bg-green-500 text-white px-2 py-1 rounded-md text-xs place-self-end">View Applicants</a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                <table class="w-full py-3 table-auto" id="myTable">
+                    <thead class="bg-slate-100 text-left">
+                        <tr>
+                            <th class="py-2 px-6">School Year</th>
+                            <th class="py-2 pl-3">Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($schoolYears as $year)
+                        <tr class="odd:bg-white even:bg-slate-50 hover:bg-blue-100">
+                            @if ($year)
+                            <td class="px-6">{{ $year->year }}</td>
+                            @else
+                            <td class="px-6">No School Year Available</td>
+                            @endif
+                            @if ($year->is_archived == true)
+                            <td class="p-2">
+                                <span class="bg-red-200 py-1 px-3 rounded-full text-red-900 font-semibold">Archived</span>
+                            </td>
+                            @else
+                            <td class="p-2">
+                                <span class="bg-green-200 py-1 px-3 rounded-full text-green-900 font-semibold">Active</span>
+                            </td>
+                            @endif
+                            <td class="py-2 mr-10 grid"><a href="{{ route('school-years.batches', $year->id) }}" class="bg-green-500 text-white px-2 py-1 rounded-md text-xs place-self-end">View School Year</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
                 @endauth
             </div>
         </div>

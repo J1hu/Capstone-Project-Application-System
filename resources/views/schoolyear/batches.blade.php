@@ -21,7 +21,13 @@
                     </div>
                 </div>
                 @else
-                <div class="space-y-3 p-5"></div>
+                <div class="space-y-3 p-5">
+                    <div class="grid space-y-3 text-right">
+                        <a class="px-5 justify-self-end content-center hover:bg-green-500 bg-green-700 py-2 border-2 w-fit rounded-md border-slate-300 text-white uppercase text-xs font-bold focus:bg-green-900 focus:ring-green-500 active:bg-green-800" href="{{ route('school-years.unarchive', $schoolYear->id) }}">
+                            Unarchive This School Year
+                        </a>
+                    </div>
+                </div>
                 @endif
             </div>
 

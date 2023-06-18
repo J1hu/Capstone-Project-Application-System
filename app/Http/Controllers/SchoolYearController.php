@@ -56,4 +56,12 @@ class SchoolYearController extends Controller
 
         return redirect()->route('school-years.list');
     }
+
+    public function unarchive($id)
+    {
+        $schoolYear = SchoolYear::findOrFail($id);
+        $schoolYear->update(['is_archived' => 0]);
+
+        return redirect()->route('school-years.list');
+    }
 }

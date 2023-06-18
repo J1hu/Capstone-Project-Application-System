@@ -138,6 +138,7 @@ Route::middleware(['auth', 'role:admin', 'verified'])->group(function () {
         Route::get('/list', [SchoolYearController::class, 'index'])->name('school-years.list');
         Route::get('/batches/{schoolYear}', [SchoolYearController::class, 'listBatches'])->name('school-years.batches');
         Route::get('/{id}/archive', [SchoolYearController::class, 'archive'])->name('school-years.archive');
+        Route::get('/{id}/unarchive', [SchoolYearController::class, 'unarchive'])->name('school-years.unarchive');
         Route::get('/create', [SchoolYearController::class, 'create'])->name('school-years.create');
         Route::post('/store', [SchoolYearController::class, 'store'])->name('school-years.store');
     });
