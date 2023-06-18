@@ -2,14 +2,23 @@
     <h1 class="font-bold text-4xl">
         Welcome, {{ $user->name }}!
     </h1>
-    <div class="bg-white px-10 py-5 my-5 rounded-md border-l-blue-500 border-l-8 grid grid-col-1">
-        <h2 class="font-bold text-xl">Always check the notifications for the announcements about your application status.</h2>
-        <p class="text-base">Regularly check if there is anything the registrar wants you to resubmit, resubmition of uploaded files are via email that will be provided by the registrar if you received a notification about resubmition.</p>
-    </div>
 
     @php
     $status = $user->applicant->application_status->application_status_name;
     @endphp
+
+    @if ($status == 'done orientation' || $status == 'for enrollment' || $status == 'passed')
+    <div class="bg-white px-10 py-5 my-5 rounded-md border-l-blue-500 border-l-8 grid grid-col-1">
+        <h2 class="font-bold text-xl">Congratulations! Scholarship Application Completed.</h2>
+        <p class="text-base">Thank you for successfully completing the Scholarship Application process at La Verdad Christian College - Apalit, Pampanga.</p>
+    </div>
+    @else
+    <div class="bg-white px-10 py-5 my-5 rounded-md border-l-blue-500 border-l-8 grid grid-col-1">
+        <h2 class="font-bold text-xl">Always check the notifications for the announcements about your application status.</h2>
+        <p class="text-base">Regularly check if there is anything the registrar wants you to resubmit, resubmition of uploaded files are via email that will be provided by the registrar if you received a notification about resubmition.</p>
+    </div>
+    @endif
+
     <div class="bg-white px-10 py-5 my-5 rounded-md">
         <ol id="stepper" class="relative text-gray-500 border-l border-gray-200 dark:border-gray-700 dark:text-gray-400">
             @if ($status == 'filled' || $status == 'pending' || $status == 'verified')
