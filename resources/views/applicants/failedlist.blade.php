@@ -50,6 +50,7 @@
                     </tbody>
                 </table>
                 @endisset
+                @endauth
             </div>
         </div>
     </div>

@@ -17,6 +17,7 @@
                         <x-primary-button class="px-5" id="generate-csv">Generate CSV</x-primary-button>
                     </div>
                 </div>
+                @auth
                 @isset($message)
                 <div class="m-4 font-bold">
                     <p>{{ $message }}</p>
@@ -49,6 +50,7 @@
                     </tbody>
                 </table>
                 @endisset
+                @endauth
             </div>
         </div>
     </div>
