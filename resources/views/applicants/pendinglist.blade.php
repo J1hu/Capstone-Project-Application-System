@@ -13,9 +13,13 @@
                     <div>
                         <h1 class="font-bold">List of Pending Applicants</h1>
                     </div>
+                    @isset($applicants)
+                    @if ($applicants)
                     <div class="grid justify-self-end content-center">
                         <x-primary-button class="px-5" id="generate-csv">Generate CSV</x-primary-button>
                     </div>
+                    @endif
+                    @endisset
                 </div>
                 @auth
                 @isset($message)

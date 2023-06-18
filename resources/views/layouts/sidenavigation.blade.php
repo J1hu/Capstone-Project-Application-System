@@ -72,7 +72,9 @@
         </x-nav-link>
         @endhasanyrole
 
+        @hasanyrole('admin|program_head|registrar_staff|mancom')
         <x-nav-head>STATUSES</x-nav-head>
+        @endhasanyrole
         @hasanyrole('admin|program_head')
         <x-nav-link :href="route('preassessment.list')" :active="request()->routeIs('preassessment.list') ||
                 strpos(url()->current(), 'preassessment.list') !== false">
