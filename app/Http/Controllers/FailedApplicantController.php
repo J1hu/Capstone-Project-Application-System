@@ -16,6 +16,10 @@ class FailedApplicantController extends Controller
 
         $latestSchoolYear = SchoolYear::where('is_archived', false)->latest()->first();
 
+        if ($latestSchoolYear === null || $latestSchoolYear->batches->isEmpty()) {
+            return view('applicants.failedlist')->with('message', 'There are no active batches. Did you forgot to create a new School Year?');
+        }
+
         $allowedStatuses = [
             'failed interview',
             'failed exam',

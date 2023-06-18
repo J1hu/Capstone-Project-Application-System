@@ -17,7 +17,11 @@
                         <x-primary-button class="px-5" id="generate-csv">Generate CSV</x-primary-button>
                     </div>
                 </div>
-                @auth
+                @isset($message)
+                <div class="m-4 font-bold">
+                    <p>{{ $message }}</p>
+                </div>
+                @else
                 <table class="w-full py-3 table-auto" id="myTable">
                     <thead class="bg-slate-100 text-left">
                         <tr>
@@ -37,12 +41,14 @@
                             <td class="py-2">{{ $applicant->program->program_name}}</td>
                             <td class="py-2">{{ $applicant->phone_num}}</td>
                             <td class="py-2 capitalize">{{ $applicant->application_status->application_status_name}}</td>
-                            <td><a href="{{ route('applicants.admin-view', ['id' => $applicant->id]) }}" class="bg-blue-500 text-white px-2 py-1 rounded-md text-xs">View Profile</a></td>
+                            <td>
+                                <a href="{{ route('applicants.admin-view', ['id' => $applicant->id]) }}" class="bg-blue-500 text-white px-2 py-1 rounded-md text-xs">View Profile</a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
-                @endauth
+                @endisset
             </div>
         </div>
     </div>
