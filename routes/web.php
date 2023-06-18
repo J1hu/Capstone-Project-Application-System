@@ -125,8 +125,11 @@ Route::middleware(['auth', 'role:applicant|admin|program_head|mancom|registrar_s
 Route::middleware(['auth', 'role:applicant|admin|program_head|mancom|registrar_staff', 'verified'])->group(function () {
     Route::prefix('notifications')->group(function () {
         Route::get('/view', [NotificationController::class, 'showNotification'])->name('notifications.view');
+        Route::get('/send-all', [NotificationController::class, 'notifyAll'])->name('notifications.send-all');
+        Route::get('/send-applicant', [NotificationController::class, 'notifyApplicant'])->name('notifications.send-applicant');
         // posts
         Route::post('/send-notification', [NotificationController::class, 'sendNotification'])->name('notifications.notification');
+        Route::post('/send-notification-app', [NotificationController::class, 'sendNotificationApplicant'])->name('notifications.notification-app');
         Route::put('/notifications/{notification}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.mark-as-read');
         Route::get('/check-unread', [NotificationController::class, 'checkUnread'])->name('notifications.checkUnread');
     });

@@ -15,10 +15,22 @@ class NotificationController extends Controller
 {
     public function showNotification()
     {
+        return view('notifications.index');
+    }
+
+    public function notifyAll(){
         $schoolYears = SchoolYear::all();
         $programs = Program::all();
 
-        return view('notifications.index', compact('schoolYears', 'programs'));
+        return view('notifications.send-all', compact('schoolYears', 'programs'));
+    }
+
+    public function notifyApplicant(){
+        $schoolYear = SchoolYear::get()->first();
+        $programs = Program::all();
+        $applicants = Applicant::all();
+
+        return view('notifications.send-applicant', compact('schoolYear', 'applicants'));
     }
 
     public function sendNotification(Request $request)
@@ -30,20 +42,32 @@ class NotificationController extends Controller
         $content = $request->input('content');
         // Retrieve the program
         $program = Program::findOrFail($programId);
+            // Send the notification to the applicants in the program
+            $applicants = Applicant::where([
+                ['program_id', $program->id],
+                ['batch_id', $batch_num]
+            ])->get();
 
-        // Send the notification to the applicants in the program
-        $applicants = Applicant::where([
-            ['program_id', $program->id],
-            ['batch_id', $batch_num]
-        ])->get();
-
-        foreach ($applicants as $applicant) {
-            $applicant->notify(new SendNotification($title, $content));
-        }
+            foreach ($applicants as $applicant) {
+                $applicant->notify(new SendNotification($title, $content));
+            }
 
         return redirect()->route('notifications.view');
     }
 
+    public function sendNotificationApplicant(Request $request)
+    {
+        $applicantId = $request->input('applicant');
+        $title = $request->input('title');
+        $content = $request->input('content');
+        
+        $applicant = Applicant::findOrFail($applicantId);
+    
+        $applicant->notify(new SendNotification($title, $content));
+            
+        return redirect()->route('notifications.view');
+    }
+    
     public function showInterviewForm()
     {
         return view('notifications.interview');
