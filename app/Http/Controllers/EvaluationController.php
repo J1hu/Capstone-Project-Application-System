@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\InterviewAssessmentUpdated;
+use App\Events\ExamScoreUpdated;
 use Auth;
 use App\Models\Applicant;
 use App\Models\ExamScore;
@@ -12,6 +12,8 @@ use App\Models\FinalAssessment;
 use App\Models\ApplicationStatus;
 use App\Models\InitialAssessment;
 use App\Events\PreassessmentUpdated;
+use App\Events\FinalAssessmentUpdated;
+use App\Events\InterviewAssessmentUpdated;
 
 
 class EvaluationController extends Controller
@@ -56,6 +58,8 @@ class EvaluationController extends Controller
             'average_score' => ($request->input('intelligence_score') + $request->input('aptitude_score')) / 2,
         ]);
 
+        event(new ExamScoreUpdated($examScore));
+
         if (!$examScore) {
             return redirect()->back()->with('error', $validatedData);
         }
@@ -67,13 +71,14 @@ class EvaluationController extends Controller
     {
         $validatedData = $request->validate([
             'applicant_id' => 'required',
+            'is_approved' => 'required',
             'remarks' => 'required',
             'scholarship_type' => 'required',
         ]);
 
         $initialAssessment = InitialAssessment::create($validatedData);
 
-        // event(new InterviewAssessmentUpdated($initialAssessment));
+        event(new InterviewAssessmentUpdated($initialAssessment));
 
         return redirect()->back()->with('success', 'Initial Assessment created successfully.');
     }
@@ -106,9 +111,10 @@ class EvaluationController extends Controller
             'remarks' => 'required',
             'scholarship_type' => 'required',
         ]);
+        $finalAssessment = FinalAssessment::create($validatedData);
 
-        FinalAssessment::create($validatedData);
+        event(new FinalAssessmentUpdated($finalAssessment));
 
-        return redirect()->back()->with('success', 'Initial Assessment created successfully.');
+        return redirect()->back()->with('success', 'Final Assessment created successfully.');
     }
 }

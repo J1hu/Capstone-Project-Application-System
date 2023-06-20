@@ -11,8 +11,9 @@ class InitialAssessment extends Model
 
     protected $fillable = [
         'applicant_id',
+        'is_approved',
         'remarks',
-        'scholarship_type'
+        'scholarship_type',
     ];
 
     public function applicant()
