@@ -29,7 +29,7 @@ class InterviewAssessmentUpdatedListener
         $initialAssessment = $event->initialAssessment;
 
         // Check if the initialAssessment has value
-        if ($initialAssessment->remarks) {
+        if ($initialAssessment->is_approved) {
             $applicant = $initialAssessment->applicant;
 
             // Update the application status of the specific applicant to 'passed interview'

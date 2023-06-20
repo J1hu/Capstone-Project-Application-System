@@ -2,12 +2,16 @@
 
 namespace App\Providers;
 
-use App\Events\InterviewAssessmentUpdated;
+use App\Events\ExamScoreUpdated;
 use App\Events\PreassessmentUpdated;
-use App\Listeners\InterviewAssessmentUpdatedListener;
 use Illuminate\Support\Facades\Event;
+use App\Events\FinalAssessmentUpdated;
 use Illuminate\Auth\Events\Registered;
+use App\Events\InterviewAssessmentUpdated;
+use App\Listeners\ExamScoreUpdatedListener;
 use App\Listeners\PreassessmentUpdatedListener;
+use App\Listeners\FinalAssessmentUpdatedListener;
+use App\Listeners\InterviewAssessmentUpdatedListener;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -30,6 +34,12 @@ class EventServiceProvider extends ServiceProvider
         ],
         InterviewAssessmentUpdated::class => [
             InterviewAssessmentUpdatedListener::class,
+        ],
+        FinalAssessmentUpdated::class => [
+            FinalAssessmentUpdatedListener::class,
+        ],
+        ExamScoreUpdated::class => [
+            ExamScoreUpdatedListener::class,
         ]
     ];
 

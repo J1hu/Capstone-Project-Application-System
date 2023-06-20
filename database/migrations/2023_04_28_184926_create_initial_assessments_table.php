@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('initial_assessments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('applicant_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->boolean('is_approved')->nullable();
             $table->string('remarks')->nullable();
             $table->string('scholarship_type')->nullable();
             $table->timestamps();

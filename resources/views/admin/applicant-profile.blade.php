@@ -222,6 +222,19 @@
                 <input type="hidden" name="applicant_id" value="{{ $applicant->id }}">
 
                 <div class="form-group flex flex-col">
+                    <label for="is_approved" class="text-sm text-slate-700">Did Applicant Passed the interview?</label>
+                    <select class="form-control items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-1/4" id="is_approved" name="is_approved" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                    @if ($errors->has('is_approved'))
+                    <div class="invalid-feedback text-red-500">
+                        {{ $errors->first('is_approved') }}
+                    </div>
+                    @endif
+                </div>
+
+                <div class="form-group flex flex-col">
                     <label for="remarks" class="text-sm text-slate-700">Remarks:</label>
                     <textarea class="form-control @error('remarks') is-invalid @enderror items-center my-1 p-3 text-sm leading-5 text-black border-2 rounded-md border-slate-400 bg-white focus:ring-blue-500 focus:border-blue-500 w-full" id="remarks" name="remarks">{{ old('remarks') }}</textarea>
                     @error('remarks')
@@ -254,6 +267,10 @@
             @endhasrole
             @elseif ($initial_assessment)
             <div class="space-y-2">
+                <div class="flex flex-col">
+                    <label class="text-sm text-slate-700">Evaluator's Interview Approval:</label>
+                    <p>{{ $initial_assessment->is_approved ? 'Yes' : 'No' }}</p>
+                </div>
                 <div class="flex flex-col">
                     <label class="text-sm text-slate-700">Evaluator's Initial Interview Remarks:</label>
                     <p>{{ $initial_assessment->remarks }}</p>
